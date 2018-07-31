@@ -14,16 +14,26 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'containers/HomePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Header from 'components/header';
+import Footer from '../../components/footer';
+import Content from '../../components/content';
+
+import HomePage from '../../containers/HomePage/Loadable';
+import RoomPage from '../../containers/RoomPage';
+import NotFoundPage from '../../containers/NotFoundPage/Loadable';
 
 export default function App() {
   return (
     <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <Header />
+      <Content>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/room" component={RoomPage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Content>
+      <Footer />
     </div>
   );
 }

@@ -8,12 +8,13 @@ injectGlobal`
     width: 100%;
   }
 
+  @import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900);
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: Roboto, sans-serif;
   }
 
   body.fontLoaded {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: "Open Sans", Roboto, sans-serif;
   }
 
   #app {
