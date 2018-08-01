@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Controls from '../controls';
 
 function hasGetUserMedia() {
   return !!(
@@ -30,7 +31,7 @@ class Player extends Component {
     className: PropTypes.string,
     audioConstraints: audioConstraintType,
     videoConstraints: videoConstraintType,
-    controls: videoConstraintType,
+    controls: PropTypes.object,
   };
 
   static mountedInstances = [];
@@ -83,14 +84,6 @@ class Player extends Component {
       }
       Player.userMediaRequested = false;
       window.URL.revokeObjectURL(this.state.src);
-    }
-  }
-
-  playPauseHandler() {
-    if (this.state.video.paused === true) {
-      this.state.video.play();
-    } else {
-      this.state.video.pause();
     }
   }
 
@@ -187,8 +180,6 @@ class Player extends Component {
 
     try {
       this.video.srcObject = stream;
-      this.video.style.transform = 'scale(-1, 1)';
-      this.setState({ video: this.video });
       this.setState({ hasUserMedia: true });
     } catch (error) {
       this.setState({
@@ -201,30 +192,28 @@ class Player extends Component {
   }
 
   render() {
+    const { width, className, audio, style, controls } = this.props;
+
     return (
-      <div>
+      <div style={{ position: 'relative' }}>
         <video
           autoPlay
-          width={this.props.width}
+          width={width}
           height={this.state.height}
           src={this.state.src}
-          muted={this.props.audio}
-          className={this.props.className}
+          muted={audio}
+          className={className}
           playsInline
-          style={this.props.style}
           ref={ref => {
             this.video = ref;
           }}
-          controls={this.props.controls}
+          style={style}
+          controls={controls}
         >
           <track kind="captions" />
         </video>
-        <button
-          style={{ display: this.props.height > 100 ? 'inline' : 'none' }}
-          onClick={this.playPauseHandler}
-        >
-          Play
-        </button>
+
+        <Controls video={this.video} width={this.props.width} />
       </div>
     );
   }

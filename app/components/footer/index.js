@@ -79,6 +79,7 @@ class Footer extends PureComponent {
         </NavigationBlock>
         <SocialButton
           href="https://lod-misis.ru"
+          target="_blank"
           style={{
             fontSize: '.7em',
             alignSelf: 'flex-end',
@@ -90,16 +91,16 @@ class Footer extends PureComponent {
           © League Of Developers 2018
         </SocialButton>
         <SocialBlock>
-          <SocialButton href="https://vk.com">
+          <SocialButton href="https://vk.com" target="_blank">
             <VKIcon /> VK
           </SocialButton>
-          <SocialButton href="https://facebook.com">
+          <SocialButton href="https://facebook.com" target="_blank">
             <FacebookIcon /> Facebook
           </SocialButton>
-          <SocialButton href="https://twitter.com">
+          <SocialButton href="https://twitter.com" target="_blank">
             <TwitterIcon /> Twitter
           </SocialButton>
-          <SocialButton href="https://instagram.com">
+          <SocialButton href="https://instagram.com" target="_blank">
             <InstagramIcon /> Instagram
           </SocialButton>
         </SocialBlock>
