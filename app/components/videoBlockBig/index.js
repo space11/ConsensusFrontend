@@ -69,7 +69,7 @@ class VideoBlockBig extends PureComponent {
 }
 
 VideoBlockBig.propTypes = {
-  image: PropTypes.object,
+  image: PropTypes.any,
   title: PropTypes.string,
   url: PropTypes.string,
   live: PropTypes.bool,
