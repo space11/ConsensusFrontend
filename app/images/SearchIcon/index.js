@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function(isWhite) {
+export default function(props) {
   return (
     <svg width="18px" height="18px" viewBox="0 0 22 21">
       <g
@@ -13,7 +13,7 @@ export default function(isWhite) {
         <g
           id="Desktop-HD-Copy-8"
           transform="translate(-1074.000000, -40.000000)"
-          fill={isWhite ? '#fff' : '#474D90'}
+          fill={props.isWhite ? '#fff' : '#474D90'}
           fillRule="nonzero"
         >
           <g id="хедер">

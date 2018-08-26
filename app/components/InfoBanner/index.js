@@ -8,7 +8,7 @@ const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-top: 94px;
+  margin-bottom: 10vw;
   height: auto;
   width: 100%;
   justify-content: space-between;

@@ -9,7 +9,7 @@ import Placeholder from '../../images/placeholder.png';
 const NowBlockWrapper = styled.div`
   max-width: 64em;
   margin: auto;
-  margin-top: 10vw;
+  margin-bottom: 10vw;
   box-sizing: border-box;
   min-height: calc(100vh - 21vw);
   padding: 0 ${unit / 3}%;

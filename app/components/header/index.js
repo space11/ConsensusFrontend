@@ -49,6 +49,7 @@ const NavigationButton = styled(Link)`
 `;
 
 const SearchButton = styled.button`
+  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
   outline: none;
 `;
 
@@ -71,7 +72,7 @@ class Header extends PureComponent {
             Подписки
           </NavigationButton>
           <SearchButton>
-            <SearchIcon />
+            <SearchIcon isWhite={this.props.path === '/'} />
           </SearchButton>
         </NavigatorContainer>
         <ActionButton text="Вход и регистрация" />

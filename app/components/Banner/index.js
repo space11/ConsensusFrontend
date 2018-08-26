@@ -30,13 +30,13 @@ const BannerDescriptionLine = styled.div`
 `;
 
 const RocketWrapper = styled.div`
-  margin: 15vw auto;
+  margin: 20vw auto;
   position: relative;
   animation: go-left-right 3s infinite alternate ease-in-out;
 
   @keyframes go-left-right {
     from {
-      left: calc(50px - 10%);
+      left: calc(50px - 5%);
     }
     to {
       left: calc(10% - 50px);
@@ -48,7 +48,7 @@ const AliensWrapper = styled.div`
   position: relative;
   display: flex;
   padding: 0 5vw;
-  margin-top: -7vw;
+  margin-top: -12vw;
 `;
 
 const RedAlienWrapper = styled.div`
@@ -68,6 +68,7 @@ const RedAlienWrapper = styled.div`
 const YellowAlienWrapper = styled.div`
   position: relative;
   animation: go-top-bottom 4s infinite alternate;
+  margin-top: -2vw;
 
   @keyframes go-top-bottom {
     from {
