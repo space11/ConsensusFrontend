@@ -3,24 +3,12 @@ import React from 'react';
 export default function() {
   return (
     <svg
-      width="45px"
-      height="20px"
-      viewBox="0 0 45 20"
+      width="40px"
+      height="18px"
+      viewBox="0 0 40 18"
       version="1.1"
       style={{ position: 'absolute', left: 0, top: 0 }}
     >
-      <defs>
-        <linearGradient
-          x1="100%"
-          y1="100%"
-          x2="0%"
-          y2="0%"
-          id="linearGradient-1"
-        >
-          <stop stopColor="#FB644C" offset="0%" />
-          <stop stopColor="#EF4978" offset="100%" />
-        </linearGradient>
-      </defs>
       <g
         id="Symbols"
         stroke="none"
@@ -28,36 +16,34 @@ export default function() {
         fill="none"
         fillRule="evenodd"
       >
-        <g id="прошедшие" transform="translate(0.000000, -42.000000)">
-          <g id="Group-10-Copy-9">
-            <g id="Group-23" transform="translate(0.000000, 42.000000)">
-              <g id="Live">
-                <rect
-                  id="Rectangle-2"
-                  fill="url(#linearGradient-1)"
-                  x="0"
-                  y="0"
-                  width="45"
-                  height="20"
-                />
-                <g
-                  id="Group-14"
-                  transform="translate(3.000000, 3.000000)"
-                  fill="#FFF9FB"
+        <g id="карточка-мал" transform="translate(0.000000, -50.000000)">
+          <g id="Group" transform="translate(0.000000, 50.000000)">
+            <g id="Group-15">
+              <rect
+                id="Rectangle-2"
+                fill="#F7567C"
+                x="0"
+                y="0"
+                width="40"
+                height="18"
+              />
+              <g
+                id="Group-14"
+                transform="translate(4.000000, 2.000000)"
+                fill="#FFF9FB"
+              >
+                <circle id="Oval-2" cx="3.5" cy="7.5" r="3.5" />
+                <text
+                  id="LIVE"
+                  fontFamily="Manrope-Light, Manrope"
+                  fontSize="10"
+                  fontWeight="300"
+                  letterSpacing="0.5322857"
                 >
-                  <circle id="Oval-2" cx="4" cy="7" r="4" />
-                  <text
-                    id="LIVE"
-                    fontFamily="Manrope-Light, Manrope"
-                    fontSize="10"
-                    fontWeight="300"
-                    letterSpacing="0.5322857"
-                  >
-                    <tspan x="13.2010536" y="11">
-                      LIVE
-                    </tspan>
-                  </text>
-                </g>
+                  <tspan x="10.7010536" y="11">
+                    LIVE
+                  </tspan>
+                </text>
               </g>
             </g>
           </g>

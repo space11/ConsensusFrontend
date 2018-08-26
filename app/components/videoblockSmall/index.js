@@ -9,6 +9,7 @@ const VideoBlockWrapper = styled(Link)`
   flex-direction: column;
   text-decoration: none;
   color: #000;
+  max-width: 220px;
 `;
 
 const VideoBlockTitle = styled.div`
@@ -16,11 +17,13 @@ const VideoBlockTitle = styled.div`
   width: 15vw;
   font-weight: 400;
   margin-bottom: 10px;
+  max-width: 220px;
 `;
 
 const VideoBlockNames = styled.div`
   font-size: 0.8em;
   font-weight: 300;
+  max-width: 220px;
 `;
 
 const VideoBlockLowWrapper = styled.div`
@@ -29,17 +32,24 @@ const VideoBlockLowWrapper = styled.div`
   width: 15.5vw;
   font-size: 0.8em;
   font-weight: 300;
+  max-width: 220px;
 `;
 
-const VideoBlockTheme = styled.div``;
+const VideoBlockTheme = styled.div`
+  letter-spacing: 0.5px;
+`;
 
-const VideoBlockFollowers = styled.div``;
+const VideoBlockViewers = styled.div`
+  letter-spacing: 0.5px;
+`;
 
 const VideoBlockImage = styled.img`
   position: relative;
   margin-bottom: 5px;
   width: 15.5vw;
   height: 8vw;
+  max-width: 220px;
+  max-height: 110px;
 `;
 
 const VideoBlockLiveMark = styled.div`
@@ -60,7 +70,7 @@ class VideoBlockSmall extends PureComponent {
         <VideoBlockNames>{this.props.names}</VideoBlockNames>
         <VideoBlockLowWrapper>
           <VideoBlockTheme>{this.props.theme}</VideoBlockTheme>
-          <VideoBlockFollowers>{this.props.followers}</VideoBlockFollowers>
+          <VideoBlockViewers>{this.props.viewers}</VideoBlockViewers>
         </VideoBlockLowWrapper>
       </VideoBlockWrapper>
     );
@@ -74,7 +84,7 @@ VideoBlockSmall.propTypes = {
   live: PropTypes.bool,
   names: PropTypes.string,
   theme: PropTypes.string,
-  followers: PropTypes.string,
+  viewers: PropTypes.string,
 };
 
 export default VideoBlockSmall;

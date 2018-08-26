@@ -9,18 +9,6 @@ export default function() {
       version="1.1"
       style={{ position: 'absolute', left: 0, top: 0 }}
     >
-      <defs>
-        <linearGradient
-          x1="100%"
-          y1="100%"
-          x2="0%"
-          y2="0%"
-          id="linearGradient-1"
-        >
-          <stop stopColor="#FB644C" offset="0%" />
-          <stop stopColor="#EF4978" offset="100%" />
-        </linearGradient>
-      </defs>
       <g
         id="Symbols"
         stroke="none"
@@ -30,13 +18,13 @@ export default function() {
       >
         <g
           id="карточка-дебатов-большая"
-          transform="translate(0.000000, -54.000000)"
+          transform="translate(0.000000, -65.000000)"
         >
-          <g id="Group-10-Copy-11">
-            <g id="Group-15" transform="translate(0.000000, 54.000000)">
+          <g id="Group-2" transform="translate(0.000000, 65.000000)">
+            <g id="Group-15">
               <rect
                 id="Rectangle-2"
-                fill="url(#linearGradient-1)"
+                fill="#F7567C"
                 x="0"
                 y="0"
                 width="56"
@@ -44,24 +32,24 @@ export default function() {
               />
               <g
                 id="Group-14"
-                transform="translate(3.818182, 3.173077)"
+                transform="translate(4.818182, 2.173077)"
                 fill="#FFF9FB"
               >
                 <ellipse
                   id="Oval-2"
                   cx="5.09090909"
-                  cy="10.5769231"
+                  cy="11"
                   rx="5.09090909"
                   ry="5"
                 />
                 <text
                   id="LIVE"
                   fontFamily="Manrope-Light, Manrope"
-                  fontSize="13"
+                  fontSize="14"
                   fontWeight="300"
-                  letterSpacing="0.6919714"
+                  letterSpacing="0.7452"
                 >
-                  <tspan x="17.1431879" y="14.3269231">
+                  <tspan x="15.0632932" y="15.3269231">
                     LIVE
                   </tspan>
                 </text>

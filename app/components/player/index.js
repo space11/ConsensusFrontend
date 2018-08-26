@@ -213,7 +213,11 @@ class Player extends Component {
           <track kind="captions" />
         </video>
 
-        <Controls video={this.video} width={this.props.width} />
+        <Controls
+          video={this.video}
+          videom={this.videom}
+          width={this.props.width}
+        />
       </div>
     );
   }

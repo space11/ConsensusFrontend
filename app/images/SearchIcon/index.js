@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function() {
+export default function(isWhite) {
   return (
-    <svg width="20px" height="21px" viewBox="0 0 20 21">
+    <svg width="18px" height="18px" viewBox="0 0 22 21">
       <g
         id="Page-1"
         stroke="none"
@@ -13,7 +13,7 @@ export default function() {
         <g
           id="Desktop-HD-Copy-8"
           transform="translate(-1074.000000, -40.000000)"
-          fill="#FFFFFF"
+          fill={isWhite ? '#fff' : '#474D90'}
           fillRule="nonzero"
         >
           <g id="хедер">
