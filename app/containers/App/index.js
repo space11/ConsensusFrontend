@@ -17,6 +17,7 @@ export default function App() {
         <Route exact path="/room" component={RoomPage} />
         <Route component={NotFoundPage} />
       </Switch>
+      <Footer />
     </div>
   );
 }

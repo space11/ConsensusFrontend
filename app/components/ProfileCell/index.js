@@ -34,16 +34,18 @@ const ProfileCellTextWrapper = styled.div`
 class TopBlock extends PureComponent {
   render() {
     return (
-      <ProfileCellWrapper to="some">
-        <ProfileCellAva>
-          <LiveIcon />
-          <AvaPlaceholder />
-        </ProfileCellAva>
-        <ProfileCellTextWrapper>
-          <ProfileCellName>Pynya</ProfileCellName>
-          <ProfileCellRep>228 реп.</ProfileCellRep>
-        </ProfileCellTextWrapper>
-      </ProfileCellWrapper>
+      <div style={{ height: '100px' }}>
+        <ProfileCellWrapper to="some">
+          <ProfileCellAva>
+            <LiveIcon />
+            <AvaPlaceholder />
+          </ProfileCellAva>
+          <ProfileCellTextWrapper>
+            <ProfileCellName>Pynya</ProfileCellName>
+            <ProfileCellRep>228 реп.</ProfileCellRep>
+          </ProfileCellTextWrapper>
+        </ProfileCellWrapper>
+      </div>
     );
   }
 }

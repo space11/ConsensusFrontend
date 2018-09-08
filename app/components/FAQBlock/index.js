@@ -9,7 +9,6 @@ import { unit } from '../../utils/constants';
 const FaqBlockWrapper = styled.div`
   position: relative;
   width: 100%;
-  margin-bottom: 10vw;
 `;
 
 const FaqBlockGreyWrapper = styled.div`

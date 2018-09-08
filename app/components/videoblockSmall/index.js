@@ -9,30 +9,41 @@ const VideoBlockWrapper = styled(Link)`
   flex-direction: column;
   text-decoration: none;
   color: #000;
-  max-width: 220px;
+  min-width: 220px;
+  width: 22%;
+  height: 240px;
+
+  @media screen and (max-width: 654px) {
+    width: 100%;
+  }
 `;
 
 const VideoBlockTitle = styled.div`
-  font-size: 1em;
-  width: 15vw;
+  display: -webkit-box;
+  max-height: 3.2rem;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  font-size: 1rem;
   font-weight: 400;
-  margin-bottom: 10px;
-  max-width: 220px;
+  line-height: 1.6rem;
+  margin-bottom: 5px;
 `;
 
 const VideoBlockNames = styled.div`
   font-size: 0.8em;
   font-weight: 300;
-  max-width: 220px;
+  white-space: nowrap;
 `;
 
 const VideoBlockLowWrapper = styled.div`
   display: inline-flex;
   justify-content: space-between;
-  width: 15.5vw;
+  width: 100%;
   font-size: 0.8em;
   font-weight: 300;
-  max-width: 220px;
 `;
 
 const VideoBlockTheme = styled.div`
@@ -46,10 +57,10 @@ const VideoBlockViewers = styled.div`
 const VideoBlockImage = styled.img`
   position: relative;
   margin-bottom: 5px;
-  width: 15.5vw;
-  height: 8vw;
-  max-width: 220px;
-  max-height: 110px;
+  width: 100%;
+  height: 8rem;
+  max-height: var(--yt-img-max-height, none);
+  max-width: var(--yt-img-max-width, 100%);
 `;
 
 const VideoBlockLiveMark = styled.div`

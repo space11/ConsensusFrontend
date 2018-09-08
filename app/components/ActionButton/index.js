@@ -7,12 +7,10 @@ const ActionButton = styled.button`
   font-weight: 600;
   color: #fff;
   width: 18.6vw;
-  margin: auto;
   border-radius: 100px;
   min-width: 220px;
   min-height: 45px;
   background: #f7567c;
-  float: right;
   box-shadow: 0 0 5px #ff5964;
 `;
 

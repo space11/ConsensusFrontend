@@ -5,41 +5,56 @@ import ActionButton from '../ActionButton';
 import AlienRed from '../../images/Banner/Alien1';
 import AlienYellow from '../../images/Banner/Alien2';
 import Rocket from '../../images/Banner/Rocket';
-
-const BackgroundWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  width: 100%;
-`;
+import Space from '../Space';
 
 const BannerDescriptionWrapper = styled.div`
   display: flex;
+  height: calc(100% - 93px);
+  min-width: 10vw;
+  max-height: 1050px;
   flex-direction: column;
-  position: relative;
-  margin-top: 13.6vw;
+  position: absolute;
+  top: 0;
+  margin: 0 auto;
+  justify-content: center;
+  width: 100%;
 `;
 
 const BannerDescriptionLine = styled.div`
   display: flex;
-  font-size: 2.5vw;
+  font-size: 2.2em;
   font-weight: 400;
-  margin-bottom: 1vw;
   color: #fff;
+  text-align: center;
   justify-content: center;
   letter-spacing: 1.5px;
+  z-index: 1;
+
+  @media screen and (max-width: 900px) {
+    font-size: 2em;
+    @media screen and (max-width: 550px) {
+      font-size: 1.3em;
+    }
+  }
 `;
 
 const RocketWrapper = styled.div`
-  margin: 20vw auto;
+  display: flex;
   position: relative;
+  margin: 0 auto;
   animation: go-left-right 3s infinite alternate ease-in-out;
+
+  @media screen and (max-width: 900px) {
+    animation: none;
+    margin: 0 auto;
+  }
 
   @keyframes go-left-right {
     from {
       left: calc(50px - 5%);
     }
     to {
-      left: calc(10% - 50px);
+      left: calc(15% - 50px);
     }
   }
 `;
@@ -48,12 +63,17 @@ const AliensWrapper = styled.div`
   position: relative;
   display: flex;
   padding: 0 5vw;
-  margin-top: -12vw;
+  width: 100%;
+  margin-top: -3vw;
 `;
 
 const RedAlienWrapper = styled.div`
   position: relative;
   animation: go-top-bottom 3s infinite alternate;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 
   @keyframes go-top-bottom {
     from {
@@ -66,9 +86,14 @@ const RedAlienWrapper = styled.div`
 `;
 
 const YellowAlienWrapper = styled.div`
+  display: flex;
   position: relative;
-  animation: go-top-bottom 4s infinite alternate;
   margin-top: -2vw;
+  animation: go-top-bottom 4s infinite alternate;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 
   @keyframes go-top-bottom {
     from {
@@ -80,20 +105,37 @@ const YellowAlienWrapper = styled.div`
   }
 `;
 
+const ActionWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 2vw auto;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+`;
+
 /* eslint-disable react/prefer-stateless-function */
 class Banner extends PureComponent {
   render() {
     return (
-      <div>
-        <BackgroundWrapper>
+      <div style={{ position: 'relative', marginTop: '-1px' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
           <Bg />
-        </BackgroundWrapper>
+        </div>
         <BannerDescriptionWrapper>
-          <BannerDescriptionLine>Первая в мире платформа</BannerDescriptionLine>
-          <BannerDescriptionLine style={{ marginBottom: '4vw' }}>
-            для проведения онлайн-дебатов
-          </BannerDescriptionLine>
-          <ActionButton text="Организовать дебаты" />
+          <div style={{ margin: '0' }}>
+            <BannerDescriptionLine style={{ marginBottom: '1vw' }}>
+              Первая в мире платформа
+            </BannerDescriptionLine>
+            <BannerDescriptionLine>
+              для проведения онлайн-дебатов
+            </BannerDescriptionLine>
+            <ActionWrapper>
+              <ActionButton text="Организовать дебаты" />
+            </ActionWrapper>
+          </div>
+          <Space size={2} />
           <AliensWrapper>
             <RedAlienWrapper>
               <AlienRed />

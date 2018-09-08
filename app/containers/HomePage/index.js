@@ -1,16 +1,23 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import Banner from '../../components/Banner';
-import NowBlock from '../../components/NowBlock';
+import VideoBlock from '../../components/VideoBlock';
 import InfoBanner from '../../components/InfoBanner';
-import PassedBlock from '../../components/PassedBlock';
 import TopBlock from '../../components/TopBlock';
 import FaqBlock from '../../components/FAQBlock';
+import PartnersBlock from '../../components/PartnersBlock';
+import Space from '../../components/Space';
 
 const HomePageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: space-between;
+`;
+
+const InfoBannerStyle = styled.div`
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -19,11 +26,22 @@ export default class HomePage extends PureComponent {
     return (
       <HomePageWrapper>
         <Banner />
-        <NowBlock />
-        <InfoBanner />
-        <PassedBlock />
+        <VideoBlock live title="Сейчас в эфире" />
+        <InfoBannerStyle>
+          <Space size={10} />
+          <InfoBanner />
+        </InfoBannerStyle>
+        <Space size={10} />
+        <VideoBlock title="Прошедшие дебаты" />
+        <Space size={10} />
         <TopBlock />
-        <FaqBlock />
+        <Space size={10} />
+        <InfoBannerStyle>
+          <FaqBlock />
+          <Space size={10} />
+        </InfoBannerStyle>
+        <PartnersBlock />
+        <Space size={10} />
       </HomePageWrapper>
     );
   }

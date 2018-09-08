@@ -2,7 +2,12 @@ import React from 'react';
 
 export default function() {
   return (
-    <svg width="145px" height="188px" viewBox="0 0 145 188" version="1.1">
+    <svg
+      width="20vw"
+      viewBox="0 0 145 188"
+      version="1.1"
+      style={{ maxWidth: '145px', maxHeight: '188px' }}
+    >
       <g
         id="Page-1"
         stroke="none"

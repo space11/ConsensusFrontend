@@ -10,7 +10,6 @@ const TopBlockWrapper = styled.div`
   max-width: 64em;
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 10vw;
   box-sizing: border-box;
   padding: 0 ${unit / 3}%;
   ${hideOn} ${media.large`padding: 0 ${3.2 * unit}px;`};
@@ -22,11 +21,19 @@ const TopBlockTitle = styled.div`
   margin-bottom: 50px;
   font-size: 2.4em;
   letter-spacing: 2px;
+  @media screen and (max-width: 654px) {
+    justify-content: center;
+  }
 `;
 
 const ProfileWrapper = styled.div`
   display: inline-flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+
+  @media screen and (max-width: 654px) {
+    justify-content: center;
+  }
 `;
 
 class TopBlock extends PureComponent {
