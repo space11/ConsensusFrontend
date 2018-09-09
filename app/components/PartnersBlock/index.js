@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PartnersCell from '../PartnersCell';
 import { hideOn, media } from '../../utils/helpers';
 import { unit } from '../../utils/constants';
+import Space from '../Space';
 
 const PartnersBlockWrapper = styled.div`
   display: inline-flex;
@@ -32,7 +33,6 @@ const Partners = styled.div`
 const PartnersBlockTitle = styled.div`
   display: flex;
   font-weight: 600;
-  margin-bottom: 50px;
   font-size: 2.4em;
   letter-spacing: 2px;
   @media screen and (max-width: 654px) {
@@ -46,6 +46,7 @@ class PartnersBlock extends PureComponent {
     return (
       <Partners>
         <PartnersBlockTitle>Наши партнеры</PartnersBlockTitle>
+        <Space size={4} />
         <PartnersBlockWrapper>
           <PartnersCell />
           <PartnersCell />

@@ -1,6 +1,10 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import FacebookIcon from '../../images/Footer/Socials/Facebook';
+import InstagramIcon from '../../images/Footer/Socials/Instagram';
+import TwitterIcon from '../../images/Footer/Socials/Twitter';
+import VKIcon from '../../images/Footer/Socials/VK';
 import Bg from '../../images/Footer/bg';
 
 const FooterWrapper = styled.div`
@@ -32,6 +36,11 @@ const BlockWrapper = styled.div`
   justify-content: center;
 `;
 
+const LeftBlockWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const MainBlockWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -48,10 +57,24 @@ const NavigationLine = styled(Link)`
 `;
 
 const SocialLine = styled.a`
-  margin: 0.5vw;
   color: #fff;
-  text-decoration: none;
+  margin: 0.5vw;
   text-transform: uppercase;
+  text-decoration: none;
+`;
+
+const SocialWrapper = styled.a`
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+`;
+
+const SocialsWrapper = styled.a`
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -75,14 +98,25 @@ class Footer extends PureComponent {
               </NavigationLine>
             </BlockWrapper>
 
-            <BlockWrapper>
-              <SocialLine href="https://vk.com">VK</SocialLine>
-              <SocialLine href="https://facebook.com">FACEBOOK</SocialLine>
-              <SocialLine href="https://twitter.com">TWITTER</SocialLine>
-              <SocialLine href="https://instagram.com">INSTAGRAM</SocialLine>
-            </BlockWrapper>
+            <LeftBlockWrapper>
+              <SocialWrapper>
+                <VKIcon />
+                <FacebookIcon />
+                <TwitterIcon />
+                <InstagramIcon />
+              </SocialWrapper>
+
+              <SocialsWrapper>
+                <SocialLine href="https://vk.com">VK</SocialLine>
+                <SocialLine href="https://facebook.com">FACEBOOK</SocialLine>
+                <SocialLine href="https://twitter.com">TWITTER</SocialLine>
+                <SocialLine href="https://instagram.com">INSTAGRAM</SocialLine>
+              </SocialsWrapper>
+            </LeftBlockWrapper>
           </MainBlockWrapper>
-          <Copyright href="">© League Of Developers 2018</Copyright>
+          <Copyright href="https://lod-misis.ru">
+            © League Of Developers 2018
+          </Copyright>
         </FooterWrapper>
       </div>
     );

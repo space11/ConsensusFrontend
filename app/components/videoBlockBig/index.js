@@ -12,6 +12,10 @@ const VideoBlockWrapper = styled(Link)`
   min-width: 300px;
   width: 30%;
   height: 300px;
+
+  @media screen and (max-width: 654px) {
+    width: 100%;
+  }
 `;
 
 const VideoBlockTitle = styled.div`

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { hideOn, media } from '../../utils/helpers';
 import { unit } from '../../utils/constants';
+import Space from '../Space';
 import ProfileCell from '../ProfileCell';
 
 const TopBlockWrapper = styled.div`
@@ -18,7 +19,6 @@ const TopBlockWrapper = styled.div`
 const TopBlockTitle = styled.div`
   display: flex;
   font-weight: 600;
-  margin-bottom: 50px;
   font-size: 2.4em;
   letter-spacing: 2px;
   @media screen and (max-width: 654px) {
@@ -41,6 +41,7 @@ class TopBlock extends PureComponent {
     return (
       <TopBlockWrapper>
         <TopBlockTitle>Топ спикеров</TopBlockTitle>
+        <Space size={4} />
         <ProfileWrapper>
           <ProfileCell />
           <ProfileCell />
