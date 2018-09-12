@@ -14,19 +14,46 @@ const FooterWrapper = styled.div`
   min-width: 10vw;
   max-height: 1050px;
   position: absolute;
+  justify-content: center;
+  align-items: center;
   top: 0;
-  margin: 0 auto;
   width: 100%;
   flex-direction: column;
-  justify-content: center;
+`;
+
+const BackgroundWrapper = styled.div`
+  position: relative;
+  width: 100%;
+
+  @media screen and (max-width: 850px) {
+    display: none;
+  }
+`;
+
+const BackgroundMobileWrapper = styled.div`
+  position: relative;
+  width: 100%;
+
+  @media screen and (min-width: 850px) {
+    display: none;
+  }
+`;
+
+const BackgroundMobile = styled.div`
+  width: 100%;
+  background: #374059;
+  height: 500px;
 `;
 
 const Copyright = styled.a`
-  display: inherit;
+  position: absolute;
+  display: flex;
   justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  bottom: 0;
   color: #fff;
   font-size: 1em;
-  width: 100%;
   text-decoration: none;
 `;
 
@@ -39,26 +66,32 @@ const BlockWrapper = styled.div`
 const LeftBlockWrapper = styled.div`
   display: flex;
   justify-content: center;
+  @media screen and (max-width: 568px) {
+    margin-top: 1rem;
+  }
 `;
 
 const MainBlockWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
-  margin: 12vw auto 7vw auto;
-  width: 62%;
+  width: 65%;
+  margin-top: 2vw;
+
+  @media screen and (max-width: 568px) {
+    justify-content: center;
+  }
 `;
 
 const NavigationLine = styled(Link)`
   color: #fff;
-  margin: 0.5vw;
+  margin: 1vw;
   text-decoration: none;
 `;
 
 const SocialLine = styled.a`
   color: #fff;
-  margin: 0.5vw;
+  margin: 1vw;
   text-transform: uppercase;
   text-decoration: none;
 `;
@@ -81,10 +114,13 @@ const SocialsWrapper = styled.a`
 class Footer extends PureComponent {
   render() {
     return (
-      <div style={{ position: 'relative', marginTop: '-1px' }}>
-        <div style={{ position: 'relative', width: '100%' }}>
+      <div style={{ position: 'relative' }}>
+        <BackgroundWrapper>
           <Bg />
-        </div>
+        </BackgroundWrapper>
+        <BackgroundMobileWrapper>
+          <BackgroundMobile />
+        </BackgroundMobileWrapper>
         <FooterWrapper>
           <MainBlockWrapper>
             <BlockWrapper>
@@ -97,7 +133,6 @@ class Footer extends PureComponent {
                 Пользовательское соглашение
               </NavigationLine>
             </BlockWrapper>
-
             <LeftBlockWrapper>
               <SocialWrapper>
                 <VKIcon />
@@ -105,7 +140,6 @@ class Footer extends PureComponent {
                 <TwitterIcon />
                 <InstagramIcon />
               </SocialWrapper>
-
               <SocialsWrapper>
                 <SocialLine href="https://vk.com">VK</SocialLine>
                 <SocialLine href="https://facebook.com">FACEBOOK</SocialLine>

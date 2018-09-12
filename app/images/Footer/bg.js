@@ -5,6 +5,7 @@ export default function() {
     <svg
       viewBox="0 0 1440 500"
       version="1.1"
+      height="auto"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >

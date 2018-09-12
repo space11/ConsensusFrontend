@@ -59,8 +59,6 @@ const VideoBlockImage = styled.img`
   margin-bottom: 5px;
   width: 100%;
   height: 8rem;
-  max-height: var(--yt-img-max-height, none);
-  max-width: var(--yt-img-max-width, 100%);
 `;
 
 const VideoBlockLiveMark = styled.div`

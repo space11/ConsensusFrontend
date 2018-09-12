@@ -6,6 +6,7 @@ import InfoBanner from '../../components/InfoBanner';
 import TopBlock from '../../components/TopBlock';
 import FaqBlock from '../../components/FAQBlock';
 import PartnersBlock from '../../components/PartnersBlock';
+import AnchorBlock from '../../components/AnchorBlock';
 import Space from '../../components/Space';
 
 const HomePageWrapper = styled.div`
@@ -42,6 +43,7 @@ export default class HomePage extends PureComponent {
         </InfoBannerStyle>
         <PartnersBlock />
         <Space size={10} />
+        <AnchorBlock />
       </HomePageWrapper>
     );
   }

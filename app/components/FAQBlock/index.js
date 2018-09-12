@@ -5,6 +5,7 @@ import AlienHuman from '../../images/FaqBanner/AlienHuman';
 import AlienGrey from '../../images/FaqBanner/AlienGrey';
 import { hideOn, media } from '../../utils/helpers';
 import { unit } from '../../utils/constants';
+import QuestionCell from '../QuestionCell';
 
 const FaqBlockWrapper = styled.div`
   position: relative;
@@ -72,13 +73,16 @@ class FaqBlock extends PureComponent {
   render() {
     return (
       <FaqBlockWrapper>
-        <Background />
+        <div style={{ position: 'absolute' }}>
+          <Background />
+        </div>
         <FaqBlockGreyWrapper>
           <AlienGrey />
         </FaqBlockGreyWrapper>
         <FaqBlockContent>
           <FaqBlockQuestionsTitle>
             Часто задаваемые вопросы
+            <QuestionCell />
           </FaqBlockQuestionsTitle>
         </FaqBlockContent>
         <FaqBlockHuman>
