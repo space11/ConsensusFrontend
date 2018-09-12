@@ -3,6 +3,7 @@ import React from 'react';
 export default function() {
   return (
     <svg
+      width="100%"
       viewBox="0 0 1440 500"
       version="1.1"
       height="auto"
