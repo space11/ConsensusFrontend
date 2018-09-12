@@ -28,6 +28,10 @@ injectGlobal`
   padding: 0;
   }
 
+  button,a{
+    outline: none;
+  }
+
   p,
   label {
     font-family: Georgia, Times, 'Times New Roman', serif;
