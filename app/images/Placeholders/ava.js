@@ -2,7 +2,12 @@ import React from 'react';
 
 export default function() {
   return (
-    <svg width="100%" height="100%" viewBox="0 0 67 65" version="1.1">
+    <svg
+      height="100%"
+      viewBox="0 0 67 65"
+      version="1.1"
+      style={{ maxWidth: '96px' }}
+    >
       <defs>
         <linearGradient
           x1="50%"

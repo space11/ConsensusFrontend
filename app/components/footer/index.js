@@ -61,19 +61,19 @@ const BlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`;
-
-const LeftBlockWrapper = styled.div`
-  display: flex;
-  justify-content: center;
   @media screen and (max-width: 568px) {
     margin-top: 1rem;
   }
 `;
 
+const LeftBlockWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const MainBlockWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   justify-content: space-between;
   width: 65%;
   margin-top: 2vw;
@@ -104,7 +104,7 @@ const SocialWrapper = styled.a`
   justify-content: center;
 `;
 
-const SocialsWrapper = styled.a`
+const SocialsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   text-decoration: none;

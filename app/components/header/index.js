@@ -12,14 +12,14 @@ const HeaderWrapper = styled.div`
   position: ${props => (props.path === '/' ? 'relative' : 'relative')};
   width: 100%;
   height: auto;
-  padding: 1.5em 60px;
+  padding: 1.5em 4em;
   align-items: center;
   justify-content: space-between;
   background: ${props => (props.path === '/' ? '#20244C' : '#fff')};
   flex-wrap: wrap;
 
   @media screen and (max-width: 900px) {
-    padding: 1.5em 40px;
+    padding: 1.5em 3em;
   }
 `;
 
@@ -99,33 +99,35 @@ const MenuSearchWrapper = styled.div`
 const SearchPopupWrapper = styled.div`
   position: absolute;
   display: flex;
-  top: 0;
+  top: ${props => props.top}px;
   align-items: center;
-  background-color: #474d90;
-  padding: 1.5em 60px;
+  justify-content: space-between;
+  background-color: #20244c;
+  padding: 1.5em 4em;
+  box-shadow: 0 3px 10px #000;
   width: 100%;
   z-index: 1;
-  ${'' /* animation: go-top-bottom 4s infinite alternate;
+  overflow: hidden;
+  transition: 0.3s;
 
-  @keyframes go-top-bottom {
-    to {
-      top: 0;
-    }
-  } */};
+  @media screen and (max-width: 900px) {
+    padding: 1.5em 3em;
+  }
 `;
 
 const SearchPopupFieldWrapper = styled.div`
-  height: 100%;
   display: flex;
   align-items: center;
   float: right;
+  width: 100%;
 `;
 
 const SearchPopupInputForm = styled.input`
-  height: 100%;
-  font-size: 1.3em;
-  margin-left: 1vw;
+  font-size: 1.5em;
+  margin-left: 1em;
+  margin-right: 1em;
   outline: none;
+  width: 100%;
   color: #fff;
   &::-webkit-input-placeholder {
     color: #fff;
@@ -135,8 +137,13 @@ const SearchPopupInputForm = styled.input`
 const SearchPopupCloseButtonWrapper = styled.button`
   display: flex;
   justify-content: center;
+  position: relative;
   align-items: center;
+  left: 10px;
   transform: rotate(45deg);
+  height: 20px;
+  width: 20px;
+  z-index: 2;
 `;
 
 const SearchPopupCloseButton = styled.div`
@@ -145,9 +152,11 @@ const SearchPopupCloseButton = styled.div`
   background: #fff;
   height: 20px;
   width: 3px;
+  left: -7px;
+  top: 6px;
   position: relative;
-  left: 5px;
   border-radius: 20px;
+
   &::after {
     content: '';
     height: 3px;
@@ -162,9 +171,29 @@ const SearchPopupCloseButton = styled.div`
 
 /* eslint-disable react/prefer-stateless-function */
 class Header extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      top: props.top || 0,
+    };
+    this.showSearchBlock = this.showSearchBlock.bind(this);
+  }
+
+  showSearchBlock() {
+    this.state.top === 0
+      ? this.setState({ top: 100 })
+      : this.setState({ top: 0 });
+  }
+
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div
+        style={{
+          display: 'flex',
+          position: 'relative',
+          flexDirection: 'column',
+        }}
+      >
         <HeaderWrapper path={this.props.path}>
           <Logo to="/" path={this.props.path}>
             Консенсус
@@ -181,7 +210,7 @@ class Header extends PureComponent {
             </NavigationButton>
           </NavigatorContainer>
           <MenuSearchWrapper>
-            <SearchButton>
+            <SearchButton onClick={this.showSearchBlock}>
               <SearchIcon isWhite={this.props.path === '/'} />
             </SearchButton>
             <MenuIconButton>
@@ -192,12 +221,12 @@ class Header extends PureComponent {
             <ActionButton text="Вход и регистрация" />
           </LoginRegButton>
         </HeaderWrapper>
-        <SearchPopupWrapper>
+        <SearchPopupWrapper top={this.state.top}>
           <SearchPopupFieldWrapper>
             <SearchIcon isWhite />
             <SearchPopupInputForm type="search" placeholder="Найти..." />
           </SearchPopupFieldWrapper>
-          <SearchPopupCloseButtonWrapper>
+          <SearchPopupCloseButtonWrapper onClick={this.showSearchBlock}>
             <SearchPopupCloseButton />
           </SearchPopupCloseButtonWrapper>
         </SearchPopupWrapper>
@@ -208,6 +237,7 @@ class Header extends PureComponent {
 
 Header.propTypes = {
   path: PropTypes.string,
+  top: PropTypes.number,
 };
 
 export default Header;

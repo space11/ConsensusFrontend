@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Plus from '../../images/Controls/plus';
 import Cross from '../../images/Controls/cross';
@@ -36,7 +37,9 @@ const QuestionCellInVisibleContentWrapper = styled.div`
   width: 100%;
 `;
 
-const QuestionCellButton = styled.button``;
+const QuestionCellButton = styled.button`
+  transition: 0.3s;
+`;
 
 const QuestionCellText = styled.div`
   color: #4a4a4a;
@@ -63,23 +66,24 @@ class QuestionCell extends PureComponent {
       <div>
         <QuestionCellWrapper isPopped={this.state.isPopped}>
           <QuestionCellVisibleContentWrapper>
-            <QuestionCellTitle>
-              Как добавить оппонента, который незарегистрирован?
-            </QuestionCellTitle>
+            <QuestionCellTitle>{this.props.title}</QuestionCellTitle>
             <QuestionCellButton onClick={this.buttonPop}>
               {this.state.isPopped ? <Cross /> : <Plus />}
             </QuestionCellButton>
           </QuestionCellVisibleContentWrapper>
           <QuestionCellInVisibleContentWrapper isPopped={this.state.isPopped}>
-            <QuestionCellText>
-              В момент создания комнаты дайте ссылку оппоненту. После
-              регистрации он автоматически попадет в комнату.
-            </QuestionCellText>
+            <QuestionCellText>{this.props.description}</QuestionCellText>
           </QuestionCellInVisibleContentWrapper>
         </QuestionCellWrapper>
       </div>
     );
   }
 }
+
+QuestionCell.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  isPopped: PropTypes.bool,
+};
 
 export default QuestionCell;

@@ -6,6 +6,15 @@ import AlienGrey from '../../images/FaqBanner/AlienGrey';
 import { hideOn, media } from '../../utils/helpers';
 import { unit } from '../../utils/constants';
 import QuestionCell from '../QuestionCell';
+import {
+  queone,
+  quetwo,
+  quethree,
+  quefour,
+  quefive,
+  quesix,
+  description,
+} from '../FAQBlock/messages';
 
 const FaqBlockWrapper = styled.div`
   position: relative;
@@ -114,25 +123,39 @@ class FaqBlock extends PureComponent {
           <AlienGrey />
         </FaqBlockGreyWrapper>
         <FaqBlockContent>
-          <FaqBlockQuestionsTitle>
-            Часто задаваемые вопросы
-          </FaqBlockQuestionsTitle>
+          <FaqBlockQuestionsTitle>{description.title}</FaqBlockQuestionsTitle>
           <FaqBlockQuestionsDescription>
-            Мы уверены, что у вас есть вопросы. Ниже приведен список наиболее
-            часто задаваемых вопросов. Если вы не видите свой вопрос,
-            пожалуйста, не стесняйтесь
+            {description.text}
           </FaqBlockQuestionsDescription>
           <FaqBlockQuestionsLink>обращаться к нам.</FaqBlockQuestionsLink>
           <FaqBlockQuestionsGrid>
             <FaqBlockQuestionsGridSide>
-              <QuestionCell />
-              <QuestionCell />
-              <QuestionCell />
+              <QuestionCell
+                title={queone.title}
+                description={queone.description}
+              />
+              <QuestionCell
+                title={quetwo.title}
+                description={quetwo.description}
+              />
+              <QuestionCell
+                title={quethree.title}
+                description={quethree.description}
+              />
             </FaqBlockQuestionsGridSide>
             <FaqBlockQuestionsGridSide isRight>
-              <QuestionCell />
-              <QuestionCell />
-              <QuestionCell />
+              <QuestionCell
+                title={quefour.title}
+                description={quefour.description}
+              />
+              <QuestionCell
+                title={quefive.title}
+                description={quefive.description}
+              />
+              <QuestionCell
+                title={quesix.title}
+                description={quesix.description}
+              />
             </FaqBlockQuestionsGridSide>
           </FaqBlockQuestionsGrid>
         </FaqBlockContent>

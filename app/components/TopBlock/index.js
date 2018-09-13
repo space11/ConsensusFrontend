@@ -29,7 +29,6 @@ const TopBlockTitle = styled.div`
 const ProfileWrapper = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 
   @media screen and (max-width: 654px) {
     justify-content: center;
@@ -43,10 +42,10 @@ class TopBlock extends PureComponent {
         <TopBlockTitle>Топ спикеров</TopBlockTitle>
         <Space size={4} />
         <ProfileWrapper>
-          <ProfileCell />
-          <ProfileCell />
-          <ProfileCell />
-          <ProfileCell />
+          <ProfileCell isLive name="Nagibator228" rep={228} />
+          <ProfileCell name="Richard |||" rep={282} />
+          <ProfileCell name="Kirino" rep={199} />
+          <ProfileCell isLive name="Jojo" rep={814} />
         </ProfileWrapper>
       </TopBlockWrapper>
     );
