@@ -11,6 +11,7 @@ const ProfileCellWrapper = styled(Link)`
   text-decoration: none;
   color: #000;
   margin: 1.5em;
+
   @media screen and (max-width: 463px) {
     width: 100%;
   }
@@ -24,7 +25,7 @@ const ProfileCellAva = styled.div`
 
 const ProfileCellName = styled.div`
   font-size: 2em;
-  word-wrap: break-word;
+  word-break: break-all;
 `;
 
 const ProfileCellRep = styled.div`

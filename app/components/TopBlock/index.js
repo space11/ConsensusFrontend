@@ -29,10 +29,7 @@ const TopBlockTitle = styled.div`
 const ProfileWrapper = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
-
-  @media screen and (max-width: 654px) {
-    justify-content: center;
-  }
+  width: 100%;
 `;
 
 class TopBlock extends PureComponent {
@@ -42,7 +39,7 @@ class TopBlock extends PureComponent {
         <TopBlockTitle>Топ спикеров</TopBlockTitle>
         <Space size={4} />
         <ProfileWrapper>
-          <ProfileCell isLive name="Nagibator228" rep={228} />
+          <ProfileCell isLive name="Nagibator22" rep={228} />
           <ProfileCell name="Richard |||" rep={282} />
           <ProfileCell name="Kirino" rep={199} />
           <ProfileCell isLive name="Jojo" rep={814} />
