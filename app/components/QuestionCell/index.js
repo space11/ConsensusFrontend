@@ -14,6 +14,10 @@ const QuestionCellWrapper = styled.div`
   padding: 1vw 2vw;
   transition: 0.3s;
   -webkit-user-select: none;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 `;
 
 const QuestionCellTitle = styled.div`
@@ -38,9 +42,7 @@ const QuestionCellInVisibleContentWrapper = styled.div`
   width: 100%;
 `;
 
-const QuestionCellButton = styled.div`
-  transition: 0.3s;
-`;
+const QuestionCellButton = styled.div``;
 
 const QuestionCellText = styled.div`
   color: #4a4a4a;
