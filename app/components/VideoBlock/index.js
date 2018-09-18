@@ -29,6 +29,12 @@ const VideoBlockMoreButton = styled.button`
   display: flex;
   color: #9b9b9b;
   font-size: 1.5em;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+    color: #374059;
+  }
 `;
 
 const VideoBlockLine = styled.div`

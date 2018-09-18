@@ -13,6 +13,7 @@ const QuestionCellWrapper = styled.div`
   margin: 1vw;
   padding: 1vw 2vw;
   transition: 0.3s;
+  -webkit-user-select: none;
 `;
 
 const QuestionCellTitle = styled.div`
@@ -37,7 +38,7 @@ const QuestionCellInVisibleContentWrapper = styled.div`
   width: 100%;
 `;
 
-const QuestionCellButton = styled.button`
+const QuestionCellButton = styled.div`
   transition: 0.3s;
 `;
 
@@ -63,19 +64,20 @@ class QuestionCell extends PureComponent {
 
   render() {
     return (
-      <div>
-        <QuestionCellWrapper isPopped={this.state.isPopped}>
-          <QuestionCellVisibleContentWrapper>
-            <QuestionCellTitle>{this.props.title}</QuestionCellTitle>
-            <QuestionCellButton onClick={this.buttonPop}>
-              {this.state.isPopped ? <Cross /> : <Plus />}
-            </QuestionCellButton>
-          </QuestionCellVisibleContentWrapper>
-          <QuestionCellInVisibleContentWrapper isPopped={this.state.isPopped}>
-            <QuestionCellText>{this.props.description}</QuestionCellText>
-          </QuestionCellInVisibleContentWrapper>
-        </QuestionCellWrapper>
-      </div>
+      <QuestionCellWrapper
+        onClick={this.buttonPop}
+        isPopped={this.state.isPopped}
+      >
+        <QuestionCellVisibleContentWrapper>
+          <QuestionCellTitle>{this.props.title}</QuestionCellTitle>
+          <QuestionCellButton onClick={this.buttonPop}>
+            {this.state.isPopped ? <Cross /> : <Plus />}
+          </QuestionCellButton>
+        </QuestionCellVisibleContentWrapper>
+        <QuestionCellInVisibleContentWrapper isPopped={this.state.isPopped}>
+          <QuestionCellText>{this.props.description}</QuestionCellText>
+        </QuestionCellInVisibleContentWrapper>
+      </QuestionCellWrapper>
     );
   }
 }

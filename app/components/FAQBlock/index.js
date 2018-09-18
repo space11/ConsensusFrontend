@@ -91,12 +91,17 @@ const FaqBlockQuestionsDescription = styled.div`
 `;
 
 const FaqBlockQuestionsLink = styled.a`
-  width: 48%;
   color: #4a90e2;
   font-size: 1em;
   justify-self: center;
   align-self: center;
   text-align: center;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+    color: #3f9eda;
+  }
 `;
 
 const FaqBlockQuestionsGrid = styled.div`

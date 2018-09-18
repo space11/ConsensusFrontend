@@ -31,6 +31,11 @@ const Logo = styled(Link)`
   font-weight: 500;
   color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
   text-decoration: none;
+  transition: 0.3s;
+
+  &:hover {
+    color: #80bff5;
+  }
 
   @media screen and (max-width: 900px) {
     flex: 0;
@@ -62,6 +67,12 @@ const NavigationButton = styled(Link)`
   text-decoration: none;
   justify-content: center;
   letter-spacing: 1.5px;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+    color: #80bff5;
+  }
 `;
 
 const SearchButton = styled.button`
@@ -71,6 +82,10 @@ const SearchButton = styled.button`
 
   @media screen and (max-width: 900px) {
     margin-right: 3vw;
+  }
+
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 
@@ -218,7 +233,7 @@ class Header extends PureComponent {
             </MenuIconButton>
           </MenuSearchWrapper>
           <LoginRegButton>
-            <ActionButton text="Вход и регистрация" />
+            <ActionButton noColor text="Вход и регистрация" />
           </LoginRegButton>
         </HeaderWrapper>
         <SearchPopupWrapper top={this.state.top}>
