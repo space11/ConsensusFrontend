@@ -21,14 +21,6 @@ export default function() {
                 transform="translate(0.000000, 495.000000)"
               >
                 <g id="Group-21">
-                  <rect
-                    id="Rectangle-12"
-                    fill="#5B25CC"
-                    x="0"
-                    y="0"
-                    width="37"
-                    height="30"
-                  />
                   <g
                     id="play-button"
                     transform="translate(14.000000, 7.000000)"

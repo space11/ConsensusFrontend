@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Controls from '../controls';
+import styled from 'styled-components';
+import Slider from './components/slider';
 
 function hasGetUserMedia() {
   return !!(
@@ -11,14 +12,19 @@ function hasGetUserMedia() {
   );
 }
 
-class Player extends Component {
+const PlayerBlockWrapper = styled.div`
+  position: relative;
+  display: flex;
+`;
+
+class PlayerBlock extends PureComponent {
   static defaultProps = {
     audio: true,
     className: '',
-    height: 480,
+    height: '424px',
     onUserMedia: () => {},
     onUserMediaError: () => {},
-    width: 640,
+    width: '758px',
   };
 
   static propTypes = {
@@ -27,11 +33,9 @@ class Player extends Component {
     onUserMediaError: PropTypes.func,
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    style: PropTypes.object,
     className: PropTypes.string,
     audioConstraints: audioConstraintType,
     videoConstraints: videoConstraintType,
-    controls: PropTypes.object,
   };
 
   static mountedInstances = [];
@@ -49,9 +53,9 @@ class Player extends Component {
   componentDidMount() {
     if (!hasGetUserMedia()) return;
 
-    Player.mountedInstances.push(this);
+    PlayerBlock.mountedInstances.push(this);
 
-    if (!this.state.hasUserMedia && !Player.userMediaRequested) {
+    if (!this.state.hasUserMedia && !PlayerBlock.userMediaRequested) {
       this.requestUserMedia();
     }
   }
@@ -68,10 +72,10 @@ class Player extends Component {
   }
 
   componentWillUnmount() {
-    const index = Player.mountedInstances.indexOf(this);
-    Player.mountedInstances.splice(index, 1);
+    const index = PlayerBlock.mountedInstances.indexOf(this);
+    PlayerBlock.mountedInstances.splice(index, 1);
 
-    if (Player.mountedInstances.length === 0 && this.state.hasUserMedia) {
+    if (PlayerBlock.mountedInstances.length === 0 && this.state.hasUserMedia) {
       if (this.stream.stop) {
         this.stream.stop();
       } else {
@@ -82,7 +86,7 @@ class Player extends Component {
           this.stream.getAudioTracks().map(track => track.stop());
         }
       }
-      Player.userMediaRequested = false;
+      PlayerBlock.userMediaRequested = false;
       window.URL.revokeObjectURL(this.state.src);
     }
   }
@@ -106,12 +110,12 @@ class Player extends Component {
       navigator.mediaDevices
         .getUserMedia(constraints)
         .then(stream => {
-          Player.mountedInstances.forEach(instance =>
+          PlayerBlock.mountedInstances.forEach(instance =>
             instance.handleUserMedia(null, stream),
           );
         })
         .catch(e => {
-          Player.mountedInstances.forEach(instance =>
+          PlayerBlock.mountedInstances.forEach(instance =>
             instance.handleUserMedia(e),
           );
         });
@@ -165,7 +169,7 @@ class Player extends Component {
       });
     }
 
-    Player.userMediaRequested = true;
+    PlayerBlock.userMediaRequested = true;
   }
 
   handleUserMedia(err, stream) {
@@ -192,10 +196,10 @@ class Player extends Component {
   }
 
   render() {
-    const { width, className, audio, style, controls } = this.props;
+    const { width, className, audio } = this.props;
 
     return (
-      <div style={{ position: 'relative' }}>
+      <PlayerBlockWrapper>
         <video
           autoPlay
           width={width}
@@ -207,18 +211,13 @@ class Player extends Component {
           ref={ref => {
             this.video = ref;
           }}
-          style={style}
-          controls={controls}
+          style={{ transform: 'scale(-1, 1)' }}
         >
           <track kind="captions" />
         </video>
 
-        <Controls
-          video={this.video}
-          videom={this.videom}
-          width={this.props.width}
-        />
-      </div>
+        <Slider video={this.video} width={width} />
+      </PlayerBlockWrapper>
     );
   }
 }
@@ -281,7 +280,6 @@ const videoConstraintType = PropTypes.shape({
   frameRate: constrainDoubleType,
   height: constrainLongType,
   width: constrainLongType,
-  controls: constrainStringType,
 });
 
-export default Player;
+export default PlayerBlock;

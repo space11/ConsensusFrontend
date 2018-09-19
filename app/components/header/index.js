@@ -233,7 +233,7 @@ class Header extends PureComponent {
             </MenuIconButton>
           </MenuSearchWrapper>
           <LoginRegButton>
-            <ActionButton noColor text="Вход и регистрация" />
+            <ActionButton text="Вход и регистрация" />
           </LoginRegButton>
         </HeaderWrapper>
         <SearchPopupWrapper top={this.state.top}>
