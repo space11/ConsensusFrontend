@@ -7,7 +7,7 @@ const ActionButtonWrapper = styled.a`
   font-weight: 500;
   color: #fff;
   border-radius: 100px;
-  min-width: 220px;
+  min-width: 250px;
   min-height: 45px;
   background: #f7567c;
   justify-content: center;
