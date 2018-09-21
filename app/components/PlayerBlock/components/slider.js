@@ -35,7 +35,7 @@ const LeftControl = styled.div`
 `;
 
 const PassedTimeLineWrapper = styled.div`
-  width: ${props => props.lineLength}px;
+  width: ${props => props.lineLength + 15}px;
   z-index: 9999;
   height: 1rem;
   border-radius: 0 50px 50px 0;
@@ -93,37 +93,45 @@ class Slider extends PureComponent {
   }
 
   onPlayClick() {
-    this.state.isPlaying
-      ? this.setState({ isPlaying: false })
-      : this.setState({ isPlaying: true });
+    if (this.state.isPlaying) {
+      this.props.video.pause();
+      this.setState({ isPlaying: false });
+    } else {
+      this.props.video.play();
+      this.setState({ isPlaying: true });
+    }
   }
 
   onVolume() {
-    this.state.isMuted
-      ? this.setState({ isMuted: false })
-      : this.setState({ isMuted: true });
+    if (this.state.isMuted) {
+      this.props.video.muted = false;
+      this.setState({ isMuted: false });
+    } else {
+      this.props.video.muted = true;
+      this.setState({ isMuted: true });
+    }
   }
 
   onFullscreen() {
-    this.state.isFull
-      ? this.setState({ isFull: false })
-      : this.setState({ isFull: true });
-  }
-
-  onRocketMove(e) {
-    this.setState({ lineLength: e.pageX - RocketWrapper.offsetWidth / 2 });
-    console.log(e);
+    if (this.state.isFull) {
+      this.props.video.webkitExitFullscreen();
+      this.setState({ isFull: true });
+    } else {
+      this.props.video.webkitRequestFullscreen();
+      this.setState({ isFull: false });
+    }
   }
 
   render() {
     return (
-      <SliderWrapper width={this.props.width}>
+      <SliderWrapper
+        width={this.props.width}
+        video={this.props.video}
+        isFull={this.state.isFull}
+      >
         <PassedWrapper>
-          <PassedTimeLineWrapper
-            lineLength={this.state.lineLength}
-            onMouseMove={::this.onRocketMove}
-          />
-          <RocketWrapper onMouseMove={::this.onRocketMove}>
+          <PassedTimeLineWrapper lineLength={this.state.lineLength} />
+          <RocketWrapper>
             <Rocket />
           </RocketWrapper>
         </PassedWrapper>
@@ -159,10 +167,12 @@ class Slider extends PureComponent {
 }
 
 Slider.propTypes = {
+  video: PropTypes.any,
   isPlaying: PropTypes.bool,
   isMuted: PropTypes.bool,
   isFull: PropTypes.bool,
   width: PropTypes.string,
+  lineLength: PropTypes.string,
   timePassedMin: PropTypes.element,
   timeValueMin: PropTypes.element,
   timePassedSec: PropTypes.element,
@@ -172,7 +182,7 @@ Slider.propTypes = {
 Slider.defaultProps = {
   timePassedMin: '00',
   timeValueMin: '45',
-  timePassedSec: '0',
+  timePassedSec: '00',
   timeValueSec: '00',
 };
 

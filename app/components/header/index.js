@@ -15,7 +15,7 @@ const HeaderWrapper = styled.div`
   padding: 1.5em 4em;
   align-items: center;
   justify-content: space-between;
-  background: ${props => (props.path === '/' ? '#20244C' : '#fff')};
+  background: ${props => (props.path === '/' ? '#21264b' : '#fff')};
   flex-wrap: wrap;
 
   @media screen and (max-width: 900px) {

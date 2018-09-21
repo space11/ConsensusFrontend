@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Slider from './components/slider';
+import Placeholder from '../../images/Placeholders/placevideo';
+import Black from '../../images/Placeholders/black';
 
 function hasGetUserMedia() {
   return !!(
@@ -15,16 +17,24 @@ function hasGetUserMedia() {
 const PlayerBlockWrapper = styled.div`
   position: relative;
   display: flex;
+  max-height: 494px;
 `;
+
+const VideoStyle = {
+  transform: 'scale(-1, 1)',
+  maxWidth: '700px',
+  maxHeight: '500px',
+  margin: 'auto',
+};
 
 class PlayerBlock extends PureComponent {
   static defaultProps = {
     audio: true,
     className: '',
-    height: '424px',
+    height: '100%',
     onUserMedia: () => {},
     onUserMediaError: () => {},
-    width: '758px',
+    width: '100%',
   };
 
   static propTypes = {
@@ -47,6 +57,7 @@ class PlayerBlock extends PureComponent {
     this.state = {
       hasUserMedia: false,
       height: props.height,
+      isHovered: props.hovered || false,
     };
   }
 
@@ -200,6 +211,7 @@ class PlayerBlock extends PureComponent {
 
     return (
       <PlayerBlockWrapper>
+        {this.video ? <Black /> : <Placeholder />}
         <video
           autoPlay
           width={width}
@@ -211,11 +223,10 @@ class PlayerBlock extends PureComponent {
           ref={ref => {
             this.video = ref;
           }}
-          style={{ transform: 'scale(-1, 1)' }}
+          style={VideoStyle}
         >
           <track kind="captions" />
         </video>
-
         <Slider video={this.video} width={width} />
       </PlayerBlockWrapper>
     );
