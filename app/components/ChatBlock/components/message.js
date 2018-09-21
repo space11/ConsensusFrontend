@@ -6,15 +6,17 @@ import styled from 'styled-components';
 const MessageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0.5rem 0 0.5rem 0;
+  margin: 1vh 0 1vh 0;
 `;
+
 const Nickname = styled(Link)`
   color: #474d90;
   text-decoration: none;
   font-weight: 300;
   font-size: 24px;
 `;
-const Text = styled.text`
+
+const Text = styled.div`
   font-size: 20px;
   font-weight: 300;
 `;
@@ -23,21 +25,19 @@ export default class Message extends PureComponent {
   render() {
     return (
       <MessageWrapper>
-        <Nickname to={this.props.url}>{this.props.nickname}</Nickname>
-        <Text>{this.props.text}</Text>
+        <Nickname to={this.props.texts.url}>
+          {this.props.texts.nickname}
+        </Nickname>
+        {this.props.texts.text.map((item, key) => (
+          <Text key={`key${key}`}>{item}</Text>
+        ))}
       </MessageWrapper>
     );
   }
 }
 
 Message.propTypes = {
-  text: PropTypes.string,
+  texts: PropTypes.object,
   nickname: PropTypes.string,
   url: PropTypes.string,
-};
-
-Message.defaultProps = {
-  nickname: 'Neyee',
-  text: 'Чатик у меня нормальный был?',
-  url: 'user1',
 };

@@ -28,7 +28,8 @@ injectGlobal`
   padding: 0;
   }
 
-  button,a{
+  button, a, input, textarea{
+    text-decoration: none;
     outline: none;
   }
 

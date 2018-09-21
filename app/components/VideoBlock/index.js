@@ -5,7 +5,6 @@ import { hideOn, media } from '../../utils/helpers';
 import { unit } from '../../utils/constants';
 import VideoBlockBig from '../VideoBlockBig';
 import VideoBlockSmall from '../VideoblockSmall';
-import Placeholder from '../../images/placeholder.png';
 import Space from '../Space';
 
 const VideoBlockWrapper = styled.div`
@@ -79,7 +78,6 @@ class VideoBlock extends PureComponent {
           <VideoBlockBig
             url="/"
             title="Выбор политического курса России: как не упустить шанс снова."
-            src={Placeholder}
             live={this.props.live}
             names="Pynya vs Sysyan"
             theme="Политика"
@@ -88,7 +86,6 @@ class VideoBlock extends PureComponent {
           <VideoBlockBig
             url="/"
             title="Выбор политического курса России: как не упустить шанс снова."
-            src={Placeholder}
             live={this.props.live}
             names="Pynya vs Sysyan"
             theme="Политика"
@@ -97,7 +94,6 @@ class VideoBlock extends PureComponent {
           <VideoBlockBig
             url="/"
             title="Выбор политического курса России: как не упустить шанс снова."
-            src={Placeholder}
             live={this.props.live}
             names="Pynya vs Sysyan"
             theme="Политика"
@@ -109,7 +105,6 @@ class VideoBlock extends PureComponent {
           <VideoBlockSmall
             url="/"
             title="Выбор политического курса России: как не упустить шанс снова."
-            src={Placeholder}
             live={this.props.live}
             names="Pynya vs Sysyan"
             theme="Политика"
@@ -118,7 +113,6 @@ class VideoBlock extends PureComponent {
           <VideoBlockSmall
             url="/"
             title="Выбор политического курса России: как не упустить шанс снова."
-            src={Placeholder}
             live={this.props.live}
             names="Pynya vs Sysyan"
             theme="Политика"
@@ -127,7 +121,6 @@ class VideoBlock extends PureComponent {
           <VideoBlockSmall
             url="/"
             title="Выбор политического курса России: как не упустить шанс снова."
-            src={Placeholder}
             live={this.props.live}
             names="Pynya vs Sysyan"
             theme="Политика"
@@ -136,7 +129,6 @@ class VideoBlock extends PureComponent {
           <VideoBlockSmall
             url="/"
             title="Выбор политического курса России: как не упустить шанс снова."
-            src={Placeholder}
             live={this.props.live}
             names="Pynya vs Sysyan"
             theme="Политика"

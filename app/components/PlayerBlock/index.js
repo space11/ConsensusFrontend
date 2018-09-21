@@ -17,13 +17,13 @@ function hasGetUserMedia() {
 const PlayerBlockWrapper = styled.div`
   position: relative;
   display: flex;
-  max-height: 494px;
+  max-height: 85vw;
+  width: 902px;
+  height: 36rem;
 `;
 
 const VideoStyle = {
   transform: 'scale(-1, 1)',
-  maxWidth: '700px',
-  maxHeight: '500px',
   margin: 'auto',
 };
 

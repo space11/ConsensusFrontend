@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Message from './components/message';
+import InputForm from './components/inputForm';
 import { hideOn, media } from '../../utils/helpers';
 import { unit } from '../../utils/constants';
 
@@ -24,7 +25,11 @@ const Title = styled.h1`
 const MessageBlock = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 397px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-width: 26vw;
+  min-width: 320px;
+  height: 600px;
 `;
 
 export default class Chat extends PureComponent {
@@ -32,23 +37,96 @@ export default class Chat extends PureComponent {
     return (
       <ChatWrapper>
         <Title>Комментарии</Title>
-        <MessageBlock>{this.props.messages.map(item => item)}</MessageBlock>
+        <MessageBlock>
+          <div>
+            {this.props.messages.map((item, index) => (
+              <Message key={`key${index}`} texts={item} />
+            ))}
+          </div>
+        </MessageBlock>
+        <InputForm />
       </ChatWrapper>
     );
   }
 }
 
 Chat.propTypes = {
-  messsages: PropTypes.Array,
+  messsages: PropTypes.array,
 };
 
 Chat.defaultProps = {
   messages: [
-    <Message />,
-    <Message
-      url="user2"
-      nickname="Yee"
-      text="я просто случайно по рассылке попалала на их сайт и он оказался подходящим"
-    />,
+    {
+      url: 'user1',
+      nickname: 'Ne yee',
+      text: ['Чатик у меня нормальный был?'],
+    },
+    {
+      url: 'user2',
+      nickname: 'Yee',
+      text: [
+        'я просто случайно по рассылке попалала на их сайт и он оказался подходящим',
+      ],
+    },
+    {
+      url: 'user1',
+      nickname: 'Neyee',
+      text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
+    },
+    {
+      url: 'user2',
+      nickname: 'Yee',
+      text: ['сделай как телега', 'ну только можно без аватаров'],
+    },
+    {
+      url: 'user1',
+      nickname: 'Neyee',
+      text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
+    },
+    {
+      url: 'user2',
+      nickname: 'Yee',
+      text: ['сделай как телега', 'ну только можно без аватаров'],
+    },
+    {
+      url: 'user1',
+      nickname: 'Neyee',
+      text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
+    },
+    {
+      url: 'user2',
+      nickname: 'Yee',
+      text: ['сделай как телега', 'ну только можно без аватаров'],
+    },
+    {
+      url: 'user1',
+      nickname: 'Neyee',
+      text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
+    },
+    {
+      url: 'user2',
+      nickname: 'Yee',
+      text: ['сделай как телега', 'ну только можно без аватаров'],
+    },
+    {
+      url: 'user1',
+      nickname: 'Neyee',
+      text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
+    },
+    {
+      url: 'user2',
+      nickname: 'Yee',
+      text: ['сделай как телега', 'ну только можно без аватаров'],
+    },
+    {
+      url: 'user1',
+      nickname: 'Neyee',
+      text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
+    },
+    {
+      url: 'user2',
+      nickname: 'Yee',
+      text: ['сделай как телега', 'ну только можно без аватаров'],
+    },
   ],
 };

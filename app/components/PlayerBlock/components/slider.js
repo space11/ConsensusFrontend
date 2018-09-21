@@ -173,10 +173,10 @@ Slider.propTypes = {
   isFull: PropTypes.bool,
   width: PropTypes.string,
   lineLength: PropTypes.string,
-  timePassedMin: PropTypes.element,
-  timeValueMin: PropTypes.element,
-  timePassedSec: PropTypes.element,
-  timeValueSec: PropTypes.element,
+  timePassedMin: PropTypes.string,
+  timeValueMin: PropTypes.string,
+  timePassedSec: PropTypes.string,
+  timeValueSec: PropTypes.string,
 };
 
 Slider.defaultProps = {
