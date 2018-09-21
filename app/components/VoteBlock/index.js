@@ -4,12 +4,15 @@ import styled from 'styled-components';
 import Line from './components/voteLine';
 import { hideOn, media } from '../../utils/helpers';
 import { unit } from '../../utils/constants';
+import Plus from '../../images/Controls/plus';
+import Cross from '../../images/Controls/cross';
 
 const VoteBlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   padding: 0 ${unit / 3}%;
+  margin-bottom: 1rem;
   ${hideOn} ${media.large`padding: 0 ${3.2 * unit}px;`};
 `;
 
@@ -19,6 +22,7 @@ const Title = styled.h1`
   font-weight: 600;
   font-size: 2em;
   color: #4a4a4a;
+  margin-top: 0;
   -webkit-user-select: none;
 `;
 
@@ -54,7 +58,31 @@ const Percents = styled.div`
   font-size: 1.5em;
 `;
 
+const ButtonWrapper = styled.button`
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
 export default class VoteBlock extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isVotedUp: props.isVotedUp || false,
+      isVotedDown: props.isVotedDown || false,
+    };
+  }
+
+  voteUp() {
+    this.setState({ isVotedUp: true });
+  }
+
+  voteDown() {
+    this.setState({ isVotedDown: true });
+  }
+
   render() {
     return (
       <VoteBlockWrapper>
@@ -66,14 +94,36 @@ export default class VoteBlock extends PureComponent {
           <div>
             <VoteLine>
               <Nickname>{this.props.nicknameUp}</Nickname>
-              <Percents>{this.props.percentsUp}</Percents>
+              <Percents>
+                {this.props.percentsUp}{' '}
+                <ButtonWrapper onClick={::this.voteUp}>
+                  {this.state.isVotedDown ? (
+                    ''
+                  ) : this.state.isVotedUp ? (
+                    <Cross />
+                  ) : (
+                    <Plus />
+                  )}
+                </ButtonWrapper>
+              </Percents>
             </VoteLine>
             <Line length={this.props.percentsUp} />
           </div>
           <div>
             <VoteLine>
               <Nickname>{this.props.nicknameDown}</Nickname>
-              <Percents>{this.props.percentsDown}</Percents>
+              <Percents>
+                {this.props.percentsDown}{' '}
+                <ButtonWrapper onClick={::this.voteDown}>
+                  {this.state.isVotedUp ? (
+                    ''
+                  ) : this.state.isVotedDown ? (
+                    <Cross />
+                  ) : (
+                    <Plus />
+                  )}
+                </ButtonWrapper>
+              </Percents>
             </VoteLine>
             <Line length={this.props.percentsDown} />
           </div>
@@ -85,6 +135,8 @@ export default class VoteBlock extends PureComponent {
 
 VoteBlock.propTypes = {
   votes: PropTypes.number,
+  isVotedUp: PropTypes.bool,
+  isVotedDown: PropTypes.bool,
   nicknameUp: PropTypes.string,
   nicknameDown: PropTypes.string,
   percentsUp: PropTypes.string,

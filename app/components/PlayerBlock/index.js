@@ -18,8 +18,12 @@ const PlayerBlockWrapper = styled.div`
   position: relative;
   display: flex;
   max-height: 85vw;
-  width: 902px;
+  width: 60vw;
   height: 36rem;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 const VideoStyle = {

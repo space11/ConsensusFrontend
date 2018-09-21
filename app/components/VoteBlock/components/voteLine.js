@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const LineWrapper = styled.div`
+  position: relative;
   width: 100%;
   height: 8px;
 `;
@@ -17,6 +18,7 @@ const LineEmpty = styled.div`
 const LineFull = styled.div`
   position: absolute;
   z-index: 10;
+  top: 0;
   background: #7ea4d0;
   height: 100%;
   width: ${props => props.length};
@@ -28,7 +30,7 @@ export default class VoteLine extends PureComponent {
     return (
       <LineWrapper>
         <LineEmpty />
-        <LineFull />
+        <LineFull length={this.props.length} />
       </LineWrapper>
     );
   }

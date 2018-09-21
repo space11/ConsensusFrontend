@@ -11,8 +11,15 @@ const ChatWrapper = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   min-height: calc(100vh - 21vw);
+  width: 33vw;
+  min-width: 360px;
   padding: 0 ${unit / 3}%;
   ${hideOn} ${media.large`padding: 0 ${3.2 * unit}px;`};
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+    min-width: 100%;
+  }
 `;
 
 const Title = styled.h1`
@@ -20,6 +27,10 @@ const Title = styled.h1`
   font-size: 2em;
   color: #4a4a4a;
   -webkit-user-select: none;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 const MessageBlock = styled.div`
@@ -29,7 +40,13 @@ const MessageBlock = styled.div`
   overflow-x: hidden;
   max-width: 26vw;
   min-width: 320px;
-  height: 600px;
+  height: 470px;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
 `;
 
 export default class Chat extends PureComponent {

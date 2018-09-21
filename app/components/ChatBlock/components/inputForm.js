@@ -6,6 +6,10 @@ const InputFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 2rem 0 0 0;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 const LowLineWrapper = styled.div`
@@ -24,6 +28,10 @@ const Input = styled.textarea`
   &::placeholder {
     color: #474d90;
     font-weight: 300;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
   }
 `;
 

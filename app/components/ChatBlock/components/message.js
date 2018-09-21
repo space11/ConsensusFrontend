@@ -7,6 +7,10 @@ const MessageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1vh 0 1vh 0;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 const Nickname = styled(Link)`
