@@ -6,6 +6,7 @@ import ChatBlock from '../../components/ChatBlock';
 import VoteBlock from '../../components/VoteBlock';
 import ShareIcon from '../../images/Controls/share';
 import ViewersIcon from '../../images/Controls/viewers';
+import TabBlock from '../../components/TabBlock';
 
 const RoomWrapper = styled.div`
   display: flex;
@@ -57,6 +58,12 @@ const UpLine = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-top: 1rem;
+  flex-wrap: wrap;
+  text-align: center;
+
+  @media screen and (max-width: 1000px) {
+    justify-content: center;
+  }
 `;
 
 const DownLine = styled.div`
@@ -68,6 +75,7 @@ const Viewers = styled.div`
   font-size: 24px;
   font-weight: 300;
   align-items: center;
+  color: #4a4a4a;
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -76,6 +84,7 @@ class RoomPage extends PureComponent {
     return (
       <RoomWrapper>
         <RightBlock>
+          <TabBlock />
           <PlayerBlock />
           <UpLine>
             <Title>{this.props.title}</Title>

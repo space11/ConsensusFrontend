@@ -37,8 +37,8 @@ export default function() {
                 fill="url(#linearGradient-1)"
                 x="0"
                 y="4.54747351e-13"
-                width="902"
-                height="577"
+                width="100%"
+                height="100%"
               />
               <g
                 id="Group-5"

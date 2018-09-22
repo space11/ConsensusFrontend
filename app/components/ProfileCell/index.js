@@ -20,7 +20,7 @@ const ProfileCellWrapper = styled(Link)`
 const ProfileCellAva = styled.div`
   position: relative;
   border-radius: 100px;
-  min-width: 100px;
+  margin-right: 10px;
 `;
 
 const ProfileCellName = styled.div`

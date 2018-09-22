@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Slider from './components/slider';
 import Placeholder from '../../images/Placeholders/placevideo';
 import Black from '../../images/Placeholders/black';
+import PlayerBlockCollapsed from './components/collapsed';
 
 function hasGetUserMedia() {
   return !!(
@@ -61,7 +62,6 @@ class PlayerBlock extends PureComponent {
     this.state = {
       hasUserMedia: false,
       height: props.height,
-      isHovered: props.hovered || false,
     };
   }
 
@@ -212,27 +212,49 @@ class PlayerBlock extends PureComponent {
 
   render() {
     const { width, className, audio } = this.props;
-
+    console.log(window.pageYOffset);
     return (
-      <PlayerBlockWrapper>
-        {this.video ? <Black /> : <Placeholder />}
-        <video
-          autoPlay
-          width={width}
-          height={this.state.height}
-          src={this.state.src}
-          muted={audio}
-          className={className}
-          playsInline
-          ref={ref => {
-            this.video = ref;
-          }}
-          style={VideoStyle}
-        >
-          <track kind="captions" />
-        </video>
-        <Slider video={this.video} width={width} />
-      </PlayerBlockWrapper>
+      <div>
+        <PlayerBlockWrapper>
+          {this.video ? <Black /> : <Placeholder />}
+          <video
+            autoPlay
+            width={width}
+            height={this.state.height}
+            src={this.state.src}
+            muted={audio}
+            className={className}
+            playsInline
+            ref={ref => {
+              this.video = ref;
+            }}
+            style={VideoStyle}
+          >
+            <track kind="captions" />
+          </video>
+          <Slider video={this.video} width={width} />
+        </PlayerBlockWrapper>
+        <PlayerBlockCollapsed
+          video={
+            <video
+              autoPlay
+              width={width}
+              height={this.state.height}
+              src={this.state.src}
+              muted={audio}
+              className={className}
+              playsInline
+              collapsed={window.scrollY > 0}
+              ref={ref => {
+                this.video = ref;
+              }}
+              style={VideoStyle}
+            >
+              <track kind="captions" />
+            </video>
+          }
+        />
+      </div>
     );
   }
 }
