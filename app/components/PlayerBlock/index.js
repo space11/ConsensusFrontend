@@ -212,7 +212,6 @@ class PlayerBlock extends PureComponent {
 
   render() {
     const { width, className, audio } = this.props;
-    console.log(window.pageYOffset);
     return (
       <div>
         <PlayerBlockWrapper>
@@ -234,26 +233,7 @@ class PlayerBlock extends PureComponent {
           </video>
           <Slider video={this.video} width={width} />
         </PlayerBlockWrapper>
-        <PlayerBlockCollapsed
-          video={
-            <video
-              autoPlay
-              width={width}
-              height={this.state.height}
-              src={this.state.src}
-              muted={audio}
-              className={className}
-              playsInline
-              collapsed={window.scrollY > 0}
-              ref={ref => {
-                this.video = ref;
-              }}
-              style={VideoStyle}
-            >
-              <track kind="captions" />
-            </video>
-          }
-        />
+        <PlayerBlockCollapsed video={this.stream} />
       </div>
     );
   }
