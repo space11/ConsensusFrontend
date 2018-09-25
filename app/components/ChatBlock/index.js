@@ -107,18 +107,17 @@ export default class Chat extends Component {
   }
 
   handleChange(event) {
-    this.setState({
-      value: event.target.value,
-    });
+    const valueInput = event.target.value;
 
     this.setState({
       message: {
         url: 'user1444',
         nickname: 'OrositelGryadki',
-        text: [this.state.value],
+        text: [valueInput],
       },
     });
-    console.log(this.state.value);
+
+    this.setState({ value: valueInput });
   }
 
   handleSubmit() {
@@ -129,16 +128,11 @@ export default class Chat extends Component {
       this.state.messages[this.state.messages.length - 1].text.push(
         this.state.value,
       );
-      this.setState({
-        messages: this.state.messages,
-      });
+      this.setState({ messages: this.state.messages });
     } else {
       this.state.messages.push(this.state.message);
+      this.setState({ messages: this.state.messages });
     }
-
-    this.setState({
-      messages: this.state.messages,
-    });
   }
 
   render() {
