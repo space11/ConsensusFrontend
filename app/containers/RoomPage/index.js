@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import PlayerBlock from '../../components/PlayerBlock';
@@ -89,7 +89,21 @@ const ShareXTitle = styled.div`
 `;
 
 /* eslint-disable react/prefer-stateless-function */
-class RoomPage extends PureComponent {
+class RoomPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      collapsed: props.collapsed || false,
+    };
+    this.collapse = this.collapse.bind(this);
+  }
+
+  collapse() {
+    this.state.collapsed
+      ? this.setState({ collapsed: false })
+      : this.setState({ collapsed: true });
+  }
+
   render() {
     return (
       <RoomWrapper>
@@ -110,8 +124,11 @@ class RoomPage extends PureComponent {
           <DownLine />
         </RightBlock>
         <LeftBlock>
-          <VoteBlock />
-          <ChatBlock />
+          <VoteBlock
+            collapse={this.collapse}
+            collapsed={this.state.collapsed}
+          />
+          <ChatBlock collapsed={this.state.collapsed} />
         </LeftBlock>
       </RoomWrapper>
     );

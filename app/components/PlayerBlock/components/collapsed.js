@@ -2,7 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const PlayerBlockCollapsedWrapper = styled.div``;
+const PlayerBlockCollapsedWrapper = styled.div`
+  display: none;
+`;
 
 const Player = styled.div`
   position: fixed;

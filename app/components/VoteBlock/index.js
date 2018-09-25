@@ -1,15 +1,15 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Line from './components/voteLine';
 import Plus from '../../images/Controls/plus';
 import Cross from '../../images/Controls/cross';
+import Collapse from '../../images/Controls/collapse';
 
 const VoteBlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  margin-bottom: 1rem;
 `;
 
 const Title = styled.h1`
@@ -19,7 +19,9 @@ const Title = styled.h1`
   font-size: 2em;
   color: #4a4a4a;
   margin-top: 0;
+  margin-bottom: ${props => (props.collapsed ? '0' : '')};
   -webkit-user-select: none;
+  justify-content: space-between;
 `;
 
 const VotesTotal = styled.div`
@@ -32,7 +34,7 @@ const VotesTotal = styled.div`
 `;
 
 const Vote = styled.div`
-  display: flex;
+  display: ${props => (props.collapsed ? 'none' : 'flex')};
   flex-direction: column;
   justify-content: space-between;
   height: 120px;
@@ -62,12 +64,13 @@ const ButtonWrapper = styled.button`
   }
 `;
 
-export default class VoteBlock extends PureComponent {
+export default class VoteBlock extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isVotedUp: props.isVotedUp || false,
       isVotedDown: props.isVotedDown || false,
+      leader: props.leader || 'Sisyan',
     };
   }
 
@@ -80,13 +83,21 @@ export default class VoteBlock extends PureComponent {
   }
 
   render() {
+    console.log(this.props.collapsed);
     return (
       <VoteBlockWrapper>
-        <Title>
-          Кто прав?
-          <VotesTotal>({this.props.votes} голосов)</VotesTotal>
+        <Title collapsed={this.props.collapsed}>
+          <div>
+            Кто прав?
+            <VotesTotal>
+              ({this.props.votes} голосов, лидирует {this.state.leader})
+            </VotesTotal>
+          </div>
+          <ButtonWrapper onClick={this.props.collapse}>
+            <Collapse />
+          </ButtonWrapper>
         </Title>
-        <Vote>
+        <Vote collapsed={this.props.collapsed}>
           <div>
             <VoteLine>
               <Nickname>{this.props.nicknameUp}</Nickname>

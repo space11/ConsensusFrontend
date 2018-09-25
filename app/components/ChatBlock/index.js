@@ -8,6 +8,7 @@ const InputFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 2rem 0 0 0;
+
   padding-bottom: 1rem;
 
   @media screen and (max-width: 1000px) {
@@ -80,7 +81,7 @@ const MessageBlock = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   min-width: 320px;
-  height: 470px;
+  height: ${props => (props.collapsed ? '610px' : '470px')};
 
   @media screen and (max-width: 1000px) {
     width: 100%;
@@ -143,7 +144,7 @@ export default class Chat extends Component {
     return (
       <ChatWrapper>
         <Title>Комментарии</Title>
-        <MessageBlock>
+        <MessageBlock collapsed={this.props.collapsed}>
           <div>
             {this.state.messages.map((item, index) => (
               <Message key={`key${index}`} texts={item} />
