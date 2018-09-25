@@ -29,7 +29,6 @@ const VotesTotal = styled.div`
   font-weight: 300;
   font-size: 0.5em;
   color: #4a4a4a;
-  margin-left: 5px;
   -webkit-user-select: none;
 `;
 

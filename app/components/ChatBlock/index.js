@@ -107,6 +107,11 @@ export default class Chat extends Component {
     this.setState({ messages: this.props.messages });
   }
 
+  onTouchStart() {
+    const parentNode = ReactDOM.findDOMNode(this);
+    setScrollPadding(parentNode);
+  }
+
   handleChange(event) {
     const valueInput = event.target.value;
 
@@ -145,7 +150,7 @@ export default class Chat extends Component {
       <ChatWrapper>
         <Title>Комментарии</Title>
         <MessageBlock collapsed={this.props.collapsed}>
-          <div>
+          <div {...this.onTouchStart}>
             {this.state.messages.map((item, index) => (
               <Message key={`key${index}`} texts={item} />
             ))}
