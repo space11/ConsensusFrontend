@@ -11,7 +11,6 @@ import TabBlock from '../../components/TabBlock';
 const RoomWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 1vw 3vw 1vw 3vw;
   flex-wrap: wrap;
 
   @media screen and (max-width: 1000px) {
@@ -22,6 +21,7 @@ const RoomWrapper = styled.div`
 const LeftBlock = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 1rem 0 1rem;
 
   @media screen and (max-width: 1000px) {
     width: 100%;
@@ -32,6 +32,7 @@ const LeftBlock = styled.div`
 const RightBlock = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 1rem 0 1rem;
 
   @media screen and (max-width: 1000px) {
     width: 100%;
@@ -42,6 +43,8 @@ const Title = styled.h1`
   color: #4a4a4a;
   font-weight: 500;
   letter-spacing: 1px;
+  margin: 0;
+  margin-bottom: 0.5rem;
 `;
 
 const Share = styled.button`
@@ -49,17 +52,17 @@ const Share = styled.button`
   align-items: center;
   color: #4a4a4a;
   font-weight: 300;
-  font-size: 24px;
+  font-size: 1.4em;
   letter-spacing: 1px;
+  margin-bottom: 0.5rem;
 `;
 
 const UpLine = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
-  text-align: center;
 
   @media screen and (max-width: 1000px) {
     justify-content: center;
@@ -72,10 +75,16 @@ const DownLine = styled.div`
 
 const Viewers = styled.div`
   display: flex;
-  font-size: 24px;
+  font-size: 1.4em;
   font-weight: 300;
   align-items: center;
   color: #4a4a4a;
+`;
+
+const ShareXTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -87,16 +96,17 @@ class RoomPage extends PureComponent {
           <TabBlock />
           <PlayerBlock />
           <UpLine>
-            <Title>{this.props.title}</Title>
-            <Share>
-              <ShareIcon /> Поделиться
-            </Share>
-          </UpLine>
-          <DownLine>
+            <ShareXTitle>
+              <Title>{this.props.title}</Title>
+              <Share>
+                <ShareIcon /> Поделиться
+              </Share>
+            </ShareXTitle>
             <Viewers>
               <ViewersIcon /> {this.props.viewers} зрителей
             </Viewers>
-          </DownLine>
+          </UpLine>
+          <DownLine />
         </RightBlock>
         <LeftBlock>
           <VoteBlock />

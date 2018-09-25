@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Line from './components/voteLine';
-import { hideOn, media } from '../../utils/helpers';
-import { unit } from '../../utils/constants';
 import Plus from '../../images/Controls/plus';
 import Cross from '../../images/Controls/cross';
 
@@ -11,9 +9,7 @@ const VoteBlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 0 ${unit / 3}%;
   margin-bottom: 1rem;
-  ${hideOn} ${media.large`padding: 0 ${3.2 * unit}px;`};
 `;
 
 const Title = styled.h1`

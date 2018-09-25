@@ -3,9 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 
 import Header from 'components/header';
 import Footer from '../../components/footer';
-
-import HomePage from '../../containers/HomePage/Loadable';
-import RoomPage from '../../containers/RoomPage';
+import HomePage from '../HomePage/Loadable';
+import RoomPage from '../RoomPage';
+import RegisterPage from '../RegisterPage';
 import NotFoundPage from '../../containers/NotFoundPage/Loadable';
 
 export default function App() {
@@ -15,6 +15,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/room" component={RoomPage} />
+        <Route exact path="/register" component={RegisterPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <Footer />

@@ -12,7 +12,6 @@ const Player = styled.div`
   margin: 1rem;
   z-index: 1000;
   left: 50px;
-  background: #000;
 `;
 
 class PlayerBlockCollapsed extends PureComponent {

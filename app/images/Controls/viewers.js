@@ -8,7 +8,7 @@ export default () => (
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    style={{ marginRight: '5px' }}
+    style={{ marginRight: '10px' }}
   >
     <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g

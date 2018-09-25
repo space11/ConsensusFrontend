@@ -9,13 +9,15 @@ import MenuIcon from '../../images/MenuIcon';
 const HeaderWrapper = styled.div`
   display: flex;
   z-index: 9999;
-  position: ${props => (props.path === '/' ? 'relative' : 'relative')};
+  position: ${props =>
+    props.path === '/' || props.path === '/register' ? 'relative' : 'relative'};
   width: 100%;
   height: auto;
   padding: 1.5em 4em;
   align-items: center;
   justify-content: space-between;
-  background: ${props => (props.path === '/' ? '#21264b' : '#fff')};
+  background: ${props =>
+    props.path === '/' || props.path === '/register' ? '#21264b' : '#fff'};
   flex-wrap: wrap;
 
   @media screen and (max-width: 900px) {
@@ -29,7 +31,8 @@ const Logo = styled(Link)`
   flex: 1;
   letter-spacing: 0.25px;
   font-weight: 500;
-  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
+  color: ${props =>
+    props.path === '/' || props.path === '/register' ? '#fff' : ' #474d90'};
   text-decoration: none;
   transition: 0.3s;
 
@@ -63,7 +66,8 @@ const NavigationButton = styled(Link)`
   display: inline-flex;
   font-size: 1.05em;
   font-weight: 400;
-  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
+  color: ${props =>
+    props.path === '/' || props.path === '/register' ? '#fff' : ' #474d90'};
   text-decoration: none;
   justify-content: center;
   letter-spacing: 1.5px;
@@ -76,7 +80,8 @@ const NavigationButton = styled(Link)`
 `;
 
 const SearchButton = styled.button`
-  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
+  color: ${props =>
+    props.path === '/' || props.path === '/register' ? '#fff' : ' #474d90'};
   outline: none;
   margin-right: 2vw;
 
@@ -91,7 +96,8 @@ const SearchButton = styled.button`
 
 const MenuIconButton = styled.button`
   display: none;
-  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
+  color: ${props =>
+    props.path === '/' || props.path === '/register' ? '#fff' : ' #474d90'};
   outline: none;
 
   @media screen and (max-width: 900px) {

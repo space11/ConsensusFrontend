@@ -16,7 +16,22 @@ const NameBlock = styled.div`
   display: flex;
   align-self: flex-end;
   font-size: 2.5em;
-  color: ${props => (props.isTalk ? '#F7567C' : '#4a4a4a')};
+  color: #4a4a4a;
+
+  animation: ${props =>
+    props.isTalk ? 'color-change 3s infinite ease-in-out' : ''};
+
+  @keyframes color-change {
+    0% {
+      color: #f7567c;
+    }
+    50% {
+      color: #4e5f92;
+    }
+    100% {
+      color: #4a4a4a;
+    }
+  }
 `;
 
 class NickBlock extends PureComponent {
