@@ -8,6 +8,7 @@ const InputFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 2rem 0 0 0;
+  padding-bottom: 1rem;
 
   @media screen and (max-width: 1000px) {
     width: 100%;
@@ -25,7 +26,6 @@ const Input = styled.textarea`
   width: 90%;
   resize: none;
   font-weight: 300;
-  padding-bottom: 1rem;
 
   &::placeholder {
     color: #474d90;
@@ -54,7 +54,7 @@ const ChatWrapper = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   min-height: calc(100vh - 21vw);
-  width: 35vw;
+  width: 31vw;
   min-width: 360px;
 
   @media screen and (max-width: 1000px) {
@@ -121,17 +121,21 @@ export default class Chat extends Component {
   }
 
   handleSubmit() {
-    if (
-      this.state.messages[this.state.messages.length - 1].nickname ===
-      this.state.message.nickname
-    ) {
-      this.state.messages[this.state.messages.length - 1].text.push(
-        this.state.value,
-      );
-      this.setState({ messages: this.state.messages });
-    } else {
-      this.state.messages.push(this.state.message);
-      this.setState({ messages: this.state.messages });
+    if (this.state.value !== '') {
+      if (
+        this.state.messages[this.state.messages.length - 1].nickname ===
+        this.state.message.nickname
+      ) {
+        this.state.messages[this.state.messages.length - 1].text.push(
+          this.state.value,
+        );
+        this.setState({ messages: this.state.messages });
+      } else {
+        this.state.messages.push(this.state.message);
+        this.setState({ messages: this.state.messages });
+      }
+
+      this.setState({ value: '' });
     }
   }
 

@@ -12,6 +12,7 @@ const RoomWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin: 1rem 0 1.5rem 0;
 
   @media screen and (max-width: 1000px) {
     justify-content: center;
@@ -21,7 +22,7 @@ const RoomWrapper = styled.div`
 const LeftBlock = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 1rem 0 1rem;
+  padding: 0 3vw 0 0;
 
   @media screen and (max-width: 1000px) {
     width: 100%;
@@ -32,7 +33,7 @@ const LeftBlock = styled.div`
 const RightBlock = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 1rem 0 1rem;
+  padding: 0 3vw 0 3vw;
 
   @media screen and (max-width: 1000px) {
     width: 100%;

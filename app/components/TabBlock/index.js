@@ -19,17 +19,43 @@ const NicknameWrapper = styled.div`
   display: flex;
 `;
 
+const Timer = styled.div`
+  display: flex;
+  align-self: flex-end;
+  font-size: 2.5em;
+  color: #4a4a4a;
+
+  animation: color-change 3s infinite ease-in-out;
+
+  @keyframes color-change {
+    0% {
+      color: #f7567c;
+    }
+    50% {
+      color: #4e5f92;
+    }
+    100% {
+      color: #4a4a4a;
+    }
+  }
+`;
+
 class TabBlock extends PureComponent {
   render() {
     return (
       <TabBlockWrapper>
         <NicknameWrapper>
-          <Nickname url="oneperson" nickname="Pynya" avatar={<Placholder />} />
+          <Nickname
+            url="oneperson"
+            nickname="Pynya"
+            avatar={<Placholder />}
+            isTalk
+          />
         </NicknameWrapper>
+        <Timer>1:03</Timer>
         <NicknameWrapper>
           <Nickname
             isRight
-            isTalk
             url="twoperson"
             nickname="Sisyan"
             avatar={<Placholder />}
