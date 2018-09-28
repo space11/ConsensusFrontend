@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import { Parallax } from 'react-scroll-parallax';
 import Bg from '../../images/Banner/bg1';
 import ActionButton from '../ActionButton';
 import AlienRed from '../../images/Banner/Alien1';
@@ -7,17 +8,28 @@ import AlienYellow from '../../images/Banner/Alien2';
 import Rocket from '../../images/Banner/Rocket';
 import Space from '../Space';
 
+const BannerWrapper = styled.div`
+  min-height: calc(100vh - 21vw);
+  height: 71.1vw;
+  max-height: 1000px;
+`;
+
 const BannerDescriptionWrapper = styled.div`
   display: flex;
+  position: relative;
   height: calc(100% - 93px);
   min-width: 10vw;
   max-height: 1050px;
   flex-direction: column;
-  position: absolute;
-  top: 0;
   margin: 0 auto;
+  margin-top: 3rem;
   justify-content: center;
   width: 100%;
+  z-index: 999;
+
+  @media screen and (max-width: 900px) {
+    justify-content: flex-start;
+  }
 `;
 
 const BannerDescriptionLine = styled.div`
@@ -36,6 +48,12 @@ const BannerDescriptionLine = styled.div`
       font-size: 1.3em;
     }
   }
+`;
+
+const BackgroundWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  z-index: 1;
 `;
 
 const RocketWrapper = styled.div`
@@ -119,10 +137,7 @@ const ActionWrapper = styled.div`
 class Banner extends PureComponent {
   render() {
     return (
-      <div style={{ position: 'relative', marginTop: '-5px' }}>
-        <div style={{ position: 'relative', width: '100%' }}>
-          <Bg />
-        </div>
+      <BannerWrapper>
         <BannerDescriptionWrapper>
           <div style={{ margin: '0' }}>
             <BannerDescriptionLine style={{ marginBottom: '1vw' }}>
@@ -148,7 +163,12 @@ class Banner extends PureComponent {
             </YellowAlienWrapper>
           </AliensWrapper>
         </BannerDescriptionWrapper>
-      </div>
+        <BackgroundWrapper>
+          <Parallax offsetYMin={-5} offsetYMax={5}>
+            <Bg />
+          </Parallax>
+        </BackgroundWrapper>
+      </BannerWrapper>
     );
   }
 }

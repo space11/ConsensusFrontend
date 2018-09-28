@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import Img from 'react-image';
 import { Link } from 'react-router-dom';
+import Place from './1.png';
 
 const PartnersCellWrapper = styled(Link)`
   height: 32rem;
@@ -9,20 +11,29 @@ const PartnersCellWrapper = styled(Link)`
 
 const PartnersBlockWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   min-width: 300px;
   min-height: 500px;
-  width: 20%;
   background-image: linear-gradient(to bottom, #20244c, #2b3780);
   color: #fff;
   border-radius: 5px;
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer */
-  -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
-  -webkit-user-select: none; /* Chrome, Safari, and Opera */
-  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 `;
 
-const PartnersBlockImage = styled.img``;
+const PartnersBlockImage = styled.div`
+  display: flex;
+  position: absolute;
+  flex-wrap: wrap;
+  min-height: 500px;
+  background-image: linear-gradient(to bottom, #20244c, #2b3780);
+  color: #fff;
+  border-radius: 5px;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0;
+  }
+`;
 
 const PartnersBlockDescriptionWrapper = styled.div`
   max-width: 263px;
@@ -47,26 +58,21 @@ const PartnersBlockDescriptionWork = styled.div`
 
 const PartnersBlockDescription = styled.div`
   text-align: center;
-  font-weight: 200;
+  font-weight: 300;
   margin-bottom: 10px;
 `;
 
 class PartnersBlock extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.showOnFocus = this.showOnFocus.bind(this);
+    this.state = {
+      right: false,
+    };
   }
-
-  showOnFocus() {
-    console.log('ajiosdoiajios');
-  }
-
   render() {
     return (
       <PartnersCellWrapper to="some">
         <PartnersBlockWrapper>
-          <PartnersBlockImage src="../../images/placeholder.png" alt="" />
           <PartnersBlockDescriptionWrapper>
             <PartnersBlockDescriptionNameWrapper>
               <PartnersBlockDescriptionName>Trump</PartnersBlockDescriptionName>
@@ -82,6 +88,16 @@ class PartnersBlock extends PureComponent {
               Ведет блог о косплее в Твиттере.
             </PartnersBlockDescription>
           </PartnersBlockDescriptionWrapper>
+          <PartnersBlockImage>
+            <Img
+              src={Place}
+              alt=""
+              style={{
+                width: '300px',
+                height: '500px',
+              }}
+            />
+          </PartnersBlockImage>
         </PartnersBlockWrapper>
       </PartnersCellWrapper>
     );

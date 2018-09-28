@@ -10,11 +10,6 @@ const ProfileCellWrapper = styled(Link)`
   position: relative;
   text-decoration: none;
   color: #000;
-  margin: 1.5em;
-
-  @media screen and (max-width: 463px) {
-    width: 100%;
-  }
 `;
 
 const ProfileCellAva = styled.div`

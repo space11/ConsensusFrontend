@@ -17,7 +17,7 @@ const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   background: ${props =>
-    props.path === '/' || props.path === '/register' ? '#21264b' : '#fff'};
+    props.path === '/' || props.path === '/register' ? '#21274e' : '#fff'};
   flex-wrap: wrap;
 
   @media screen and (max-width: 900px) {

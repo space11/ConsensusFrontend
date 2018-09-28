@@ -29,7 +29,7 @@ const TopBlockTitle = styled.div`
 const ProfileWrapper = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
-  width: 100%;
+  justify-content: space-between;
 `;
 
 class TopBlock extends PureComponent {

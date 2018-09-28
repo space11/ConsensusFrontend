@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import { Parallax } from 'react-scroll-parallax';
 import Banner from '../../images/InfoBanner/bg';
 import AlienSup from '../../images/InfoBanner/AlienSup';
 import AlienSad from '../../images/InfoBanner/AlienSad';
@@ -17,6 +18,7 @@ const AlienWrapper = styled.div`
   position: absolute;
   padding: 20px;
   animation: go-top-bottom 3s infinite alternate;
+  z-index: 99999;
 
   @keyframes go-top-bottom {
     from {
@@ -35,6 +37,8 @@ const AlienWrapperBottom = styled.div`
   padding: 20px;
   right: 0;
   height: 100%;
+  z-index: 99999;
+
   animation: go-top-bottom 4s infinite alternate;
 
   @keyframes go-top-bottom {
@@ -57,7 +61,9 @@ class InfoBanner extends PureComponent {
         <AlienWrapperBottom>
           <AlienSad />
         </AlienWrapperBottom>
-        <Banner />
+        <Parallax offsetYMin={-10} offsetYMax={10}>
+          <Banner />
+        </Parallax>
       </InfoWrapper>
     );
   }

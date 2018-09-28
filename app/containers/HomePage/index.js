@@ -27,6 +27,7 @@ export default class HomePage extends PureComponent {
     return (
       <HomePageWrapper>
         <Banner />
+        <Space size={10} />
         <VideoBlock live title="Сейчас в эфире" />
         <InfoBannerStyle>
           <Space size={10} />

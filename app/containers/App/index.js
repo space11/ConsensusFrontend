@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
+import { ParallaxProvider } from 'react-scroll-parallax';
 import Header from 'components/header';
 import Footer from '../../components/footer';
 import HomePage from '../HomePage/Loadable';
@@ -10,7 +10,7 @@ import NotFoundPage from '../../containers/NotFoundPage/Loadable';
 
 export default function App() {
   return (
-    <div>
+    <ParallaxProvider>
       <Header path={location.pathname} />
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -19,6 +19,6 @@ export default function App() {
         <Route component={NotFoundPage} />
       </Switch>
       <Footer />
-    </div>
+    </ParallaxProvider>
   );
 }

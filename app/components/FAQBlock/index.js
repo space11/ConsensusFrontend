@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import { Parallax } from 'react-scroll-parallax';
 import Background from '../../images/FaqBanner/bg';
 import AlienHuman from '../../images/FaqBanner/AlienHuman';
 import AlienGrey from '../../images/FaqBanner/AlienGrey';
@@ -123,7 +124,9 @@ class FaqBlock extends PureComponent {
   render() {
     return (
       <FaqBlockWrapper>
-        <Background />
+        <Parallax offsetYMin={-12} offsetYMax={12}>
+          <Background />
+        </Parallax>
         <FaqBlockGreyWrapper>
           <AlienGrey />
         </FaqBlockGreyWrapper>

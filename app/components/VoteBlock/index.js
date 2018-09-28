@@ -82,7 +82,6 @@ export default class VoteBlock extends Component {
   }
 
   render() {
-    console.log(this.props.collapsed);
     return (
       <VoteBlockWrapper>
         <Title collapsed={this.props.collapsed}>
