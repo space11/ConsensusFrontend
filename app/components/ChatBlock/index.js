@@ -107,17 +107,13 @@ export default class Chat extends Component {
     this.setState({ messages: this.props.messages });
   }
 
-  onTouchStart() {
-    const parentNode = ReactDOM.findDOMNode(this);
-    setScrollPadding(parentNode);
-  }
-
   handleChange(event) {
     const valueInput = event.target.value;
 
     this.setState({
       message: {
         url: 'user1444',
+        date: new Date(12, 12, 5),
         nickname: 'OrositelGryadki',
         text: [valueInput],
       },
@@ -150,7 +146,7 @@ export default class Chat extends Component {
       <ChatWrapper>
         <Title>Комментарии</Title>
         <MessageBlock collapsed={this.props.collapsed}>
-          <div {...this.onTouchStart}>
+          <div>
             {this.state.messages.map((item, index) => (
               <Message key={`key${index}`} texts={item} />
             ))}
@@ -185,11 +181,13 @@ Chat.defaultProps = {
     {
       url: 'user1',
       nickname: 'Ne yee',
+      date: new Date(12, 12, 5),
       text: ['Чатик у меня нормальный был?'],
     },
     {
       url: 'user2',
       nickname: 'Yee',
+      date: new Date(12, 12, 5),
       text: [
         'я просто случайно по рассылке попалала на их сайт и он оказался подходящим',
       ],
@@ -197,11 +195,37 @@ Chat.defaultProps = {
     {
       url: 'user1',
       nickname: 'Neyee',
+      date: new Date(12, 12, 5),
       text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
     },
     {
       url: 'user2',
       nickname: 'Yee',
+      date: new Date(12, 12, 5),
+      text: ['сделай как телега', 'ну только можно без аватаров'],
+    },
+    {
+      url: 'user1',
+      nickname: 'Neyee',
+      date: new Date(12, 12, 5),
+      text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
+    },
+    {
+      url: 'user2',
+      nickname: 'Yee',
+      date: new Date(12, 12, 5),
+      text: ['сделай как телега', 'ну только можно без аватаров'],
+    },
+    {
+      url: 'user1',
+      nickname: 'Neyee',
+      date: new Date(12, 12, 5),
+      text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
+    },
+    {
+      url: 'user2',
+      nickname: 'Yee',
+      date: new Date(12, 12, 5),
       text: ['сделай как телега', 'ну только можно без аватаров'],
     },
     {
@@ -212,46 +236,31 @@ Chat.defaultProps = {
     {
       url: 'user2',
       nickname: 'Yee',
+      date: new Date(12, 12, 5),
       text: ['сделай как телега', 'ну только можно без аватаров'],
     },
     {
       url: 'user1',
       nickname: 'Neyee',
+      date: new Date(12, 12, 5),
       text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
     },
     {
       url: 'user2',
       nickname: 'Yee',
+      date: new Date(12, 12, 5),
       text: ['сделай как телега', 'ну только можно без аватаров'],
     },
     {
       url: 'user1',
       nickname: 'Neyee',
+      date: new Date(12, 12, 5),
       text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
     },
     {
       url: 'user2',
       nickname: 'Yee',
-      text: ['сделай как телега', 'ну только можно без аватаров'],
-    },
-    {
-      url: 'user1',
-      nickname: 'Neyee',
-      text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
-    },
-    {
-      url: 'user2',
-      nickname: 'Yee',
-      text: ['сделай как телега', 'ну только можно без аватаров'],
-    },
-    {
-      url: 'user1',
-      nickname: 'Neyee',
-      text: ['Допустим если его перевернуть', 'Как на скилбоксе'],
-    },
-    {
-      url: 'user2',
-      nickname: 'Yee',
+      date: new Date(12, 12, 5),
       text: ['сделай как телега', 'ну только можно без аватаров'],
     },
   ],

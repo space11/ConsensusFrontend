@@ -60,7 +60,9 @@ const Copyright = styled.a`
 const BlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  height: 100%;
+
   @media screen and (max-width: 568px) {
     margin-top: 1rem;
   }
@@ -69,29 +71,31 @@ const BlockWrapper = styled.div`
 const LeftBlockWrapper = styled.div`
   display: flex;
   justify-content: center;
+  height: 100%;
 `;
 
 const MainBlockWrapper = styled.div`
   display: flex;
   flex-wrap: wrap-reverse;
   justify-content: space-between;
-  width: 65%;
-  margin-top: 2vw;
+  width: 60%;
+  align-items: center;
+  margin-top: 3rem;
+  height: 10vw;
 
   @media screen and (max-width: 568px) {
-    justify-content: center;
+    margin-top: 8rem;
+    margin-left: 1.8rem;
   }
 `;
 
 const NavigationLine = styled(Link)`
   color: #fff;
-  margin: 1vw;
   text-decoration: none;
 `;
 
 const SocialLine = styled.a`
   color: #fff;
-  margin: 1vw;
   text-transform: uppercase;
   text-decoration: none;
 `;
@@ -101,13 +105,15 @@ const SocialWrapper = styled.a`
   flex-direction: column;
   text-decoration: none;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  margin-right: 1rem;
 `;
 
 const SocialsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   text-decoration: none;
+  justify-content: space-between;
 `;
 
 /* eslint-disable react/prefer-stateless-function */

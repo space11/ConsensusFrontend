@@ -119,7 +119,7 @@ const ActionWrapper = styled.div`
 class Banner extends PureComponent {
   render() {
     return (
-      <div style={{ position: 'relative', marginTop: '-1px' }}>
+      <div style={{ position: 'relative', marginTop: '-5px' }}>
         <div style={{ position: 'relative', width: '100%' }}>
           <Bg />
         </div>
