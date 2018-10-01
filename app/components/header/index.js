@@ -9,15 +9,13 @@ import MenuIcon from '../../images/MenuIcon';
 const HeaderWrapper = styled.div`
   display: flex;
   z-index: 9999;
-  position: ${props =>
-    props.path === '/' || props.path === '/register' ? 'relative' : 'relative'};
+  position: ${props => (props.path === '/' ? 'relative' : 'relative')};
   width: 100%;
   height: auto;
   padding: 1.5em 4em;
   align-items: center;
   justify-content: space-between;
-  background: ${props =>
-    props.path === '/' || props.path === '/register' ? '#1f254a' : '#fff'};
+  background: ${props => (props.path === '/' ? '#1f254a' : 'transparent')};
   flex-wrap: wrap;
 
   @media screen and (max-width: 900px) {
@@ -31,8 +29,7 @@ const Logo = styled(Link)`
   flex: 1;
   letter-spacing: 0.25px;
   font-weight: 500;
-  color: ${props =>
-    props.path === '/' || props.path === '/register' ? '#fff' : ' #474d90'};
+  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
   text-decoration: none;
   transition: 0.3s;
 
@@ -66,8 +63,7 @@ const NavigationButton = styled(Link)`
   display: inline-flex;
   font-size: 1.05em;
   font-weight: 400;
-  color: ${props =>
-    props.path === '/' || props.path === '/register' ? '#fff' : ' #474d90'};
+  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
   text-decoration: none;
   justify-content: center;
   letter-spacing: 1.5px;
@@ -80,8 +76,7 @@ const NavigationButton = styled(Link)`
 `;
 
 const SearchButton = styled.button`
-  color: ${props =>
-    props.path === '/' || props.path === '/register' ? '#fff' : ' #474d90'};
+  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
   outline: none;
   margin-right: 2vw;
 
@@ -96,8 +91,7 @@ const SearchButton = styled.button`
 
 const MenuIconButton = styled.button`
   display: none;
-  color: ${props =>
-    props.path === '/' || props.path === '/register' ? '#fff' : ' #474d90'};
+  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
   outline: none;
 
   @media screen and (max-width: 900px) {
@@ -123,13 +117,13 @@ const SearchPopupWrapper = styled.div`
   top: ${props => props.top}px;
   align-items: center;
   justify-content: space-between;
-  background-color: #20244c;
+  background-color: ${props => (props.shown ? '#20244c' : 'transparent')};
   padding: 1.5em 4em;
-  box-shadow: 0 3px 10px #000;
+  box-shadow: ${props => (props.shown ? '0 3px 10px #000' : '')};
   width: 100%;
-  z-index: 1;
+  z-index: 9990;
   overflow: hidden;
-  transition: 0.3s;
+  transition: 0.5s;
 
   @media screen and (max-width: 900px) {
     padding: 1.5em 3em;
@@ -137,7 +131,7 @@ const SearchPopupWrapper = styled.div`
 `;
 
 const SearchPopupFieldWrapper = styled.div`
-  display: flex;
+  display: ${props => (props.shown ? 'flex' : 'none')};
   align-items: center;
   float: right;
   width: 100%;
@@ -156,7 +150,7 @@ const SearchPopupInputForm = styled.input`
 `;
 
 const SearchPopupCloseButtonWrapper = styled.button`
-  display: flex;
+  display: ${props => (props.shown ? 'flex' : 'none')};
   justify-content: center;
   position: relative;
   align-items: center;
@@ -196,14 +190,22 @@ class Header extends PureComponent {
     super(props);
     this.state = {
       top: props.top || 0,
+      shown: false,
     };
     this.showSearchBlock = this.showSearchBlock.bind(this);
   }
 
   showSearchBlock() {
-    this.state.top === 0
-      ? this.setState({ top: 100 })
-      : this.setState({ top: 0 });
+    if (this.state.top === 0) {
+      this.setState({ top: 100 });
+    } else {
+      this.setState({ top: 0 });
+    }
+    if (this.state.shown) {
+      this.setState({ shown: false });
+    } else {
+      this.setState({ shown: true });
+    }
   }
 
   render() {
@@ -242,12 +244,15 @@ class Header extends PureComponent {
             <ActionButton text="Вход и регистрация" url="/register" />
           </LoginRegButton>
         </HeaderWrapper>
-        <SearchPopupWrapper top={this.state.top}>
-          <SearchPopupFieldWrapper>
+        <SearchPopupWrapper top={this.state.top} shown={this.state.shown}>
+          <SearchPopupFieldWrapper shown={this.state.shown}>
             <SearchIcon isWhite />
             <SearchPopupInputForm type="search" placeholder="Найти..." />
           </SearchPopupFieldWrapper>
-          <SearchPopupCloseButtonWrapper onClick={this.showSearchBlock}>
+          <SearchPopupCloseButtonWrapper
+            onClick={this.showSearchBlock}
+            shown={this.state.shown}
+          >
             <SearchPopupCloseButton />
           </SearchPopupCloseButtonWrapper>
         </SearchPopupWrapper>
