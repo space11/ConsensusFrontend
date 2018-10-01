@@ -22,7 +22,7 @@ const InfoBannerStyle = styled.div`
 `;
 
 /* eslint-disable react/prefer-stateless-function */
-export default class HomePage extends PureComponent {
+class HomePage extends PureComponent {
   render() {
     return (
       <HomePageWrapper>
@@ -49,3 +49,5 @@ export default class HomePage extends PureComponent {
     );
   }
 }
+
+export default HomePage;

@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const ActionButtonWrapper = styled.a`
+const ActionButtonWrapper = styled(Link)`
   display: flex;
   font-size: 20px;
   font-weight: 500;
@@ -14,6 +15,7 @@ const ActionButtonWrapper = styled.a`
   align-items: center;
   box-shadow: 0 0 5px #e96979;
   transition: 0.3s;
+  -webkit-user-select: none;
 
   &:hover {
     transform: scale(1.1);
@@ -21,9 +23,15 @@ const ActionButtonWrapper = styled.a`
 `;
 
 export default class ActionButton extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      url: props.url || '/undefined',
+    };
+  }
   render() {
     return (
-      <ActionButtonWrapper href={this.props.url}>
+      <ActionButtonWrapper to={this.state.url}>
         <span style={{ display: 'inline-block' }}>{this.props.text}</span>
       </ActionButtonWrapper>
     );

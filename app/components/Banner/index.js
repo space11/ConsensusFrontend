@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { Parallax } from 'react-scroll-parallax';
 import Bg from '../../images/Banner/bg1';
 import ActionButton from '../ActionButton';
 import AlienRed from '../../images/Banner/Alien1';
@@ -9,23 +8,25 @@ import Rocket from '../../images/Banner/Rocket';
 import Space from '../Space';
 
 const BannerWrapper = styled.div`
-  min-height: calc(100vh - 21vw);
-  height: 71.1vw;
-  max-height: 1000px;
+  display: flex;
+  position: relative;
+  min-height: 20vw;
 `;
 
 const BannerDescriptionWrapper = styled.div`
   display: flex;
-  position: relative;
-  height: calc(100% - 93px);
-  min-width: 10vw;
-  max-height: 1050px;
+  position: absolute;
   flex-direction: column;
-  margin: 0 auto;
-  margin-top: 3rem;
   justify-content: center;
   width: 100%;
+  align-items: center;
+  height: 90%;
   z-index: 999;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 0;
+    font-size: 0.8em;
+  }
 
   @media screen and (max-width: 900px) {
     justify-content: flex-start;
@@ -34,32 +35,26 @@ const BannerDescriptionWrapper = styled.div`
 
 const BannerDescriptionLine = styled.div`
   display: flex;
-  font-size: 2.2em;
+  font-size: 2em;
   font-weight: 400;
   color: #fff;
   text-align: center;
   justify-content: center;
   letter-spacing: 1.5px;
   z-index: 1;
-
-  @media screen and (max-width: 900px) {
-    font-size: 2em;
-    @media screen and (max-width: 550px) {
-      font-size: 1.3em;
-    }
-  }
 `;
 
 const BackgroundWrapper = styled.div`
-  position: absolute;
-  top: 0;
   z-index: 1;
+  height: 100%;
+  width: 100%;
 `;
 
 const RocketWrapper = styled.div`
   display: flex;
   position: relative;
-  margin: 0 auto;
+  margin: auto 0;
+  height: 25%;
   animation: go-left-right 3s infinite alternate ease-in-out;
 
   @media screen and (max-width: 900px) {
@@ -82,7 +77,8 @@ const AliensWrapper = styled.div`
   display: flex;
   padding: 0 5vw;
   width: 100%;
-  margin-top: -3vw;
+
+  justify-content: space-between;
 `;
 
 const RedAlienWrapper = styled.div`
@@ -138,9 +134,12 @@ class Banner extends PureComponent {
   render() {
     return (
       <BannerWrapper>
+        <BackgroundWrapper>
+          <Bg />
+        </BackgroundWrapper>
         <BannerDescriptionWrapper>
-          <div style={{ margin: '0' }}>
-            <BannerDescriptionLine style={{ marginBottom: '1vw' }}>
+          <div style={{ margin: '0 auto' }}>
+            <BannerDescriptionLine style={{ marginBottom: '1rem' }}>
               Первая в мире платформа
             </BannerDescriptionLine>
             <BannerDescriptionLine>
@@ -163,11 +162,6 @@ class Banner extends PureComponent {
             </YellowAlienWrapper>
           </AliensWrapper>
         </BannerDescriptionWrapper>
-        <BackgroundWrapper>
-          <Parallax offsetYMin={-5} offsetYMax={5}>
-            <Bg />
-          </Parallax>
-        </BackgroundWrapper>
       </BannerWrapper>
     );
   }

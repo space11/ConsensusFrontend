@@ -95,6 +95,7 @@ class PartnersBlock extends PureComponent {
               style={{
                 width: '300px',
                 height: '500px',
+                borderRadius: '5px',
               }}
             />
           </PartnersBlockImage>

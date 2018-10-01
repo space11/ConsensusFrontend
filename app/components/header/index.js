@@ -17,7 +17,7 @@ const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   background: ${props =>
-    props.path === '/' || props.path === '/register' ? '#21274e' : '#fff'};
+    props.path === '/' || props.path === '/register' ? '#1f254a' : '#fff'};
   flex-wrap: wrap;
 
   @media screen and (max-width: 900px) {
@@ -239,7 +239,7 @@ class Header extends PureComponent {
             </MenuIconButton>
           </MenuSearchWrapper>
           <LoginRegButton>
-            <ActionButton text="Вход и регистрация" />
+            <ActionButton text="Вход и регистрация" url="/register" />
           </LoginRegButton>
         </HeaderWrapper>
         <SearchPopupWrapper top={this.state.top}>
