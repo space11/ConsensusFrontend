@@ -22,7 +22,7 @@ const PlayerBlockWrapper = styled.div`
   width: 60vw;
   height: 36rem;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1154px) {
     width: 100%;
   }
 `;

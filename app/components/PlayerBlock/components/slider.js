@@ -21,10 +21,13 @@ const TimeLineWrapper = styled.div`
   width: 100%;
   height: 1rem;
   background-image: linear-gradient(to right, #7ea4d0, #4e5f92);
+  opacity: 0.7;
 `;
 
 const PassedWrapper = styled.div`
   position: absolute;
+  opacity: 1;
+  z-index: 9999;
 `;
 
 const LeftControl = styled.div`
@@ -45,7 +48,7 @@ const PassedTimeLineWrapper = styled.div`
 const LowControlFieldWrapper = styled.div`
   display: inherit;
   align-items: center;
-  background: #474d90;
+  box-shadow: inset 0 -30px 50px #474d90;
   width: 100%;
   justify-content: space-between;
 `;

@@ -7,6 +7,11 @@ import TwitterIcon from '../../images/Footer/Socials/Twitter';
 import VKIcon from '../../images/Footer/Socials/VK';
 import Bg from '../../images/Footer/bg';
 
+const R = styled.div`
+  display: ${props => (props.path === '/register' ? 'none' : 'block')};
+  position: relative;
+`;
+
 const FooterWrapper = styled.div`
   display: flex;
   flex: 0 0 auto;
@@ -65,6 +70,7 @@ const BlockWrapper = styled.div`
 
   @media screen and (max-width: 568px) {
     margin-top: 1rem;
+    height: 9rem;
   }
 `;
 
@@ -72,6 +78,10 @@ const LeftBlockWrapper = styled.div`
   display: flex;
   justify-content: center;
   height: 100%;
+
+  @media screen and (max-width: 568px) {
+    height: 8rem;
+  }
 `;
 
 const MainBlockWrapper = styled.div`
@@ -83,9 +93,10 @@ const MainBlockWrapper = styled.div`
   margin-top: 3rem;
   height: 10vw;
 
-  @media screen and (max-width: 568px) {
-    margin-top: 8rem;
+  @media screen and (max-width: 900px) {
     margin-left: 1.8rem;
+    margin-top: 0;
+    height: auto;
   }
 `;
 
@@ -120,7 +131,7 @@ const SocialsWrapper = styled.div`
 class Footer extends PureComponent {
   render() {
     return (
-      <div style={{ position: 'relative' }}>
+      <R path={this.props.path}>
         <BackgroundWrapper>
           <Bg />
         </BackgroundWrapper>
@@ -158,7 +169,7 @@ class Footer extends PureComponent {
             © League Of Developers 2018
           </Copyright>
         </FooterWrapper>
-      </div>
+      </R>
     );
   }
 }

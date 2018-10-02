@@ -11,7 +11,7 @@ const InputFormWrapper = styled.div`
 
   padding-bottom: 1rem;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1154px) {
     width: 100%;
   }
 `;
@@ -33,7 +33,7 @@ const Input = styled.textarea`
     font-weight: 300;
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1154px) {
     width: 100%;
   }
 `;
@@ -58,7 +58,7 @@ const ChatWrapper = styled.div`
   width: 31vw;
   min-width: 360px;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1154px) {
     width: 100%;
     min-width: 100%;
   }
@@ -70,7 +70,7 @@ const Title = styled.h1`
   color: #4a4a4a;
   -webkit-user-select: none;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1154px) {
     width: 100%;
   }
 `;
@@ -83,7 +83,7 @@ const MessageBlock = styled.div`
   min-width: 320px;
   height: ${props => (props.collapsed ? '610px' : '470px')};
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1154px) {
     width: 100%;
     max-width: 100%;
     min-width: 100%;

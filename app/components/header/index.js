@@ -29,7 +29,8 @@ const Logo = styled(Link)`
   flex: 1;
   letter-spacing: 0.25px;
   font-weight: 500;
-  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
+  color: ${props =>
+    props.path === '/' || props.path === '/register' ? '#fff' : ' #474d90'};
   text-decoration: none;
   transition: 0.3s;
 
@@ -39,6 +40,8 @@ const Logo = styled(Link)`
 
   @media screen and (max-width: 900px) {
     flex: 0;
+
+    color: ${props => (props.path === '/register' ? '#474d90' : '')};
   }
 `;
 
@@ -207,7 +210,6 @@ class Header extends PureComponent {
       this.setState({ shown: true });
     }
   }
-
   render() {
     return (
       <div

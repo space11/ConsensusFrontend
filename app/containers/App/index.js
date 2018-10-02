@@ -18,7 +18,7 @@ export default function App() {
         <Route exact path="/register" component={RegisterPage} />
         <Route component={NotFoundPage} />
       </Switch>
-      <Footer />
+      <Footer path={location.pathname} />
     </ParallaxProvider>
   );
 }

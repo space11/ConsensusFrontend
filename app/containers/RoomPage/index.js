@@ -24,9 +24,9 @@ const LeftBlock = styled.div`
   flex-direction: column;
   padding: 0 3vw 0 0;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1154px) {
     width: 100%;
-    margin-top: 3rem;
+    margin: 1rem;
   }
 `;
 
@@ -35,7 +35,7 @@ const RightBlock = styled.div`
   flex-direction: column;
   padding: 0 3vw 0 3vw;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1154px) {
     width: 100%;
   }
 `;
@@ -65,7 +65,7 @@ const UpLine = styled.div`
   margin-top: 2rem;
   flex-wrap: wrap;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1154px) {
     justify-content: center;
   }
 `;
