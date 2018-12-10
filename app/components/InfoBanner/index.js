@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import Banner from '../../images/InfoBanner/bg';
-import AlienSup from '../../images/InfoBanner/AlienSup';
-import AlienSad from '../../images/InfoBanner/AlienSad';
+import { Parallax } from 'react-scroll-parallax';
+import Banner from 'images/info/background';
+import AlienOctopus from 'images/info/alienOctopus';
+import AlienSad from 'images/info/alienSad';
 
 const InfoWrapper = styled.div`
   display: flex;
@@ -15,15 +16,17 @@ const InfoWrapper = styled.div`
 
 const AlienWrapper = styled.div`
   position: absolute;
-  padding: 20px;
+  padding: 0 20px;
   animation: go-top-bottom 3s infinite alternate;
+  z-index: 99999;
+  margin-top: -50px;
 
   @keyframes go-top-bottom {
-    from {
-      top: -10px;
+    0% {
+      transform: translateY(-10%);
     }
-    to {
-      top: 10px;
+    100% {
+      transform: translateY(10%);
     }
   }
 `;
@@ -33,31 +36,27 @@ const AlienWrapperBottom = styled.div`
   align-items: flex-end;
   position: absolute;
   padding: 20px;
+
   right: 0;
   height: 100%;
-  animation: go-top-bottom 4s infinite alternate;
+  z-index: 99999;
 
-  @keyframes go-top-bottom {
-    from {
-      top: -12px;
-    }
-    to {
-      top: 12px;
-    }
-  }
+  animation: go-top-bottom 4s infinite alternate;
 `;
 
-class InfoBanner extends PureComponent {
+class InfoBanner extends PureComponent { //eslint-disable-line
   render() {
     return (
       <InfoWrapper>
         <AlienWrapper>
-          <AlienSup />
+          <AlienOctopus />
         </AlienWrapper>
         <AlienWrapperBottom>
           <AlienSad />
         </AlienWrapperBottom>
-        <Banner />
+        <Parallax offsetYMin={-10} offsetYMax={10}>
+          <Banner />
+        </Parallax>
       </InfoWrapper>
     );
   }

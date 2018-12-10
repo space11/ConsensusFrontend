@@ -1,107 +1,108 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import Bg from '../../images/Banner/bg1';
-import ActionButton from '../ActionButton';
-import AlienRed from '../../images/Banner/Alien1';
-import AlienYellow from '../../images/Banner/Alien2';
-import Rocket from '../../images/Banner/Rocket';
+import AlienRed from 'images/banner/alienRed';
+import AlienYellow from 'images/banner/alienYellow';
+import Rocket from 'images/banner/rocket';
+import Button from '../Button';
 import Space from '../Space';
 
-const BannerDescriptionWrapper = styled.div`
+const BannerWrapper = styled.div`
   display: flex;
-  height: calc(100% - 93px);
-  min-width: 10vw;
-  max-height: 1050px;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  margin: 0 auto;
-  justify-content: center;
   width: 100%;
-`;
-
-const BannerDescriptionLine = styled.div`
-  display: flex;
-  font-size: 2.2em;
-  font-weight: 400;
-  color: #fff;
-  text-align: center;
+  top: 20%;
+  height: inherit;
+  align-items: center;
+  position: absolute;
   justify-content: center;
-  letter-spacing: 1.5px;
-  z-index: 1;
-
   @media screen and (max-width: 900px) {
-    font-size: 2em;
-    @media screen and (max-width: 550px) {
-      font-size: 1.3em;
-    }
+    top: 25%;
   }
 `;
 
-const RocketWrapper = styled.div`
+const BannerDescriptionWrapper = styled.div`
   display: flex;
   position: relative;
-  margin: 0 auto;
-  animation: go-left-right 3s infinite alternate ease-in-out;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  min-height: 90%;
+  z-index: 999;
+`;
+
+const BannerDescriptionLine = styled.div`
+  color: #fff;
+  text-align: center;
+  z-index: 1;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 2.3em;
+  margin-bottom: 20px;
+`;
+
+const RocketWrapper = styled.div`
+  height: 25%;
+  margin-top: 120px;
+  animation: 3s slideOutLeft infinite alternate;
+
+  @keyframes slideOutLeft {
+    0% {
+      transform: translateX(-25%);
+    }
+    100% {
+      transform: translateX(70%);
+    }
+  }
 
   @media screen and (max-width: 900px) {
     animation: none;
     margin: 0 auto;
   }
-
-  @keyframes go-left-right {
-    from {
-      left: calc(50px - 5%);
-    }
-    to {
-      left: calc(15% - 50px);
-    }
-  }
 `;
 
 const AliensWrapper = styled.div`
-  position: relative;
   display: flex;
-  padding: 0 5vw;
   width: 100%;
-  margin-top: -3vw;
+  justify-content: space-between;
+  padding: 0 3rem;
+  margin-top: -120px;
+  align-items: center;
 `;
 
 const RedAlienWrapper = styled.div`
-  position: relative;
-  animation: go-top-bottom 3s infinite alternate;
-
   @media screen and (max-width: 900px) {
     display: none;
   }
 
-  @keyframes go-top-bottom {
-    from {
-      top: -30px;
+  animation: 3s slideUp infinite alternate;
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(-2%);
     }
-    to {
-      top: 25px;
+    100% {
+      transform: translateY(2%);
     }
   }
 `;
 
 const YellowAlienWrapper = styled.div`
   display: flex;
-  position: relative;
-  margin-top: -2vw;
-  animation: go-top-bottom 4s infinite alternate;
+
+  animation: 3.5s slideUp infinite alternate;
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(-4%);
+    }
+    100% {
+      transform: translateY(4%);
+    }
+  }
 
   @media screen and (max-width: 900px) {
     display: none;
-  }
-
-  @keyframes go-top-bottom {
-    from {
-      top: -5px;
-    }
-    to {
-      top: 5px;
-    }
   }
 `;
 
@@ -118,21 +119,19 @@ const ActionWrapper = styled.div`
 /* eslint-disable react/prefer-stateless-function */
 class Banner extends PureComponent {
   render() {
+    const { clickDebate } = this.props;
     return (
-      <div style={{ position: 'relative', marginTop: '-1px' }}>
-        <div style={{ position: 'relative', width: '100%' }}>
-          <Bg />
-        </div>
+      <BannerWrapper>
         <BannerDescriptionWrapper>
-          <div style={{ margin: '0' }}>
-            <BannerDescriptionLine style={{ marginBottom: '1vw' }}>
+          <div>
+            <BannerDescriptionLine>
               Первая в мире платформа
             </BannerDescriptionLine>
             <BannerDescriptionLine>
               для проведения онлайн-дебатов
             </BannerDescriptionLine>
             <ActionWrapper>
-              <ActionButton text="Организовать дебаты" />
+              <Button text="Организовать дебаты" onButtonClick={clickDebate} />
             </ActionWrapper>
           </div>
           <Space size={2} />
@@ -148,7 +147,7 @@ class Banner extends PureComponent {
             </YellowAlienWrapper>
           </AliensWrapper>
         </BannerDescriptionWrapper>
-      </div>
+      </BannerWrapper>
     );
   }
 }

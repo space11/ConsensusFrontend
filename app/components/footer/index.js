@@ -1,7 +1,18 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
+import { NavLink } from 'react-router-dom';
+import Img from 'react-image';
 import styled from 'styled-components';
-import Bg from '../../images/Footer/bg';
+import FacebookIcon from 'images/footer/socials/facebook';
+import InstagramIcon from 'images/footer/socials/instagram';
+import TwitterIcon from 'images/footer/socials/twitter';
+import VKIcon from 'images/footer/socials/vk';
+import Bg from 'images/footer/background.svg';
+
+const R = styled.div`
+  display: ${props => (props.footerIsHidden ? 'none' : 'block')};
+  position: relative;
+`;
 
 const FooterWrapper = styled.div`
   display: flex;
@@ -10,58 +21,126 @@ const FooterWrapper = styled.div`
   min-width: 10vw;
   max-height: 1050px;
   position: absolute;
+  justify-content: center;
+  align-items: center;
   top: 0;
-  margin: 0 auto;
   width: 100%;
   flex-direction: column;
-  justify-content: center;
+  z-index: 9999;
+`;
+
+const BackgroundWrapper = styled(Img)`
+  position: relative;
+  width: 100%;
+
+  @media screen and (max-width: 850px) {
+    display: none;
+  }
+`;
+
+const BackgroundMobileWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  z-index: 9999;
+
+  @media screen and (min-width: 850px) {
+    display: none;
+  }
+`;
+
+const BackgroundMobile = styled.div`
+  width: 100%;
+  background: #374059;
+  height: 500px;
+  z-index: 9999;
 `;
 
 const Copyright = styled.a`
-  display: inherit;
+  position: absolute;
+  display: flex;
   justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  bottom: 0;
   color: #fff;
   font-size: 1em;
-  width: 100%;
   text-decoration: none;
 `;
 
 const BlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  @media screen and (max-width: 568px) {
+    margin-top: 1rem;
+    height: 9rem;
+  }
+`;
+
+const LeftBlockWrapper = styled.div`
+  display: flex;
   justify-content: center;
+  height: 100%;
+
+  @media screen and (max-width: 568px) {
+    height: 8rem;
+  }
 `;
 
 const MainBlockWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   justify-content: space-between;
+  width: 60%;
   align-items: center;
-  margin: 12vw auto 7vw auto;
-  width: 62%;
+  margin-top: 3rem;
+  height: 10vw;
+
+  @media screen and (max-width: 900px) {
+    margin-left: 1.8rem;
+    margin-top: 0;
+    height: auto;
+  }
 `;
 
-const NavigationLine = styled(Link)`
+const NavigationLine = styled(NavLink)`
   color: #fff;
-  margin: 0.5vw;
   text-decoration: none;
 `;
 
 const SocialLine = styled.a`
-  margin: 0.5vw;
   color: #fff;
-  text-decoration: none;
   text-transform: uppercase;
+  text-decoration: none;
+`;
+
+const SocialWrapper = styled.a`
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 1rem;
+`;
+
+const SocialsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  justify-content: space-between;
 `;
 
 /* eslint-disable react/prefer-stateless-function */
 class Footer extends PureComponent {
   render() {
     return (
-      <div style={{ position: 'relative', marginTop: '-1px' }}>
-        <div style={{ position: 'relative', width: '100%' }}>
-          <Bg />
-        </div>
+      <R footerIsHidden={this.props.footerIsHidden}>
+        <BackgroundWrapper src={Bg} alt="" />
+        <BackgroundMobileWrapper>
+          <BackgroundMobile />
+        </BackgroundMobileWrapper>
         <FooterWrapper>
           <MainBlockWrapper>
             <BlockWrapper>
@@ -74,19 +153,32 @@ class Footer extends PureComponent {
                 Пользовательское соглашение
               </NavigationLine>
             </BlockWrapper>
-
-            <BlockWrapper>
-              <SocialLine href="https://vk.com">VK</SocialLine>
-              <SocialLine href="https://facebook.com">FACEBOOK</SocialLine>
-              <SocialLine href="https://twitter.com">TWITTER</SocialLine>
-              <SocialLine href="https://instagram.com">INSTAGRAM</SocialLine>
-            </BlockWrapper>
+            <LeftBlockWrapper>
+              <SocialWrapper>
+                <VKIcon />
+                <FacebookIcon />
+                <TwitterIcon />
+                <InstagramIcon />
+              </SocialWrapper>
+              <SocialsWrapper>
+                <SocialLine href="https://vk.com">VK</SocialLine>
+                <SocialLine href="https://facebook.com">FACEBOOK</SocialLine>
+                <SocialLine href="https://twitter.com">TWITTER</SocialLine>
+                <SocialLine href="https://instagram.com">INSTAGRAM</SocialLine>
+              </SocialsWrapper>
+            </LeftBlockWrapper>
           </MainBlockWrapper>
-          <Copyright href="">© League Of Developers 2018</Copyright>
+          <Copyright href="https://lod-misis.ru">
+            © League Of Developers 2018
+          </Copyright>
         </FooterWrapper>
-      </div>
+      </R>
     );
   }
 }
+
+Footer.propTypes = {
+  footerIsHidden: PropTypes.bool,
+};
 
 export default Footer;

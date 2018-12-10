@@ -1,17 +1,26 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import Img from 'react-image';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import LiveIcon from '../../images/LiveIcon';
+import { NavLink } from 'react-router-dom';
+import LiveIcon from 'images/videoblock/liveIcon';
 
-const VideoBlockWrapper = styled(Link)`
+const VideoBlockWrapper = styled(NavLink)`
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  color: #000;
+  color: ${props => (props.isWhite ? '#fff' : '#000')};
   min-width: 220px;
   width: 22%;
   height: 240px;
+  background: #fafafa;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 7px;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.025);
+  }
 
   @media screen and (max-width: 654px) {
     width: 100%;
@@ -29,12 +38,13 @@ const VideoBlockTitle = styled.div`
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.6rem;
-  margin-bottom: 5px;
+  margin: 7px;
 `;
 
 const VideoBlockNames = styled.div`
   font-size: 0.8em;
   font-weight: 300;
+  margin: 7px;
   white-space: nowrap;
 `;
 
@@ -48,29 +58,33 @@ const VideoBlockLowWrapper = styled.div`
 
 const VideoBlockTheme = styled.div`
   letter-spacing: 0.5px;
+  margin: 7px;
+  margin-top: 0;
 `;
 
 const VideoBlockViewers = styled.div`
   letter-spacing: 0.5px;
+  margin: 7px;
+  margin-top: 0;
 `;
 
-const VideoBlockImage = styled.img`
+const VideoBlockImage = styled(Img)`
   position: relative;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
+  height: 110px;
   width: 100%;
-  height: 8rem;
-  max-height: var(--yt-img-max-height, none);
-  max-width: var(--yt-img-max-width, 100%);
 `;
 
 const VideoBlockLiveMark = styled.div`
+  display: flex;
+  justify-content: center;
   position: relative;
 `;
 
 class VideoBlockSmall extends PureComponent {
   render() {
     return (
-      <VideoBlockWrapper to={this.props.url} r>
+      <VideoBlockWrapper to={this.props.url} isWhite={this.props.isWhite}>
         <VideoBlockTitle>{this.props.title}</VideoBlockTitle>
         <VideoBlockLiveMark>
           <VideoBlockImage src={this.props.image} alt="" />

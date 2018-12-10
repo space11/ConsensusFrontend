@@ -1,0 +1,14 @@
+
+<svg width="35px" height="22px" viewBox="0 0 35 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-475.000000, -272.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="google-plus" transform="translate(475.000000, 272.000000)">
+                <polygon id="Shape" points="30.6 8.4 30.6 4 28.4 4 28.4 8.4 24 8.4 24 10.6 28.4 10.6 28.4 15 30.6 15 30.6 10.6 35 10.6 35 8.4"></polygon>
+                <path d="M11,8.8 L11,13.2 L17.2238,13.2 C16.3152,15.7608 13.8688,17.6 11,17.6 C7.3612,17.6 4.4,14.6388 4.4,11 C4.4,7.3612 7.3612,4.4 11,4.4 C12.5774,4.4 14.0954,4.9654 15.2746,5.9928 L18.1654,2.6752 C16.1854,0.9504 13.6422,0 11,0 C4.9346,0 0,4.9346 0,11 C0,17.0654 4.9346,22 11,22 C17.0654,22 22,17.0654 22,11 L22,8.8 L11,8.8 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

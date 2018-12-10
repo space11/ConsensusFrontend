@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react';
+import Img from 'react-image';
 import styled from 'styled-components';
+import { hideOn, media } from 'utils/helpers';
+import { unit } from 'utils/constants';
+import cross from 'images/partners/cross.svg';
 import PartnersCell from '../PartnersCell';
-import { hideOn, media } from '../../utils/helpers';
-import { unit } from '../../utils/constants';
+import Space from '../Space';
 
 const PartnersBlockWrapper = styled.div`
   display: inline-flex;
@@ -32,7 +35,6 @@ const Partners = styled.div`
 const PartnersBlockTitle = styled.div`
   display: flex;
   font-weight: 600;
-  margin-bottom: 50px;
   font-size: 2.4em;
   letter-spacing: 2px;
   @media screen and (max-width: 654px) {
@@ -41,15 +43,24 @@ const PartnersBlockTitle = styled.div`
   }
 `;
 
-class PartnersBlock extends PureComponent {
+const PartnersBlockCrossButton = styled(Img)``;
+
+class PartnersBlock extends PureComponent { // eslint-disable-line
   render() {
     return (
       <Partners>
         <PartnersBlockTitle>Наши партнеры</PartnersBlockTitle>
+        <Space size={4} />
         <PartnersBlockWrapper>
+          <PartnersBlockCrossButton img={cross} alt="" />
           <PartnersCell />
           <PartnersCell />
           <PartnersCell />
+          <PartnersBlockCrossButton
+            img={cross}
+            alt=""
+            style={{ transform: 'scale(-1, 1)' }}
+          />
         </PartnersBlockWrapper>
       </Partners>
     );

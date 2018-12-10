@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { hideOn, media } from '../../utils/helpers';
-import { unit } from '../../utils/constants';
+import { hideOn, media } from 'utils/helpers';
+import { unit } from 'utils/constants';
+import Space from '../Space';
 import ProfileCell from '../ProfileCell';
 
 const TopBlockWrapper = styled.div`
@@ -13,12 +14,14 @@ const TopBlockWrapper = styled.div`
   box-sizing: border-box;
   padding: 0 ${unit / 3}%;
   ${hideOn} ${media.large`padding: 0 ${3.2 * unit}px;`};
+  @media screen and (max-width: 654px) {
+    margin: auto 0;
+  }
 `;
 
 const TopBlockTitle = styled.div`
   display: flex;
   font-weight: 600;
-  margin-bottom: 50px;
   font-size: 2.4em;
   letter-spacing: 2px;
   @media screen and (max-width: 654px) {
@@ -30,22 +33,19 @@ const ProfileWrapper = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
-  @media screen and (max-width: 654px) {
-    justify-content: center;
-  }
 `;
 
-class TopBlock extends PureComponent {
+class TopBlock extends PureComponent { // eslint-disable-line
   render() {
     return (
       <TopBlockWrapper>
         <TopBlockTitle>Топ спикеров</TopBlockTitle>
+        <Space size={4} />
         <ProfileWrapper>
-          <ProfileCell />
-          <ProfileCell />
-          <ProfileCell />
-          <ProfileCell />
+          <ProfileCell isLive name="Nagibator22" rep={228} />
+          <ProfileCell name="Richard |||" rep={282} />
+          <ProfileCell name="Kirino" rep={199} />
+          <ProfileCell isLive name="Jojo" rep={814} />
         </ProfileWrapper>
       </TopBlockWrapper>
     );

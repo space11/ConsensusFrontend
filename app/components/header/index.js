@@ -1,39 +1,53 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { NavLink, withRouter } from 'react-router-dom';
+import { push } from 'react-router-redux';
 import styled from 'styled-components';
-import SearchIcon from 'images/SearchIcon';
+import MenuIcon from 'images/header/menuIcon';
+import SearchIcon from 'images/header/searchIcon';
 import ActionButton from '../ActionButton';
-import MenuIcon from '../../images/MenuIcon';
+
+const Wrapper = styled.div`
+  position: relative;
+  flex-direction: column;
+  background: #f9f9f9;
+`;
 
 const HeaderWrapper = styled.div`
   display: flex;
   z-index: 9999;
-  position: ${props => (props.path === '/' ? 'relative' : 'relative')};
+  position: ${props => (props.iswhite ? 'absolute' : 'relative')};
   width: 100%;
-  height: auto;
-  padding: 1.5em 60px;
+  padding: 1.5em 4em;
   align-items: center;
   justify-content: space-between;
-  background: ${props => (props.path === '/' ? '#20244C' : '#fff')};
+  background: transparent;
   flex-wrap: wrap;
 
-  @media screen and (max-width: 900px) {
-    padding: 1.5em 40px;
+  @media screen and (max-width: 916px) {
+    padding: 1.5em 3em;
   }
 `;
 
-const Logo = styled(Link)`
-  display: inline-flex;
+const Logo = styled(NavLink)`
+  display: flex;
   font-size: 1.9em;
   flex: 1;
   letter-spacing: 0.25px;
   font-weight: 500;
-  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
+  color: ${props => (props.iswhite ? '#fff' : ' #474d90')};
   text-decoration: none;
+  transition: 0.3s;
 
-  @media screen and (max-width: 900px) {
+  &:hover {
+    color: #b998ea;
+  }
+
+  @media screen and (max-width: 916px) {
     flex: 0;
+    color: ${props => (props.iswhite ? '#fff' : ' #474d90')};
   }
 `;
 
@@ -43,49 +57,58 @@ const NavigatorContainer = styled.div`
   width: auto;
   height: 3vw;
   min-width: 340px;
-  max-width: 490px;
+  max-width: 380px;
   align-items: center;
   justify-content: space-between;
   flex: 1;
   margin-right: 2vw;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 916px) {
     display: none;
   }
 `;
 
-const NavigationButton = styled(Link)`
-  display: inline-flex;
+const NavigationButton = styled(NavLink)`
   font-size: 1.05em;
   font-weight: 400;
-  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
+  color: ${props => (props.naviswhite ? '#fff' : ' #474d90')};
   text-decoration: none;
   justify-content: center;
   letter-spacing: 1.5px;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+    color: #b998ea;
+  }
 `;
 
 const SearchButton = styled.button`
-  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
+  color: ${props => (props.iswhite ? '#fff' : ' #474d90')};
   outline: none;
   margin-right: 2vw;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 916px) {
     margin-right: 3vw;
+  }
+
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 
 const MenuIconButton = styled.button`
   display: none;
-  color: ${props => (props.path === '/' ? '#fff' : ' #474d90')};
+  color: ${props => (props.iswhite ? '#fff' : ' #474d90')};
   outline: none;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 916px) {
     display: block;
   }
 `;
 
 const LoginRegButton = styled.div`
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 916px) {
     display: none;
   }
 `;
@@ -96,63 +119,71 @@ const MenuSearchWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const SearchPopupWrapper = styled.div`
+const SearchPopupWrapper = styled.form`
   position: absolute;
   display: flex;
-  top: 0;
+  top: ${props => (props.top || props.searchIsShown ? '99' : '0')}px;
   align-items: center;
-  background-color: #474d90;
-  padding: 1.5em 60px;
+  justify-content: space-between;
+  background-color: ${props =>
+    props.shown || props.searchIsShown ? '#20244C' : 'transparent'};
+  padding: 1.5em 4em;
+  box-shadow: ${props =>
+    props.shown || props.searchIsShown ? '0 3px 10px #000' : ''};
   width: 100%;
-  z-index: 1;
-  ${'' /* animation: go-top-bottom 4s infinite alternate;
+  z-index: 9990;
+  overflow: hidden;
+  transition: 0.5s;
 
-  @keyframes go-top-bottom {
-    to {
-      top: 0;
-    }
-  } */};
-`;
-
-const SearchPopupFieldWrapper = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  float: right;
-`;
-
-const SearchPopupInputForm = styled.input`
-  height: 100%;
-  font-size: 1.3em;
-  margin-left: 1vw;
-  outline: none;
-  color: #fff;
-  &::-webkit-input-placeholder {
-    color: #fff;
+  @media screen and (max-width: 916px) {
+    padding: 1.5em 3em;
   }
 `;
 
-const SearchPopupCloseButtonWrapper = styled.button`
-  display: flex;
-  justify-content: center;
+const SearchPopupFieldWrapper = styled.div`
+  display: ${props => (props.shown || props.searchIsShown ? 'flex' : 'none')};
   align-items: center;
+  float: right;
+  width: 100%;
+`;
+
+const SearchPopupInputForm = {
+  fontSize: '1.5em',
+  marginLeft: '1em',
+  marginRight: '1em',
+  outline: 'none',
+  width: '100%',
+  color: '#fff',
+};
+
+const SearchPopupCloseButtonWrapper = styled.button`
+  display: ${props => (props.shown && !props.searchIsShown ? 'flex' : 'none')};
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  left: 10px;
   transform: rotate(45deg);
+  height: 20px;
+  width: 20px;
+  z-index: 2;
 `;
 
 const SearchPopupCloseButton = styled.div`
   display: flex;
   justify-content: flex-end;
-  background: #fff;
+  background: #f9f9f9;
   height: 20px;
   width: 3px;
+  left: -7px;
+  top: 6px;
   position: relative;
-  left: 5px;
   border-radius: 20px;
+
   &::after {
     content: '';
     height: 3px;
     width: 20px;
-    background: #fff;
+    background: #f9f9f9;
     position: absolute;
     border-radius: 20px;
     left: -9px;
@@ -160,54 +191,151 @@ const SearchPopupCloseButton = styled.div`
   }
 `;
 
+const SearchButtonWrapper = styled.button`
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
 /* eslint-disable react/prefer-stateless-function */
-class Header extends PureComponent {
+class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      top: props.top || 0,
+      shown: false,
+    };
+
+    this.searchSubmit = this.searchSubmit.bind(this);
+    this.showSearchBlock = this.showSearchBlock.bind(this);
+    this.onClickHideSearch = this.onClickHideSearch.bind(this);
+  }
+
+  showSearchBlock() {
+    if (this.state.top === 0) {
+      this.setState({ top: 99 });
+    } else {
+      this.setState({ top: 0 });
+    }
+    if (this.state.shown) {
+      this.setState({ shown: false });
+    } else {
+      this.setState({ shown: true });
+    }
+  }
+
+  onClickHideSearch() {
+    if (this.state.top !== 0) {
+      this.setState({ top: 0 });
+      this.setState({ shown: false });
+    }
+  }
+
+  searchSubmit() {
+    push(`/search/${this.props.searchValue}`);
+  }
+
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <HeaderWrapper path={this.props.path}>
-          <Logo to="/" path={this.props.path}>
+      <Wrapper>
+        <HeaderWrapper iswhite={this.props.iswhite}>
+          <Logo to="/" iswhite={this.props.iswhite}>
             Консенсус
           </Logo>
           <NavigatorContainer>
-            <NavigationButton to="/popular" path={this.props.path}>
+            <NavigationButton
+              to="/popular"
+              naviswhite={this.props.naviswhite}
+              iswhite={this.props.iswhite}
+            >
               Популярные
             </NavigationButton>
-            <NavigationButton to="/themes" path={this.props.path}>
+            <NavigationButton
+              to="/themes"
+              naviswhite={this.props.naviswhite}
+              iswhite={this.props.iswhite}
+            >
               Тематика
             </NavigationButton>
-            <NavigationButton to="/follow" path={this.props.path}>
+            <NavigationButton
+              to="/follow"
+              naviswhite={this.props.naviswhite}
+              iswhite={this.props.iswhite}
+            >
               Подписки
             </NavigationButton>
           </NavigatorContainer>
           <MenuSearchWrapper>
-            <SearchButton>
-              <SearchIcon isWhite={this.props.path === '/'} />
+            <SearchButton onClick={this.showSearchBlock}>
+              <SearchIcon
+                iswhite={this.props.iswhite}
+                naviswhite={this.props.naviswhite}
+              />
             </SearchButton>
             <MenuIconButton>
-              <MenuIcon isWhite={this.props.path === '/'} />
+              <MenuIcon iswhite={this.props.iswhite} />
             </MenuIconButton>
           </MenuSearchWrapper>
           <LoginRegButton>
-            <ActionButton text="Вход и регистрация" />
+            <ActionButton text="Вход и регистрация" url="/sign-in" iswhite />
           </LoginRegButton>
         </HeaderWrapper>
-        <SearchPopupWrapper>
-          <SearchPopupFieldWrapper>
-            <SearchIcon isWhite />
-            <SearchPopupInputForm type="search" placeholder="Найти..." />
+        <SearchPopupWrapper
+          top={this.state.top}
+          shown={this.state.shown}
+          searchIsShown={this.props.searchIsShown}
+          onSubmit={this.searchSubmit}
+        >
+          <SearchPopupFieldWrapper
+            shown={this.state.shown}
+            searchIsShown={this.props.searchIsShown}
+          >
+            <SearchButtonWrapper onClick={this.searchSubmit}>
+              <SearchIcon iswhite />
+            </SearchButtonWrapper>
+            <Field
+              name="search"
+              placeholder="Найти..."
+              component="input"
+              type="text"
+              style={SearchPopupInputForm}
+            />
           </SearchPopupFieldWrapper>
-          <SearchPopupCloseButtonWrapper>
+          <SearchPopupCloseButtonWrapper
+            onClick={this.onClickHideSearch}
+            shown={this.state.shown}
+          >
             <SearchPopupCloseButton />
           </SearchPopupCloseButtonWrapper>
         </SearchPopupWrapper>
-      </div>
+      </Wrapper>
     );
   }
 }
 
 Header.propTypes = {
-  path: PropTypes.string,
+  naviswhite: PropTypes.bool,
+  iswhite: PropTypes.bool,
+  top: PropTypes.number,
+  fetchSearch: PropTypes.any,
 };
 
-export default Header;
+const Head = reduxForm({
+  form: 'header',
+  getFormState: state => state.get('form'),
+  initialValues: {
+    searchValue: '',
+  },
+})(Header);
+
+const Headed = connect(
+  state => {
+    const selector = formValueSelector('header', states => states.get('form'));
+    const searchValue = selector(state, 'search');
+    return { searchValue };
+  },
+  () => ({}),
+)(Head);
+
+export default withRouter(Headed);

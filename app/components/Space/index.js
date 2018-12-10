@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { hideOn } from '../../utils/helpers';
-import { unit } from '../../utils/constants';
+import { hideOn } from 'utils/helpers';
+import { unit } from 'utils/constants';
 
 const Space = styled.div`
   width: 100%;

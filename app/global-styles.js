@@ -1,14 +1,12 @@
-import { injectGlobal } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-/* eslint no-unused-expressions: 0 */
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   html,
   body {
     height: 100%;
     width: 100%;
   }
 
-  @import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900);
   body {
     font-family: Roboto, sans-serif;
   }
@@ -18,7 +16,7 @@ injectGlobal`
   }
 
   #app {
-    background-color: #fff;
+    background-color: #F9F9F9;
     min-height: 100%;
     min-width: 100%;
   }
@@ -28,9 +26,10 @@ injectGlobal`
   padding: 0;
   }
 
-  p,
-  label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
-    line-height: 1.5em;
+    button, a, input, textarea{
+    text-decoration: none;
+    outline: none;
   }
 `;
+
+export default GlobalStyle;

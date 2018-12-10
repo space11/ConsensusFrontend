@@ -1,28 +1,44 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { slideOutRight } from 'react-animations';
+import styled, { keyframes } from 'styled-components';
+import Img from 'react-image';
+import { NavLink } from 'react-router-dom';
+import Place from './1.png';
 
-const PartnersCellWrapper = styled(Link)`
+const flipAnimation = keyframes`${slideOutRight}`;
+
+const PartnersCellWrapper = styled(NavLink)`
   height: 32rem;
   text-decoration: none;
 `;
 
 const PartnersBlockWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   min-width: 300px;
   min-height: 500px;
-  width: 20%;
   background-image: linear-gradient(to bottom, #20244c, #2b3780);
   color: #fff;
   border-radius: 5px;
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer */
-  -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
-  -webkit-user-select: none; /* Chrome, Safari, and Opera */
-  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 `;
 
-const PartnersBlockImage = styled.img``;
+const PartnersBlockImage = styled(Img)`
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  min-height: 474px;
+  background-image: linear-gradient(to bottom, #20244c, #2b3780);
+  color: #fff;
+  border-radius: 5px;
+  transition: 1s;
+
+  &:hover {
+    opacity: 0;
+    animation: 0.5s ${flipAnimation} forwards;
+    width: 100%;
+  }
+`;
 
 const PartnersBlockDescriptionWrapper = styled.div`
   max-width: 263px;
@@ -47,26 +63,15 @@ const PartnersBlockDescriptionWork = styled.div`
 
 const PartnersBlockDescription = styled.div`
   text-align: center;
-  font-weight: 200;
+  font-weight: 300;
   margin-bottom: 10px;
 `;
 
-class PartnersBlock extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.showOnFocus = this.showOnFocus.bind(this);
-  }
-
-  showOnFocus() {
-    console.log('ajiosdoiajios');
-  }
-
+class PartnersBlock extends PureComponent { //eslint-disable-line
   render() {
     return (
       <PartnersCellWrapper to="some">
         <PartnersBlockWrapper>
-          <PartnersBlockImage src="../../images/placeholder.png" alt="" />
           <PartnersBlockDescriptionWrapper>
             <PartnersBlockDescriptionNameWrapper>
               <PartnersBlockDescriptionName>Trump</PartnersBlockDescriptionName>
@@ -82,6 +87,11 @@ class PartnersBlock extends PureComponent {
               Ведет блог о косплее в Твиттере.
             </PartnersBlockDescription>
           </PartnersBlockDescriptionWrapper>
+          <PartnersBlockImage
+            src={Place}
+            alt=""
+            style={{ width: '300px', height: '500px' }}
+          />
         </PartnersBlockWrapper>
       </PartnersCellWrapper>
     );
