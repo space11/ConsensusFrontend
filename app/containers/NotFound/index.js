@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Img from 'react-image';
 import Bg from 'images/notfound/background.svg';
 import Ufo from 'images/notfound/ufo.svg';
 import NF from 'images/notfound/404.svg';
@@ -14,12 +13,12 @@ const NotFoundBackground = styled.div`
   background-image: linear-gradient(to top, #2b3780, #20244c);
 `;
 
-const Background = styled(Img)`
+const Background = styled.img`
   width: 100%;
   height: 100%;
 `;
 
-const UfoWrapper = styled(Img)`
+const UfoWrapper = styled.img`
   z-index: 999;
   margin: 1rem;
   height: 50%;
@@ -35,7 +34,7 @@ const UfoWrapper = styled(Img)`
   }
 `;
 
-const NotWrapper = styled(Img)`
+const NotWrapper = styled.img`
   z-index: 999;
   margin: 1rem;
   height: 30%;

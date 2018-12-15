@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import Img from 'react-image';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import LiveIcon from 'images/videoblock/liveIcon';
@@ -9,7 +8,7 @@ const VideoBlockWrapper = styled(NavLink)`
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  color: ${props => (props.isWhite ? '#fff' : '#000')};
+  color: ${props => (props.white ? '#fff' : '#000')};
   min-width: 220px;
   width: 22%;
   height: 240px;
@@ -68,7 +67,7 @@ const VideoBlockViewers = styled.div`
   margin-top: 0;
 `;
 
-const VideoBlockImage = styled(Img)`
+const VideoBlockImage = styled.img`
   position: relative;
   margin-bottom: 7px;
   height: 110px;
@@ -84,7 +83,7 @@ const VideoBlockLiveMark = styled.div`
 class VideoBlockSmall extends PureComponent {
   render() {
     return (
-      <VideoBlockWrapper to={this.props.url} isWhite={this.props.isWhite}>
+      <VideoBlockWrapper to={this.props.url} white={this.props.white}>
         <VideoBlockTitle>{this.props.title}</VideoBlockTitle>
         <VideoBlockLiveMark>
           <VideoBlockImage src={this.props.image} alt="" />

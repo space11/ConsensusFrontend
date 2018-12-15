@@ -13,7 +13,7 @@ export default function(props) {
         <g
           id="Home-Copy"
           transform="translate(-1364.000000, -42.000000)"
-          fill={props.isWhite ? '#fff' : '#474D90'}
+          fill={props.white ? '#fff' : '#474D90'}
           fillRule="nonzero"
         >
           <g id="Хедер" transform="translate(-1.000000, 0.000000)">

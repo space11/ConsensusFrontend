@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Img from 'react-image';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Bg from 'images/banner/background.svg';
@@ -31,7 +30,7 @@ const InfoBannerStyle = styled.div`
   }
 `;
 
-const BannerImage = styled(Img)`
+const BannerImage = styled.img`
   position: relative;
   align-self: center;
   min-width: 100%;

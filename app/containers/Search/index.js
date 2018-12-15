@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import Img from 'react-image';
 import Content from 'components/Content';
 import star from 'images/search/stars.svg';
 import Space from 'components/Space';
@@ -14,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Stars = styled(Img)`
+const Stars = styled.img`
   position: absolute;
   min-width: 70%;
   height: 70%;
@@ -136,12 +135,12 @@ class SearchBlock extends Component { // eslint-disable-line
               <VideoBlockMoreButton>Показать еще</VideoBlockMoreButton>
             </InfoWrapper>
             <ProfileWrapper>
-              <ProfileCell isLive name="Nagibator22" rep={228} isWhite />
-              <ProfileCell name="Richard |||" rep={282} isWhite />
-              <ProfileCell name="Kirino" rep={199} isWhite />
-              <ProfileCell isLive name="Jojo" rep={814} isWhite />
-              <ProfileCell name="Kirino" rep={199} isWhite />
-              <ProfileCell name="Kirino" rep={199} isWhite />
+              <ProfileCell isLive name="Nagibator22" rep={228} white />
+              <ProfileCell name="Richard |||" rep={282} white />
+              <ProfileCell name="Kirino" rep={199} white />
+              <ProfileCell isLive name="Jojo" rep={814} white />
+              <ProfileCell name="Kirino" rep={199} white />
+              <ProfileCell name="Kirino" rep={199} white />
             </ProfileWrapper>
           </Block>
           <Block>
@@ -161,7 +160,7 @@ class SearchBlock extends Component { // eslint-disable-line
                 theme="Политика"
                 viewers="98 зрителей"
                 image={Placeholder}
-                isWhite
+                white
               />
               <VideoBlockSmall
                 url="/"
@@ -171,7 +170,7 @@ class SearchBlock extends Component { // eslint-disable-line
                 theme="Политика"
                 viewers="98 зрителей"
                 image={Placeholder}
-                isWhite
+                white
               />
               <VideoBlockSmall
                 url="/"
@@ -181,7 +180,7 @@ class SearchBlock extends Component { // eslint-disable-line
                 theme="Политика"
                 viewers="98 зрителей"
                 image={Placeholder}
-                isWhite
+                white
               />
               <VideoBlockSmall
                 url="/"
@@ -191,7 +190,7 @@ class SearchBlock extends Component { // eslint-disable-line
                 theme="Политика"
                 viewers="98 зрителей"
                 image={Placeholder}
-                isWhite
+                white
               />
               <VideoBlockSmall
                 url="/"
@@ -201,7 +200,7 @@ class SearchBlock extends Component { // eslint-disable-line
                 theme="Политика"
                 viewers="98 зрителей"
                 image={Placeholder}
-                isWhite
+                white
               />
             </VideoBlockSmallWrapper>
           </Block>

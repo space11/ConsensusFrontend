@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { slideOutRight } from 'react-animations';
 import styled, { keyframes } from 'styled-components';
-import Img from 'react-image';
 import { NavLink } from 'react-router-dom';
 import Place from './1.png';
 
@@ -23,7 +22,7 @@ const PartnersBlockWrapper = styled.div`
   -webkit-user-select: none;
 `;
 
-const PartnersBlockImage = styled(Img)`
+const PartnersBlockImage = styled.img`
   display: flex;
   flex-wrap: wrap;
   position: absolute;

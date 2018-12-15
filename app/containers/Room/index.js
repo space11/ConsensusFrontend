@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import Img from 'react-image';
+import OpvSession from 'openvidu-react';
 import PlayerBlock from 'components/PlayerBlock';
 import ChatBlock from 'components/ChatBlock';
 import Place from 'components/PartnersCell/1.png';
@@ -145,7 +145,7 @@ const ProfileBlock = styled(NavLink)`
   margin: 1rem 0;
 `;
 
-const ProfileAvatar = styled(Img)`
+const ProfileAvatar = styled.img`
   height: 100%;
   width: 5rem;
 `;
@@ -193,6 +193,14 @@ class RoomPage extends Component {
   render() {
     return (
       <RoomWrapper>
+        <OpvSession
+              id="opv-session"
+          sessionName={mySessionId}
+              user={myUserName}
+              token={token}
+              joinSession={this.handlerJoinSessionEvent}
+          leaveSession={this.handlerLeaveSessionEvent}
+          error={this.handlerErrorEvent} />
         <LeftBlock>
           <TabBlock />
           <PlayerBlock style={{ width: '1280px', height: '720px' }} />

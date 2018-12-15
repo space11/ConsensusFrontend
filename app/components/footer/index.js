@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { PropTypes } from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import Img from 'react-image';
 import styled from 'styled-components';
 import FacebookIcon from 'images/footer/socials/facebook';
 import InstagramIcon from 'images/footer/socials/instagram';
@@ -29,7 +28,7 @@ const FooterWrapper = styled.div`
   z-index: 9999;
 `;
 
-const BackgroundWrapper = styled(Img)`
+const BackgroundWrapper = styled.img`
   position: relative;
   width: 100%;
 

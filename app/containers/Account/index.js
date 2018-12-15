@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Img from 'react-image';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import Bg from 'images/account/background.svg';
@@ -18,7 +17,7 @@ const AccountPageWrapper = styled.div`
   align-items: center;
 `;
 
-const Background = styled(Img)`
+const Background = styled.img`
   position: absolute;
   min-height: 100%;
   top: -180px;
@@ -44,7 +43,7 @@ const AccountLine = styled.div`
   z-index: 200;
 `;
 
-const AvatarWrapper = styled(Img)`
+const AvatarWrapper = styled.img`
   border: 30px solid #fff;
   border-radius: 1000px;
   width: 30vh;
@@ -66,7 +65,7 @@ const NicknameField = styled.h1`
   text-align: center;
 `;
 
-const EditButton = styled(Img)``;
+const EditButton = styled.img``;
 
 const EditButtonWrapper = styled.button`
   margin-left: 0.5rem;
@@ -130,7 +129,7 @@ const Test = styled(NavLink)`
   text-align: center;
 `;
 
-const Rocket = styled(Img)`
+const Rocket = styled.img`
   position: absolute;
   width: 100px;
   height: 100px;

@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import Img from 'react-image';
 import styled from 'styled-components';
 import { hideOn, media } from 'utils/helpers';
 import { unit } from 'utils/constants';
@@ -43,7 +42,7 @@ const PartnersBlockTitle = styled.div`
   }
 `;
 
-const PartnersBlockCrossButton = styled(Img)``;
+const PartnersBlockCrossButton = styled.img``;
 
 class PartnersBlock extends PureComponent { // eslint-disable-line
   render() {

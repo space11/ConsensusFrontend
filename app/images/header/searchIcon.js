@@ -13,7 +13,7 @@ export default function(props) {
         <g
           id="Desktop-HD-Copy-8"
           transform="translate(-1074.000000, -40.000000)"
-          fill={props.isWhite || props.navIsWhite ? '#fff' : '#474D90'}
+          fill={props.white || props.navwhite ? '#fff' : '#474D90'}
           fillRule="nonzero"
         >
           <g id="хедер">

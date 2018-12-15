@@ -91,7 +91,7 @@ const FormBlock = props => {
         label="Password"
       />
       <ButtonWrapper>
-        <ActionButton text="Регистрация" url="/register" isWhite />
+        <ActionButton text="Регистрация" url="/register" white />
         <Button text="Вход" type="submit" disabled={submitted} />
       </ButtonWrapper>
     </FormBlockWrapper>

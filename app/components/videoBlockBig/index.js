@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Img from 'react-image';
 import { NavLink } from 'react-router-dom';
 import LiveIcon from 'images/videoblock/liveIcon';
 
@@ -67,7 +66,7 @@ const VideoBlockViewers = styled.div`
   margin-top: 0;
 `;
 
-const VideoBlockImage = styled(Img)`
+const VideoBlockImage = styled.img`
   position: relative;
   margin-bottom: 10px;
   width: 100%;

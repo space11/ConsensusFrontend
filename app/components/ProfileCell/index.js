@@ -13,7 +13,7 @@ const ProfileCellWrapper = styled(NavLink)`
   align-items: center;
   flex-direction: column;
   margin: 0.5rem;
-  color: ${props => (props.isWhite ? '#fff' : '#000')};
+  color: ${props => (props.white ? '#fff' : '#000')};
   background: #fafafa;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.16);
   border-radius: 7px;
@@ -54,7 +54,7 @@ const ProfileCellTextWrapper = styled.div`
 class TopBlock extends PureComponent {
   render() {
     return (
-      <ProfileCellWrapper to="some" isWhite={this.props.isWhite}>
+      <ProfileCellWrapper to="some" white={this.props.white}>
         <ProfileCellColumn>
           <ProfileCellAva>
             {this.props.isLive ? <LiveIcon /> : ''}

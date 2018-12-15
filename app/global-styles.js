@@ -3,16 +3,18 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   html,
   body {
+    
     height: 100%;
     width: 100%;
   }
+  @import url('https://fonts.googleapis.com/css?family=Roboto');
 
   body {
     font-family: Roboto, sans-serif;
   }
 
   body.fontLoaded {
-    font-family: "Open Sans", Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 
   #app {

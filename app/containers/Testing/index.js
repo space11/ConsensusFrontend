@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import Img from 'react-image';
 import Space from 'components/Space';
 import PlayerBlock from 'components/PlayerBlock';
 import Bg from 'images/register/background.svg';
@@ -23,7 +22,7 @@ const RegisterWrapper = styled.div`
   background-color: #2b3780;
 `;
 
-const Background = styled(Img)`
+const Background = styled.img`
   position: absolute;
   min-width: 100%;
   height: 100%;

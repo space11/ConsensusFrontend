@@ -6,6 +6,7 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import HomePage from 'containers/Home';
 import Testing from 'containers/Testing';
 import SignInPage from 'containers/SignIn';
+import CreateDebatePage from 'containers/CreateDebate';
 import AccountPage from 'containers/Account';
 import SearchPage from 'containers/Search';
 import RegisterPage from 'containers/Register';
@@ -30,8 +31,8 @@ render() {
         <meta name="description" content="Платформа для проведения онлайн-дебатов" />
       </Helmet>
       <Header
-        iswhite={location.pathname.includes('/room') === false}
-        naviswhite={location.pathname.includes('/room') === false}
+        white={!location.pathname.includes('/room')}
+        navwhite={!location.pathname.includes('/room')}
         searchIsShown={location.pathname.includes('/search')}
       />
       <Switch>
@@ -40,6 +41,7 @@ render() {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/room" component={RoomPage} />
         <Route exact path="/sign-in" component={SignInPage} />
+        <Route exact path="/create-debate" component={CreateDebatePage} />
         <Route exact path='/search/:id?' component={SearchPage} />
         <Route exact path='/testing' component={Testing} />
         <Route path="/404" component={NotFoundPage} />
@@ -52,6 +54,7 @@ render() {
           || location.pathname === '/404' 
           || location.pathname === '/room'
           || location.pathname === '/testing'
+          || location.pathname === '/create-debate'
         }
       />
       <GlobalStyle />

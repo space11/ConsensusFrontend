@@ -3,10 +3,9 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import styled, { createGlobalStyle } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Img from 'react-image';
 import Space from 'components/Space';
 import Bg from 'images/register/background.svg';
-import { fetchRegistration } from '../AuthProvider/actions';
+import { fetchRegistration } from './actions';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -25,7 +24,7 @@ const RegisterWrapper = styled.div`
   background-color: #2b3780;
 `;
 
-const Background = styled(Img)`
+const Background = styled.img`
   position: absolute;
   min-width: 100%;
   height: 100%;
@@ -67,7 +66,7 @@ const Title = styled.div`
   text-align: center;
 `;
 
-const FormWrapper = styled.form`
+const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -75,16 +74,16 @@ const FormWrapper = styled.form`
   height: 13rem;
 `;
 
-const Input = styled.input`
-  height: 3.5rem;
-  background-color: #f9f9f9;
-  border: 1px solid #fff;
-  color: #2b3780;
-  width: 100%;
-  padding: 1rem;
-  border-radius: 0.4rem;
-  box-shadow: inset 0px 0px 5px 0px #fff;
-`;
+const Input = {
+  height: '3.5rem',
+  backgroundColor: '#f9f9f9',
+  border: '1px solid #fff',
+  color: '#2b3780',
+  width: '100%',
+  padding: '1rem',
+  borderRadius: '0.4rem',
+  boxShadow: 'inset 0px 0px 5px 0px #fff',
+};
 
 const NormalText = styled.label`
   color: #fff;
@@ -119,10 +118,6 @@ const LoginButton = styled(NavLink)`
   color: #f7567c;
 `;
 
-const renderField = ({ input, label, type }) => (
-  <Input {...input.value} type={type} placeholder={label} />
-);
-
 class RegisterPage extends Component {
   constructor(props) {
     super(props);
@@ -131,8 +126,15 @@ class RegisterPage extends Component {
   }
 
   onSubmit() {
-    const { userName, email, password } = this.props;
-    this.props.fetchRegistration.start({ userName, email, password });
+    const { nickName, email, password } = this.props;
+
+    const data = {
+      nickName,
+      email,
+      password,
+    };
+
+    this.props.fetchRegistration.start(data);
   }
 
   render() {
@@ -147,25 +149,25 @@ class RegisterPage extends Component {
           <Title>Регистрация</Title>
           <Space size="1" />
           <Space size="2" />
-          <FormWrapper onSubmit={this.onSubmit}>
+          <FormWrapper>
             <Field
-              name="userName"
-              label="Логин"
-              component={renderField}
-              validations={['required', 'email']}
-              placeholder="user@mail.ru"
+              name="nickName"
+              placeholder="Логин"
+              type="text"
+              component="input"
+              style={Input}
             />
             <Field
               name="email"
               label="E-mail"
-              component={renderField}
-              validations={['required', 'email']}
+              component="input"
+              style={Input}
               placeholder="user@mail.ru"
             />
             <Field
               name="password"
-              component={renderField}
-              validations={['required', 'password']}
+              component="input"
+              style={Input}
               label="Пароль"
               type="password"
               placeholder="********"
@@ -186,24 +188,31 @@ class RegisterPage extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetchRegistration: fetchRegistration.bindTo(dispatch),
-});
+const Register = reduxForm({
+  form: 'register',
+  getFormState: state => state.get('form'),
+  initialValues: {
+    nickName: '',
+    email: '',
+    password: '',
+  },
+})(RegisterPage);
 
-const mapStateToProps = state => {
-  const selector = formValueSelector('register', states => states.get('form'));
-  const userName = selector(state, 'userName');
-  const email = selector(state, 'email');
-  const password = selector(state, 'password');
-  return { userName, email, password };
-};
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchRegistration: fetchRegistration.bindTo(dispatch),
+  };
+}
 
 export default connect(
-  mapStateToProps,
+  state => {
+    const selector = formValueSelector('register', states =>
+      states.get('form'),
+    );
+    const nickName = selector(state, 'nickName');
+    const email = selector(state, 'email');
+    const password = selector(state, 'password');
+    return { nickName, email, password };
+  },
   mapDispatchToProps,
-)(
-  reduxForm({
-    form: 'register',
-    getFormState: state => state.get('form'),
-  })(RegisterPage),
-);
+)(Register);

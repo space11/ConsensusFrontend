@@ -9,8 +9,8 @@ import createSagaMiddleware from 'redux-saga';
 import { reducer as formReducer } from 'redux-form';
 
 import AuthProviderReducer from 'containers/AuthProvider/reducer';
+import RegistrationReducer from 'containers/Register/reducer';
 import HomeReducer from 'containers/Home/reducer';
-import SearchReducer from 'containers/Search/reducers';
 import DebateReducer from 'containers/DebateProvider/reducers';
 
 import createReducer from './reducers';
@@ -35,6 +35,7 @@ export default function configureStore(initialState = {}, history) {
     createReducer({
       auth: AuthProviderReducer,
       form: formReducer,
+      register: RegistrationReducer,
     }),
     fromJS(initialState),
     composeEnhancers(...enhancers),

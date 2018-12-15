@@ -129,9 +129,7 @@ class FaqBlock extends PureComponent { //eslint-disable-line
   render() {
     return (
       <FaqBlockWrapper>
-        <Parallax offsetYMin={-12} offsetYMax={12}>
-          <Background />
-        </Parallax>
+        <Background />
         <FaqBlockGreyWrapper>
           <AlienGrey />
         </FaqBlockGreyWrapper>

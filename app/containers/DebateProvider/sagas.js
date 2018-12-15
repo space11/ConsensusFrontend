@@ -6,8 +6,8 @@ export function* createDebate() {
   while (true) {
     try {
       const action = yield take(actions.fetchCreatingDebate.types.start);
-      yield call(sendCreatingData, action.payload);
-      yield put(actions.fetchCreatingDebate.success());
+      const { id } = yield call(sendCreatingData, action.payload);
+      yield put(actions.fetchCreatingDebate.success({ id }));
     } catch (e) {
       yield put(actions.fetchCreatingDebate.failed(e));
     }
@@ -18,20 +18,19 @@ export function* getDebate() {
   while (true) {
     try {
       const action = yield take(actions.fetchDebateId.types.start);
-      yield call(sendDebateRequest, action.payload);
-      yield put(actions.fetchDebateId.success());
+      const { data } = yield call(sendDebateRequest, action.payload);
+      yield put(actions.fetchDebateId.success({ data }));
     } catch (e) {
       yield put(actions.fetchDebateId.failed(e));
     }
   }
 }
-
 export function* getLiveDebate() {
   while (true) {
     try {
       const action = yield take(actions.fetchDebateLive.types.start);
-      yield call(sendDebateLiveRequest, action.payload);
-      yield put(actions.fetchDebateLive.success());
+      const { data } = yield call(sendDebateLiveRequest, action.payload);
+      yield put(actions.fetchDebateLive.success({ data }));
     } catch (e) {
       yield put(actions.fetchDebateLive.failed(e));
     }
@@ -42,8 +41,8 @@ export function* getPastDebate() {
   while (true) {
     try {
       const action = yield take(actions.fetchDebatePast.types.start);
-      yield call(sendDebatePastRequest, action.payload);
-      yield put(actions.fetchDebatePast.success());
+      const { data } = yield call(sendDebatePastRequest, action.payload);
+      yield put(actions.fetchDebatePast.success({ data }));
     } catch (e) {
       yield put(actions.fetchDebatePast.failed(e));
     }
@@ -51,19 +50,19 @@ export function* getPastDebate() {
 }
 
 function sendCreatingData(data) {
-  return api.post('Account/Debate', data).then(res => res.data);
+  return api.post('Account/Debate', data).then(res => res);
 }
 
 function sendDebateRequest({ id }) {
-  return api.get(`/Debate/${id}`);
+  return api.get(`/Debate/${id}`).then(res => res);
 }
 
 function sendDebateLiveRequest() {
-  return api.get('/Debate/live');
+  return api.get('/Debate/live').then(res => res);
 }
 
 function sendDebatePastRequest() {
-  return api.get('/Debate/past');
+  return api.get('/Debate/past').then(res => res);
 }
 
 // All sagas to be loaded

@@ -13,7 +13,6 @@ import {
   fetchRecoveryPassword,
   fetchGetRecoveryToken,
   fetchUser,
-  fetchRegistration,
 } from './actions';
 
 export default combineReducers({
@@ -23,7 +22,6 @@ export default combineReducers({
   confirmation: fetchReducerFactory(fetchConfirm),
   recoveringPassword: fetchReducerFactory(fetchRecoveryPassword),
   recoveryToken: fetchReducerFactory(fetchGetRecoveryToken),
-  registration: fetchReducerFactory(fetchRegistration),
 });
 
 export const stateName = 'authProvider';

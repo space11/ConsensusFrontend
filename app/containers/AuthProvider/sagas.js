@@ -1,26 +1,34 @@
 import { take, call, put } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import api, { responseStates } from '../../utils/api';
-import * as actions from './actions';
+import {
+  fetchUser,
+  fetchLogin,
+  fetchLogout,
+  fetchRegistration,
+  fetchRecoveryPassword,
+  fetchGetRecoveryToken,
+  fetchConfirm,
+} from './actions';
 
 export function* getUser() {
   while (true) {
     try {
-      yield take(actions.fetchUser.types.start);
+      yield take(fetchUser.types.start);
       const user = yield call(fetchCurrentUser);
-      yield put(actions.fetchUser.success(user));
+      yield put(fetchUser.success(user));
     } catch (e) {
       if (e) {
         switch (e.status) {
           case 401:
-            yield put(actions.fetchUser.failed(responseStates.UNATHORIZED));
+            yield put(fetchUser.failed(responseStates.UNATHORIZED));
             break;
           default:
-            yield put(actions.fetchUser.failed(e));
+            yield put(fetchUser.failed(e));
             break;
         }
       } else {
-        yield put(actions.fetchUser.failed(responseStates.NETWORK_ERROR));
+        yield put(fetchUser.failed(responseStates.NETWORK_ERROR));
       }
     }
   }
@@ -29,13 +37,13 @@ export function* getUser() {
 export function* login() {
   while (true) {
     try {
-      const action = yield take(actions.fetchLogin.types.start);
+      const action = yield take(fetchLogin.types.start);
       yield call(sendLogin, action.payload);
-      yield put(actions.fetchLogin.success());
-      yield put(actions.fetchUser.start());
+      yield put(fetchLogin.success());
+      yield put(fetchUser.start());
       yield put(push('/account'));
     } catch (e) {
-      yield put(actions.fetchLogin.failed(e));
+      yield put(fetchLogin.failed(e));
     }
   }
 }
@@ -43,26 +51,13 @@ export function* login() {
 export function* logout() {
   while (true) {
     try {
-      yield take(actions.fetchLogout.types.start);
+      yield take(fetchLogout.types.start);
       yield call(sendLogout);
-      yield put(actions.fetchLogout.success(null));
-      yield put(actions.fetchUser.start());
+      yield put(fetchLogout.success(null));
+      yield put(fetchUser.start());
       yield put(push('/'));
     } catch (e) {
-      yield put(actions.fetchLogout.failed(e));
-    }
-  }
-}
-
-export function* registration() {
-  while (true) {
-    try {
-      const action = yield take(actions.fetchRegistration.types.start);
-      const id = yield call(sendRegistrationData, action.payload);
-      yield put(actions.fetchRegistration.success(id));
-      yield put(push(`/account`));
-    } catch (e) {
-      yield put(actions.fetchRegistration.failed(e));
+      yield put(fetchLogout.failed(e));
     }
   }
 }
@@ -70,11 +65,11 @@ export function* registration() {
 export function* recoveryPassword() {
   while (true) {
     try {
-      const action = yield take(actions.fetchRecoveryPassword.types.start);
+      const action = yield take(fetchRecoveryPassword.types.start);
       yield call(sendRecoveryPasswordToken, action.payload);
-      yield put(actions.fetchRecoveryPassword.success());
+      yield put(fetchRecoveryPassword.success());
     } catch (e) {
-      yield put(actions.fetchRecoveryPassword.failed(e));
+      yield put(fetchRecoveryPassword.failed(e));
     }
   }
 }
@@ -82,11 +77,11 @@ export function* recoveryPassword() {
 export function* getRecoveryPasswordToken() {
   while (true) {
     try {
-      const action = yield take(actions.fetchGetRecoveryToken.types.start);
+      const action = yield take(fetchGetRecoveryToken.types.start);
       yield call(sendRecoveryPasswordTokenRequest, action.payload);
-      yield put(actions.fetchGetRecoveryToken.success());
+      yield put(fetchGetRecoveryToken.success());
     } catch (e) {
-      yield put(actions.fetchGetRecoveryToken.failed(e));
+      yield put(fetchGetRecoveryToken.failed(e));
     }
   }
 }
@@ -94,11 +89,11 @@ export function* getRecoveryPasswordToken() {
 export function* confirmEmail() {
   while (true) {
     try {
-      const action = yield take(actions.fetchConfirm.types.start);
+      const action = yield take(fetchConfirm.types.start);
       yield call(sendConfirmationEmailToken, action.payload);
-      yield put(actions.fetchConfirm.success('success'));
+      yield put(fetchConfirm.success('success'));
     } catch (e) {
-      yield put(actions.fetchConfirm.failed(e));
+      yield put(fetchConfirm.failed(e));
     }
   }
 }
@@ -115,10 +110,6 @@ function sendLogin(credentials) {
 
 function sendLogout() {
   return api.post('/logout');
-}
-
-function sendRegistrationData(data) {
-  return api.post('Account/registration', data);
 }
 
 function sendRecoveryPasswordTokenRequest({ email }) {
@@ -149,9 +140,9 @@ function sendConfirmationEmailToken({ token, password }) {
 export default [
   getUser,
   login,
+  registration,
   logout,
   confirmEmail,
   recoveryPassword,
   getRecoveryPasswordToken,
-  registration,
 ];

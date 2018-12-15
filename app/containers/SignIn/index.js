@@ -4,17 +4,9 @@ import { PropTypes } from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import styled from 'styled-components';
 import { fetchLogin } from 'containers/AuthProvider/actions';
-import Img from 'react-image';
 import Bg from 'images/signin/bg.svg';
 import RocketR from 'images/signin/rocket.svg';
 import ActionButton from 'components/ActionButton';
-import Button from 'components/Button';
-import {
-  required,
-  maxLength15,
-  minLength2,
-  alphaNumeric,
-} from '../../utils/helpers';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -26,14 +18,14 @@ const LoginWrapper = styled.div`
   background: #f9f9f9;
 `;
 
-const Background = styled(Img)`
+const Background = styled.img`
   position: absolute;
   min-width: 100%;
   top: 0;
   overflow: hidden;
 `;
 
-const RocketWrapper = styled(Img)`
+const RocketWrapper = styled.img`
   @media screen and (max-width: 900px) {
     display: none;
   }
@@ -67,45 +59,11 @@ const FormBlockWrapper = styled.div`
   justify-content: center;
 `;
 
-const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 5rem;
-  position: relative;
-`;
-
-const FieldInput = styled.input`
-  border-bottom: 1px solid #fff;
-  background: transparent;
-  color: #fff;
-  height: 4rem;
-  margin: 1.5rem 0;
-  width: 70vw;
-  border-radius: 6px;
-  font-size: 1.5em;
-  z-index: 3;
-  padding: 1rem;
-  max-width: 500px;
-`;
-
 const Title = styled.h1`
   font-weight: 550;
   font-size: 3em;
   color: #fff;
 `;
-
-const renderField = ({
-  input,
-  label,
-  type,
-  meta: { asyncValidating, touched, error },
-}) => (
-  <InputWrapper className={asyncValidating ? 'async-validating' : ''}>
-    <FieldInput {...input.value} type={type} placeholder={label} />
-    {touched && error && <span>{error}</span>}
-  </InputWrapper>
-);
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -121,6 +79,40 @@ const ButtonWrapper = styled.div`
     justify-content: center;
   }
 `;
+
+const SubmitButton = styled.button`
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 100px;
+  min-width: 240px;
+  min-height: 45px;
+  background: #f7567c;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px #e96979;
+  transition: 0.3s;
+  -webkit-user-select: none;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const Input = {
+  borderBottom: '1px solid #fff',
+  background: 'transparent',
+  color: '#fff',
+  height: '4rem',
+  margin: '1.5rem 0',
+  width: '70vw',
+  borderRadius: '6px',
+  fontSize: '1.5em',
+  zIndex: '3',
+  padding: '1rem',
+  maxWidth: '500px',
+};
 
 class LoginPage extends Component {
   constructor(props) {
@@ -153,24 +145,24 @@ class LoginPage extends Component {
           <FormBlockWrapper onSubmit={this.onSubmit}>
             <Title>Вход</Title>
             <Field
-              name="username"
+              name="email"
               type="text"
-              component={renderField}
-              label="Логин"
-              validate={[required, maxLength15, minLength2]}
-              warn={alphaNumeric}
+              component="input"
+              style={Input}
+              placeholder="Логин"
             />
             <Field
               name="password"
               type="password"
-              component={renderField}
-              label="Пароль"
-              validate={[required, maxLength15, minLength2]}
-              warn={alphaNumeric}
+              component="input"
+              style={Input}
+              placeholder="Пароль"
             />
             <ButtonWrapper>
-              <ActionButton text="Регистрация" url="/register" isWhite />
-              <Button text="Вход" type="submit" onClick={this.onSubmit} />
+              <ActionButton text="Регистрация" url="/register" white />
+              <SubmitButton type="submit" onClick={this.onSubmit}>
+                Вход
+              </SubmitButton>
             </ButtonWrapper>
           </FormBlockWrapper>
         </LoginFormWrapper>
@@ -187,14 +179,18 @@ LoginPage.propTypes = {
 
 const mapStateToProps = state => {
   const selector = formValueSelector('signIn', states => states.get('form'));
-  const username = selector(state, 'username');
+  const email = selector(state, 'email');
   const password = selector(state, 'password');
-  return { username, password };
+  return { email, password };
 };
 
 const Login = reduxForm({
   form: 'signIn',
   getFormState: state => state.get('form'),
+  initialValues: {
+    email: '',
+    password: '',
+  },
 })(LoginPage);
 
 export default connect(

@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 const HeaderWrapper = styled.div`
   display: flex;
   z-index: 9999;
-  position: ${props => (props.iswhite ? 'absolute' : 'relative')};
+  position: ${props => (props.white ? 'absolute' : 'relative')};
   width: 100%;
   padding: 1.5em 4em;
   align-items: center;
@@ -37,7 +37,7 @@ const Logo = styled(NavLink)`
   flex: 1;
   letter-spacing: 0.25px;
   font-weight: 500;
-  color: ${props => (props.iswhite ? '#fff' : ' #474d90')};
+  color: ${props => (props.white ? '#fff' : ' #474d90')};
   text-decoration: none;
   transition: 0.3s;
 
@@ -47,7 +47,7 @@ const Logo = styled(NavLink)`
 
   @media screen and (max-width: 916px) {
     flex: 0;
-    color: ${props => (props.iswhite ? '#fff' : ' #474d90')};
+    color: ${props => (props.white ? '#fff' : ' #474d90')};
   }
 `;
 
@@ -71,7 +71,7 @@ const NavigatorContainer = styled.div`
 const NavigationButton = styled(NavLink)`
   font-size: 1.05em;
   font-weight: 400;
-  color: ${props => (props.naviswhite ? '#fff' : ' #474d90')};
+  color: ${props => (props.navwhite ? '#fff' : ' #474d90')};
   text-decoration: none;
   justify-content: center;
   letter-spacing: 1.5px;
@@ -84,7 +84,7 @@ const NavigationButton = styled(NavLink)`
 `;
 
 const SearchButton = styled.button`
-  color: ${props => (props.iswhite ? '#fff' : ' #474d90')};
+  color: ${props => (props.white ? '#fff' : ' #474d90')};
   outline: none;
   margin-right: 2vw;
 
@@ -99,7 +99,7 @@ const SearchButton = styled.button`
 
 const MenuIconButton = styled.button`
   display: none;
-  color: ${props => (props.iswhite ? '#fff' : ' #474d90')};
+  color: ${props => (props.white ? '#fff' : ' #474d90')};
   outline: none;
 
   @media screen and (max-width: 916px) {
@@ -239,29 +239,29 @@ class Header extends Component {
   render() {
     return (
       <Wrapper>
-        <HeaderWrapper iswhite={this.props.iswhite}>
-          <Logo to="/" iswhite={this.props.iswhite}>
+        <HeaderWrapper white={this.props.white}>
+          <Logo to="/" white={this.props.white}>
             Консенсус
           </Logo>
           <NavigatorContainer>
             <NavigationButton
               to="/popular"
-              naviswhite={this.props.naviswhite}
-              iswhite={this.props.iswhite}
+              navwhite={this.props.navwhite}
+              white={this.props.white}
             >
               Популярные
             </NavigationButton>
             <NavigationButton
               to="/themes"
-              naviswhite={this.props.naviswhite}
-              iswhite={this.props.iswhite}
+              navwhite={this.props.navwhite}
+              white={this.props.white}
             >
               Тематика
             </NavigationButton>
             <NavigationButton
               to="/follow"
-              naviswhite={this.props.naviswhite}
-              iswhite={this.props.iswhite}
+              navwhite={this.props.navwhite}
+              white={this.props.white}
             >
               Подписки
             </NavigationButton>
@@ -269,16 +269,16 @@ class Header extends Component {
           <MenuSearchWrapper>
             <SearchButton onClick={this.showSearchBlock}>
               <SearchIcon
-                iswhite={this.props.iswhite}
-                naviswhite={this.props.naviswhite}
+                white={this.props.white}
+                navwhite={this.props.navwhite}
               />
             </SearchButton>
             <MenuIconButton>
-              <MenuIcon iswhite={this.props.iswhite} />
+              <MenuIcon white={this.props.white} />
             </MenuIconButton>
           </MenuSearchWrapper>
           <LoginRegButton>
-            <ActionButton text="Вход и регистрация" url="/sign-in" iswhite />
+            <ActionButton text="Вход и регистрация" url="/sign-in" white />
           </LoginRegButton>
         </HeaderWrapper>
         <SearchPopupWrapper
@@ -292,7 +292,7 @@ class Header extends Component {
             searchIsShown={this.props.searchIsShown}
           >
             <SearchButtonWrapper onClick={this.searchSubmit}>
-              <SearchIcon iswhite />
+              <SearchIcon white />
             </SearchButtonWrapper>
             <Field
               name="search"
@@ -315,10 +315,9 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  naviswhite: PropTypes.bool,
-  iswhite: PropTypes.bool,
+  navwhite: PropTypes.bool,
+  white: PropTypes.bool,
   top: PropTypes.number,
-  fetchSearch: PropTypes.any,
 };
 
 const Head = reduxForm({
