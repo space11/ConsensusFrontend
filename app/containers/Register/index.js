@@ -1,121 +1,74 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
-import styled, { createGlobalStyle } from 'styled-components';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Space from 'components/Space';
+import { PropTypes } from 'prop-types';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import { fetchRegistration } from 'containers/AuthProvider/actions';
+import Button from 'components/Button';
 import Bg from 'images/register/background.svg';
-import { fetchRegistration } from './actions';
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: #2B3780;
-  }
-`;
-
-const RegisterWrapper = styled.div`
+const LoginWrapper = styled.div`
   display: flex;
   min-width: 100%;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh -10%);
-  top: 0;
+  height: 100%;
   z-index: 1000;
-  background-color: #2b3780;
+  background: #f9f9f9;
 `;
 
 const Background = styled.img`
-  position: absolute;
-  min-width: 100%;
-  height: 100%;
+  position: relative;
   top: 0;
-  z-index: 1;
-`;
-
-const BackgroundWrapper = styled.div`
-  position: absolute;
-  min-height: 100%;
-  min-width: 100%;
-  top: 0;
-  align-self: center;
   overflow: hidden;
 `;
 
-const ContentWrapper = styled.div`
-  align-self: center;
-  flex-direction: column;
-  background: #20244c;
-  width: 41vw;
-  z-index: 2;
-  border-radius: 1rem;
-  padding: 2em 3em;
-  margin: 15vh 0;
-  box-shadow: 0 3px 10px #000;
-
-  @media screen and (max-width: 610px) {
-    width: 90%;
-    height: auto;
-  }
-`;
-
-const Title = styled.div`
-  font-weight: 600;
-  font-size: 2em;
-  color: #fff;
-  -webkit-user-select: none;
-  text-align: center;
-`;
-
-const FormWrapper = styled.div`
+const LoginFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  z-index: 99999;
+  height: 100%;
+  margin-left: 90px;
+`;
+
+const InputWrapper = styled.form`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 90px;
+`;
+
+const FormBlockWrapper = styled(InputWrapper)`
+  z-index: 9900;
   width: 100%;
-  height: 13rem;
+  margin: 145px 0 90px 0;
 `;
 
 const Input = {
-  height: '3.5rem',
-  backgroundColor: '#f9f9f9',
-  border: '1px solid #fff',
-  color: '#2b3780',
+  borderBottom: '1px solid #474D90',
+  background: 'transparent',
+  height: '3rem',
+  marginBottom: '1.5rem',
   width: '100%',
-  padding: '1rem',
-  borderRadius: '0.4rem',
-  boxShadow: 'inset 0px 0px 5px 0px #fff',
+  zIndex: '3',
 };
 
-const NormalText = styled.label`
-  color: #fff;
-  word-wrap: break-word;
-  -webkit-user-select: none;
+const Description = styled.div`
+  font-weight: 300;
+  width: 90%;
 `;
 
-const SubmitButton = styled.button`
-  background-image: linear-gradient(to right, #b998ea, #e2958c);
-  border-radius: 0.4rem;
-  height: 3rem;
-  width: 100%;
-  color: #fff;
-  font-weight: 600;
-  transition: 0.2s;
-
-  &:hover {
-    transform: scale(1.01);
-    animation: anim 2s alternate infinite;
-  }
-
-  @keyframes anim {
-    50% {
-      background: #b998ea;
-      box-shadow: 0.4rem #e2958c inset;
-    }
-  }
+const Title = styled.h1`
+  color: #2b367e;
+  margin: 0;
 `;
 
-const LoginButton = styled(NavLink)`
-  margin-left: 0.5rem;
+const Url = styled(NavLink)`
   color: #f7567c;
+  font-weight: 500;
+`;
+
+const Label = styled.label`
+  -webkit-user-select: none;
+  font-size: 0.9rem;
 `;
 
 class RegisterPage extends Component {
@@ -128,65 +81,85 @@ class RegisterPage extends Component {
   onSubmit() {
     const { nickName, email, password } = this.props;
 
-    const data = {
-      nickName,
-      email,
-      password,
-    };
-
-    this.props.fetchRegistration.start(data);
+    this.props.fetchRegistration.start({ nickName, email, password }); //eslint-disable-line
   }
 
   render() {
     return (
-      <RegisterWrapper>
-        <GlobalStyle />
-        <BackgroundWrapper>
+      <LoginWrapper>
+        <div
+          style={{
+            position: 'relative',
+            overflow: 'hidden',
+            height: '100%',
+          }}
+        >
           <Background src={Bg} alt="" />
-        </BackgroundWrapper>
-        <ContentWrapper>
-          <Space size="1" />
-          <Title>Регистрация</Title>
-          <Space size="1" />
-          <Space size="2" />
-          <FormWrapper>
+        </div>
+        <LoginFormWrapper>
+          <FormBlockWrapper>
+            <Title>Добро пожаловать</Title>
+            <Description>
+              Если у Вас еще нет профиля на Consensus, создайте его.
+            </Description>
+            <Description>
+              Уже есть профиль? <Url to="/sign-in">Войти</Url>
+            </Description>
+          </FormBlockWrapper>
+          <InputWrapper>
+            <Label htmlFor="nickName">Логин</Label>
             <Field
+              id="nickName"
               name="nickName"
-              placeholder="Логин"
               type="text"
               component="input"
               style={Input}
+              placeholder="Логин"
             />
+            <Label htmlFor="email">E-mail</Label>
             <Field
+              id="email"
               name="email"
-              label="E-mail"
+              type="text"
               component="input"
               style={Input}
-              placeholder="user@mail.ru"
+              placeholder="E-mail"
             />
+            <Label htmlFor="password">Пароль</Label>
             <Field
+              id="password"
               name="password"
+              type="password"
               component="input"
               style={Input}
-              label="Пароль"
-              type="password"
-              placeholder="********"
+              placeholder="Пароль"
             />
-          </FormWrapper>
-          <Space size="2" />
-          <SubmitButton type="submit" onClick={this.onSubmit}>
-            Зарегистрироваться
-          </SubmitButton>
-          <Space size="2" />
-          <div>
-            <NormalText>Уже есть аккаунт?</NormalText>
-            <LoginButton to="sign-in">Войдите</LoginButton>
-          </div>
-        </ContentWrapper>
-      </RegisterWrapper>
+          </InputWrapper>
+          <Button
+            type="submit"
+            onClick={this.onSubmit}
+            text="Зарегистрироваться"
+          />
+        </LoginFormWrapper>
+      </LoginWrapper>
     );
   }
 }
+
+RegisterPage.propTypes = {
+  fetchRegistration: PropTypes.any,
+  nickName: PropTypes.string,
+  email: PropTypes.string,
+  password: PropTypes.string,
+};
+
+const mapStateToProps = state => {
+  const selector = formValueSelector('register', states => states.get('form'));
+  const nickName = selector(state, 'nickName');
+  const email = selector(state, 'email');
+  const password = selector(state, 'password');
+  return { nickName, email, password };
+};
 
 const Register = reduxForm({
   form: 'register',
@@ -198,21 +171,7 @@ const Register = reduxForm({
   },
 })(RegisterPage);
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchRegistration: fetchRegistration.bindTo(dispatch),
-  };
-}
-
 export default connect(
-  state => {
-    const selector = formValueSelector('register', states =>
-      states.get('form'),
-    );
-    const nickName = selector(state, 'nickName');
-    const email = selector(state, 'email');
-    const password = selector(state, 'password');
-    return { nickName, email, password };
-  },
-  mapDispatchToProps,
+  mapStateToProps,
+  dispatch => ({ fetchRegistration: fetchRegistration.bindTo(dispatch) }),
 )(Register);

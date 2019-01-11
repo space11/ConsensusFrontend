@@ -1,177 +1,91 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import FacebookIcon from 'images/footer/socials/facebook';
-import InstagramIcon from 'images/footer/socials/instagram';
-import TwitterIcon from 'images/footer/socials/twitter';
-import VKIcon from 'images/footer/socials/vk';
-import Bg from 'images/footer/background.svg';
-
-const R = styled.div`
-  display: ${props => (props.footerIsHidden ? 'none' : 'block')};
-  position: relative;
-`;
+import facebook from 'images/footer/social/facebook.svg';
+import instagram from 'images/footer/social/instagram.svg';
+import twitter from 'images/footer/social/twitter.svg';
+import vk from 'images/footer/social/vk.svg';
 
 const FooterWrapper = styled.div`
   display: flex;
   flex: 0 0 auto;
-  height: 100%;
-  min-width: 10vw;
-  max-height: 1050px;
-  position: absolute;
-  justify-content: center;
+  background: #303565;
+  width: 100%;
+  height: 103px;
   align-items: center;
-  top: 0;
-  width: 100%;
+  justify-content: center;
+  z-index: 1000;
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
   flex-direction: column;
-  z-index: 9999;
 `;
 
-const BackgroundWrapper = styled.img`
-  position: relative;
-  width: 100%;
-
-  @media screen and (max-width: 850px) {
-    display: none;
-  }
+const MenuWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 589px;
 `;
 
-const BackgroundMobileWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  z-index: 9999;
-
-  @media screen and (min-width: 850px) {
-    display: none;
-  }
+const MenuButton = styled(NavLink)`
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
 `;
 
-const BackgroundMobile = styled.div`
-  width: 100%;
-  background: #374059;
-  height: 500px;
-  z-index: 9999;
+const Copyright = styled.button`
+  font-weight: 300;
+  font-size: 13px;
+  text-align: center;
+  color: #fff;
+  margin: 15px 0 0 0;
+  cursor: pointer;
 `;
 
-const Copyright = styled.a`
+const SocialWrapper = styled.div`
   position: absolute;
   display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 1rem;
-  bottom: 0;
-  color: #fff;
-  font-size: 1em;
-  text-decoration: none;
-`;
-
-const BlockWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  right: 50px;
+  width: 120px;
   justify-content: space-between;
-  height: 100%;
-
-  @media screen and (max-width: 568px) {
-    margin-top: 1rem;
-    height: 9rem;
-  }
-`;
-
-const LeftBlockWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  height: 100%;
-
-  @media screen and (max-width: 568px) {
-    height: 8rem;
-  }
-`;
-
-const MainBlockWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap-reverse;
-  justify-content: space-between;
-  width: 60%;
   align-items: center;
-  margin-top: 3rem;
-  height: 10vw;
-
-  @media screen and (max-width: 900px) {
-    margin-left: 1.8rem;
-    margin-top: 0;
-    height: auto;
-  }
 `;
 
-const NavigationLine = styled(NavLink)`
-  color: #fff;
-  text-decoration: none;
-`;
-
-const SocialLine = styled.a`
-  color: #fff;
-  text-transform: uppercase;
-  text-decoration: none;
-`;
-
-const SocialWrapper = styled.a`
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  align-items: center;
-  justify-content: space-between;
-  margin-right: 1rem;
-`;
-
-const SocialsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  justify-content: space-between;
+const SocialButton = styled.button`
+  cursor: pointer;
 `;
 
 /* eslint-disable react/prefer-stateless-function */
-class Footer extends PureComponent {
+class Footer extends Component {
   render() {
     return (
-      <R footerIsHidden={this.props.footerIsHidden}>
-        <BackgroundWrapper src={Bg} alt="" />
-        <BackgroundMobileWrapper>
-          <BackgroundMobile />
-        </BackgroundMobileWrapper>
-        <FooterWrapper>
-          <MainBlockWrapper>
-            <BlockWrapper>
-              <NavigationLine to="rules">Правила</NavigationLine>
-              <NavigationLine to="contacts">Контакты</NavigationLine>
-              <NavigationLine to="advertise">
-                Рекламные возможности
-              </NavigationLine>
-              <NavigationLine to="terms">
-                Пользовательское соглашение
-              </NavigationLine>
-            </BlockWrapper>
-            <LeftBlockWrapper>
-              <SocialWrapper>
-                <VKIcon />
-                <FacebookIcon />
-                <TwitterIcon />
-                <InstagramIcon />
-              </SocialWrapper>
-              <SocialsWrapper>
-                <SocialLine href="https://vk.com">VK</SocialLine>
-                <SocialLine href="https://facebook.com">FACEBOOK</SocialLine>
-                <SocialLine href="https://twitter.com">TWITTER</SocialLine>
-                <SocialLine href="https://instagram.com">INSTAGRAM</SocialLine>
-              </SocialsWrapper>
-            </LeftBlockWrapper>
-          </MainBlockWrapper>
-          <Copyright href="https://lod-misis.ru">
-            © League Of Developers 2018
-          </Copyright>
-        </FooterWrapper>
-      </R>
+      <FooterWrapper>
+        <ContentWrapper>
+          <MenuWrapper>
+            <MenuButton to="/">Главная</MenuButton>
+            <MenuButton to="/rules">Правила</MenuButton>
+            <MenuButton to="/contacts">Контакты</MenuButton>
+            <MenuButton to="/advertisement">Рекламные возможности</MenuButton>
+          </MenuWrapper>
+          <Copyright>© League Of Developers 2018</Copyright>
+        </ContentWrapper>
+        <SocialWrapper>
+          <SocialButton>
+            <img src={facebook} alt="" />
+          </SocialButton>
+          <SocialButton>
+            <img src={vk} alt="" />
+          </SocialButton>
+          <SocialButton>
+            <img src={instagram} alt="" />
+          </SocialButton>
+          <SocialButton>
+            <img src={twitter} alt="" />
+          </SocialButton>
+        </SocialWrapper>
+      </FooterWrapper>
     );
   }
 }

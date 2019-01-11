@@ -2,6 +2,10 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { ParallaxProvider } from 'react-scroll-parallax';
+import injectSaga from 'utils/injectSaga';
+import { compose } from 'redux';
+
+import authProviderSaga from 'containers/AuthProvider/sagas';
 
 import HomePage from 'containers/Home';
 import Testing from 'containers/Testing';
@@ -28,16 +32,12 @@ render() {
         titleTemplate="%s - Консенсус"
         defaultTitle="Консенсус"
       >
-        <meta name="description" content="Платформа для проведения онлайн-дебатов" />
+      <meta name="description" content="Платформа для проведения онлайн-дебатов" />
       </Helmet>
-      <Header
-        white={!location.pathname.includes('/room')}
-        navwhite={!location.pathname.includes('/room')}
-        searchIsShown={location.pathname.includes('/search')}
-      />
+      <Header isblue={location.pathname !== '/' && !location.pathname.includes('/account') && location.pathname !== '/404'}/>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/account" component={AccountPage} />
+        <Route exact path="/account/:id" component={AccountPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/room" component={RoomPage} />
         <Route exact path="/sign-in" component={SignInPage} />
@@ -47,21 +47,21 @@ render() {
         <Route path="/404" component={NotFoundPage} />
         <Redirect to="/404" />
       </Switch>
-      <Footer
-        footerIsHidden={
-          location.pathname === '/register' 
-          || location.pathname === '/sign-in' 
-          || location.pathname === '/404' 
-          || location.pathname === '/room'
-          || location.pathname === '/testing'
-          || location.pathname === '/create-debate'
-        }
-      />
+      <Footer />
       <GlobalStyle />
     </ParallaxProvider>
   );
   }
 }
 
-export default App;
+const withSaga = authProviderSaga.map(saga => injectSaga({ key: saga.name, saga }));
+
+export default compose(
+  withSaga[0],
+  withSaga[1],
+  withSaga[2],
+  withSaga[3],
+  withSaga[4],
+  withSaga[5],
+)(App);
 

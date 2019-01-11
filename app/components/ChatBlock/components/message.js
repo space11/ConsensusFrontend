@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const MessageWrapper = styled.div`
+const MessageWrapper = styled.li`
   display: flex;
   flex-direction: column;
   margin: 1vh 0 1vh 0;

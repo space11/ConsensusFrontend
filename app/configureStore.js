@@ -6,22 +6,19 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'connected-react-router/immutable';
 import createSagaMiddleware from 'redux-saga';
-import { reducer as formReducer } from 'redux-form';
-
-import AuthProviderReducer from 'containers/AuthProvider/reducer';
-import RegistrationReducer from 'containers/Register/reducer';
-import HomeReducer from 'containers/Home/reducer';
-import DebateReducer from 'containers/DebateProvider/reducers';
-
 import createReducer from './reducers';
 
 const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(initialState = {}, history) {
+  // Create the store with two middlewares
+  // 1. sagaMiddleware: Makes redux-sagas work
+  // 2. routerMiddleware: Syncs the location/URL path to the state
   const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
   const enhancers = [applyMiddleware(...middlewares)];
 
+  // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle, indent */
   const composeEnhancers =
     process.env.NODE_ENV !== 'production' &&
@@ -32,11 +29,7 @@ export default function configureStore(initialState = {}, history) {
   /* eslint-enable */
 
   const store = createStore(
-    createReducer({
-      auth: AuthProviderReducer,
-      form: formReducer,
-      register: RegistrationReducer,
-    }),
+    createReducer(),
     fromJS(initialState),
     composeEnhancers(...enhancers),
   );
@@ -46,6 +39,7 @@ export default function configureStore(initialState = {}, history) {
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry
 
+  // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
   if (module.hot) {
     module.hot.accept('./reducers', () => {

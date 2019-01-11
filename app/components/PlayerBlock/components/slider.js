@@ -1,11 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import MuteIcon from 'images/playerblock/mute';
-import PauseIcon from 'images/playerblock/pause';
-import PlayIcon from 'images/playerblock/play';
-import SoundIcon from 'images/playerblock/sound';
-import FullScreenIcon from 'images/playerblock/fullscreen';
+import MuteIcon from 'images/playerblock/mute.svg';
+import PauseIcon from 'images/playerblock/pause.svg';
+import PlayIcon from 'images/playerblock/play.svg';
+import SoundIcon from 'images/playerblock/sound.svg';
+import FullScreenIcon from 'images/playerblock/fullscreen.svg';
+import SettingsIcon from 'images/playerblock/settings.svg';
 import Rocket from 'images/playerblock/rocket';
 
 const SliderWrapper = styled.div`
@@ -20,19 +21,27 @@ const SliderWrapper = styled.div`
 const TimeLineWrapper = styled.div`
   width: 100%;
   height: 1rem;
-  background-image: linear-gradient(to right, #7ea4d0, #4e5f92);
-  opacity: 0.7;
+  background-image: linear-gradient(90deg, #7ea4d0 0%, #4e5f92 100%);
 `;
 
 const PassedWrapper = styled.div`
   position: absolute;
-  opacity: 1;
   z-index: 9999;
 `;
 
 const LeftControl = styled.div`
-  min-width: 160px;
-  max-width: 20%;
+  width: 121px;
+  display: inherit;
+  justify-content: space-between;
+`;
+
+const LeftBlock = styled.div`
+  display: flex;
+  position: absolute;
+`;
+
+const RightControl = styled.div`
+  width: 58px;
   display: inherit;
   justify-content: space-between;
 `;
@@ -48,17 +57,33 @@ const PassedTimeLineWrapper = styled.div`
 const LowControlFieldWrapper = styled.div`
   display: inherit;
   align-items: center;
-  box-shadow: inset 0 -30px 50px #474d90;
+  background: #303565;
   width: 100%;
+  height: 38px;
+  padding: 0 25px;
   justify-content: space-between;
+  align-items: center;
 `;
 
-const ButtonWrapper = styled.button`
-  transition: 0.3s;
-  &:hover {
-    transform: scale(1.1);
-  }
+const UpperControlWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  background: #303565;
+  width: 100%;
+  height: 40px;
+  padding: 0 25px;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  flex: 0 0 auto;
 `;
+
+const RoundCenter = styled.div`
+  margin: 0 auto;
+`;
+
+const ButtonWrapper = styled.button``;
 
 const RocketWrapper = styled.button`
   position: absolute;
@@ -72,10 +97,10 @@ const RocketWrapper = styled.button`
 
 const TimeText = styled.div`
   color: #fff;
-  font-weight: 200;
   outline: none;
-  margin-top: 1px;
   -webkit-user-select: none;
+  font-weight: 300;
+  font-size: 15px;
 `;
 
 const TimeTextWrapper = styled.div`
@@ -84,91 +109,79 @@ const TimeTextWrapper = styled.div`
   height: 100%;
 `;
 
-class Slider extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isPlaying: props.isPlaying || true,
-      isMuted: props.isMuted || false,
-      isFull: props.isFull || false,
-      lineLength: props.lineLength || 0,
-    };
+const Image = styled.img``;
 
-    this.onPlayClick = this.onPlayClick.bind(this);
-    this.onVolume = this.onVolume.bind(this);
-    this.onFullscreen = this.onFullscreen.bind(this);
-  }
+const Text = styled.div`
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff;
+`;
 
-  onPlayClick() {
-    if (this.state.isPlaying) {
-      this.props.video.pause();
-      this.setState({ isPlaying: false });
-    } else {
-      this.props.video.play();
-      this.setState({ isPlaying: true });
-    }
-  }
-
-  onVolume() {
-    if (this.state.isMuted) {
-      this.props.video.muted = false;
-      this.setState({ isMuted: false });
-    } else {
-      this.props.video.muted = true;
-      this.setState({ isMuted: true });
-    }
-  }
-
-  onFullscreen() {
-    if (this.state.isFull) {
-      this.props.video.webkitExitFullscreen();
-      this.setState({ isFull: true });
-    } else {
-      this.props.video.webkitRequestFullscreen();
-      this.setState({ isFull: false });
-    }
-  }
-
+class Slider extends Component {
   render() {
+    const {
+      talking,
+      width,
+      isPlaying,
+      isMuted,
+      timeValueMin,
+      timeValueSec,
+      round,
+      time,
+    } = this.props;
     return (
-      <SliderWrapper
-        width={this.props.width}
-        video={this.props.video}
-        isFull={this.state.isFull}
-      >
-        <PassedWrapper>
-          <PassedTimeLineWrapper lineLength={this.state.lineLength} />
-          <RocketWrapper>
-            <Rocket />
-          </RocketWrapper>
-        </PassedWrapper>
-        <TimeLineWrapper />
-        <LowControlFieldWrapper>
-          <LeftControl>
-            <ButtonWrapper onClick={this.onPlayClick}>
-              {this.state.isPlaying ? <PlayIcon /> : <PauseIcon />}
-            </ButtonWrapper>
-            <ButtonWrapper
-              onClick={this.onVolume}
-              style={{ marginTop: '-3px' }}
-            >
-              {this.state.isMuted ? <MuteIcon /> : <SoundIcon />}
-            </ButtonWrapper>
-            <TimeTextWrapper>
-              <TimeText>
-                {this.props.timePassedMin}:{this.props.timePassedSec} /{' '}
-                {this.props.timeValueMin}:{this.props.timeValueSec}
-              </TimeText>
-            </TimeTextWrapper>
-          </LeftControl>
-          <ButtonWrapper
-            onClick={this.onFullscreen}
-            style={{ marginRight: '10px', marginTop: '-2px' }}
-          >
-            <FullScreenIcon />
-          </ButtonWrapper>
-        </LowControlFieldWrapper>
-      </SliderWrapper>
+      <div>
+        <UpperControlWrapper>
+          <LeftBlock>
+            <Text>Говорит: {talking}</Text>
+          </LeftBlock>
+          <RoundCenter>
+            <Text>
+              {round} раунд ({time})
+            </Text>
+          </RoundCenter>
+        </UpperControlWrapper>
+        <SliderWrapper width={width}>
+          <PassedWrapper>
+            <PassedTimeLineWrapper />
+            <RocketWrapper>
+              <Rocket />
+            </RocketWrapper>
+          </PassedWrapper>
+          <TimeLineWrapper />
+          <LowControlFieldWrapper>
+            <LeftControl>
+              <ButtonWrapper>
+                {isPlaying ? (
+                  <Image src={PlayIcon} alt="" />
+                ) : (
+                  <Image src={PauseIcon} alt="" />
+                )}
+              </ButtonWrapper>
+              <ButtonWrapper>
+                {isMuted ? (
+                  <Image src={MuteIcon} alt="" />
+                ) : (
+                  <Image src={SoundIcon} alt="" />
+                )}
+              </ButtonWrapper>
+              <TimeTextWrapper>
+                <TimeText>
+                  {timeValueMin}:{timeValueSec}
+                </TimeText>
+              </TimeTextWrapper>
+            </LeftControl>
+            <RightControl>
+              <ButtonWrapper>
+                <Image src={SettingsIcon} alt="" />
+              </ButtonWrapper>
+              <ButtonWrapper>
+                <Image src={FullScreenIcon} alt="" />
+              </ButtonWrapper>
+            </RightControl>
+          </LowControlFieldWrapper>
+        </SliderWrapper>
+      </div>
     );
   }
 }
@@ -177,19 +190,13 @@ Slider.propTypes = {
   video: PropTypes.any,
   isPlaying: PropTypes.bool,
   isMuted: PropTypes.bool,
-  isFull: PropTypes.bool,
   width: PropTypes.string,
-  lineLength: PropTypes.string,
-  timePassedMin: PropTypes.string,
   timeValueMin: PropTypes.string,
-  timePassedSec: PropTypes.string,
   timeValueSec: PropTypes.string,
 };
 
 Slider.defaultProps = {
-  timePassedMin: '00',
   timeValueMin: '45',
-  timePassedSec: '00',
   timeValueSec: '00',
 };
 

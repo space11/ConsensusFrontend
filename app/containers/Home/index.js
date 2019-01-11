@@ -10,7 +10,6 @@ import FaqBlock from 'components/FAQBlock';
 import PartnersBlock from 'components/PartnersBlock';
 import AnchorBlock from 'components/AnchorBlock';
 import Space from 'components/Space';
-import DebateForm from 'containers/DebateProvider/DebateForm';
 
 const HomePageWrapper = styled.div`
   display: flex;
@@ -39,31 +38,13 @@ const BannerImage = styled.img`
 
 /* eslint-disable react/prefer-stateless-function */
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      debateForm: '',
-    };
-    this.showDebateForm = this.showDebateForm.bind(this);
-  }
-
-  showDebateForm() {
-    if (this.state.debateForm === '')
-      this.setState({
-        debateForm: <DebateForm debateForm={this.showDebateForm} />,
-      });
-    else this.setState({ debateForm: '' });
-  }
-
   render() {
-    const { debateForm } = this.state;
     return (
       <HomePageWrapper>
-        {debateForm}
         <OverflowBlock>
           <BannerImage src={Bg} alt="" />
         </OverflowBlock>
-        <Banner clickDebate={this.showDebateForm} />
+        <Banner />
         <Space size={10} />
         <VideoBlock live title="Сейчас в эфире" />
         <InfoBannerStyle>
@@ -81,7 +62,7 @@ class HomePage extends Component {
         </InfoBannerStyle>
         <PartnersBlock />
         <Space size={10} />
-        <AnchorBlock clickDebate={this.showDebateForm} />
+        <AnchorBlock />
       </HomePageWrapper>
     );
   }

@@ -45,11 +45,7 @@ export class FetchAction {
   }
 }
 
-export function fetchReducerFactory(
-  Action,
-  onSuccess = state => state,
-  initState,
-) {
+export function fetchReducerFactory(Action, initState) {
   const initialState = fromJS(
     Object.assign({ data: null, pending: false, error: false }, initState),
   );
@@ -105,7 +101,7 @@ export const responseValidation = res => responseMapStatuses[res.status];
 export function resolveParams(query) {
   const haveQuery = query && query !== {};
   if (haveQuery) {
-    return `?${Object.keys(query)
+    return `${Object.keys(query)
       .map(key => `${key}=${query[key]}`)
       .join('&&')}`;
   }

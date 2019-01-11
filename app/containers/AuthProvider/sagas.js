@@ -1,49 +1,39 @@
 import { take, call, put } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-import api, { responseStates } from '../../utils/api';
+import jwt_decode from 'jwt-decode';
+import api from '../../utils/api';
 import {
-  fetchUser,
+  fetchRegistration,
   fetchLogin,
   fetchLogout,
-  fetchRegistration,
   fetchRecoveryPassword,
   fetchGetRecoveryToken,
   fetchConfirm,
 } from './actions';
 
-export function* getUser() {
-  while (true) {
-    try {
-      yield take(fetchUser.types.start);
-      const user = yield call(fetchCurrentUser);
-      yield put(fetchUser.success(user));
-    } catch (e) {
-      if (e) {
-        switch (e.status) {
-          case 401:
-            yield put(fetchUser.failed(responseStates.UNATHORIZED));
-            break;
-          default:
-            yield put(fetchUser.failed(e));
-            break;
-        }
-      } else {
-        yield put(fetchUser.failed(responseStates.NETWORK_ERROR));
-      }
-    }
-  }
-}
-
 export function* login() {
   while (true) {
     try {
       const action = yield take(fetchLogin.types.start);
-      yield call(sendLogin, action.payload);
-      yield put(fetchLogin.success());
-      yield put(fetchUser.start());
-      yield put(push('/account'));
+      const { token } = yield call(sendLogin, action.payload);
+      yield put(fetchLogin.success({ token }));
+      yield call(setToken, token);
+      yield put(push(`/account/${jwt_decode(token).UserId}`));
     } catch (e) {
       yield put(fetchLogin.failed(e));
+    }
+  }
+}
+
+export function* registration() {
+  while (true) {
+    try {
+      const action = yield take(fetchRegistration.types.start);
+      const { id } = yield call(sendRegistrationData, action.payload);
+      yield put(fetchRegistration.success({ id }));
+      yield put(push('/sign-in'));
+    } catch (e) {
+      yield put(fetchRegistration.failed(e));
     }
   }
 }
@@ -54,7 +44,6 @@ export function* logout() {
       yield take(fetchLogout.types.start);
       yield call(sendLogout);
       yield put(fetchLogout.success(null));
-      yield put(fetchUser.start());
       yield put(push('/'));
     } catch (e) {
       yield put(fetchLogout.failed(e));
@@ -100,16 +89,14 @@ export function* confirmEmail() {
 
 // All sagas to be loaded
 
-function fetchCurrentUser() {
-  return api.get('/me');
-}
-
 function sendLogin(credentials) {
-  return api.post('Account/auth', credentials);
+  return api.post('Account/auth', credentials).then(res => res);
 }
 
 function sendLogout() {
-  return api.post('/logout');
+  localStorage.removeItem('id_token');
+  localStorage.removeItem('userId');
+  localStorage.removeItem('role');
 }
 
 function sendRecoveryPasswordTokenRequest({ email }) {
@@ -128,6 +115,12 @@ function sendRecoveryPasswordToken({ token, password }) {
     .then(res => res.data);
 }
 
+function setToken(idToken) {
+  localStorage.setItem('id_token', idToken);
+  localStorage.setItem('userId', jwt_decode(idToken).UserId);
+  localStorage.setItem('role', jwt_decode(idToken).Role);
+}
+
 function sendConfirmationEmailToken({ token, password }) {
   return api
     .post(`users/initialVerification/token/${token}`, password, {
@@ -136,9 +129,12 @@ function sendConfirmationEmailToken({ token, password }) {
     .then(res => res.data);
 }
 
-// All sagas to be loaded
+function sendRegistrationData(data) {
+  return api.post('Account/registration', data).then(res => res);
+}
+
+// // All sagas to be loaded
 export default [
-  getUser,
   login,
   registration,
   logout,

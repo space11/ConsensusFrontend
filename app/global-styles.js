@@ -23,6 +23,14 @@ const GlobalStyle = createGlobalStyle`
     min-width: 100%;
   }
 
+  h1 {
+    font-size: 50px;
+  }
+
+  div {
+    font-size: 20px;
+  }
+
   *{
     margin: 0;
   padding: 0;

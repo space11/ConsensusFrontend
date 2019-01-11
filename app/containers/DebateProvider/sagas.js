@@ -1,4 +1,5 @@
 import { take, call, put } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import api from '../../utils/api';
 import * as actions from './actions';
 
@@ -8,8 +9,24 @@ export function* createDebate() {
       const action = yield take(actions.fetchCreatingDebate.types.start);
       const { id } = yield call(sendCreatingData, action.payload);
       yield put(actions.fetchCreatingDebate.success({ id }));
+      yield put(push(`/room/${id}`));
     } catch (e) {
       yield put(actions.fetchCreatingDebate.failed(e));
+    }
+  }
+}
+
+export function* createSession() {
+  while (true) {
+    try {
+      yield take(actions.fetchCreatingSession.types.start);
+      const { id } = yield call(sendCreatingSession);
+      const data = { session: id, role: 'User' };
+      const { token } = yield call(getUrl, data);
+      yield call(setUrl, token);
+      yield put(actions.fetchCreatingSession.success({ token }));
+    } catch (e) {
+      yield put(actions.fetchCreatingSession.failed(e));
     }
   }
 }
@@ -49,8 +66,20 @@ export function* getPastDebate() {
   }
 }
 
+function setUrl(token) {
+  localStorage.setItem('session_token', token);
+}
+
+function getUrl(data) {
+  return api.post('/Publish', data).then(res => res);
+}
+
+function sendCreatingSession() {
+  return api.post('/Connection/session').then(res => res);
+}
+
 function sendCreatingData(data) {
-  return api.post('Account/Debate', data).then(res => res);
+  return api.post('/Debate', data).then(res => res);
 }
 
 function sendDebateRequest({ id }) {
@@ -66,4 +95,10 @@ function sendDebatePastRequest() {
 }
 
 // All sagas to be loaded
-export default [createDebate, getDebate, getLiveDebate, getPastDebate];
+export default [
+  createDebate,
+  getDebate,
+  getLiveDebate,
+  getPastDebate,
+  createSession,
+];
