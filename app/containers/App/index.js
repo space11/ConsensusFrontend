@@ -26,6 +26,7 @@ import GlobalStyle from '../../global-styles';
 class App extends React.Component {
 
 render() {
+
   return (
     <ParallaxProvider>
       <Helmet

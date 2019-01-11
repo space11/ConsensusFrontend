@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import * as signalR from '@aspnet/signalr';
 import styled from 'styled-components';
 import config from 'utils/config';
 import SmileIcon from 'images/chatblock/smile.svg';
 import Message from './components/message';
+import { fetchMessage } from './actions';
 
 /* eslint-disable */
 
@@ -79,11 +79,12 @@ const Title = styled.h1`
 `;
 
 const MessageBlock = styled.ol`
-  display: flex;
-  flex-direction: column;
   height: 514px;
   padding: 0 20px;
   list-style: none;
+  overflow-y: auto;
+  word-wrap: break-word;
+  overflow-x: none;
 `;
 
 class Chat extends Component {
@@ -120,11 +121,15 @@ class Chat extends Component {
     }
 
     sendMessage = () => {
+      if(this.state.message !== ''){
       this.state.hubConnection
         .invoke('SendMessage', this.state.userId, this.state.userName, this.state.message, new Date())
         .catch(err => console.error(err));
+
+        // this.props.fetchMessage.start({text: this.state.message});
     
         this.setState({message: ''});      
+      }
     };
 
   render() {
@@ -133,7 +138,7 @@ class Chat extends Component {
       <TitleBlock>
         <Title>Чат</Title>
         </TitleBlock>
-        <MessageBlock collapsed={this.props.collapsed}>  
+        <MessageBlock collapsed={this.props.collapsed} reversed>  
         {this.state.messages.map((message, index) => (
           <Message key={index} url={message.url} nickname={message.userName} text={message.message} />
         ))}
@@ -156,5 +161,4 @@ class Chat extends Component {
   }
 }
 
-
-export default connect(() => ({}), () => ({}))(Chat);
+export default connect(() => ({}), dispatch => ({ fetchMessage: fetchMessage.bindTo(dispatch) }),)(Chat);

@@ -6,11 +6,8 @@ import styled from 'styled-components';
 const MessageWrapper = styled.li`
   display: flex;
   flex-direction: column;
-  margin: 1vh 0 1vh 0;
-
-  @media screen and (max-width: 1000px) {
-    width: 100%;
-  }
+  margin: 5px 0;
+  min-height: 48px;
 `;
 
 const Nickname = styled(NavLink)`

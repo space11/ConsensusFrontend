@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import PlayerBlock from 'components/PlayerBlock';
 import ChatBlock from 'components/ChatBlock';
@@ -82,7 +83,7 @@ const ProfileBlock = styled.div`
   width: 100%;
 `;
 
-const ProfileBlockWrapper = styled.div`
+const ProfileBlockWrapper = styled(NavLink)`
   display: flex;
   width: 400px;
   height: 130px;
@@ -99,6 +100,7 @@ const ProfileBlockImage = styled.img`
 const ProfileBlockTitle = styled.div`
   font-size: 20px;
   margin-bottom: 10px;
+  color: #000;
 `;
 
 const ProfileBlockContentWrapper = styled.div`
@@ -112,6 +114,7 @@ const ProfileBlockContentWrapper = styled.div`
 const ProfileBlockDescription = styled.div`
   font-weight: 300;
   font-size: 14px;
+  color: #000;
 `;
 
 const VsIconWrapper = styled.img`
@@ -128,13 +131,17 @@ class RoomPage extends Component {
     const {
       title,
       viewers,
+      urlHost,
+      debateId,
       category,
+      urlOpponent,
       description,
       hostNickName,
       hostDescription,
       opponentNickname,
       opponentDescription,
     } = this.props;
+
     return (
       <RoomWrapper>
         <LeftBlock>
@@ -159,7 +166,7 @@ class RoomPage extends Component {
             <RoomDescription>{description}</RoomDescription>
             <Line />
             <ProfileBlock>
-              <ProfileBlockWrapper>
+              <ProfileBlockWrapper to={urlHost}>
                 <ProfileBlockImage src={FirstProfile} alt="" />
                 <ProfileBlockContentWrapper>
                   <ProfileBlockTitle>{hostNickName}</ProfileBlockTitle>
@@ -169,7 +176,7 @@ class RoomPage extends Component {
                 </ProfileBlockContentWrapper>
               </ProfileBlockWrapper>
               <VsIconWrapper src={VsIcon} alt="" />
-              <ProfileBlockWrapper>
+              <ProfileBlockWrapper to={urlOpponent}>
                 <ProfileBlockImage src={SecondProfile} alt="" />
                 <ProfileBlockContentWrapper>
                   <ProfileBlockTitle>{opponentNickname}</ProfileBlockTitle>
@@ -182,7 +189,7 @@ class RoomPage extends Component {
           </ContentBlockWrapper>
         </LeftBlock>
         <RightBlock>
-          <ChatBlock />
+          <ChatBlock debateId={debateId} />
           <VoteBlock />
         </RightBlock>
       </RoomWrapper>
@@ -205,6 +212,9 @@ RoomPage.defaultProps = {
   hostDescription: 'Косплеер. Победитель в номинации президент США',
   opponentDescription: 'НеКосплеер. Проигравший в номинации президент США',
   opponentNickname: 'НеТрамп',
+  urlHost: '/asdasd',
+  urlOpponent: '/aasda',
+  debateId: 'aidajd-aisdjoa-asdad',
 };
 
 export default RoomPage;

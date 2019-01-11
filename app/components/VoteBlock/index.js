@@ -92,6 +92,15 @@ const Line = styled.div`
   border-radius: 5px;
 `;
 
+const LineFuel = styled.div`
+  position: absolute;
+  height: 15px;
+  top: 0;
+  background: #f7567c;
+  border-radius: 5px;
+  width: ${props => props.width};
+`;
+
 /* eslint-disable */
 class VoteBlock extends Component {
   constructor(props){
@@ -133,7 +142,10 @@ class VoteBlock extends Component {
                 {hostPercentage}
               </Percentage>
             </VoteLineText>
+            <div style={{position: 'relative'}}>
             <Line />
+            <LineFuel width={hostPercentage}/>
+            </div>
           </VoteLine>
           <VoteLine style={{margin: '0'}}>
             <VoteLineText>
@@ -149,7 +161,10 @@ class VoteBlock extends Component {
                 {opponentPercentage}
               </Percentage>
             </VoteLineText>
+            <div style={{position: 'relative'}}>
             <Line />
+            <LineFuel width={opponentPercentage}/>
+            </div>
           </VoteLine>
         </DownLine>
       </VoteBlockWrapper>
