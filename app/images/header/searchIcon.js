@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function(props) {
+  const { isblue } = props;
   return (
     <svg width="18px" height="18px" viewBox="0 0 22 21">
       <g
@@ -13,7 +14,7 @@ export default function(props) {
         <g
           id="Desktop-HD-Copy-8"
           transform="translate(-1074.000000, -40.000000)"
-          fill={props.white || props.navwhite ? '#fff' : '#474D90'}
+          fill={isblue ? '#474D90' : '#fff'}
           fillRule="nonzero"
         >
           <g id="хедер">

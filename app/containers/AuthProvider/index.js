@@ -8,12 +8,6 @@ import makeSelectAuthProvider, { isLogged } from './selectors';
 import * as actions from './actions';
 
 export class AuthProvider extends React.PureComponent {
-  componentWillMount() {
-    if (this.props.emitAuth) {
-      this.props.fetchUser.start();
-    }
-  }
-
   render() {
     const { children, ...otherProps } = this.props;
     return (
@@ -28,19 +22,7 @@ export class AuthProvider extends React.PureComponent {
 
 AuthProvider.propTypes = {
   children: PropTypes.node,
-  authProviderState: PropTypes.any,
-  fetchUser: PropTypes.any,
-  fetchLogin: PropTypes.any,
-  fetchLogout: PropTypes.any,
-  userChanged: PropTypes.any,
-  fetchRecoveryPassword: PropTypes.any,
-  fetchGetRecoveryToken: PropTypes.any,
-  fetchConfirm: PropTypes.any,
-  fetchRegistration: PropTypes.any,
-  isLogged: PropTypes.any,
-  isUnauthorized: PropTypes.any,
   stateSelector: PropTypes.any,
-  emitAuth: PropTypes.any,
 };
 
 AuthProvider.defaultProps = {

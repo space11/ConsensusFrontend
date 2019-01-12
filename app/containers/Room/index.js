@@ -1,265 +1,196 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import OpvSession from 'openvidu-react';
+import styled from 'styled-components';
 import PlayerBlock from 'components/PlayerBlock';
 import ChatBlock from 'components/ChatBlock';
-import Place from 'components/PartnersCell/1.png';
 import TabBlock from 'components/TabBlock';
 import VoteBlock from 'components/VoteBlock';
-import ProfileCell from 'components/ProfileCell';
-import Space from 'components/Space';
-import Button from 'components/Button';
-import ShareIcon from 'images/room/share';
-import ViewersIcon from 'images/room/viewers';
+import ViewersIcon from 'images/room/viewers.svg';
+import ShareIcon from 'images/room/share.svg';
+import VsIcon from 'images/playerblock/vs.svg';
+import FirstProfile from './images/1.png';
+import SecondProfile from './images/2.png';
 
 const RoomWrapper = styled.div`
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  padding: 0 3vw 0 3vw;
-  width: 100vw;
-  margin: 0 auto;
-  max-width: 2000px;
-
-  @media screen and (max-width: 1000px) {
-    justify-content: center;
-  }
+  padding: 131px 59px;
 `;
 
 const LeftBlock = styled.div`
-  display: flex;
-  overflow-y: auto;
-  position: relative;
-  flex-direction: column;
-  left: 0;
-  padding: 0 1.5vw 0 0;
-  z-index: 9999;
-  left: 0;
-  width: 70%;
-
-  @media screen and (max-width: 1154px) {
-    width: 100%;
-    margin: 1rem;
-    padding: 0;
-    position: relative;
-  }
+  width: 902px;
+  margin-right: 15px;
 `;
 
 const RightBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  right: 0;
-  padding: 0 0 0 1.5vw;
-
-  @media screen and (max-width: 1154px) {
-    width: 100%;
-    margin: 1rem;
-    position: relative;
-  }
+  width: 388px;
+  margin-top: 68px;
+  margin-left: 15px;
 `;
 
-const Title = styled.h1`
-  color: #4a4a4a;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin: 0;
-  margin-bottom: 0.5rem;
+const ContentBlockWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Title = styled.div`
+  font-size: 36px;
+  margin-bottom: 10px;
+`;
+
+const CategoryWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
+
+const CategoryLabel = styled.div`
+  font-size: 20px;
+  margin-right: 5px;
+`;
+
+const CategoryText = styled(CategoryLabel)`
+  color: #474d90;
+`;
+
+const CategoryWrap = styled.div`
+  display: flex;
+`;
+
+const RoomDescription = styled.div`
+  font-weight: 300;
+  font-size: 20px;
+  margin-bottom: 20px;
+`;
+
+const ViewersWrapper = styled.img`
+  margin-right: 5px;
 `;
 
 const Share = styled.button`
-  display: flex;
-  align-items: center;
-  color: #4a4a4a;
-  font-weight: 300;
-  font-size: 1.4em;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
+  cursor: pointer;
 `;
 
-const UpLine = styled.div`
+const Line = styled.div`
+  width: 100%;
+  border: 1px solid #474d90;
+  margin-bottom: 30px;
+`;
+
+const ProfileBlock = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+const ProfileBlockWrapper = styled(NavLink)`
+  display: flex;
+  width: 400px;
+  height: 130px;
+  background: #ffffff;
+  border-radius: 5px;
+`;
+
+const ProfileBlockImage = styled.img`
+  width: 100px;
+  height: 130px;
+  border-radius: 5px 0 0 5px;
+`;
+
+const ProfileBlockTitle = styled.div`
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #000;
+`;
+
+const ProfileBlockContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-
-  @media screen and (max-width: 1154px) {
-    justify-content: center;
-  }
-`;
-
-const DownLine = styled.div`
-  display: flex;
-`;
-
-const Viewers = styled.div`
-  display: flex;
-  font-size: 1.4em;
-  font-weight: 300;
-  align-items: center;
-  color: #4a4a4a;
-`;
-
-const ShareXTitle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`;
-
-const DescriptionBlock = styled.div`
-  height: auto;
-  width: 100%;
-  border-top: 1px solid #474d90;
-  border-bottom: solid 1px #474d90;
-  padding: 2rem 0.5rem;
-`;
-
-const ButtonWrapper = styled.div`
-  height: auto;
-`;
-
-const HostWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-`;
-
-const ContentWrapper = styled.div`
-  padding-right: 0;
-`;
-
-const Description = styled.div`
-  font-weight: 300;
-  margin: 2rem 0;
-`;
-
-const ProfileBlock = styled(NavLink)`
-  display: flex;
-  background-color: #36405b;
-  width: 45%;
-  min-width: 300px;
-  margin: 1rem 0;
-`;
-
-const ProfileAvatar = styled.img`
   height: 100%;
-  width: 5rem;
+  padding: 20px;
 `;
 
-const ProfileBlockWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+const ProfileBlockDescription = styled.div`
+  font-weight: 300;
+  font-size: 14px;
+  color: #000;
 `;
 
-const ProfileDescriptionWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 1.5rem;
-  color: #fff;
-`;
-
-const ProfileDescriptionTitle = styled.div`
-  font-size: 1.5rem;
-  font-weight: 600;
-`;
-
-const ProfileDescription = styled.div`
-  margin: auto;
+const VsIconWrapper = styled.img`
+  margin: 0 24px;
 `;
 
 /* eslint-disable react/prefer-stateless-function */
 class RoomPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      collapsed: props.collapsed || false,
-    };
-    this.collapse = this.collapse.bind(this);
-  }
-
-  collapse() {
-    if (this.state.collapsed) {
-      this.setState({ collapsed: false });
-    } else {
-      this.setState({ collapsed: true });
-    }
+  componentDidMount() {
+    document.getElementById('header').style.display = 'none';
   }
 
   render() {
+    const {
+      title,
+      viewers,
+      urlHost,
+      debateId,
+      category,
+      urlOpponent,
+      description,
+      hostNickName,
+      hostDescription,
+      opponentNickname,
+      opponentDescription,
+    } = this.props;
+
     return (
       <RoomWrapper>
-        <OpvSession
-              id="opv-session"
-          sessionName={mySessionId}
-              user={myUserName}
-              token={token}
-              joinSession={this.handlerJoinSessionEvent}
-          leaveSession={this.handlerLeaveSessionEvent}
-          error={this.handlerErrorEvent} />
         <LeftBlock>
           <TabBlock />
-          <PlayerBlock style={{ width: '1280px', height: '720px' }} />
-          <UpLine>
-            <ShareXTitle>
-              <Title>{this.props.title}</Title>
-              <Share>
-                <ShareIcon /> Поделиться
-              </Share>
-            </ShareXTitle>
-            <Viewers>
-              <ViewersIcon /> {this.props.viewers} зрителей
-            </Viewers>
-          </UpLine>
-          <DownLine />
-          <Space size="6" />
-          <DescriptionBlock>
-            <HostWrapper>
-              <ProfileCell name="Pynya" rep="200" style={{ marginLeft: '0' }} />
-              <ButtonWrapper>
-                <Button text="Подписаться" />
-              </ButtonWrapper>
-            </HostWrapper>
-            <ContentWrapper>
-              <Description>Краткое описание темы дебатов</Description>
-              <ProfileBlockWrapper>
-                <ProfileBlock to="/some">
-                  <ProfileAvatar src={Place} alt="" />
-                  <ProfileDescriptionWrapper>
-                    <ProfileDescriptionTitle>Трамп</ProfileDescriptionTitle>
-                    <ProfileDescription>
-                      Косплеер. Победитель в номинации президент США
-                    </ProfileDescription>
-                  </ProfileDescriptionWrapper>
-                </ProfileBlock>
-                <ProfileBlock to="/some">
-                  <ProfileAvatar src={Place} alt="" />
-                  <ProfileDescriptionWrapper>
-                    <ProfileDescriptionTitle>НеТрамп</ProfileDescriptionTitle>
-                    <ProfileDescription>
-                      НеКосплеер. Проигравшей в номинации президент США
-                    </ProfileDescription>
-                  </ProfileDescriptionWrapper>
-                </ProfileBlock>
+          <PlayerBlock width="902px" />
+          <ContentBlockWrapper>
+            <Title>{title}</Title>
+            <CategoryWrapper>
+              <CategoryWrap>
+                <CategoryLabel>Категория: </CategoryLabel>
+                <CategoryText>{category}</CategoryText>
+              </CategoryWrap>
+              <CategoryWrap>
+                <ViewersWrapper src={ViewersIcon} alt="" />
+                <span style={{ marginRight: '10px' }}>{viewers}</span>
+                <Share>
+                  <img src={ShareIcon} alt="" style={{ marginRight: '5px' }} />
+                  Поделиться
+                </Share>
+              </CategoryWrap>
+            </CategoryWrapper>
+            <RoomDescription>{description}</RoomDescription>
+            <Line />
+            <ProfileBlock>
+              <ProfileBlockWrapper to={urlHost}>
+                <ProfileBlockImage src={FirstProfile} alt="" />
+                <ProfileBlockContentWrapper>
+                  <ProfileBlockTitle>{hostNickName}</ProfileBlockTitle>
+                  <ProfileBlockDescription>
+                    {hostDescription}
+                  </ProfileBlockDescription>
+                </ProfileBlockContentWrapper>
               </ProfileBlockWrapper>
-              <Description style={{ marginBottom: '0' }}>
-                <span style={{ fontWeight: '600' }}>Категория:</span> Политика
-              </Description>
-            </ContentWrapper>
-          </DescriptionBlock>
-          <Space size="6" />
+              <VsIconWrapper src={VsIcon} alt="" />
+              <ProfileBlockWrapper to={urlOpponent}>
+                <ProfileBlockImage src={SecondProfile} alt="" />
+                <ProfileBlockContentWrapper>
+                  <ProfileBlockTitle>{opponentNickname}</ProfileBlockTitle>
+                  <ProfileBlockDescription>
+                    {opponentDescription}
+                  </ProfileBlockDescription>
+                </ProfileBlockContentWrapper>
+              </ProfileBlockWrapper>
+            </ProfileBlock>
+          </ContentBlockWrapper>
         </LeftBlock>
-        <RightBlock topOffset={80}>
-          <VoteBlock
-            collapse={this.collapse}
-            collapsed={this.state.collapsed}
-          />
-          <Space size="2" />
-          <ChatBlock collapsed={this.state.collapsed} />
+        <RightBlock>
+          <ChatBlock debateId={debateId} />
+          <VoteBlock />
         </RightBlock>
       </RoomWrapper>
     );
@@ -269,12 +200,21 @@ class RoomPage extends Component {
 RoomPage.propTypes = {
   title: PropTypes.string,
   viewers: PropTypes.number,
-  collapsed: PropTypes.bool,
 };
 
 RoomPage.defaultProps = {
   title: 'Сколько налогов нужно платить?',
   viewers: 500,
+  category: 'Политика',
+  description:
+    'Банальные, но неопровержимые выводы, а также сделанные на базе интернет-аналитики выводы подвергнуты целой серии независимых исследований. А также интерактивные прототипы освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, представлены в исключительно положительном свете.',
+  hostNickName: 'Трамп',
+  hostDescription: 'Косплеер. Победитель в номинации президент США',
+  opponentDescription: 'НеКосплеер. Проигравший в номинации президент США',
+  opponentNickname: 'НеТрамп',
+  urlHost: '/asdasd',
+  urlOpponent: '/aasda',
+  debateId: 'aidajd-aisdjoa-asdad',
 };
 
 export default RoomPage;

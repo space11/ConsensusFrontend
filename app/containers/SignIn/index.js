@@ -3,116 +3,94 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { fetchLogin } from 'containers/AuthProvider/actions';
+import Button from 'components/Button';
 import Bg from 'images/signin/bg.svg';
-import RocketR from 'images/signin/rocket.svg';
-import ActionButton from 'components/ActionButton';
 
 const LoginWrapper = styled.div`
   display: flex;
   min-width: 100%;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
   z-index: 1000;
   background: #f9f9f9;
 `;
 
 const Background = styled.img`
-  position: absolute;
-  min-width: 100%;
+  position: relative;
   top: 0;
   overflow: hidden;
 `;
 
-const RocketWrapper = styled.img`
-  @media screen and (max-width: 900px) {
-    display: none;
-  }
-
-  animation: 3s slideOut infinite alternate;
-
-  @keyframes slideOut {
-    0% {
-      transform: translateY(-1%);
-    }
-    100% {
-      transform: translateY(1%);
-    }
-  }
-`;
-
 const LoginFormWrapper = styled.div`
   display: flex;
-  position: absolute;
-  box-sizing: border-box;
-  z-index: 24;
-  justify-content: space-around;
-  width: 100%;
+  flex-direction: column;
+  z-index: 99999;
   height: 100%;
+  margin-left: 90px;
 `;
 
-const FormBlockWrapper = styled.div`
+const InputWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  height: 100%;
-  justify-content: center;
+  margin-bottom: 90px;
 `;
 
-const Title = styled.h1`
-  font-weight: 550;
-  font-size: 3em;
-  color: #fff;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  width: 70vw;
-  margin: 2rem 0;
-  max-width: 560px;
-  height: 35vw;
-  max-height: 150px;
-  @media screen and (max-width: 686px) {
-    justify-content: center;
-  }
-`;
-
-const SubmitButton = styled.button`
-  display: flex;
-  font-size: 20px;
-  font-weight: 500;
-  color: #fff;
-  border-radius: 100px;
-  min-width: 240px;
-  min-height: 45px;
-  background: #f7567c;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 5px #e96979;
-  transition: 0.3s;
-  -webkit-user-select: none;
-
-  &:hover {
-    transform: scale(1.1);
-  }
+const FormBlockWrapper = styled(InputWrapper)`
+  z-index: 9900;
+  width: 100%;
+  margin: 145px 0 90px 0;
 `;
 
 const Input = {
-  borderBottom: '1px solid #fff',
+  borderBottom: '1px solid #474D90',
   background: 'transparent',
-  color: '#fff',
-  height: '4rem',
-  margin: '1.5rem 0',
-  width: '70vw',
-  borderRadius: '6px',
-  fontSize: '1.5em',
+  height: '3rem',
+  marginBottom: '1.5rem',
+  width: '100%',
   zIndex: '3',
-  padding: '1rem',
-  maxWidth: '500px',
 };
+
+const Description = styled.div`
+  font-weight: 300;
+  width: 90%;
+`;
+
+const AdvField = styled(Field)`
+  transition: 0.3s;
+  &:focus {
+    padding-left: 10px;
+  }
+`;
+
+const Title = styled.h1`
+  color: #2b367e;
+  margin: 0;
+`;
+
+const Url = styled(NavLink)`
+  color: #f7567c;
+  font-weight: 500;
+`;
+
+const Label = styled.label`
+  -webkit-user-select: none;
+  font-size: 0.9rem;
+`;
+
+const ControlLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+`;
+
+const ForgetButton = styled.button`
+  color: #f7567c;
+`;
+
+const InputComponent = styled.input`
+  margin-right: 10px;
+`;
 
 class LoginPage extends Component {
   constructor(props) {
@@ -131,40 +109,51 @@ class LoginPage extends Component {
       <LoginWrapper>
         <div
           style={{
+            position: 'relative',
             overflow: 'hidden',
-            position: 'absolute',
             height: '100%',
-            minWidth: '100%',
-            alignSelf: 'center',
           }}
         >
           <Background src={Bg} alt="" />
         </div>
         <LoginFormWrapper>
-          <RocketWrapper src={RocketR} alt="" />
-          <FormBlockWrapper onSubmit={this.onSubmit}>
-            <Title>Вход</Title>
-            <Field
+          <FormBlockWrapper>
+            <Title>Здравствуйте</Title>
+            <Description>
+              Если у вас уже есть профиль на Consensus, войдите.
+            </Description>
+            <Description>
+              Еще нет профиля? <Url to="/register">Зарегистрируйтесь</Url>
+            </Description>
+          </FormBlockWrapper>
+          <InputWrapper onSubmit={this.onSubmit}>
+            <Label htmlFor="email">E-mail</Label>
+            <AdvField
+              id="email"
               name="email"
               type="text"
               component="input"
               style={Input}
-              placeholder="Логин"
+              placeholder="E-mail"
             />
-            <Field
+            <Label htmlFor="password">Пароль</Label>
+            <AdvField
+              id="password"
               name="password"
               type="password"
               component="input"
               style={Input}
               placeholder="Пароль"
             />
-            <ButtonWrapper>
-              <ActionButton text="Регистрация" url="/register" white />
-              <SubmitButton type="submit" onClick={this.onSubmit}>
-                Вход
-              </SubmitButton>
-            </ButtonWrapper>
-          </FormBlockWrapper>
+            <ControlLine>
+              <Label>
+                <InputComponent type="checkbox" />
+                <Label>Запомнить меня</Label>
+              </Label>
+              <ForgetButton>Забыли пароль?</ForgetButton>
+            </ControlLine>
+          </InputWrapper>
+          <Button type="submit" onClick={this.onSubmit} text="Войти" />
         </LoginFormWrapper>
       </LoginWrapper>
     );

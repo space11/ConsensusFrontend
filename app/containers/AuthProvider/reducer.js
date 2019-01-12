@@ -8,17 +8,17 @@ import { combineReducers } from 'redux-immutable';
 import { fetchReducerFactory } from 'utils/api';
 import {
   fetchLogin,
+  fetchRegistration,
   fetchLogout,
   fetchConfirm,
   fetchRecoveryPassword,
   fetchGetRecoveryToken,
-  fetchUser,
 } from './actions';
 
 export default combineReducers({
-  user: fetchReducerFactory(fetchUser),
   login: fetchReducerFactory(fetchLogin),
   logout: fetchReducerFactory(fetchLogout),
+  registration: fetchReducerFactory(fetchRegistration),
   confirmation: fetchReducerFactory(fetchConfirm),
   recoveringPassword: fetchReducerFactory(fetchRecoveryPassword),
   recoveryToken: fetchReducerFactory(fetchGetRecoveryToken),

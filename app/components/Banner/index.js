@@ -119,7 +119,6 @@ const ActionWrapper = styled.div`
 /* eslint-disable react/prefer-stateless-function */
 class Banner extends PureComponent {
   render() {
-    const { clickDebate } = this.props;
     return (
       <BannerWrapper>
         <BannerDescriptionWrapper>
@@ -131,7 +130,10 @@ class Banner extends PureComponent {
               для проведения онлайн-дебатов
             </BannerDescriptionLine>
             <ActionWrapper>
-              <Button text="Организовать дебаты" onButtonClick={clickDebate} />
+              <Button
+                text="Организовать дебаты"
+                onClick={() => (window.location.href = '/create-debate')}
+              />
             </ActionWrapper>
           </div>
           <Space size={2} />

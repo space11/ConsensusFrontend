@@ -1,29 +1,24 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import Placeholder from 'images/placeholders/avatar';
+import VsIcon from 'images/playerblock/vs.svg';
 import Nickname from './components/nickblock';
-import Placeholder from '../../images/placeholders/avatar';
 
 const TabBlockWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  margin-bottom: 2rem;
   flex-wrap: wrap;
-
-  @media screen and (max-width: 500px) {
-    justify-content: center;
-  }
+  margin-bottom: 19px;
 `;
 
 const NicknameWrapper = styled.div`
   display: flex;
 `;
 
-const Timer = styled.div`
-  display: flex;
-  align-self: flex-end;
-  font-size: 2.5em;
-  color: #4a4a4a;
+const VsWrapper = styled.img`
+  margin: 0 39px;
+  -webkit-user-select: none;
 `;
 
 class TabBlock extends PureComponent { //eslint-disable-line
@@ -33,7 +28,7 @@ class TabBlock extends PureComponent { //eslint-disable-line
         <NicknameWrapper>
           <Nickname url="oneperson" nickname="Pynya" avatar={<Placeholder />} />
         </NicknameWrapper>
-        <Timer>1:03</Timer>
+        <VsWrapper src={VsIcon} alt="" />
         <NicknameWrapper>
           <Nickname
             isRight

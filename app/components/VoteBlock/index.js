@@ -1,165 +1,185 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Plus from 'images/voteblock/plus';
-import Cross from 'images/voteblock/cross';
-import Collapse from 'images/voteblock/collapse';
-import Line from './components/voteLine';
 
 const VoteBlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  background: #303565;
+  border-radius: 5px;
+  width: 388px;
+  height: 194px;
+  margin-top: 30px;
+  padding: 20px;
 `;
 
-const Title = styled.h1`
+const UpperLine = styled.div`
   display: flex;
-  width: 100%;
-  font-weight: 600;
-  font-size: 2em;
-  color: #4a4a4a;
-  margin-top: 0;
-  margin-bottom: ${props => (props.collapsed ? '0' : '')};
-  -webkit-user-select: none;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 `;
 
-const VotesTotal = styled.div`
-  align-self: center;
-  font-weight: 300;
-  font-size: 0.5em;
-  color: #4a4a4a;
+const Title = styled.div`
+  font-weight: bold;
+  font-size: 30px;
+  letter-spacing: 0.211704px;
+  color: #ffffff;
   -webkit-user-select: none;
 `;
 
-const Vote = styled.div`
-  display: ${props => (props.collapsed ? 'none' : 'flex')};
+const VoteCount = styled.div`
+  font-size: 13px;
+  letter-spacing: 0.127023px;
+  color: #9b9b9b;
+  -webkit-user-select: none;
+`;
+
+const DownLine = styled.div`
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 120px;
 `;
 
 const VoteLine = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
-`;
-
-const Nickname = styled.div`
-  font-size: 1.5em;
-  font-weight: 300;
   margin-bottom: 10px;
 `;
 
-const Percents = styled.div`
-  font-size: 1.5em;
+const VoteLineText = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 5px;
 `;
 
-const ButtonWrapper = styled.button`
-  transition: 0.3s;
+const VoteGroup = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
 
-  &:hover {
-    transform: scale(1.1);
-  }
+const Count = styled.div`
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.0987954px;
+  color: #9b9b9b;
+  -webkit-user-select: none;
+`;
+
+const Nickname = styled.div`
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 0.141136px;
+  color: #ffffff;
+  margin-right: 10px;
+  -webkit-user-select: none;
+  color: ${props => (props.leading ? '#F7567C' : '#fff')};
+`;
+
+const Percentage = styled.div`
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.127023px;
+  color: #9b9b9b;
+  -webkit-user-select: none;
+  color: ${props => (props.leading ? '#F7567C' : '#fff')};
+`;
+
+const Line = styled.div`
+  width: 100%;
+  height: 15px;
+  background: #ffffff;
+  border-radius: 5px;
+`;
+
+const LineFuel = styled.div`
+  position: absolute;
+  height: 15px;
+  top: 0;
+  background: #f7567c;
+  border-radius: 5px;
+  width: ${props => props.width};
 `;
 
 /* eslint-disable */
-
-export default class VoteBlock extends Component {
-  constructor(props) {
+class VoteBlock extends Component {
+  constructor(props){
     super(props);
     this.state = {
-      isVotedUp: props.isVotedUp || false,
-      isVotedDown: props.isVotedDown || false,
-      leader: props.leader || 'Sisyan',
-    };
-
-    this.voteUp = this.voteUp.bind(this);
-    this.voteDown = this.voteDown.bind(this);
+      leadsHost: false,
+      leadsOpponent: false,
+    }
   }
 
-  voteUp() {
-    this.setState({ isVotedUp: true });
-  }
-
-  voteDown() {
-    this.setState({ isVotedDown: true });
+  componentWillUnMount() {
+    if(this.props.hostCount > this.props.opponentCount) {
+      this.setState({leadsHost: true});
+    } else {
+      this.setState({leadsOpponent: false});
+    }
   }
 
   render() {
+    const { count, host, opponent, hostCount, opponentCount, hostPercentage, opponentPercentage } = this.props;
     return (
       <VoteBlockWrapper>
-        <Title collapsed={this.props.collapsed}>
-          <div>
-            Кто прав?
-            <VotesTotal>
-              ({this.props.votes} голосов, лидирует {this.state.leader})
-            </VotesTotal>
-          </div>
-          <ButtonWrapper onClick={this.props.collapse}>
-            <Collapse />
-          </ButtonWrapper>
-        </Title>
-        <Vote collapsed={this.props.collapsed}>
-          <div>
-            <VoteLine>
-              <Nickname>{this.props.nicknameUp}</Nickname>
-              <Percents>
-                {this.props.percentsUp}{' '}
-                <ButtonWrapper onClick={this.voteUp}>
-                  {this.state.isVotedDown ? (
-                    ''
-                  ) : this.state.isVotedUp ? (
-                    <Cross />
-                  ) : (
-                    <Plus />
-                  )}
-                </ButtonWrapper>
-              </Percents>
-            </VoteLine>
-            <Line length={this.props.percentsUp} />
-          </div>
-          <div>
-            <VoteLine style={{marginTop: '0.5rem'}}>
-              <Nickname>{this.props.nicknameDown}</Nickname>
-              <Percents>
-                {this.props.percentsDown}{' '}
-                <ButtonWrapper onClick={this.voteDown}>
-                  {this.state.isVotedUp ? (
-                    ''
-                  ) : this.state.isVotedDown ? (
-                    <Cross />
-                  ) : (
-                    <Plus />
-                  )}
-                </ButtonWrapper>
-              </Percents>
-            </VoteLine>
-            <Line length={this.props.percentsDown} />
-          </div>
-        </Vote>
+      <UpperLine>
+        <Title>Кто прав?</Title>
+        <VoteCount>Проголосовали {count} человек</VoteCount>
+        </UpperLine>
+        <DownLine>
+          <VoteLine>
+            <VoteLineText>
+            <VoteGroup>
+              <Nickname leading={this.state.leadsHost}>
+                {host}
+              </Nickname>
+              <Count>
+                {hostCount}
+              </Count>
+              </VoteGroup>
+              <Percentage leading={this.state.leadsHost}>
+                {hostPercentage}
+              </Percentage>
+            </VoteLineText>
+            <div style={{position: 'relative'}}>
+            <Line />
+            <LineFuel width={hostPercentage}/>
+            </div>
+          </VoteLine>
+          <VoteLine style={{margin: '0'}}>
+            <VoteLineText>
+            <VoteGroup>
+              <Nickname leading={this.state.leadsOpponent}>
+                {opponent}
+              </Nickname>
+              <Count>
+                {opponentCount}
+              </Count>
+              </VoteGroup>
+              <Percentage leading={this.state.leadsOpponent}>
+                {opponentPercentage}
+              </Percentage>
+            </VoteLineText>
+            <div style={{position: 'relative'}}>
+            <Line />
+            <LineFuel width={opponentPercentage}/>
+            </div>
+          </VoteLine>
+        </DownLine>
       </VoteBlockWrapper>
     );
   }
 }
 
-VoteBlock.propTypes = {
-  votes: PropTypes.number,
-  leader: PropTypes.string,
-  isVotedUp: PropTypes.bool,
-  collapsed: PropTypes.bool,
-  isVotedDown: PropTypes.bool,
-  nicknameUp: PropTypes.string,
-  nicknameDown: PropTypes.string,
-  percentsUp: PropTypes.string,
-  percentsDown: PropTypes.string,
-};
-
 VoteBlock.defaultProps = {
-  votes: 900,
-  nicknameUp: 'Pynya',
-  nicknameDown: 'Sisyan',
-  leader: 'Sisyan',
-  percentsUp: '30%',
-  percentsDown: '70%',
-};
+  count: 900,
+  host: 'Pynya',
+  opponent: 'Sysyan',
+  hostCount: 350,
+  opponentCount: 550,
+  hostPercentage: '40%',
+  opponentPercentage: '60%',
+}
+
+export default VoteBlock;

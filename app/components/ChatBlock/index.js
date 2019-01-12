@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import * as signalR from '@aspnet/signalr';
 import styled from 'styled-components';
 import config from 'utils/config';
-import SmileIcon from 'images/chatblock/smile';
-import { makeUserSelector } from './selectors';
+import SmileIcon from 'images/chatblock/smile.svg';
 import Message from './components/message';
+import { fetchMessage } from './actions';
 
 /* eslint-disable */
 
@@ -15,87 +14,77 @@ const InputFormWrapper = styled.div`
   flex-direction: column;
   background-color: #F9F9F9;
   position: relative;
-  width: 95%;
-
-  @media screen and (max-width: 1154px) {
-    width: 100%;
-  }
+  width: 100%;
+  padding: 10px 20px ;
+  height: 47px;
+  border: solid #DADADA;
+  border-width: 1px 0 0 0;
+  margin-top: 19px;
 `;
 
 const LowLineWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
+  align-items: center;
 `;
 
-const Input = styled.textarea`
-  font-size: 22px;
+const Input = styled.input`
   width: 90%;
-  resize: none;
-  font-weight: 300;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 16px;
+  letter-spacing: 0.602182px;
+  height: 19px;
 
   &::placeholder {
-    color: #474d90;
+    color: #7D81B0;
     font-weight: 300;
   }
-
-  @media screen and (max-width: 1154px) {
-    width: 100%;
-  }
-`;
-
-const Line = styled.div`
-  border: none;
-  background-color: #474d90;
-  height: 1px;
 `;
 
 const ButtonWrapper = styled.button`
-  transition: 0.3s;
-  &:hover {
-    transform: scale(1.1);
-  }
 `;
+
 const ChatWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-  min-height: calc(100vh - 21vw);
-  min-width: 360px;
-  height: 100%;
+  width: 100%;
+  max-height: 992px;
+  background: #F9F9F9;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 5px; 
+`;
 
-  @media screen and (max-width: 1154px) {
-    position: relative;
-    width: 100%;
-    min-width: 100%;
-  }
+const TitleBlock = styled.div`
+  display: flex;
+  background: #F9F9F9;
+  border: solid #DADADA;
+  border-width: 0 0 1px 0;
+  width: 100%;
+  height: 47px;
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 5px 5px 0 0;
 `;
 
 const Title = styled.h1`
-  font-weight: 600;
-  font-size: 2em;
-  color: #4a4a4a;
   -webkit-user-select: none;
-
-  @media screen and (max-width: 1154px) {
-    width: 100%;
-  }
+  font-size: 25px;
+  letter-spacing: 0.338727px;
+  color: #000000;
+  font-weight: normal;
+  line-height: normal;
 `;
 
-const MessageBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  min-width: 320px;
-  max-height: 50vh;
-  min-height: 320px;
-
-  @media screen and (max-width: 1154px) {
-    width: 100%;
-    max-width: 100%;
-    min-width: 100%;
-  }
+const MessageBlock = styled.ol`
+  height: 514px;
+  padding: 0 20px;
+  list-style: none;
+  overflow-y: auto;
+  word-wrap: break-word;
+  overflow-x: none;
 `;
 
 class Chat extends Component {
@@ -132,24 +121,29 @@ class Chat extends Component {
     }
 
     sendMessage = () => {
+      if(this.state.message !== ''){
       this.state.hubConnection
         .invoke('SendMessage', this.state.userId, this.state.userName, this.state.message, new Date())
         .catch(err => console.error(err));
+
+        // this.props.fetchMessage.start({text: this.state.message});
     
         this.setState({message: ''});      
+      }
     };
 
   render() {
     return (
       <ChatWrapper>
-        <Title>Комментарии</Title>
-        <MessageBlock collapsed={this.props.collapsed}>  
+      <TitleBlock>
+        <Title>Чат</Title>
+        </TitleBlock>
+        <MessageBlock collapsed={this.props.collapsed} reversed>  
         {this.state.messages.map((message, index) => (
           <Message key={index} url={message.url} nickname={message.userName} text={message.message} />
         ))}
         </MessageBlock>
         <InputFormWrapper>
-          <Line />
           <LowLineWrapper>
             <Input
               placeholder="Сообщение..."
@@ -158,7 +152,7 @@ class Chat extends Component {
               onChange={e => this.setState({ message: e.target.value })}
             />
             <ButtonWrapper onClick={this.sendMessage}>
-              <SmileIcon />
+              <img src={SmileIcon} alt="" />
             </ButtonWrapper>
           </LowLineWrapper>
         </InputFormWrapper>
@@ -167,8 +161,4 @@ class Chat extends Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  user: makeUserSelector(),
-});
-
-export default connect(mapStateToProps, () => ({}))(Chat);
+export default connect(() => ({}), dispatch => ({ fetchMessage: fetchMessage.bindTo(dispatch) }),)(Chat);
