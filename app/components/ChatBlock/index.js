@@ -82,9 +82,10 @@ const MessageBlock = styled.ol`
   height: 514px;
   padding: 0 20px;
   list-style: none;
-  overflow-y: auto;
+  overflow-y: scroll;
   word-wrap: break-word;
-  overflow-x: none;
+  overflow-x: hidden;
+  min-width: 100%;
 `;
 
 class Chat extends Component {

@@ -8,6 +8,8 @@ axios.defaults.withCredentials = true;
 export default {
   get: (url, params) => request(url, { method: 'GET', params }),
   post: (url, body, params) => request(url, { method: 'POST', body, params }),
+  postWithToken: (url, body, params) =>
+    requestWithToken(url, { method: 'POST', body, params }),
   put: (url, body, params) => request(url, { method: 'PUT', body, params }),
   delete: (url, params) => request(url, { method: 'DELETE', params }),
   request: ({ url, ...options }) => request(url, options),
@@ -119,7 +121,65 @@ function request(url, { method = 'GET', body = null, params = {} }) {
     bodyToSend = body;
   } else if (body) {
     bodyToSend = JSON.stringify(body);
-    headers = { 'Content-Type': 'application/json' };
+    headers = {
+      'Content-Type': 'application/json',
+    };
+  }
+
+  if (body && params.plainText) {
+    bodyToSend = body.toString();
+  }
+
+  return fetch(requestUrl, {
+    credentials: 'include',
+    method,
+    headers,
+    body: bodyToSend || undefined,
+  })
+    .then(res => {
+      if (responseMapStatuses[res.status] === responseConstants.SUCCESS) {
+        return res.json().catch(e => {
+          e.ok = true; // eslint-disable-line
+          return Promise.reject(e);
+        });
+      }
+      const errPromise = res.json ? res.json() : res.text();
+      const error = new Error(res.statusText);
+      error.status = res.status;
+      return errPromise
+        .then(data => {
+          error.data = data;
+          return Promise.reject(error);
+        })
+        .catch(() => Promise.reject(error));
+    })
+    .catch(e => {
+      if (e.ok) {
+        return Promise.resolve({});
+      }
+      if (e.status) {
+        return Promise.reject(e);
+      }
+      return Promise.reject(Object.assign(e, responseStates.NETWORK_ERROR));
+    });
+}
+
+function requestWithToken(url, { method = 'GET', body = null, params = {} }) {
+  const correctUrl = url[0] === '/' ? url : `/${url}`;
+  const requestUrl = config.API_ADDRESS + correctUrl + resolveParams(params);
+  const token = localStorage.id_token;
+
+  let headers = {};
+  let bodyToSend = null;
+
+  if (body && body instanceof FormData) {
+    bodyToSend = body;
+  } else if (body) {
+    bodyToSend = JSON.stringify(body);
+    headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    };
   }
 
   if (body && params.plainText) {

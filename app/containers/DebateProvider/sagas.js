@@ -6,9 +6,10 @@ import * as actions from './actions';
 export function* createDebate() {
   while (true) {
     try {
-      const action = yield take(actions.fetchCreatingDebate.types.start);
-      const { id } = yield call(sendCreatingData, action.payload);
-      yield put(actions.fetchCreatingDebate.success({ id }));
+      const debate = yield take(actions.fetchCreatingDebate.types.start);
+      const id = yield call(sendCreatingData, debate.payload);
+      yield put(actions.fetchCreatingDebate.success(id));
+      yield* createSession();
       yield put(push(`/room/${id}`));
     } catch (e) {
       yield put(actions.fetchCreatingDebate.failed(e));
@@ -17,17 +18,17 @@ export function* createDebate() {
 }
 
 export function* createSession() {
-  while (true) {
-    try {
-      yield take(actions.fetchCreatingSession.types.start);
-      const { id } = yield call(sendCreatingSession);
-      const data = { session: id, role: 'User' };
-      const { token } = yield call(getUrl, data);
-      yield call(setUrl, token);
-      yield put(actions.fetchCreatingSession.success({ token }));
-    } catch (e) {
-      yield put(actions.fetchCreatingSession.failed(e));
-    }
+  try {
+    const { id } = yield call(sendCreatingSession);
+    const data = {
+      session: id,
+      role: 'PUBLISHER',
+    };
+    const { token } = yield call(getUrl, data);
+    yield call(setUrl, token);
+    yield put(actions.fetchCreatingSession.success({ token }));
+  } catch (e) {
+    yield put(actions.fetchCreatingSession.failed(e));
   }
 }
 
@@ -66,8 +67,8 @@ export function* getPastDebate() {
   }
 }
 
-function setUrl(token) {
-  localStorage.setItem('session_token', token);
+function setUrl(url) {
+  localStorage.setItem('session_url', url);
 }
 
 function getUrl(data) {
@@ -79,7 +80,7 @@ function sendCreatingSession() {
 }
 
 function sendCreatingData(data) {
-  return api.post('/Debate', data).then(res => res);
+  return api.postWithToken('/Debate', data).then(res => res.debateId);
 }
 
 function sendDebateRequest({ id }) {

@@ -12,15 +12,27 @@ const PlayerBlockWrapper = styled.div`
 `;
 
 class PlayerBlock extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      show: false,
+    };
+  }
+
   render() {
     const { width } = this.props;
+    const { show } = this.state;
     return (
-      <PlayerBlockWrapper>
+      <PlayerBlockWrapper
+        onMouseEnter={() => this.setState({ show: true })}
+        onMouseLeave={() => this.setState({ show: false })}
+      >
         <OpvSession
           id="opv-session"
           sessionName={localStorage.id_session}
           user="deviantkun"
-          openviduServerUrl="https://localhost:4443"
+          openviduServerUrl={localStorage.session_url}
           openviduSecret="MY_SECRET"
           joinSession={() => ({})}
           leaveSession={() => ({})}
@@ -32,6 +44,7 @@ class PlayerBlock extends Component {
           talking="Pynya"
           round="1"
           time="12:30"
+          show={show}
         />
       </PlayerBlockWrapper>
     );

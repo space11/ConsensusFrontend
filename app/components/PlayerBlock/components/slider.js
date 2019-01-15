@@ -128,6 +128,7 @@ class Slider extends Component {
       timeValueSec,
       round,
       time,
+      show,
     } = this.props;
     return (
       <div>
@@ -141,7 +142,10 @@ class Slider extends Component {
             </Text>
           </RoundCenter>
         </UpperControlWrapper>
-        <SliderWrapper width={width}>
+        <SliderWrapper
+          width={width}
+          style={{ display: show ? 'flex' : 'none' }}
+        >
           <PassedWrapper>
             <PassedTimeLineWrapper />
             <RocketWrapper>

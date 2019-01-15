@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { ParallaxProvider } from 'react-scroll-parallax';
@@ -23,10 +23,8 @@ import GlobalStyle from '../../global-styles';
 
 /* eslint-disable */
 
-class App extends React.Component {
-
+class App extends Component {
 render() {
-
   return (
     <ParallaxProvider>
       <Helmet
@@ -40,7 +38,7 @@ render() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/account/:id" component={AccountPage} />
         <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/room" component={RoomPage} />
+        <Route exact path="/room/:id" component={RoomPage} />
         <Route exact path="/sign-in" component={SignInPage} />
         <Route exact path="/create-debate" component={CreateDebatePage} />
         <Route exact path='/search/:id?' component={SearchPage} />

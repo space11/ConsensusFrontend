@@ -123,9 +123,9 @@ const VsIconWrapper = styled.img`
 
 /* eslint-disable react/prefer-stateless-function */
 class RoomPage extends Component {
-  componentDidMount() {
-    document.getElementById('header').style.display = 'none';
-  }
+  // componentDidMount() {
+  //   document.getElementById('header').style.display = 'none';
+  // }
 
   render() {
     const {
