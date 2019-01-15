@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import OpvSession from 'openvidu-react';
 import Slider from './components/slider';
-
-const PlayerBlockWrapper = styled.div`
-  position: relative;
-  display: flex;
-  height: 617px;
-  width: 902px;
-  margin-bottom: 30px;
-`;
+import { PlayerBlockWrapper } from './styles';
 
 class PlayerBlock extends Component {
   constructor(props) {
@@ -28,16 +21,15 @@ class PlayerBlock extends Component {
         onMouseEnter={() => this.setState({ show: true })}
         onMouseLeave={() => this.setState({ show: false })}
       >
-        <OpvSession
+        {/* <OpvSession
           id="opv-session"
           sessionName={localStorage.id_session}
           user="deviantkun"
-          openviduServerUrl={localStorage.session_url}
-          openviduSecret="MY_SECRET"
+          openviduServerUrl="wss://openvidu.lod-misis.ru?sessionId=fwvg2zvunrz1ljt0&token=qssdzftam8s42yiu&role=PUBLISHER"
           joinSession={() => ({})}
           leaveSession={() => ({})}
           error={() => ({})}
-        />
+        /> */}
         <Slider
           width={width}
           isPlaying
@@ -50,5 +42,9 @@ class PlayerBlock extends Component {
     );
   }
 }
+
+PlayerBlock.propTypes = {
+  width: PropTypes.string,
+};
 
 export default PlayerBlock;
