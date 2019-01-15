@@ -1,96 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { reduxForm, formValueSelector } from 'redux-form';
 import { fetchLogin } from 'containers/AuthProvider/actions';
 import Button from 'components/Button';
 import Bg from 'images/signin/bg.svg';
-
-const LoginWrapper = styled.div`
-  display: flex;
-  min-width: 100%;
-  height: 100%;
-  z-index: 1000;
-  background: #f9f9f9;
-`;
-
-const Background = styled.img`
-  position: relative;
-  top: 0;
-  overflow: hidden;
-`;
-
-const LoginFormWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  z-index: 99999;
-  height: 100%;
-  margin-left: 90px;
-`;
-
-const InputWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 90px;
-`;
-
-const FormBlockWrapper = styled(InputWrapper)`
-  z-index: 9900;
-  width: 100%;
-  margin: 145px 0 90px 0;
-`;
-
-const Input = {
-  borderBottom: '1px solid #474D90',
-  background: 'transparent',
-  height: '3rem',
-  marginBottom: '1.5rem',
-  width: '100%',
-  zIndex: '3',
-};
-
-const Description = styled.div`
-  font-weight: 300;
-  width: 90%;
-`;
-
-const AdvField = styled(Field)`
-  transition: 0.3s;
-  &:focus {
-    padding-left: 10px;
-  }
-`;
-
-const Title = styled.h1`
-  color: #2b367e;
-  margin: 0;
-`;
-
-const Url = styled(NavLink)`
-  color: #f7567c;
-  font-weight: 500;
-`;
-
-const Label = styled.label`
-  -webkit-user-select: none;
-  font-size: 0.9rem;
-`;
-
-const ControlLine = styled.div`
-  display: flex;
-  justify-content: space-between;
-  font-size: 15px;
-`;
-
-const ForgetButton = styled.button`
-  color: #f7567c;
-`;
-
-const InputComponent = styled.input`
-  margin-right: 10px;
-`;
+import {
+  LoginWrapper,
+  Background,
+  LoginFormWrapper,
+  InputWrapper,
+  FormBlockWrapper,
+  Input,
+  Description,
+  AdvField,
+  Title,
+  Url,
+  Label,
+  ControlLine,
+  ForgetButton,
+  InputComponent,
+} from './styles';
 
 class LoginPage extends Component {
   constructor(props) {

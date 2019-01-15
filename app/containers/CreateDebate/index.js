@@ -2,65 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
-import styled from 'styled-components';
 import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import debateProviderSaga from 'containers/DebateProvider/sagas';
-import { fetchCreatingSession } from 'containers/DebateProvider/actions';
+import { fetchCreatingDebate } from 'containers/DebateProvider/actions';
 import Button from 'components/Button';
 import Bg from 'images/createRoom/bg.svg';
-
-const DebateWrapper = styled.div`
-  display: flex;
-  min-width: 100%;
-  height: 100%;
-  z-index: 1000;
-  background: #f9f9f9;
-`;
-
-const Background = styled.img`
-  position: relative;
-  top: 0;
-  overflow: hidden;
-`;
-
-const CreateDebateFormWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  z-index: 99999;
-  height: 100%;
-  margin-left: 90px;
-  margin-top: 182px;
-`;
-
-const InputWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 90px;
-`;
-
-const Input = {
-  border: '1px solid #474D90',
-  background: 'transparent',
-  height: '56px',
-  marginBottom: '40px',
-  width: '474px',
-  zIndex: '3',
-  borderRadius: '7px',
-  padding: '5px 15px',
-};
-
-const Label = styled.label`
-  -webkit-user-select: none;
-  font-size: 30px;
-  letter-spacing: 0.211704px;
-  margin-bottom: 10px;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  width: 100%;
-`;
+import {
+  DebateWrapper,
+  Background,
+  CreateDebateFormWrapper,
+  InputWrapper,
+  Input,
+  Label,
+  ButtonWrapper,
+} from './styles';
 
 class CreatingDebatePage extends Component {
   constructor(props) {
@@ -70,10 +26,16 @@ class CreatingDebatePage extends Component {
   }
 
   onSubmit() {
-    // const { title, category, opponent } = this.props;
-    // const startDateTime = new Date().toJSON();
+    const { title, debateCategory } = this.props;
+    const startDateTime = new Date().toISOString();
+    const invitedOpponent = localStorage.userId;
 
-    this.props.fetchCreatingSession.start(); //eslint-disable-line
+    this.props.fetchCreatingDebate.start({
+      startDateTime,
+      title,
+      invitedOpponent,
+      debateCategory,
+    });
   }
 
   render() {
@@ -99,31 +61,26 @@ class CreatingDebatePage extends Component {
               style={Input}
               placeholder="Укажите тему дебатов"
             />
-            <Label htmlFor="category">Тематика дебатов</Label>
+            <Label htmlFor="debateCategory">Тематика дебатов</Label>
             <Field
-              id="category"
-              name="category"
+              id="debateCategory"
+              name="debateCategory"
               type="text"
               component="select"
               style={Input}
             >
               <option />
-              <option value="Politic">Политика</option>
+              <option value="Politics">Политика</option>
               <option value="Science">Наука</option>
             </Field>
-            <Label htmlFor="opponent">Добавьте оппонента</Label>
+            <Label htmlFor="invitedOpponent">Добавьте оппонента</Label>
             <Field
-              id="opponent"
-              name="opponent"
-              type="opponent"
-              component="select"
+              id="invitedOpponent"
+              name="invitedOpponent"
+              type="text"
+              component="input"
               style={Input}
-            >
-              <option />
-              <option value="ff0000">Red</option>
-              <option value="00ff00">Green</option>
-              <option value="0000ff">Blue</option>
-            </Field>
+            />
           </InputWrapper>
           <ButtonWrapper>
             <Button
@@ -142,8 +99,7 @@ class CreatingDebatePage extends Component {
 CreatingDebatePage.propTypes = {
   fetchCreatingDebate: PropTypes.any,
   title: PropTypes.string,
-  category: PropTypes.string,
-  opponent: PropTypes.string,
+  debateCategory: PropTypes.string,
 };
 
 const mapStateToProps = state => {
@@ -151,9 +107,9 @@ const mapStateToProps = state => {
     states.get('form'),
   );
   const title = selector(state, 'title');
-  const category = selector(state, 'category');
-  const opponent = selector(state, 'opponent');
-  return { title, category, opponent };
+  const debateCategory = selector(state, 'debateCategory');
+  const invitedOpponent = selector(state, 'invitedOpponent');
+  return { title, debateCategory, invitedOpponent };
 };
 
 const CreatingDebate = reduxForm({
@@ -161,8 +117,8 @@ const CreatingDebate = reduxForm({
   getFormState: state => state.get('form'),
   initialValues: {
     title: '',
-    category: '',
-    opponent: '',
+    debateCategory: '',
+    invitedOpponent: '',
   },
 });
 
@@ -172,7 +128,7 @@ const withSaga = debateProviderSaga.map(saga =>
 
 const withConnect = connect(
   mapStateToProps,
-  dispatch => ({ fetchCreatingSession: fetchCreatingSession.bindTo(dispatch) }),
+  dispatch => ({ fetchCreatingDebate: fetchCreatingDebate.bindTo(dispatch) }),
 );
 
 export default compose(
