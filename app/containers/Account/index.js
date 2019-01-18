@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchLogout } from 'containers/AuthProvider/actions';
 import Button from 'components/Button';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import Background from 'images/account/background.svg';
 import Camera from 'images/account/camera.svg';
 import Rocket from 'images/account/rocket.svg';
+import Arrow from 'images/account/arrow.svg';
 import Image from './1.jpg';
 import {
   AccountPageWrapper,
@@ -26,13 +28,39 @@ import {
   ButtonLine,
   RocketWrapper,
   RocketComponent,
+  SendAgain,
+  InputField,
+  Error,
+  EditedContentLine,
+  InputTextField,
+  ChangePasswordButton,
+  ChangePasswordLabel,
 } from './styles';
+
+const renderField = ({ input, type, meta: { touched, error, warning } }) => (
+  <div style={{ width: '100%' }}>
+    <InputField type={type} {...input} />
+    {touched &&
+      ((error && <Error>{error}</Error>) ||
+        (warning && <Error>{warning}</Error>))}
+  </div>
+);
+
+const renderTextField = ({ input, meta: { touched, error, warning } }) => (
+  <div style={{ width: '100%' }}>
+    <textarea {...input} rows="10" cols="40" style={InputTextField} />
+    {touched &&
+      ((error && <Error>{error}</Error>) ||
+        (warning && <Error>{warning}</Error>))}
+  </div>
+);
 
 class AccountPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      edited: false,
       hover: false,
     };
 
@@ -54,14 +82,14 @@ class AccountPage extends Component {
   }
 
   render() {
-    const { hover } = this.state;
+    const { hover, edited } = this.state;
     const {
       followCount,
       followersCount,
       nickname,
       win,
       lose,
-      description,
+      desc,
     } = this.props;
     return (
       <AccountPageWrapper>
@@ -92,35 +120,110 @@ class AccountPage extends Component {
           {hover ? <CameraComponent src={Camera} alt="" /> : ''}
         </ProfileImageBlock>
         <Nickname>{nickname}</Nickname>
-        <ContentBlock>
-          <ContentLine>
-            <Label>Репутация:</Label>
-            <Content>
-              {win} Побед / {lose} Поражений
-            </Content>
-          </ContentLine>
-          <ContentLine>
-            <Label>О себе:</Label>
-            <Content>{description}</Content>
-          </ContentLine>
-          <ContentLine>
-            <Label>История:</Label>
-          </ContentLine>
-        </ContentBlock>
+        {edited ? (
+          <ContentBlock>
+            <EditedContentLine>
+              <Label>Имя:</Label>
+              <Field name="name" type="text" component={renderField} />
+            </EditedContentLine>
+            <EditedContentLine>
+              <Label>О себе:</Label>
+              <Field
+                name="description"
+                type="text"
+                component={renderTextField}
+              />
+            </EditedContentLine>
+            <EditedContentLine>
+              <Label>E-mail:</Label>
+              <Field name="email" type="text" component={renderField} />
+            </EditedContentLine>
+            <ContentLine>
+              <Label />
+              <Content>
+                E-mail не подтвержден. На указанный адрес было отправлено письмо
+                со ссылкой для подтверждения. Пожалуйста, проверьте Ваш почтовый
+                ящик. <SendAgain>Отправить письмо повторно.</SendAgain>
+              </Content>
+            </ContentLine>
+            <ContentLine>
+              <ChangePasswordButton>
+                Изменить пароль: <img src={Arrow} alt="" />
+              </ChangePasswordButton>
+            </ContentLine>
+            <EditedContentLine>
+              <ChangePasswordLabel>Старый пароль:</ChangePasswordLabel>
+              <Field name="oldPass" type="password" component={renderField} />
+            </EditedContentLine>
+            <EditedContentLine>
+              <ChangePasswordLabel>Новый пароль:</ChangePasswordLabel>
+              <Field name="newPass" type="password" component={renderField} />
+            </EditedContentLine>
+            <EditedContentLine>
+              <ChangePasswordLabel>Потдвердите пароль:</ChangePasswordLabel>
+              <Field
+                name="confirmPass"
+                type="password"
+                component={renderField}
+              />
+            </EditedContentLine>
+          </ContentBlock>
+        ) : (
+          <ContentBlock>
+            <ContentLine>
+              <Label>Репутация:</Label>
+              <Content>
+                {win} Побед / {lose} Поражений
+              </Content>
+            </ContentLine>
+            <ContentLine>
+              <Label>О себе:</Label>
+              <Content>{desc}</Content>
+            </ContentLine>
+            <ContentLine>
+              <Label>История:</Label>
+            </ContentLine>
+          </ContentBlock>
+        )}
         <ButtonLine>
-          <Button text="Редактировать" w="217px" right="40px" />
           <Button
-            text="Выход"
-            isTransparent
-            isRed
+            text={edited ? 'Сохранить' : 'Редактировать'}
             w="217px"
-            onClick={this.onLogout}
+            right="40px"
+            onClick={() => {
+              window.scrollTo(0, document.body.scrollHeight);
+              edited
+                ? this.setState({ edited: false })
+                : this.setState({ edited: true });
+            }}
           />
+          {edited ? (
+            ''
+          ) : (
+            <Button
+              text="Выход"
+              isTransparent
+              isRed
+              w="217px"
+              onClick={this.onLogout}
+            />
+          )}
         </ButtonLine>
       </AccountPageWrapper>
     );
   }
 }
+
+const mapStateToProps = state => {
+  const selector = formValueSelector('account', states => states.get('form'));
+  const name = selector(state, 'name');
+  const description = selector(state, 'description');
+  const email = selector(state, 'email');
+  const oldPass = selector(state, 'oldPass');
+  const newPass = selector(state, 'newPass');
+  const confirmPass = selector(state, 'confirmPass');
+  return { name, description, email, oldPass, newPass, confirmPass };
+};
 
 AccountPage.propTypes = {
   followCount: PropTypes.number,
@@ -128,7 +231,7 @@ AccountPage.propTypes = {
   win: PropTypes.number,
   lose: PropTypes.number,
   nickname: PropTypes.string,
-  description: PropTypes.string,
+  desc: PropTypes.string,
   fetchLogout: PropTypes.object,
 };
 
@@ -138,11 +241,21 @@ AccountPage.defaultProps = {
   win: 150,
   lose: 13,
   nickname: 'Notan Evchiform',
-  description:
+  desc:
     'У меня есть мечта,такие называют глобальными, а так оно и есть. Я хочу изменить этот мир в лучшую сторону. Говорят: "Если хочешь изминить мир, начни с себя." Я так и делаю, боюрсь со своими недостатками, ведь они есть у всех. Стремлюсь всегда к лучшему, став лучше, лучше будет тем, кто рядом со мной',
 };
 
+const Account = reduxForm({
+  form: 'account',
+  getFormState: state => state.get('form'),
+  initialValues: {
+    email: '',
+    name: '',
+    description: '',
+  },
+})(AccountPage);
+
 export default connect(
-  () => ({}),
+  mapStateToProps,
   dispatch => ({ fetchLogout: fetchLogout.bindTo(dispatch) }),
-)(AccountPage);
+)(Account);

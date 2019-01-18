@@ -37,11 +37,8 @@ const App = ({ locate = window.location.pathname }) => (
           !locate.includes('/account') && locate !== '/404' && locate !== '/'
         }
         isLogin={locate === '/sign-in' || locate === '/register'}
-        isWhite={
-          locate === '/sign-in' &&
-          locate === '/create-debate' &&
-          locate === '/register'
-        }
+        isWhite={locate.includes('/room')}
+        isRed={locate === '/create-debate'}
       />
       <Switch>
         <Route exact path="/" component={HomePage} />

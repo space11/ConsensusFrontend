@@ -8,7 +8,6 @@ import Bg from 'images/signin/bg.svg';
 import { email, required, minValue8 } from 'utils/validation';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import TextField from '@material-ui/core/TextField';
-
 import {
   LoginWrapper,
   Background,
@@ -135,9 +134,7 @@ const Login = reduxForm({
   },
 })(LoginPage);
 
-const Redux = connect(
+export default connect(
   mapStateToProps,
   dispatch => ({ fetchLogin: fetchLogin.bindTo(dispatch) }),
 )(Login);
-
-export default muiThemeable()(Redux);

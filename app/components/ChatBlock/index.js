@@ -22,7 +22,7 @@ class Chat extends Component {
     this.state = {
       userName: 'deviantkun',
       userId: '833b88f5caa6982c9d5d599617ddb25e',
-      messages: [],
+      messages: [{ message: 'Добро пожаловать в чат!' }],
       message: '',
       hubConnection: null,
     };
@@ -92,7 +92,6 @@ class Chat extends Component {
   };
 
   render() {
-    console.log(localStorage);
     const { message } = this.state;
     return (
       <ChatWrapper>

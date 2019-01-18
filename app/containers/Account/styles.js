@@ -162,3 +162,55 @@ export const RocketComponent = styled.img`
   height: 100px;
   z-index: 20;
 `;
+
+export const SendAgain = styled.button`
+  font-size: 20px;
+  letter-spacing: 0.56px;
+  color: #2b367e;
+  cursor: pointer;
+`;
+
+export const InputField = styled.input`
+  border-radius: 5px;
+  width: 100%;
+  height: 44px;
+  border: 1px solid #dadada;
+  padding: 10px;
+`;
+
+export const InputTextField = {
+  borderRadius: '5px',
+  width: '100%',
+  height: '138px',
+  border: '1px solid #dadada',
+  padding: '10px',
+  resize: 'none',
+};
+
+export const Error = styled.div`
+  color: #f7567c;
+  font-size: 15px;
+  margin-top: 15px;
+  margin-bottom: -15px;
+  -webkit-user-select: none;
+`;
+
+export const EditedContentLine = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+`;
+
+export const ChangePasswordButton = styled.button`
+  font-weight: 400;
+  font-size: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+`;
+
+export const ChangePasswordLabel = styled.div`
+  font-weight: 400;
+  font-size: 20px;
+  margin-right: 20px;
+  width: 279px;
+`;
