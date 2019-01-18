@@ -5,13 +5,16 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import { fetchLogin } from 'containers/AuthProvider/actions';
 import Button from 'components/Button';
 import Bg from 'images/signin/bg.svg';
+import { email, required, minValue8 } from 'utils/validation';
+import muiThemeable from 'material-ui/styles/muiThemeable';
+import TextField from '@material-ui/core/TextField';
+
 import {
   LoginWrapper,
   Background,
   LoginFormWrapper,
   InputWrapper,
   FormBlockWrapper,
-  Input,
   Description,
   AdvField,
   Title,
@@ -20,7 +23,31 @@ import {
   ControlLine,
   ForgetButton,
   InputComponent,
+  Error,
+  InputField,
 } from './styles';
+
+const renderField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning },
+}) => (
+  <InputField>
+    <TextField
+      {...input}
+      label={label}
+      floatingLabelText={label}
+      type={type}
+      fullWidth
+      margin="normal"
+      multiLine={false}
+    />
+    {touched &&
+      ((error && <Error>{error}</Error>) ||
+        (warning && <Error>{warning}</Error>))}
+  </InputField>
+);
 
 class LoginPage extends Component {
   constructor(props) {
@@ -57,23 +84,19 @@ class LoginPage extends Component {
             </Description>
           </FormBlockWrapper>
           <InputWrapper onSubmit={this.onSubmit}>
-            <Label htmlFor="email">E-mail</Label>
             <AdvField
-              id="email"
               name="email"
               type="text"
-              component="input"
-              style={Input}
-              placeholder="E-mail"
+              label="Email"
+              component={renderField}
+              validate={[email, required]}
             />
-            <Label htmlFor="password">Пароль</Label>
             <AdvField
-              id="password"
               name="password"
               type="password"
-              component="input"
-              style={Input}
-              placeholder="Пароль"
+              label="Пароль"
+              component={renderField}
+              validate={[required, minValue8]}
             />
             <ControlLine>
               <Label>
@@ -112,7 +135,9 @@ const Login = reduxForm({
   },
 })(LoginPage);
 
-export default connect(
+const Redux = connect(
   mapStateToProps,
   dispatch => ({ fetchLogin: fetchLogin.bindTo(dispatch) }),
 )(Login);
+
+export default muiThemeable()(Redux);

@@ -129,7 +129,7 @@ AccountPage.propTypes = {
   lose: PropTypes.number,
   nickname: PropTypes.string,
   description: PropTypes.string,
-  fetchLogout: PropTypes.func,
+  fetchLogout: PropTypes.object,
 };
 
 AccountPage.defaultProps = {

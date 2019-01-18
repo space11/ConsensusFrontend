@@ -61,6 +61,7 @@
   "dependencies": {
     "@aspnet/signalr": "^1.0.4",
     "@babel/polyfill": "7.0.0",
+    "@material-ui/core": "^3.9.0",
     "axios": "^0.18.0",
     "chalk": "^2.4.1",
     "compression": "1.7.3",
@@ -79,6 +80,7 @@
     "jwt-decode": "^2.2.0",
     "loadable-components": "2.2.3",
     "lodash": "4.17.11",
+    "material-ui": "^0.20.2",
     "minimist": "1.2.0",
     "openvidu-react": "^2.6.0",
     "prop-types": "15.6.2",

@@ -5,6 +5,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import injectSaga from 'utils/injectSaga';
 import { compose } from 'redux';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import authProviderSaga from 'containers/AuthProvider/sagas';
 
@@ -22,38 +24,40 @@ import Footer from 'components/Footer';
 import GlobalStyle from 'global-styles';
 
 const App = ({ locate = window.location.pathname }) => (
-  <ParallaxProvider>
-    <Helmet titleTemplate="%s - Консенсус" defaultTitle="Консенсус">
-      <meta
-        name="description"
-        content="Платформа для проведения онлайн-дебатов"
+  <MuiThemeProvider muiTheme={getMuiTheme()}>
+    <ParallaxProvider>
+      <Helmet titleTemplate="%s - Консенсус" defaultTitle="Консенсус">
+        <meta
+          name="description"
+          content="Платформа для проведения онлайн-дебатов"
+        />
+      </Helmet>
+      <Header
+        isBlue={
+          !locate.includes('/account') && locate !== '/404' && locate !== '/'
+        }
+        isLogin={locate === '/sign-in' || locate === '/register'}
+        isWhite={
+          locate === '/sign-in' &&
+          locate === '/create-debate' &&
+          locate === '/register'
+        }
       />
-    </Helmet>
-    <Header
-      isblue={
-        locate !== '/' && !locate.includes('/account') && locate !== '/404'
-      }
-      isLogin={locate === '/sign-in' || locate === '/register'}
-      isWhite={
-        locate !== '/sign-in' &&
-        !locate.includes('/account') &&
-        locate !== '/404'
-      }
-    />
-    <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route exact path="/account/:id" component={AccountPage} />
-      <Route exact path="/register" component={RegisterPage} />
-      <Route exact path="/room/:id" component={RoomPage} />
-      <Route exact path="/sign-in" component={SignInPage} />
-      <Route exact path="/create-debate" component={CreateDebatePage} />
-      <Route exact path="/testing" component={Testing} />
-      <Route path="/404" component={NotFoundPage} />
-      <Redirect to="/404" />
-    </Switch>
-    <Footer />
-    <GlobalStyle />
-  </ParallaxProvider>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/account/:id" component={AccountPage} />
+        <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/room/:id" component={RoomPage} />
+        <Route exact path="/sign-in" component={SignInPage} />
+        <Route exact path="/create-debate" component={CreateDebatePage} />
+        <Route exact path="/testing" component={Testing} />
+        <Route path="/404" component={NotFoundPage} />
+        <Redirect to="/404" />
+      </Switch>
+      <Footer />
+      <GlobalStyle />
+    </ParallaxProvider>
+  </MuiThemeProvider>
 );
 
 const withSaga = authProviderSaga.map(saga =>

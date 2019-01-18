@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as signalR from '@aspnet/signalr';
 import config from 'utils/config';
 import SmileIcon from 'images/chatblock/smile.svg';
 import Message from './components/message';
-import { fetchMessage } from './actions';
 import {
   InputFormWrapper,
   LowLineWrapper,
@@ -15,6 +13,7 @@ import {
   TitleBlock,
   Title,
   MessageBlock,
+  Inner,
 } from './styles';
 
 class Chat extends Component {
@@ -27,6 +26,21 @@ class Chat extends Component {
       message: '',
       hubConnection: null,
     };
+  }
+
+  renderChat() {
+    const { messages } = this.state;
+    const element = document.getElementsByClassName('chat');
+    element.scrollTop = element.scrollHeight;
+
+    return messages.map((mes, index) => (
+      <Message
+        key={`my key${index}`}
+        url={`/account/${mes.userId}`}
+        nickname={mes.userName}
+        text={mes.message}
+      />
+    ));
   }
 
   componentDidMount() {
@@ -66,38 +80,30 @@ class Chat extends Component {
           new Date(),
         )
         .catch(err => console.error(err));
-
-      // this.props.fetchMessage.start({text: this.state.message});
-
-      this.setState({ message: '' });
     }
+
+    this.setState({ message: '' });
   };
 
   render() {
-    const { messages } = this.state;
-    const { collapsed } = this.props;
+    console.log(localStorage);
+    const { message } = this.state;
     return (
       <ChatWrapper>
         <TitleBlock>
           <Title>Чат</Title>
         </TitleBlock>
-        <MessageBlock collapsed={collapsed} reversed>
-          {messages.map((message, index) => (
-            <Message
-              key={`my key${index}`}
-              url={`/account/${message.userId}`}
-              nickname={message.userName}
-              text={message.message}
-            />
-          ))}
+        <MessageBlock>
+          <Inner className="chat">{this.renderChat()}</Inner>
         </MessageBlock>
         <InputFormWrapper>
           <LowLineWrapper>
             <Input
               placeholder="Сообщение..."
               type="text"
-              value={messages}
+              value={message}
               onChange={e => this.setState({ message: e.target.value })}
+              autoFocus
             />
             <ButtonWrapper onClick={this.sendMessage}>
               <img src={SmileIcon} alt="" />
@@ -109,11 +115,7 @@ class Chat extends Component {
   }
 }
 
-Chat.propTypes = {
-  collapsed: PropTypes.bool,
-};
-
 export default connect(
   () => ({}),
-  dispatch => ({ fetchMessage: fetchMessage.bindTo(dispatch) }),
+  () => ({}),
 )(Chat);

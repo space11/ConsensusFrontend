@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { reduxForm, formValueSelector } from 'redux-form';
 import { fetchRegistration } from 'containers/AuthProvider/actions';
 import Button from 'components/Button';
+import TextField from '@material-ui/core/TextField';
+import {
+  email,
+  required,
+  minValue8,
+  maxLength15,
+  minValue5,
+} from 'utils/validation';
 import Bg from 'images/register/background.svg';
 import {
   LoginWrapper,
@@ -11,12 +19,34 @@ import {
   LoginFormWrapper,
   InputWrapper,
   FormBlockWrapper,
-  Input,
   Description,
+  AdvField,
   Title,
   Url,
-  Label,
+  Error,
+  InputField,
 } from './styles';
+
+const renderField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning },
+}) => (
+  <InputField>
+    <TextField
+      {...input}
+      label={label}
+      floatingLabelText={label}
+      type={type}
+      fullWidth
+      multiLine={false}
+    />
+    {touched &&
+      ((error && <Error>{error}</Error>) ||
+        (warning && <Error>{warning}</Error>))}
+  </InputField>
+);
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -52,32 +82,26 @@ class RegisterPage extends Component {
             </Description>
           </FormBlockWrapper>
           <InputWrapper>
-            <Label htmlFor="nickName">Логин</Label>
-            <Field
-              id="nickName"
+            <AdvField
               name="nickName"
+              label="Логин"
               type="text"
-              component="input"
-              style={Input}
-              placeholder="Логин"
+              component={renderField}
+              validate={[maxLength15, minValue5, required]}
             />
-            <Label htmlFor="email">E-mail</Label>
-            <Field
-              id="email"
+            <AdvField
               name="email"
               type="text"
-              component="input"
-              style={Input}
-              placeholder="E-mail"
+              label="Email"
+              component={renderField}
+              validate={[email, required]}
             />
-            <Label htmlFor="password">Пароль</Label>
-            <Field
-              id="password"
+            <AdvField
               name="password"
               type="password"
-              component="input"
-              style={Input}
-              placeholder="Пароль"
+              label="Пароль"
+              component={renderField}
+              validate={[required, minValue8]}
             />
           </InputWrapper>
           <Button

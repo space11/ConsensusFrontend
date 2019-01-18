@@ -14,31 +14,34 @@ import {
   LoginSigninButton,
 } from './styles';
 
-const Header = ({ isblue, isWhite, isLogin }) => (
+const Header = ({ isBlue, isWhite, isLogin, isRed }) => (
   <Wrapper>
     <HeaderWrapper>
-      <Logo to="/" isblue={isblue} isWhite={isWhite}>
+      <Logo to="/" isBlue={isBlue} isWhite={isWhite}>
         Консенсус
       </Logo>
       <NavigatorContainer>
-        <NavigationButton to="/popular" isblue={isblue}>
+        <NavigationButton to="/popular" isBlue={isBlue}>
           Популярные
         </NavigationButton>
-        <NavigationButton to="/themes" isblue={isblue}>
+        <NavigationButton to="/themes" isBlue={isBlue}>
           Тематика
         </NavigationButton>
-        <NavigationButton to="/follow" isblue={isblue}>
+        <NavigationButton to="/follow" isBlue={isBlue}>
           Подписки
         </NavigationButton>
-        <SearchButton isblue={isblue}>
-          <SearchIcon isblue={isblue} />
+        <SearchButton isBlue={isBlue}>
+          <SearchIcon isBlue={isBlue} />
         </SearchButton>
         {localStorage.id_token === undefined ? (
           <LoginSigninButton href="/sign-in" isLogin={isLogin}>
-            <Button text="Вход и регистрация" isTransparent />
+            <Button text="Вход и регистрация" isTransparent isRed={isRed} />
           </LoginSigninButton>
         ) : (
-          <LoginSigninButton href={`/account/${localStorage.userId}`} isLogin={isLogin}>
+          <LoginSigninButton
+            href={`/account/${localStorage.userId}`}
+            isLogin={isLogin}
+          >
             <ProfileWrapper src={ProfileImage} alt="" />
           </LoginSigninButton>
         )}
@@ -48,7 +51,10 @@ const Header = ({ isblue, isWhite, isLogin }) => (
 );
 
 Header.propTypes = {
-  isblue: PropTypes.bool,
+  isBlue: PropTypes.bool,
+  isWhite: PropTypes.bool,
+  isLogin: PropTypes.bool,
+  isRed: PropTypes.bool,
 };
 
 export default Header;

@@ -9,7 +9,12 @@ export const ButtonWrapper = styled.button`
   min-height: ${props => (props.isTransparent ? '45px' : '54px')};
   max-width: ${props => (props.isTransparent ? '245px' : '268px')};
   padding: 10px 20px;
-  background: ${props => (props.isTransparent ? 'transparent' : '#f7567c')};
+  background: ${props =>
+    props.isNotValid
+      ? '#ffc5d4'
+      : props.isTransparent
+        ? 'transparent'
+        : '#f7567c'};
   justify-content: center;
   align-items: center;
   box-shadow: 0px 0px 5px rgba(247, 86, 124, 0.4);

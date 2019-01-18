@@ -53,23 +53,32 @@ export const TitleBlock = styled.div`
   align-items: center;
   padding: 0 20px;
   border-radius: 5px 5px 0 0;
+  margin-bottom: 10px;
 `;
 
 export const Title = styled.h1`
   -webkit-user-select: none;
   font-size: 25px;
   letter-spacing: 0.338727px;
-  color: #000000;
+  color: #000;
   font-weight: normal;
   line-height: normal;
 `;
 
-export const MessageBlock = styled.ol`
+export const MessageBlock = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
   height: 514px;
   padding: 0 20px;
-  list-style: none;
-  overflow-y: scroll;
   word-wrap: break-word;
   overflow-x: hidden;
-  min-width: 100%;
+  overflow-y: scroll;
+  width: 100%;
+`;
+
+export const Inner = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
 `;

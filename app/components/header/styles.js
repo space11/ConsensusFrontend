@@ -23,7 +23,7 @@ export const Logo = styled(NavLink)`
   font-size: 36px;
   letter-spacing: 0.25px;
   font-weight: 500;
-  color: ${props => (props.isblue && props.isWhite ? '#474D90' : '#fff')};
+  color: ${props => (props.isBlue && props.isWhite ? '#474D90' : '#fff')};
   text-decoration: none;
   transition: 0.3s;
   float: left;
@@ -40,7 +40,7 @@ export const NavigatorContainer = styled.div`
 export const NavigationButton = styled(NavLink)`
   font-size: 20px;
   font-weight: 400;
-  color: ${props => (props.isblue ? '#474D90' : '#fff')};
+  color: ${props => (props.isBlue ? '#474D90' : '#fff')};
   text-decoration: none;
   justify-content: center;
   letter-spacing: 1.5px;
@@ -48,7 +48,7 @@ export const NavigationButton = styled(NavLink)`
 `;
 
 export const SearchButton = styled.button`
-  color: ${props => (props.isblue ? '#474D90' : '#fff')};
+  color: ${props => (props.isBlue ? '#474D90' : '#fff')};
   cursor: pointer;
 `;
 

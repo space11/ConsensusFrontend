@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { Field } from 'redux-form';
 
 export const LoginWrapper = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ export const LoginFormWrapper = styled.div`
 export const InputWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  margin-bottom: 90px;
+  margin-bottom: 80px;
 `;
 
 export const FormBlockWrapper = styled(InputWrapper)`
@@ -35,18 +36,16 @@ export const FormBlockWrapper = styled(InputWrapper)`
   margin: 145px 0 90px 0;
 `;
 
-export const Input = {
-  borderBottom: '1px solid #474D90',
-  background: 'transparent',
-  height: '3rem',
-  marginBottom: '1.5rem',
-  width: '100%',
-  zIndex: '3',
-};
-
 export const Description = styled.div`
   font-weight: 300;
   width: 90%;
+`;
+
+export const AdvField = styled(Field)`
+  transition: 0.3s;
+  &:focus {
+    padding-left: 10px;
+  }
 `;
 
 export const Title = styled.h1`
@@ -62,4 +61,31 @@ export const Url = styled(NavLink)`
 export const Label = styled.label`
   -webkit-user-select: none;
   font-size: 0.9rem;
+`;
+
+export const ControlLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin-bottom: 80px;
+`;
+
+export const ForgetButton = styled.button`
+  color: #f7567c;
+`;
+
+export const InputComponent = styled.input`
+  margin-right: 10px;
+`;
+
+export const Error = styled.div`
+  color: #f7567c;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: -25px;
+  -webkit-user-select: none;
+`;
+
+export const InputField = styled.div`
+  margin: 25px 0;
 `;

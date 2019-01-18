@@ -27,7 +27,6 @@ export const LoginFormWrapper = styled.div`
 export const InputWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  margin-bottom: 90px;
 `;
 
 export const FormBlockWrapper = styled(InputWrapper)`
@@ -35,15 +34,6 @@ export const FormBlockWrapper = styled(InputWrapper)`
   width: 100%;
   margin: 145px 0 90px 0;
 `;
-
-export const Input = {
-  borderBottom: '1px solid #474D90',
-  background: 'transparent',
-  height: '3rem',
-  marginBottom: '1.5rem',
-  width: '100%',
-  zIndex: '3',
-};
 
 export const Description = styled.div`
   font-weight: 300;
@@ -76,6 +66,7 @@ export const ControlLine = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 15px;
+  margin-bottom: 80px;
 `;
 
 export const ForgetButton = styled.button`
@@ -84,4 +75,16 @@ export const ForgetButton = styled.button`
 
 export const InputComponent = styled.input`
   margin-right: 10px;
+`;
+
+export const Error = styled.div`
+  color: #f7567c;
+  font-size: 15px;
+  margin-top: 15px;
+  margin-bottom: -15px;
+  -webkit-user-select: none;
+`;
+
+export const InputField = styled.div`
+  margin-bottom: 30px;
 `;
