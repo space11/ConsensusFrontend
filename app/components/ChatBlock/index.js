@@ -85,6 +85,12 @@ class Chat extends Component {
     this.setState({ message: '' });
   };
 
+  handleKeyPress = target => {
+    if (target.charCode === 13) {
+      this.sendMessage();
+    }
+  };
+
   render() {
     console.log(localStorage);
     const { message } = this.state;
@@ -103,6 +109,7 @@ class Chat extends Component {
               type="text"
               value={message}
               onChange={e => this.setState({ message: e.target.value })}
+              onKeyPress={this.handleKeyPress}
               autoFocus
             />
             <ButtonWrapper onClick={this.sendMessage}>
