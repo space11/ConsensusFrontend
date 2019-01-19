@@ -110,6 +110,8 @@ export const ContentLine = styled.div`
 `;
 
 export const Label = styled.div`
+  display: flex;
+  align-items: center;
   font-weight: 400;
   font-size: 20px;
   margin-right: 20px;
@@ -157,6 +159,7 @@ export const RocketWrapper = styled.div`
 `;
 
 export const RocketComponent = styled.img`
+  -webkit-user-select: none;
   position: absolute;
   width: 100px;
   height: 100px;
@@ -213,4 +216,9 @@ export const ChangePasswordLabel = styled.div`
   font-size: 20px;
   margin-right: 20px;
   width: 279px;
+`;
+
+export const StoryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

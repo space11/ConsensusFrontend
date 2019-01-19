@@ -35,6 +35,7 @@ import {
   InputTextField,
   ChangePasswordButton,
   ChangePasswordLabel,
+  StoryWrapper,
 } from './styles';
 
 const renderField = ({ input, type, meta: { touched, error, warning } }) => (
@@ -181,7 +182,19 @@ class AccountPage extends Component {
               <Content>{desc}</Content>
             </ContentLine>
             <ContentLine>
-              <Label>История:</Label>
+              <Label style={{ cursor: 'pointer' }}>
+                История:{' '}
+                <img
+                  src={Arrow}
+                  alt=""
+                  style={{ transform: 'rotate(180deg)' }}
+                />
+              </Label>
+              <StoryWrapper>
+                <Content>03.01.19 18:00 Победа</Content>
+                <Content>03.01.19 18:00 Победа</Content>
+                <Content>03.01.19 18:00 Поражение</Content>
+              </StoryWrapper>
             </ContentLine>
           </ContentBlock>
         )}

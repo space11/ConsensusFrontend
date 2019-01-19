@@ -64,3 +64,28 @@ export const ProfileWrapper = styled.img`
 export const LoginSigninButton = styled.a`
   display: ${props => (props.isLogin ? 'none' : 'flex')};
 `;
+
+export const NotificationWrapper = styled.button`
+  cursor: pointer;
+  position: relative;
+  z-index: 9;
+`;
+
+export const NotificationRedRound = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7567c;
+  border-radius: 100px;
+  height: 17px;
+  width: 17px;
+  position: absolute;
+  top: -3px;
+  right: -6px;
+  z-index: 10;
+  border: 2px solid #232754;
+  text-align: center;
+  color: #fff;
+  font-size: 7px;
+  font-weight: bold;
+`;

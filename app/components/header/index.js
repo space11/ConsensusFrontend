@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SearchIcon from 'images/header/searchIcon';
 import Button from 'components/Button';
 import ProfileImage from 'containers/Account/1.jpg';
+import Notification from 'images/header/notifications.svg';
 import {
   Wrapper,
   HeaderWrapper,
@@ -12,6 +13,8 @@ import {
   SearchButton,
   ProfileWrapper,
   LoginSigninButton,
+  NotificationWrapper,
+  NotificationRedRound,
 } from './styles';
 
 const Header = ({ isBlue, isWhite, isLogin, isRed }) => (
@@ -30,6 +33,10 @@ const Header = ({ isBlue, isWhite, isLogin, isRed }) => (
         <NavigationButton to="/follow" isBlue={isBlue}>
           Подписки
         </NavigationButton>
+        <NotificationWrapper>
+          <NotificationRedRound />
+          <img src={Notification} alt="" />
+        </NotificationWrapper>
         <SearchButton isBlue={isBlue}>
           <SearchIcon isBlue={isBlue} />
         </SearchButton>
