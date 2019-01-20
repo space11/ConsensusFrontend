@@ -94,6 +94,8 @@ class AccountPage extends Component {
       lose,
       desc,
     } = this.props;
+    const token = localStorage.userId;
+    const id = this.props.match.params.id;
     return (
       <AccountPageWrapper>
         <BackgroundComponent src={Background} alt="" />
@@ -200,7 +202,7 @@ class AccountPage extends Component {
             </ContentLine>
           </ContentBlock>
         )}
-        <ButtonLine>
+        { token === id ? <ButtonLine>
           <Button
             text={edited ? 'Сохранить' : 'Редактировать'}
             w="217px"
@@ -224,7 +226,15 @@ class AccountPage extends Component {
               onClick={this.onLogout}
             />
           )}
-        </ButtonLine>
+        </ButtonLine> : <ButtonLine>
+          <Button
+            text="Пригласить на дебаты"
+            w="268px"
+            right="40px"
+            onClick={() => ({})}
+          />
+        </ButtonLine> 
+        }
       </AccountPageWrapper>
     );
   }
