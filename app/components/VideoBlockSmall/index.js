@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LiveIcon from 'images/videoblock/liveIcon';
+import LiveIcon from 'images/videoblock/liveIcon.svg';
 import {
   VideoBlockWrapper,
   VideoBlockTitle,
   VideoBlockNames,
   VideoBlockLowWrapper,
-  VideoBlockTheme,
-  VideoBlockViewers,
+  VideoBlockText,
   VideoBlockImage,
   VideoBlockLiveMark,
+  ViedoBlockContent,
 } from './styles';
 
 const VideoBlockSmall = ({
@@ -23,18 +23,16 @@ const VideoBlockSmall = ({
   white,
 }) => (
   <VideoBlockWrapper to={url} white={white}>
-    <VideoBlockTitle>{title}</VideoBlockTitle>
-    <VideoBlockLiveMark>
-      <VideoBlockImage src={image} alt="" />
-      <div style={{ display: live ? 'block' : 'none' }}>
-        <LiveIcon />
-      </div>
-    </VideoBlockLiveMark>
-    <VideoBlockNames>{names}</VideoBlockNames>
-    <VideoBlockLowWrapper>
-      <VideoBlockTheme>{theme}</VideoBlockTheme>
-      <VideoBlockViewers>{viewers}</VideoBlockViewers>
-    </VideoBlockLowWrapper>
+    {live ? <VideoBlockLiveMark src={LiveIcon} alt="" /> : ''}
+    <VideoBlockImage src={image} alt="" />
+    <ViedoBlockContent>
+      <VideoBlockTitle>{title}</VideoBlockTitle>
+      <VideoBlockNames>{names}</VideoBlockNames>
+      <VideoBlockLowWrapper>
+        <VideoBlockText>{theme}</VideoBlockText>
+        <VideoBlockText>{viewers}</VideoBlockText>
+      </VideoBlockLowWrapper>
+    </ViedoBlockContent>
   </VideoBlockWrapper>
 );
 VideoBlockSmall.propTypes = {

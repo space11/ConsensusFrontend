@@ -9,18 +9,17 @@ import { HomePageWrapper, InfoBannerStyle } from './styles';
 const HomePage = () => (
   <HomePageWrapper>
     <Banner />
-    <Space size={10} />
+    <Space />
     <VideoBlock live title="Сейчас в эфире" />
+    <Space />
     <InfoBannerStyle>
-      <Space size={10} />
       <InfoBanner />
     </InfoBannerStyle>
-    <Space size={10} />
+    <Space />
     <VideoBlock title="Прошедшие дебаты" />
-    <Space size={10} />
+    <Space />
     <InfoBannerStyle>
       <FaqBlock />
-      <Space size={10} />
     </InfoBannerStyle>
   </HomePageWrapper>
 );

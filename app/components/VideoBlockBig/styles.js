@@ -3,58 +3,57 @@ import { NavLink } from 'react-router-dom';
 
 export const VideoBlockWrapper = styled(NavLink)`
   display: flex;
+  position: relative;
   flex-direction: column;
   text-decoration: none;
   color: #000;
-  min-width: 300px;
-  width: 30%;
-  height: 300px;
-  background: #fafafa;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.16);
-  border-radius: 7px;
+  width: 300px;
+  background: #fff;
   transition: 0.3s;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  @media screen and (max-width: 654px) {
-    width: 100%;
-  }
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
 `;
 
 export const VideoBlockTitle = styled.div`
   display: -webkit-box;
-  max-height: 3.5rem;
-  -webkit-box-orient: vertical;
+  max-height: 52px;
   overflow: hidden;
+  -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   white-space: normal;
   -webkit-line-clamp: 2;
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 1.6rem;
-  margin: 10px;
+  font-size: 22px;
+  line-height: 1.3;
+  letter-spacing: 0.361309px;
+  margin-bottom: 10px;
+`;
+
+export const VideoBlockContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
 `;
 
 export const VideoBlockNames = styled.div`
-  font-size: 1.2em;
   font-weight: 300;
-  margin: 10px;
+  font-size: 18px;
+  letter-spacing: 0.6624px;
+  margin-bottom: 18px;
+  height: 22px;
 `;
 
 export const VideoBlockLowWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-size: 0.9em;
-  font-weight: 300;
+  color: #4a4a4a;
 `;
 
-export const VideoBlockTheme = styled.div`
-  letter-spacing: 0.5px;
-  margin: 10px;
-  margin-top: 0;
+export const VideoBlockLowText = styled.div`
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.270982px;
+  height: 17px;
 `;
 
 export const VideoBlockViewers = styled.div`
@@ -65,13 +64,14 @@ export const VideoBlockViewers = styled.div`
 
 export const VideoBlockImage = styled.img`
   position: relative;
-  margin-bottom: 10px;
   width: 100%;
   height: 151px;
+  border-radius: 5px 5px 2px 2px;
 `;
 
-export const VideoBlockLiveMark = styled.div`
-  display: flex;
-  justify-content: center;
-  position: relative;
+export const VideoBlockLiveMark = styled.img`
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
 `;

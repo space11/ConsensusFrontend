@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Placeholder from 'images/placeholders/1.png';
 import VideoBlockBig from '../VideoBlockBig';
 import VideoBlockSmall from '../VideoBlockSmall';
-import Space from '../Space';
 import {
   VideoBlockWrapper,
   VideoBlockTitle,
@@ -19,7 +18,6 @@ const VideoBlock = ({ title, live }) => (
       <VideoBlockTitle>{title}</VideoBlockTitle>
       <VideoBlockMoreButton>Посмотреть еще</VideoBlockMoreButton>
     </VideoBlockLine>
-    <Space size={4} />
     <VideoBlockBigWrapper>
       <VideoBlockBig
         url="/"
@@ -49,7 +47,6 @@ const VideoBlock = ({ title, live }) => (
         image={Placeholder}
       />
     </VideoBlockBigWrapper>
-    <Space size={2} />
     <VideoBlockSmallWrapper>
       <VideoBlockSmall
         url="/"
