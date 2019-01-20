@@ -37,7 +37,7 @@ export const NavigatorContainer = styled.div`
   align-items: center;
   width: ${props => (props.isLogin ? '135px' : '295px')};
   justify-content: space-between;
-  margin: 0 30px;
+  margin: 0 0 0 30px;
 `;
 
 export const SearchButton = styled.button`

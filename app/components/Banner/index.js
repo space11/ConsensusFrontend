@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import AlienRed from 'images/banner/alienRed';
-import AlienYellow from 'images/banner/alienYellow';
-import Rocket from 'images/banner/rocket';
+import AlienRed from 'images/banner/alienRed.svg';
+import AlienYellow from 'images/banner/alienYellow.svg';
+import Rocket from 'images/banner/rocket.svg';
+import Background from 'images/banner/background.svg';
 import Button from '../Button';
-import Space from '../Space';
 import {
   BannerWrapper,
   BannerDescriptionWrapper,
@@ -12,7 +12,9 @@ import {
   AliensWrapper,
   RedAlienWrapper,
   YellowAlienWrapper,
-  ActionWrapper,
+  BannerImage,
+  TextWrapper,
+  BannerContentWrapper,
 } from './styles';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -20,34 +22,36 @@ class Banner extends PureComponent {
   render() {
     return (
       <BannerWrapper>
-        <BannerDescriptionWrapper>
-          <div>
-            <BannerDescriptionLine>
-              Первая в мире платформа
-            </BannerDescriptionLine>
-            <BannerDescriptionLine>
-              для проведения онлайн-дебатов
-            </BannerDescriptionLine>
-            <ActionWrapper>
-              <Button
-                text="Организовать дебаты"
-                onClick={() => (window.location.href = '/create-debate')}
-              />
-            </ActionWrapper>
-          </div>
-          <Space size={2} />
+        <BannerImage src={Background} alt="" />
+        <BannerContentWrapper>
+          <BannerDescriptionWrapper>
+            <TextWrapper>
+              <BannerDescriptionLine>
+                Первая в мире платформа
+              </BannerDescriptionLine>
+              <BannerDescriptionLine>
+                для проведения онлайн-дебатов
+              </BannerDescriptionLine>
+            </TextWrapper>
+            <Button
+              text="Организовать дебаты"
+              onClick={() => {
+                window.location.href = '/create-debate';
+              }}
+            />
+          </BannerDescriptionWrapper>
           <AliensWrapper>
             <RedAlienWrapper>
-              <AlienRed />
+              <img src={AlienRed} alt="" />
             </RedAlienWrapper>
             <RocketWrapper>
-              <Rocket />
+              <img src={Rocket} alt="" />
             </RocketWrapper>
             <YellowAlienWrapper>
-              <AlienYellow />
+              <img src={AlienYellow} alt="" />
             </YellowAlienWrapper>
           </AliensWrapper>
-        </BannerDescriptionWrapper>
+        </BannerContentWrapper>
       </BannerWrapper>
     );
   }
