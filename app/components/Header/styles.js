@@ -1,5 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { bounceIn } from 'react-animations';
+
+const bounceAnimation = keyframes`${bounceIn}`;
 
 export const Wrapper = styled.div`
   position: relative;
@@ -32,19 +35,9 @@ export const Logo = styled(NavLink)`
 export const NavigatorContainer = styled.div`
   display: flex;
   align-items: center;
-  min-width: 700px;
+  width: ${props => (props.isLogin ? '135px' : '295px')};
   justify-content: space-between;
   margin: 0 30px;
-`;
-
-export const NavigationButton = styled(NavLink)`
-  font-size: 20px;
-  font-weight: 400;
-  color: ${props => (props.isBlue ? '#474D90' : '#fff')};
-  text-decoration: none;
-  justify-content: center;
-  letter-spacing: 1.5px;
-  transition: 0.3s;
 `;
 
 export const SearchButton = styled.button`
@@ -65,10 +58,17 @@ export const LoginSigninButton = styled.a`
   display: ${props => (props.isLogin ? 'none' : 'flex')};
 `;
 
-export const NotificationWrapper = styled.button`
-  cursor: pointer;
+export const NotificationBellWrapper = styled.button`
   position: relative;
   z-index: 9;
+`;
+
+export const NotificationTransparentWrapper = styled.div`
+  position: absolute;
+  height: 550px;
+  width: 418px;
+  top: -30px;
+  right: 0;
 `;
 
 export const NotificationRedRound = styled.div`
@@ -88,4 +88,83 @@ export const NotificationRedRound = styled.div`
   color: #fff;
   font-size: 7px;
   font-weight: bold;
+`;
+
+export const NotificationWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 418px;
+  top: 82px;
+  right: 188px;
+  background: #fff;
+  border: 1px solid #dadada;
+  border-radius: 5px 2px 5px 5px;
+  z-index: 9999999;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.16);
+  transition: 0.8s;
+  animation: 0.3s ${props => (props.hover ? bounceAnimation : '')};
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -26px;
+    border: 13px solid transparent;
+    border-bottom: 13px solid #fff;
+  }
+
+  &::before {
+    border: 14px solid transparent;
+    border-bottom: 14px solid #dadada;
+    top: -28px;
+    right: -1px;
+  }
+`;
+
+export const NotificationContainer = styled.div`
+  z-index: 5;
+`;
+
+export const NotificationInvitationWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid #dadada;
+  padding: 16px 20px;
+  z-index: 10;
+`;
+
+export const NotificationInvitationDate = styled.div`
+  font-weight: 300;
+  font-size: 10px;
+  color: #9b9b9b;
+  -webkit-user-select: none;
+  margin-bottom: 5px;
+`;
+
+export const NotificationInvitationNickname = styled(NavLink)`
+  font-weight: 300;
+  font-size: 16px;
+  color: #f7567c;
+  width: 130px;
+`;
+
+export const NotificationInvitationText = styled.div`
+  font-weight: 300;
+  font-size: 16px;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+`;
+
+export const NotificationInvitationDatePlan = styled.span`
+  font-size: 16px;
+  font-weight: 400;
+`;
+
+export const NotificationInvitationButtonWrapper = styled.div`
+  display: flex;
+  height: 27px;
+  justify-content: flex-end;
 `;

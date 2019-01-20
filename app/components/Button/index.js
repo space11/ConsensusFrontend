@@ -10,6 +10,7 @@ const Button = ({
   text,
   isRed,
   w,
+  h,
   right,
   isNotValid,
 }) => (
@@ -18,7 +19,8 @@ const Button = ({
     type={type}
     onClick={onClick}
     isRed={isRed}
-    style={{ width: w, marginRight: right }}
+    h={h}
+    style={{ width: w, height: h, marginRight: right }}
     isValid={isNotValid}
   >
     <span style={{ display: 'inline-block' }}>{text}</span>
@@ -30,6 +32,7 @@ Button.propTypes = {
   isRed: PropTypes.bool,
   isNotValid: PropTypes.bool,
   w: PropTypes.string,
+  h: PropTypes.string,
   right: PropTypes.string,
   type: PropTypes.string,
   text: PropTypes.string,

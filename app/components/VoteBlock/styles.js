@@ -6,7 +6,6 @@ export const VoteBlockWrapper = styled.div`
   background: #303565;
   border-radius: 5px;
   width: 388px;
-  height: 194px;
   margin-top: 30px;
   padding: 20px;
 `;

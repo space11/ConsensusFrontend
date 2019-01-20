@@ -56,6 +56,8 @@ const renderTextField = ({ input, meta: { touched, error, warning } }) => (
   </div>
 );
 
+/* eslint-disable */
+
 class AccountPage extends Component {
   constructor(props) {
     super(props);
@@ -218,6 +220,7 @@ class AccountPage extends Component {
               isTransparent
               isRed
               w="217px"
+              h="54px"
               onClick={this.onLogout}
             />
           )}
