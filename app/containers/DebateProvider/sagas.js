@@ -19,6 +19,7 @@ export function* createDebate() {
 
 export function* createSession() {
   try {
+    yield take(actions.fetchCreatingSession.types.start);
     const { id } = yield call(sendCreatingSession);
     const data = {
       session: id,

@@ -6,7 +6,7 @@ import { fetchRegistration } from 'containers/AuthProvider/actions';
 import Button from 'components/Button';
 import TextField from '@material-ui/core/TextField';
 import {
-  email,
+  eMail,
   required,
   minValue8,
   maxLength15,
@@ -41,6 +41,7 @@ const renderField = ({
       type={type}
       fullWidth
       multiLine={false}
+      inputProps={{ style: { fontSize: 22 } }}
     />
     {touched &&
       ((error && <Error>{error}</Error>) ||
@@ -94,7 +95,7 @@ class RegisterPage extends Component {
               type="text"
               label="Email"
               component={renderField}
-              validate={[email, required]}
+              validate={[eMail, required]}
             />
             <AdvField
               name="password"

@@ -61,6 +61,7 @@ export const LoginSigninButton = styled.a`
 export const NotificationBellWrapper = styled.button`
   position: relative;
   z-index: 9;
+  cursor: pointer;
 `;
 
 export const NotificationTransparentWrapper = styled.div`
@@ -83,7 +84,7 @@ export const NotificationRedRound = styled.div`
   top: -3px;
   right: -6px;
   z-index: 10;
-  border: 2px solid #232754;
+  border: 2px solid ${props => (props.isBlue ? '#fff' : '#232754')};
   text-align: center;
   color: #fff;
   font-size: 7px;

@@ -36,7 +36,6 @@ class Header extends Component {
   render() {
     const { hover } = this.state;
     const { isBlue, isWhite, isLogin, isRed } = this.props;
-    console.log(isBlue);
     const date = new Date();
     return (
       <Wrapper>
@@ -82,7 +81,7 @@ class Header extends Component {
               )}
               {localStorage.id_token !== undefined ? (
                 <NotificationBellWrapper>
-                  <NotificationRedRound />
+                  <NotificationRedRound isBlue={isBlue} />
                   <Notification isBlue={isBlue} />
                 </NotificationBellWrapper>
               ) : (

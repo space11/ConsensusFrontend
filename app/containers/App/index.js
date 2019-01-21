@@ -16,6 +16,7 @@ import CreateDebatePage from 'containers/CreateDebate';
 import AccountPage from 'containers/Account';
 import RegisterPage from 'containers/Register';
 import RoomPage from 'containers/Room';
+import ForgotPage from 'containers/ForgotPassword';
 import NotFoundPage from 'containers/NotFound';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -45,6 +46,7 @@ const App = ({ locate = window.location.pathname }) => (
       <Route exact path="/room/:id" component={RoomPage} />
       <Route exact path="/sign-in" component={SignInPage} />
       <Route exact path="/create-debate" component={CreateDebatePage} />
+      <Route exact path="/forgot" component={ForgotPage} />
       <Route exact path="/testing" component={Testing} />
       <Route path="/404" component={NotFoundPage} />
       <Redirect to="/404" />

@@ -4,9 +4,9 @@ import { PropTypes } from 'prop-types';
 import { reduxForm, formValueSelector } from 'redux-form';
 import { fetchLogin } from 'containers/AuthProvider/actions';
 import Button from 'components/Button';
+import { NavLink } from 'react-router-dom';
 import Bg from 'images/signin/bg.svg';
-import { email, required, minValue8 } from 'utils/validation';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import { eMail, required, minValue8 } from 'utils/validation';
 import TextField from '@material-ui/core/TextField';
 import {
   LoginWrapper,
@@ -20,7 +20,6 @@ import {
   Url,
   Label,
   ControlLine,
-  ForgetButton,
   InputComponent,
   Error,
   InputField,
@@ -41,6 +40,7 @@ const renderField = ({
       fullWidth
       margin="normal"
       multiLine={false}
+      inputProps={{ style: { fontSize: 22 } }}
     />
     {touched &&
       ((error && <Error>{error}</Error>) ||
@@ -88,7 +88,7 @@ class LoginPage extends Component {
               type="text"
               label="Email"
               component={renderField}
-              validate={[email, required]}
+              validate={[eMail, required]}
             />
             <AdvField
               name="password"
@@ -102,7 +102,7 @@ class LoginPage extends Component {
                 <InputComponent type="checkbox" />
                 <Label>Запомнить меня</Label>
               </Label>
-              <ForgetButton>Забыли пароль?</ForgetButton>
+              <NavLink to="/forgot">Забыли пароль?</NavLink>
             </ControlLine>
           </InputWrapper>
           <Button type="submit" onClick={this.onSubmit} text="Войти" />
