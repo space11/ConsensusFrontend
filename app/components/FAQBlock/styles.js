@@ -7,31 +7,32 @@ export const FaqBlockWrapper = styled.div`
 `;
 
 export const AnchorWrapper = styled.div`
-  position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   height: 857px;
   width: 100%;
+  margin-bottom: 33px;
+  z-index: 1;
 `;
 
 export const HumanWrapper = styled.div`
-  position: absolute;
-  top: 113px;
+  margin-top: 113px;
   right: 0;
 `;
 
 export const GrayWrapper = styled.div`
-  position: absolute;
-  bottom: 33px;
-  left: 22px;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 33px;
+  margin-left: 22px;
 `;
 
 export const BackgroundWrapper = styled.img`
+  z-index: 0;
   width: 100%;
 `;
 
 export const ContentWrapper = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
   top: 122px;
@@ -71,4 +72,19 @@ export const LinesWrapper = styled.div`
   flex-direction: column;
   height: 257px;
   justify-content: space-between;
+`;
+
+export const FooterWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+`;
+
+export const MainContentWrapper = styled.div`
+  position: absolute;
+  width: 100%;
 `;
