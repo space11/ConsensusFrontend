@@ -67,7 +67,7 @@ export const NotificationTransparentWrapper = styled.div`
   position: absolute;
   height: 550px;
   width: 418px;
-  top: -30px;
+  top: -40px;
   right: 0;
 `;
 

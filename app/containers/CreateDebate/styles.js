@@ -17,7 +17,7 @@ export const Background = styled.img`
 export const CreateDebateFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  z-index: 99999;
+  z-index: 999;
   height: 100%;
   margin-left: 90px;
   margin-top: 182px;

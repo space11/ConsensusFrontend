@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SearchIcon from 'images/header/searchIcon';
 import Button from 'components/Button';
 import ProfileImage from 'containers/Account/1.jpg';
-import Notification from 'images/header/notifications.svg';
+import { Notification } from 'images/header/notifications';
 import {
   Wrapper,
   HeaderWrapper,
@@ -25,7 +25,7 @@ import {
   InvitationBlockNow,
 } from './components/index';
 
-class Header extends React.Component {
+class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,6 +36,7 @@ class Header extends React.Component {
   render() {
     const { hover } = this.state;
     const { isBlue, isWhite, isLogin, isRed } = this.props;
+    console.log(isBlue);
     const date = new Date();
     return (
       <Wrapper>
@@ -82,7 +83,7 @@ class Header extends React.Component {
               {localStorage.id_token !== undefined ? (
                 <NotificationBellWrapper>
                   <NotificationRedRound />
-                  <img src={Notification} alt="" />
+                  <Notification isBlue={isBlue} />
                 </NotificationBellWrapper>
               ) : (
                 ''
