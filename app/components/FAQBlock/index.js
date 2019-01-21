@@ -1,66 +1,63 @@
 import React from 'react';
-import Background from 'images/faqbanner/background';
-import AlienHuman from 'images/faqbanner/alienHuman';
-import AlienGrey from 'images/faqbanner/alienGrey';
-import QuestionCell from '../QuestionCell';
-import {
-  queone,
-  quetwo,
-  quethree,
-  quefour,
-  quefive,
-  quesix,
-  description,
-} from './messages';
+import Background from 'images/faqbanner/background.svg';
+import AlienHuman from 'images/faqbanner/alienHuman.svg';
+import AlienGray from 'images/faqbanner/alienGray.svg';
+import { FaqLine } from './components/line';
+import Button from '../Button';
 import {
   FaqBlockWrapper,
-  FaqBlockGreyWrapper,
-  FaqBlockHuman,
-  FaqBlockContent,
-  FaqBlockQuestionsTitle,
-  FaqBlockQuestionsDescription,
-  FaqBlockQuestionsLink,
-  FaqBlockQuestionsGrid,
-  FaqBlockQuestionsGridSide,
+  HumanWrapper,
+  GrayWrapper,
+  AnchorWrapper,
+  BackgroundWrapper,
+  ContentWrapper,
+  Title,
+  Description,
+  Link,
+  LinePairWrapper,
+  LinesWrapper,
 } from './styles';
 
 const FaqBlock = () => (
   <FaqBlockWrapper>
-    <Background />
-    <FaqBlockGreyWrapper>
-      <AlienGrey />
-    </FaqBlockGreyWrapper>
-    <FaqBlockContent>
-      <FaqBlockQuestionsTitle>{description.title}</FaqBlockQuestionsTitle>
-      <FaqBlockQuestionsDescription>
-        {description.text}
-      </FaqBlockQuestionsDescription>
-      <FaqBlockQuestionsLink>обращаться к нам.</FaqBlockQuestionsLink>
-      <FaqBlockQuestionsGrid>
-        <FaqBlockQuestionsGridSide>
-          <QuestionCell title={queone.title} description={queone.description} />
-          <QuestionCell title={quetwo.title} description={quetwo.description} />
-          <QuestionCell
-            title={quethree.title}
-            description={quethree.description}
-          />
-        </FaqBlockQuestionsGridSide>
-        <FaqBlockQuestionsGridSide isRight>
-          <QuestionCell
-            title={quefour.title}
-            description={quefour.description}
-          />
-          <QuestionCell
-            title={quefive.title}
-            description={quefive.description}
-          />
-          <QuestionCell title={quesix.title} description={quesix.description} />
-        </FaqBlockQuestionsGridSide>
-      </FaqBlockQuestionsGrid>
-    </FaqBlockContent>
-    <FaqBlockHuman>
-      <AlienHuman />
-    </FaqBlockHuman>
+    <AnchorWrapper>
+      <HumanWrapper>
+        <img src={AlienHuman} alt="" />
+      </HumanWrapper>
+      <GrayWrapper>
+        <img src={AlienGray} alt="" />
+      </GrayWrapper>
+      <Button
+        text="Организовать дебаты"
+        onClick={() => {
+          window.location.href = '/create-debate';
+        }}
+        style={{ alignSelf: 'flex-end' }}
+      />
+      <ContentWrapper>
+        <Title>Часто задаваемые вопросы</Title>
+        <Description>
+          Мы уверены, что у вас есть вопросы. Ниже приведен список наиболее
+          часто задаваемых вопросов. Если вы не видите свой вопрос, пожалуйста,
+          не стесняйтесь <Link to="/contacts">обращаться к нам</Link>
+        </Description>
+        <LinesWrapper>
+          <LinePairWrapper>
+            <FaqLine title="Как запустить стрим?" />
+            <FaqLine title="Как запустить стрим?" />
+          </LinePairWrapper>
+          <LinePairWrapper>
+            <FaqLine title="Как запустить стрим?" />
+            <FaqLine title="Как запустить стрим?" />
+          </LinePairWrapper>
+          <LinePairWrapper>
+            <FaqLine title="Как запустить стрим?" />
+            <FaqLine title="Как запустить стрим?" />
+          </LinePairWrapper>
+        </LinesWrapper>
+      </ContentWrapper>
+    </AnchorWrapper>
+    <BackgroundWrapper src={Background} alt="" />
   </FaqBlockWrapper>
 );
 

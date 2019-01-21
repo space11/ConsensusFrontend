@@ -1,8 +1,13 @@
 import React from 'react';
-import Banner from 'images/info/background';
+import Banner from 'images/info/background.svg';
 import AlienOctopus from 'images/info/alienOctopus.svg';
 import AlienSad from 'images/info/alienSad.svg';
-import { InfoWrapper, AlienWrapper, AlienWrapperBottom } from './styles';
+import {
+  InfoWrapper,
+  AlienWrapper,
+  AlienWrapperBottom,
+  Background,
+} from './styles';
 
 const InfoBanner = () => (
   <InfoWrapper>
@@ -12,7 +17,7 @@ const InfoBanner = () => (
     <AlienWrapperBottom>
       <img src={AlienSad} alt="" />
     </AlienWrapperBottom>
-    <Banner />
+    <Background src={Banner} alt="" />
   </InfoWrapper>
 );
 

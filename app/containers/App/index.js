@@ -49,7 +49,7 @@ const App = ({ locate = window.location.pathname }) => (
       <Route path="/404" component={NotFoundPage} />
       <Redirect to="/404" />
     </Switch>
-    <Footer />
+    {locate === '/' ? '' : <Footer />}
     <GlobalStyle />
   </MuiThemeProvider>
 );

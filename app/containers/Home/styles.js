@@ -5,8 +5,3 @@ export const HomePageWrapper = styled.div`
   flex-direction: column;
   align-items: space-between;
 `;
-export const InfoBannerStyle = styled.div`
-  @media screen and (max-width: 982px) {
-    display: none;
-  }
-`;

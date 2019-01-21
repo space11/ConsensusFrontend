@@ -24,6 +24,8 @@ export const ButtonWrapper = styled.button`
   box-shadow: 0px 0px 5px rgba(247, 86, 124, 0.4);
   border: ${props => (props.isTransparent ? '2px solid #f7567c' : '')};
   transition: 0.3s;
+  margin-right: ${props => props.right};
   -webkit-user-select: none;
   cursor: pointer;
+  width: ${props => props.w};
 `;

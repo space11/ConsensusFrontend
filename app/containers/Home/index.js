@@ -4,7 +4,7 @@ import VideoBlock from 'components/VideoBlock';
 import InfoBanner from 'components/InfoBanner';
 import FaqBlock from 'components/FAQBlock';
 import Space from 'components/Space';
-import { HomePageWrapper, InfoBannerStyle } from './styles';
+import { HomePageWrapper } from './styles';
 
 const HomePage = () => (
   <HomePageWrapper>
@@ -12,15 +12,11 @@ const HomePage = () => (
     <Space />
     <VideoBlock live title="Сейчас в эфире" />
     <Space />
-    <InfoBannerStyle>
-      <InfoBanner />
-    </InfoBannerStyle>
+    <InfoBanner />
     <Space />
     <VideoBlock title="Прошедшие дебаты" />
     <Space />
-    <InfoBannerStyle>
-      <FaqBlock />
-    </InfoBannerStyle>
+    <FaqBlock />
   </HomePageWrapper>
 );
 

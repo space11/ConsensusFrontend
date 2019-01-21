@@ -21,3 +21,7 @@ export const AlienWrapperBottom = styled.div`
   bottom: 0;
   margin-bottom: -50px;
 `;
+
+export const Background = styled.img`
+  width: 100%;
+`;
