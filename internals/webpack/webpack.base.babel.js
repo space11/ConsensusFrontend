@@ -35,7 +35,7 @@ module.exports = options => ({
       },
       {
         test: /\.(config)$/,
-        loader: 'file-loader',
+        loader: 'file-loader?name=[name].[ext]',
       },
       {
         // Preprocess our own .css files
