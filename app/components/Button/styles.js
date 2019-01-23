@@ -13,7 +13,7 @@ export const ButtonWrapper = styled.button`
   height: ${props => props.h};
   padding: ${props => (props.h === '27px' ? '5px 25px' : '10px 20px')};
   background: ${props =>
-    props.isNotValid
+    props.isValid
       ? '#ffc5d4'
       : props.isTransparent
         ? 'transparent'

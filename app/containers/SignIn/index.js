@@ -61,6 +61,7 @@ class LoginPage extends Component {
   }
 
   render() {
+    const { pristine, submitting } = this.props;
     return (
       <LoginWrapper>
         <div
@@ -105,7 +106,12 @@ class LoginPage extends Component {
               <NavLink to="/forgot">Забыли пароль?</NavLink>
             </ControlLine>
           </InputWrapper>
-          <Button type="submit" onClick={this.onSubmit} text="Войти" />
+          <Button
+            type="submit"
+            isValid={pristine || submitting}
+            onClick={this.onSubmit}
+            text="Войти"
+          />
         </LoginFormWrapper>
       </LoginWrapper>
     );
@@ -114,6 +120,8 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
   fetchLogin: PropTypes.any,
+  submitting: PropTypes.bool,
+  pristine: PropTypes.bool,
   email: PropTypes.string,
   password: PropTypes.string,
 };

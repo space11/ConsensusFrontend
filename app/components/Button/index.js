@@ -12,7 +12,7 @@ const Button = ({
   w,
   h,
   right,
-  isNotValid,
+  isValid,
   style,
 }) => (
   <ButtonWrapper
@@ -24,7 +24,7 @@ const Button = ({
     w={w}
     right={right}
     style={({ width: w }, style)}
-    isValid={isNotValid}
+    isValid={isValid}
   >
     <span style={{ display: 'inline-block' }}>{text}</span>
   </ButtonWrapper>
@@ -33,7 +33,7 @@ const Button = ({
 Button.propTypes = {
   isTransparent: PropTypes.bool,
   isRed: PropTypes.bool,
-  isNotValid: PropTypes.bool,
+  isValid: PropTypes.bool,
   w: PropTypes.string,
   h: PropTypes.string,
   style: PropTypes.string,

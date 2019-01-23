@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Bg from 'images/forgotpass/background.svg';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
@@ -42,6 +43,7 @@ const renderField = ({
 
 class ForgotPage extends Component {
   render() {
+    const { pristine, submitting } = this.props;
     return (
       <ForgotPageWrapper>
         <div
@@ -68,6 +70,7 @@ class ForgotPage extends Component {
           </InputWrapper>
           <Button
             type="submit"
+            isValid={pristine || submitting}
             onClick={this.onSubmit}
             text="Получить пароль"
           />
@@ -76,6 +79,11 @@ class ForgotPage extends Component {
     );
   }
 }
+
+ForgotPage.propTypes = {
+  submitting: PropTypes.bool,
+  pristine: PropTypes.bool,
+};
 
 const mapStateToProps = state => {
   const selector = formValueSelector('forgot', states => states.get('form'));

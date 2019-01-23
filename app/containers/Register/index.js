@@ -61,6 +61,7 @@ class RegisterPage extends Component {
   }
 
   render() {
+    const { pristine, submitting } = this.props;
     return (
       <LoginWrapper>
         <div
@@ -109,6 +110,7 @@ class RegisterPage extends Component {
             type="submit"
             onClick={this.onSubmit}
             text="Зарегистрироваться"
+            isValid={pristine || submitting}
           />
         </LoginFormWrapper>
       </LoginWrapper>
@@ -118,6 +120,8 @@ class RegisterPage extends Component {
 
 RegisterPage.propTypes = {
   fetchRegistration: PropTypes.any,
+  submitting: PropTypes.bool,
+  pristine: PropTypes.bool,
   nickName: PropTypes.string,
   email: PropTypes.string,
   password: PropTypes.string,
