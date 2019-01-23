@@ -10,7 +10,7 @@ export const AnchorWrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
-  height: 857px;
+  height: 824px;
   width: 100%;
   margin-bottom: 33px;
   z-index: 1;
@@ -26,7 +26,6 @@ export const GrayWrapper = styled.div`
   position: absolute;
   display: flex;
   align-items: flex-end;
-  margin-bottom: 33px;
   margin-left: 22px;
   bottom: 0;
 `;
@@ -40,8 +39,10 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 840px;
-  padding-top: 122px;
+  height: 702px;
+  justify-content: space-between;
   margin: 0 auto;
+  margin-top: 122px;
 `;
 
 export const Title = styled.div`
@@ -51,6 +52,7 @@ export const Title = styled.div`
   letter-spacing: 0.625px;
   color: #fff;
   margin-bottom: 20px;
+  text-align: center;
 `;
 
 export const Description = styled.div`
@@ -59,6 +61,7 @@ export const Description = styled.div`
   letter-spacing: 0.78px;
   color: #dadada;
   width: 796px;
+  margin: 0 auto;
   margin-bottom: 60px;
 `;
 
@@ -81,6 +84,7 @@ export const LinesWrapper = styled.div`
 
 export const FooterWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   margin-top: 80px;
   justify-content: center;
@@ -89,14 +93,17 @@ export const FooterWrapper = styled.div`
 `;
 
 export const MainContentWrapper = styled.div`
+  display: flex;
   position: absolute;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
   width: 100%;
+  bottom: 0;
 `;
 
 export const ButtonWrapper = styled(NavLink)`
-  margin-top: auto;
   align-self: center;
-  justify-self: center;
 `;
 
 export const FooterLinkWrapper = styled.div`
@@ -105,7 +112,6 @@ export const FooterLinkWrapper = styled.div`
   justify-content: space-between;
   width: 920px;
   height: 150px;
-  margin-top: 44px;
 `;
 
 export const FooterLinkSmallWrapper = styled.div`
@@ -142,4 +148,18 @@ export const FooterSocial = styled.div`
   margin-right: 11px;
 `;
 
+export const AlienFooterImage = styled.img`
+  margin-bottom: 37px;
+`;
+
 export const Social = styled.img``;
+
+export const Copyright = styled.a`
+  font-weight: 300;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.69552px;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 31px;
+`;

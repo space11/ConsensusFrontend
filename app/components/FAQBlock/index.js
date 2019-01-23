@@ -31,6 +31,8 @@ import {
   Social,
   SocialLink,
   FooterLinkSocialWrapper,
+  Copyright,
+  AlienFooterImage,
 } from './styles';
 
 const FaqBlock = () => (
@@ -41,27 +43,29 @@ const FaqBlock = () => (
           <img src={AlienGray} alt="" />
         </GrayWrapper>
         <ContentWrapper>
-          <Title>Часто задаваемые вопросы</Title>
-          <Description>
-            Мы уверены, что у вас есть вопросы. Ниже приведен список наиболее
-            часто задаваемых вопросов. Если вы не видите свой вопрос,
-            пожалуйста, не стесняйтесь{' '}
-            <Link to="/contacts">обращаться к нам</Link>
-          </Description>
-          <LinesWrapper>
-            <LinePairWrapper>
-              <FaqLine title="Как запустить стрим?" />
-              <FaqLine title="Как запустить стрим?" />
-            </LinePairWrapper>
-            <LinePairWrapper>
-              <FaqLine title="Как запустить стрим?" />
-              <FaqLine title="Как запустить стрим?" />
-            </LinePairWrapper>
-            <LinePairWrapper>
-              <FaqLine title="Как запустить стрим?" />
-              <FaqLine title="Как запустить стрим?" />
-            </LinePairWrapper>
-          </LinesWrapper>
+          <div>
+            <Title>Часто задаваемые вопросы</Title>
+            <Description>
+              Мы уверены, что у вас есть вопросы. Ниже приведен список наиболее
+              часто задаваемых вопросов. Если вы не видите свой вопрос,
+              пожалуйста, не стесняйтесь{' '}
+              <Link to="/contacts">обращаться к нам</Link>
+            </Description>
+            <LinesWrapper>
+              <LinePairWrapper>
+                <FaqLine title="Как запустить стрим?" />
+                <FaqLine title="Как запустить стрим?" />
+              </LinePairWrapper>
+              <LinePairWrapper>
+                <FaqLine title="Как запустить стрим?" />
+                <FaqLine title="Как запустить стрим?" />
+              </LinePairWrapper>
+              <LinePairWrapper>
+                <FaqLine title="Как запустить стрим?" />
+                <FaqLine title="Как запустить стрим?" />
+              </LinePairWrapper>
+            </LinesWrapper>
+          </div>
           <ButtonWrapper to="/create-debate">
             <Button text="Организовать дебаты" />
           </ButtonWrapper>
@@ -95,7 +99,8 @@ const FaqBlock = () => (
             </FooterLinkSmallWrapper>
           </FooterLinkSocialWrapper>
         </FooterLinkWrapper>
-        <img src={AlienFooter} alt="" />
+        <AlienFooterImage src={AlienFooter} alt="" />
+        <Copyright>© League Of Developers 2018</Copyright>
       </FooterWrapper>
     </MainContentWrapper>
     <BackgroundWrapper src={Background} alt="" />
