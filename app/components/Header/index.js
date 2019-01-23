@@ -92,12 +92,12 @@ class Header extends Component {
               <SearchIcon isBlue={isBlue} />
             </SearchButton>
             {localStorage.id_token === undefined ? (
-              <LoginSigninButton href="/sign-in" isLogin={isLogin}>
+              <LoginSigninButton to="/sign-in" isLogin={isLogin}>
                 <Button text="Вход и регистрация" isTransparent isRed={isRed} />
               </LoginSigninButton>
             ) : (
               <LoginSigninButton
-                href={`/account/${localStorage.userId}`}
+                to={`/account/${localStorage.userId}`}
                 isLogin={isLogin}
               >
                 <ProfileWrapper src={ProfileImage} alt="" />

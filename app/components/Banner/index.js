@@ -15,6 +15,7 @@ import {
   BannerImage,
   TextWrapper,
   BannerContentWrapper,
+  ButtonWrapper,
 } from './styles';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -33,12 +34,9 @@ class Banner extends PureComponent {
                 для проведения онлайн-дебатов
               </BannerDescriptionLine>
             </TextWrapper>
-            <Button
-              text="Организовать дебаты"
-              onClick={() => {
-                window.location.href = '/create-debate';
-              }}
-            />
+            <ButtonWrapper to="/create-debate">
+              <Button text="Организовать дебаты" />
+            </ButtonWrapper>
           </BannerDescriptionWrapper>
           <AliensWrapper>
             <RedAlienWrapper>

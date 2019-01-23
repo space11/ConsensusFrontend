@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const BannerWrapper = styled.div``;
 
@@ -61,4 +62,11 @@ export const BannerContentWrapper = styled.div`
   position: absolute;
   top: 0;
   padding: 174px 68px;
+`;
+
+export const ButtonWrapper = styled(NavLink)`
+  margin-top: auto;
+  align-self: center;
+  justify-self: center;
+  z-index: 99999;
 `;

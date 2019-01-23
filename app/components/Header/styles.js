@@ -54,7 +54,7 @@ export const ProfileWrapper = styled.img`
   cursor: pointer;
 `;
 
-export const LoginSigninButton = styled.a`
+export const LoginSigninButton = styled(NavLink)`
   display: ${props => (props.isLogin ? 'none' : 'flex')};
 `;
 

@@ -3,6 +3,10 @@ import Background from 'images/faqbanner/background.svg';
 import AlienHuman from 'images/faqbanner/alienHuman.svg';
 import AlienGray from 'images/faqbanner/alienGray.svg';
 import AlienFooter from 'images/faqbanner/alienFooter.svg';
+import Facebook from 'images/footer/social/facebook.svg';
+import Instagram from 'images/footer/social/instagram.svg';
+import Twitter from 'images/footer/social/twitter.svg';
+import Vk from 'images/footer/social/vk.svg';
 import { FaqLine } from './components/line';
 import Button from '../Button';
 import {
@@ -19,6 +23,14 @@ import {
   LinesWrapper,
   FooterWrapper,
   MainContentWrapper,
+  ButtonWrapper,
+  FooterLinkWrapper,
+  FooterLinkSmallWrapper,
+  FooterLink,
+  FooterSocial,
+  Social,
+  SocialLink,
+  FooterLinkSocialWrapper,
 } from './styles';
 
 const FaqBlock = () => (
@@ -28,13 +40,6 @@ const FaqBlock = () => (
         <GrayWrapper>
           <img src={AlienGray} alt="" />
         </GrayWrapper>
-        <Button
-          text="Организовать дебаты"
-          onClick={() => {
-            window.location.href = '/create-debate';
-          }}
-          style={{ alignSelf: 'flex-end', position: 'absolute' }}
-        />
         <ContentWrapper>
           <Title>Часто задаваемые вопросы</Title>
           <Description>
@@ -57,12 +62,39 @@ const FaqBlock = () => (
               <FaqLine title="Как запустить стрим?" />
             </LinePairWrapper>
           </LinesWrapper>
+          <ButtonWrapper to="/create-debate">
+            <Button text="Организовать дебаты" />
+          </ButtonWrapper>
         </ContentWrapper>
         <HumanWrapper>
           <img src={AlienHuman} alt="" />
         </HumanWrapper>
       </AnchorWrapper>
       <FooterWrapper>
+        <FooterLinkWrapper>
+          <FooterLinkSmallWrapper>
+            <FooterLink to="/rules">Правила</FooterLink>
+            <FooterLink to="/contacts">Контакты</FooterLink>
+            <FooterLink to="/advertisments">Рекламные возможности</FooterLink>
+            <FooterLink to="/user-agreement">
+              Пользовательское соглашение
+            </FooterLink>
+          </FooterLinkSmallWrapper>
+          <FooterLinkSocialWrapper>
+            <FooterSocial>
+              <Social src={Vk} alt="" />
+              <Social src={Facebook} alt="" />
+              <Social src={Twitter} alt="" />
+              <Social src={Instagram} alt="" />
+            </FooterSocial>
+            <FooterLinkSmallWrapper>
+              <SocialLink href="vk.com">VK</SocialLink>
+              <SocialLink href="facebook.com">FACEBOOK</SocialLink>
+              <SocialLink href="twitter.com">TWITTER</SocialLink>
+              <SocialLink href="instagram.com">INSTAGRAM</SocialLink>
+            </FooterLinkSmallWrapper>
+          </FooterLinkSocialWrapper>
+        </FooterLinkWrapper>
         <img src={AlienFooter} alt="" />
       </FooterWrapper>
     </MainContentWrapper>
