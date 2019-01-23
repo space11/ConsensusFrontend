@@ -93,11 +93,12 @@ export const NotificationRedRound = styled.div`
 
 export const NotificationWrapper = styled.div`
   position: absolute;
-  display: flex;
   flex-direction: column;
   width: 418px;
   top: 82px;
   right: 158px;
+  max-height: 629px;
+  overflow-y: scroll;
   background: #fff;
   border: 1px solid #dadada;
   border-radius: 5px 2px 5px 5px;
@@ -120,7 +121,7 @@ export const NotificationWrapper = styled.div`
     border: 14px solid transparent;
     border-bottom: 14px solid #dadada;
     top: -28px;
-    right: -1px;
+    right: -9px;
   }
 `;
 
@@ -168,4 +169,10 @@ export const NotificationInvitationButtonWrapper = styled.div`
   display: flex;
   height: 27px;
   justify-content: flex-end;
+`;
+
+export const Inner = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
 `;

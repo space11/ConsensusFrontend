@@ -17,6 +17,7 @@ import {
   NotificationWrapper,
   NotificationContainer,
   NotificationTransparentWrapper,
+  Inner,
 } from './styles';
 import {
   InvitationBlock,
@@ -29,7 +30,7 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hover: false,
+      hover: true,
     };
   }
 
@@ -46,35 +47,48 @@ class Header extends Component {
           <NavigatorContainer isLogin={localStorage.id_token !== undefined}>
             <NotificationContainer
               onClick={() => this.setState({ hover: true })}
-              onMouseLeave={() => this.setState({ hover: false })}
+              onMouseLeave={() => this.setState({ hover: true })}
             >
               {hover ? (
                 <NotificationWrapper hover={hover}>
                   <NotificationTransparentWrapper />
-                  <InvitationBlock
-                    date={date.toUTCString()}
-                    url="/account/7db7cfcf-ea98-43f0-a9a5-c67944c17a86"
-                    nickname="Notan Evchiform"
-                    datePlan={date.toUTCString()}
-                  />
-                  <InvitationBlock
-                    date={date.toUTCString()}
-                    url="/account/7db7cfcf-ea98-43f0-a9a5-c67944c17a86"
-                    nickname="Notan Evchiform"
-                    datePlan={date.toUTCString()}
-                  />
-                  <InvitationBlockFinish
-                    date={date.toUTCString()}
-                    url="/account/7db7cfcf-ea98-43f0-a9a5-c67944c17a86"
-                    nickname="Notan Evchiform"
-                  />
-                  <InvitationBlockSoon date={date.toUTCString()} />
-                  <InvitationBlockNow
-                    date={date.toUTCString()}
-                    url="/account/7db7cfcf-ea98-43f0-a9a5-c67944c17a86"
-                    nickname="Notan Evchiform"
-                    datePlan={date.toUTCString()}
-                  />
+                  <Inner>
+                    <InvitationBlock
+                      date={date.toUTCString()}
+                      url="/account/7db7cfcf-ea98-43f0-a9a5-c67944c17a86"
+                      nickname="Notan Evchiform"
+                      datePlan={date.toUTCString()}
+                    />
+                    <InvitationBlock
+                      date={date.toUTCString()}
+                      url="/account/7db7cfcf-ea98-43f0-a9a5-c67944c17a86"
+                      nickname="Notan Evchiform"
+                      datePlan={date.toUTCString()}
+                    />
+                    <InvitationBlockFinish
+                      date={date.toUTCString()}
+                      url="/account/7db7cfcf-ea98-43f0-a9a5-c67944c17a86"
+                      nickname="Notan Evchiform"
+                    />
+                    <InvitationBlockFinish
+                      date={date.toUTCString()}
+                      url="/account/7db7cfcf-ea98-43f0-a9a5-c67944c17a86"
+                      nickname="Notan Evchiform"
+                    />
+                    <InvitationBlockSoon date={date.toUTCString()} />
+                    <InvitationBlockNow
+                      date={date.toUTCString()}
+                      url="/account/7db7cfcf-ea98-43f0-a9a5-c67944c17a86"
+                      nickname="Notan Evchiform"
+                      datePlan={date.toUTCString()}
+                    />
+                    <InvitationBlockNow
+                      date={date.toUTCString()}
+                      url="/account/7db7cfcf-ea98-43f0-a9a5-c67944c17a86"
+                      nickname="Notan Evchiform"
+                      datePlan={date.toUTCString()}
+                    />
+                  </Inner>
                 </NotificationWrapper>
               ) : (
                 ''
