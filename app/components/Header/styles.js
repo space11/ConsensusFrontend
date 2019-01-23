@@ -102,7 +102,7 @@ export const NotificationWrapper = styled.div`
   background: #fff;
   border: 1px solid #dadada;
   border-radius: 5px 2px 5px 5px;
-  z-index: 9999999;
+  z-index: 99999;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.16);
   transition: 0.8s;
   animation: 0.3s ${props => (props.hover ? bounceAnimation : '')};

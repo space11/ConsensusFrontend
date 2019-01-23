@@ -30,7 +30,7 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hover: true,
+      hover: false,
     };
   }
 
@@ -47,7 +47,7 @@ class Header extends Component {
           <NavigatorContainer isLogin={localStorage.id_token !== undefined}>
             <NotificationContainer
               onClick={() => this.setState({ hover: true })}
-              onMouseLeave={() => this.setState({ hover: true })}
+              onMouseLeave={() => this.setState({ hover: false })}
             >
               {hover ? (
                 <NotificationWrapper hover={hover}>
