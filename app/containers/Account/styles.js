@@ -92,7 +92,7 @@ export const Nickname = styled.div`
   font-size: 36px;
   font-weight: 400;
   -webkit-user-select: none;
-  margin-bottom: 40px;
+  margin-bottom: 5px;
 `;
 
 export const ContentBlock = styled.div`
@@ -106,7 +106,7 @@ export const ContentBlock = styled.div`
 export const ContentLine = styled.div`
   display: flex;
   align-items: flex-start;
-  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 export const Label = styled.div`
@@ -221,4 +221,109 @@ export const ChangePasswordLabel = styled.div`
 export const StoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const TestLink = styled.button`
+  font-size: 20px;
+  letter-spacing: 0.127023px;
+  color: #2b3780;
+  margin-bottom: 30px;
+  cursor: pointer;
+`;
+
+export const Test = styled.div`
+  position: absolute;
+  height: 1449px;
+  width: 100%;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+`;
+
+export const TestShadowWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  height: 1449px;
+  width: 100%;
+  background: #000;
+  opacity: 0.3;
+`;
+
+export const TestWrapper = styled.div`
+  position: fixed;
+  background: #f9f9f9;
+  border-radius: 5px;
+  width: 468px;
+  z-index: 100000;
+  margin-top: 250px;
+`;
+
+export const TestTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  letter-spacing: 0.56px;
+  padding: 20px 30px;
+  width: 100%;
+  border-bottom: 1px solid #dadada;
+  -webkit-user-select: none;
+`;
+
+export const TestContentWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width; 100%;
+  padding: 20px 30px;
+`;
+
+export const CrossWrapper = styled.button`
+  cursor: pointer;
+`;
+
+export const Microphone = styled.div`
+  font-size: 20px;
+  letter-spacing: 0.56px;
+  margin-bottom: 15px;
+`;
+
+export const LevelNumberWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
+
+export const LevelNumber = styled.div`
+  font-weight: 300;
+  font-size: 16px;
+  -webkit-user-select: none;
+`;
+
+export const LevelLine = styled.div`
+  position: relative;
+  width: 100%;
+  height: 7px;
+  background: #dadada;
+  border: 0.5px solid #dadada;
+  border-radius: 5px;
+  z-index: 7;
+  margin-bottom: 20px;
+`;
+
+export const LevelLineColored = styled.div`
+  background: linear-gradient(90deg, #f9f9f9 0%, #2c3579 100%);
+  border: 0.5px solid #dadada;
+  border-radius: 7px;
+  height: 7px;
+  position: absolute;
+  width: ${props => props.width};
+  top: 0;
+  z-index: 10;
+`;
+
+export const CameraTitle = styled.div`
+  font-size: 16px;
+  letter-spacing: 0.56px;
+  margin-bottom: 10px;
 `;

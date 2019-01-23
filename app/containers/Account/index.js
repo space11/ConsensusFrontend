@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { fetchLogout } from 'containers/AuthProvider/actions';
 import Button from 'components/Button';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
 import Background from 'images/account/background.svg';
 import Camera from 'images/account/camera.svg';
 import Rocket from 'images/account/rocket.svg';
 import Arrow from 'images/account/arrow.svg';
+import Cross from 'images/account/cross.svg';
+import PlayerBlock from './PlayerBlock';
 import Image from './1.jpg';
 import {
   AccountPageWrapper,
@@ -36,6 +38,19 @@ import {
   ChangePasswordButton,
   ChangePasswordLabel,
   StoryWrapper,
+  TestLink,
+  TestShadowWrapper,
+  TestWrapper,
+  Test,
+  TestTitle,
+  CrossWrapper,
+  TestContentWrapper,
+  Microphone,
+  LevelNumberWrapper,
+  LevelNumber,
+  LevelLine,
+  LevelLineColored,
+  CameraTitle,
 } from './styles';
 
 const renderField = ({ input, type, meta: { touched, error, warning } }) => (
@@ -65,6 +80,7 @@ class AccountPage extends Component {
     this.state = {
       edited: false,
       hover: false,
+      testShown: false,
     };
 
     this.onHover = this.onHover.bind(this);
@@ -85,7 +101,7 @@ class AccountPage extends Component {
   }
 
   render() {
-    const { hover, edited } = this.state;
+    const { hover, edited, testShown } = this.state;
     const {
       followCount,
       followersCount,
@@ -125,6 +141,38 @@ class AccountPage extends Component {
           {hover ? <CameraComponent src={Camera} alt="" /> : ''}
         </ProfileImageBlock>
         <Nickname>{nickname}</Nickname>
+        <TestLink onClick={() => { testShown ? this.setState({testShown: false}) : this.setState({testShown: true })}}>Тестирование веб-камеры и звука</TestLink>
+        {testShown ? (
+          <Test>
+          <TestShadowWrapper onClick={() => {this.setState({testShown: false})}}/>
+            <TestWrapper>
+              <TestTitle><span>Тестирование веб-камеры и звука</span>
+              <CrossWrapper onClick={() => {this.setState({testShown: false})}}><img src={Cross} alt=""/></CrossWrapper></TestTitle>
+              <TestContentWrapper>
+                  <Microphone>Микрофон</Microphone>
+                  <LevelNumberWrapper>
+                    <LevelNumber>1</LevelNumber>
+                    <LevelNumber>2</LevelNumber>
+                    <LevelNumber>3</LevelNumber>
+                    <LevelNumber>4</LevelNumber>
+                    <LevelNumber>5</LevelNumber>
+                    <LevelNumber>6</LevelNumber>
+                    <LevelNumber>7</LevelNumber>
+                    <LevelNumber>8</LevelNumber>
+                    <LevelNumber>9</LevelNumber>
+                    <LevelNumber>10</LevelNumber>
+                  </LevelNumberWrapper>
+                  <div style={{position: 'relative'}}>
+                  <LevelLineColored width="100%"/>
+                  <LevelLine />
+                  </div>
+                  <CameraTitle>Камера</CameraTitle>
+                  <PlayerBlock width="408" height="204" autoplay="autoplay"/>
+              </TestContentWrapper>
+            </TestWrapper>
+          </Test>
+        ) : 
+        ''}
         {edited ? (
           <ContentBlock>
             <EditedContentLine>
