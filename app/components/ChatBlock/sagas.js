@@ -13,12 +13,11 @@ export function* postMessage() {
     }
   }
 }
-
-// All sagas to be loaded
-
 function sendMessage(data) {
-  return api.post('Chat/message', data, localStorage.debateId).then(res => res);
+  return api
+    .postWithToken('/Chat/message', data, localStorage.debateId)
+    .then(res => res);
 }
 
-// // All sagas to be loaded
+// All sagas to be loaded
 export default [postMessage];

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import * as signalR from '@aspnet/signalr';
 import config from 'utils/config';
+import injectSaga from 'utils/injectSaga';
 import SmileIcon from 'images/chatblock/smile.svg';
 import Message from './components/message';
+import { fetchMessage } from './actions';
+import chatBlockSaga from './sagas';
 import {
   InputFormWrapper,
   LowLineWrapper,
@@ -15,6 +19,8 @@ import {
   MessageBlock,
   Inner,
 } from './styles';
+
+/* eslint-disable */
 
 class Chat extends Component {
   constructor(props) {
@@ -82,6 +88,11 @@ class Chat extends Component {
         .catch(err => console.error(err));
     }
 
+    this.props.fetchMessage.start({
+      text: this.state.message,
+      debateId: this.props.debateId,
+    });
+
     this.setState({ message: '' });
   };
 
@@ -121,7 +132,16 @@ class Chat extends Component {
   }
 }
 
-export default connect(
+const withSaga = chatBlockSaga.map(saga =>
+  injectSaga({ key: saga.name, saga }),
+);
+
+const withConnect = connect(
   () => ({}),
-  () => ({}),
+  dispatch => ({ fetchMessage: fetchMessage.bindTo(dispatch) }),
+);
+
+export default compose(
+  withSaga[0],
+  withConnect,
 )(Chat);

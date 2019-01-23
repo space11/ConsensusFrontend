@@ -50,8 +50,8 @@ class HomePage extends Component {
 HomePage.propTypes = {
   fetchDebateLive: PropTypes.any,
   fetchDebatePast: PropTypes.any,
-  live: PropTypes.array,
-  past: PropTypes.array,
+  live: PropTypes.object,
+  past: PropTypes.object,
 };
 
 const withSaga = debateProviderSaga.map(saga =>
