@@ -65,8 +65,11 @@ export const ProfileImageBlock = styled.div`
   z-index: 200;
 `;
 
-export const ProfileShadow = styled.input`
+export const ProfileShadow = styled.div`
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 250px;
   height: 250px;
   background: #000000;
@@ -85,6 +88,8 @@ export const ProfileImage = styled.img`
 export const CameraComponent = styled.img`
   position: absolute;
   cursor: pointer;
+  opacity: 1;
+  z-index: 99999;
 `;
 
 export const Nickname = styled.div`
@@ -326,4 +331,8 @@ export const CameraTitle = styled.div`
   font-size: 16px;
   letter-spacing: 0.56px;
   margin-bottom: 10px;
+`;
+
+export const InputComponent = styled.input`
+  outline: none;
 `;

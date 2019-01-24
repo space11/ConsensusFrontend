@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
+import Dropzone from 'react-dropzone';
 import { fetchLogout } from 'containers/AuthProvider/actions';
 import Button from 'components/Button';
 import Background from 'images/account/background.svg';
@@ -51,6 +53,7 @@ import {
   LevelLine,
   LevelLineColored,
   CameraTitle,
+  InputComponent,
 } from './styles';
 
 const renderField = ({ input, type, meta: { touched, error, warning } }) => (
@@ -100,6 +103,11 @@ class AccountPage extends Component {
     this.props.fetchLogout.start(); // eslint-disable-line
   }
 
+  onDrop = (file) => {
+    // actions
+  };
+
+
   render() {
     const { hover, edited, testShown } = this.state;
     const {
@@ -132,14 +140,33 @@ class AccountPage extends Component {
             <Span>Подписки</Span>
           </FollowComponent>
         </FollowLine>
+        { token === id ? 
+        <Dropzone onDrop={this.onDrop}> 
+        {({getRootProps, getInputProps, isDragActive}) => {
+        return (
         <ProfileImageBlock
+          {...getRootProps()}
+          className={classNames('dropzone', {'dropzone--isActive': isDragActive})}
           onMouseEnter={this.onHover}
           onMouseLeave={this.onHoverOut}
         >
+        {hover ? <CameraComponent src={Camera} alt="" /> : '' }
+{hover ?
+<ProfileShadow>
+<InputComponent {...getInputProps()} />
+</ProfileShadow>
+  : ''}
           <ProfileImage src={Image} alt="" />
-          {hover ? <ProfileShadow /> : ''}
-          {hover ? <CameraComponent src={Camera} alt="" /> : ''}
+          </ProfileImageBlock>
+        )
+        }}
+      </Dropzone>
+        : 
+        <ProfileImageBlock
+        >
+        <ProfileImage src={Image} alt="" />
         </ProfileImageBlock>
+        }
         <Nickname>{nickname}</Nickname>
         <TestLink onClick={() => { testShown ? this.setState({testShown: false}) : this.setState({testShown: true })}}>Тестирование веб-камеры и звука</TestLink>
         {testShown ? (
