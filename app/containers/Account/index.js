@@ -53,7 +53,7 @@ import {
   LevelLine,
   LevelLineColored,
   CameraTitle,
-  InputComponent,
+  ArrowComponent,
 } from './styles';
 
 const renderField = ({ input, type, meta: { touched, error, warning } }) => (
@@ -84,6 +84,7 @@ class AccountPage extends Component {
       edited: false,
       hover: false,
       testShown: false,
+      shownStory: false,
     };
 
     this.onHover = this.onHover.bind(this);
@@ -109,7 +110,7 @@ class AccountPage extends Component {
 
 
   render() {
-    const { hover, edited, testShown } = this.state;
+    const { hover, edited, testShown, shownStory } = this.state;
     const {
       followCount,
       followersCount,
@@ -149,11 +150,12 @@ class AccountPage extends Component {
           className={classNames('dropzone', {'dropzone--isActive': isDragActive})}
           onMouseEnter={this.onHover}
           onMouseLeave={this.onHoverOut}
+          style={{  outline: 'none'}}
         >
         {hover ? <CameraComponent src={Camera} alt="" /> : '' }
 {hover ?
 <ProfileShadow>
-<InputComponent {...getInputProps()} />
+<input {...getInputProps()} />
 </ProfileShadow>
   : ''}
           <ProfileImage src={Image} alt="" />
@@ -261,19 +263,20 @@ class AccountPage extends Component {
               <Content>{desc}</Content>
             </ContentLine>
             <ContentLine>
-              <Label style={{ cursor: 'pointer' }}>
+              <Label style={{ cursor: 'pointer' }} onClick={() => {shownStory ? this.setState({shownStory: false}) : this.setState({shownStory: true})}}>
                 История:{' '}
-                <img
+                <ArrowComponent
                   src={Arrow}
+                  shownStory={shownStory}
                   alt=""
-                  style={{ transform: 'rotate(180deg)' }}
                 />
               </Label>
-              <StoryWrapper>
-                <Content>03.01.19 18:00 Победа</Content>
-                <Content>03.01.19 18:00 Победа</Content>
-                <Content>03.01.19 18:00 Поражение</Content>
-              </StoryWrapper>
+              { shownStory ? 
+              <StoryWrapper shownStory={shownStory}>
+                <Content style={{ marginBottom: '10px' }}>03.01.19 18:00 Победа</Content>
+                <Content style={{ marginBottom: '10px' }}>03.01.19 18:00 Победа</Content>
+                <Content style={{ marginBottom: '10px' }}>03.01.19 18:00 Поражение</Content>
+              </StoryWrapper> : ''}
             </ContentLine>
           </ContentBlock>
         )}

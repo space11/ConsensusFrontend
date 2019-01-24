@@ -1,4 +1,10 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { fadeIn, fadeOut, rotateIn, rotateOut } from 'react-animations';
+
+const fade = keyframes`${fadeIn}`;
+const out = keyframes`${fadeOut}`;
+const flip = keyframes`${rotateIn}`;
+const flipOut = keyframes`${rotateOut}`;
 
 export const AccountPageWrapper = styled.div`
   display: flex;
@@ -121,6 +127,7 @@ export const Label = styled.div`
   font-size: 20px;
   margin-right: 20px;
   width: 110px;
+  -webkit-user-select: none;
 `;
 
 export const Content = styled.div`
@@ -226,6 +233,7 @@ export const ChangePasswordLabel = styled.div`
 export const StoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  animation: 0.3s ${props => (props.shownStory ? fade : out)};
 `;
 
 export const TestLink = styled.button`
@@ -333,6 +341,8 @@ export const CameraTitle = styled.div`
   margin-bottom: 10px;
 `;
 
-export const InputComponent = styled.input`
-  outline: none;
+export const ArrowComponent = styled.img`
+  animation: .3s ${props => (props.shownStory ? flip : flipOut)};
+  /* transform: ${props =>
+    props.shownStory ? 'rotate(180deg)' : 'rotate(360deg)'}; */
 `;
