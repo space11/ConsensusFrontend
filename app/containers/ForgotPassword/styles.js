@@ -17,7 +17,6 @@ export const Background = styled.img`
 export const InputWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: -30px;
   margin-bottom: 50px;
 `;
 
@@ -62,4 +61,5 @@ export const Error = styled.div`
 
 export const InputField = styled.div`
   margin-bottom: 30px;
+  margin-top: -30px;
 `;
