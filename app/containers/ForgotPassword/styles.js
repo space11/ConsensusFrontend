@@ -17,6 +17,7 @@ export const Background = styled.img`
 export const InputWrapper = styled.form`
   display: flex;
   flex-direction: column;
+  margin-top: -30px;
   margin-bottom: 50px;
 `;
 
@@ -49,7 +50,6 @@ export const AdvField = styled(Field)`
 export const Title = styled.h1`
   color: #2b367e;
   margin: 0;
-  margin-bottom: 10px;
 `;
 
 export const Error = styled.div`

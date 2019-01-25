@@ -33,7 +33,9 @@ const renderField = ({
       fullWidth
       margin="normal"
       multiLine={false}
-      inputProps={{ style: { fontSize: 22 } }}
+      inputProps={{
+        style: { fontSize: 22 },
+      }}
     />
     {touched &&
       ((error && <Error>{error}</Error>) ||
