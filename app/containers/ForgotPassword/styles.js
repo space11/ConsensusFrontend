@@ -17,7 +17,7 @@ export const Background = styled.img`
 export const InputWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 `;
 
 export const ForgotFormWrapper = styled.div`

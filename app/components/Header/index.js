@@ -129,6 +129,7 @@ class Header extends Component {
             ) : (
               <LoginSigninButton
                 to={`/account/${localStorage.userId}`}
+                isRed={isRed}
                 isLogin={isLogin}
               >
                 <ProfileWrapper src={ProfileImage} alt="" />

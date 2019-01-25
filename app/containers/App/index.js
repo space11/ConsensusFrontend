@@ -47,7 +47,7 @@ class App extends Component {
             }
             isLogin={locate === '/sign-in' || locate === '/register'}
             isWhite={locate.includes('/room')}
-            isRed={locate === '/create-debate'}
+            isRed={locate === '/create-debate' || locate === '/forgot'}
           />
           <Switch>
             <Route exact path="/" component={HomePage} />

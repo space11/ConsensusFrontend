@@ -69,7 +69,8 @@ export const NotificationTransparentWrapper = styled.div`
   height: 1000px;
   width: 100vw;
   top: 0;
-  z-index: 999999;
+  right: 0;
+  z-index: 99;
 `;
 
 export const NotificationRedRound = styled.div`
@@ -125,7 +126,7 @@ export const NotificationWrapper = styled.div`
 `;
 
 export const NotificationContainer = styled.div`
-  z-index: 5;
+  z-index: 100;
 `;
 
 export const NotificationInvitationWrapper = styled.div`
