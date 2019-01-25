@@ -48,7 +48,7 @@ class Header extends Component {
           <NavigatorContainer isLogin={localStorage.id_token !== undefined}>
             {hover ? (
               <NotificationTransparentWrapper
-                onClick={() => this.setState({ hover: true })}
+                onClick={() => this.setState({ hover: false })}
               />
             ) : (
               ''
@@ -61,7 +61,7 @@ class Header extends Component {
               onMouseLeave={() => {
                 this.setState({
                   intervalId: setInterval(
-                    () => this.setState({ hover: true }),
+                    () => this.setState({ hover: false }),
                     3000,
                   ),
                 });
