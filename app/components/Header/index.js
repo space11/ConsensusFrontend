@@ -24,18 +24,19 @@ import {
   InvitationBlockFinish,
   InvitationBlockSoon,
   InvitationBlockNow,
-} from './components/index';
+} from './components';
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       hover: false,
+      intervalId: 0,
     };
   }
 
   render() {
-    const { hover } = this.state;
+    const { hover, intervalId } = this.state;
     const { isBlue, isWhite, isLogin, isRed } = this.props;
     const date = new Date();
     return (
@@ -45,13 +46,29 @@ class Header extends Component {
             Консенсус
           </Logo>
           <NavigatorContainer isLogin={localStorage.id_token !== undefined}>
+            {hover ? (
+              <NotificationTransparentWrapper
+                onClick={() => this.setState({ hover: true })}
+              />
+            ) : (
+              ''
+            )}
             <NotificationContainer
               onClick={() => this.setState({ hover: true })}
-              onMouseLeave={() => this.setState({ hover: false })}
+              onMouseEnter={() => {
+                clearInterval(intervalId);
+              }}
+              onMouseLeave={() => {
+                this.setState({
+                  intervalId: setInterval(
+                    () => this.setState({ hover: true }),
+                    3000,
+                  ),
+                });
+              }}
             >
               {hover ? (
                 <NotificationWrapper hover={hover}>
-                  <NotificationTransparentWrapper />
                   <Inner>
                     <InvitationBlock
                       date={date.toUTCString()}

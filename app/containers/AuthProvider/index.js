@@ -1,44 +1,42 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { bindAll } from 'redux-act';
+// import React from 'react';
+// import { connect } from 'react-redux';
+// import { pushState } from 'redux-router';
 
-import makeSelectAuthProvider, { isLogged } from './selectors';
-import * as actions from './actions';
+// export function requireAuthentication(Component) {
+//   class AuthenticatedComponent extends React.Component {
+//     componentWillMount() {
+//       this.checkAuth();
+//     }
 
-export class AuthProvider extends React.PureComponent {
-  render() {
-    const { children, ...otherProps } = this.props;
-    return (
-      <div>
-        {React.Children.map(children, child =>
-          React.cloneElement(child, otherProps),
-        )}
-      </div>
-    );
-  }
-}
+//     componentWillReceiveProps(nextProps) {
+//       this.checkAuth();
+//     }
 
-AuthProvider.propTypes = {
-  children: PropTypes.node,
-  stateSelector: PropTypes.any,
-};
+//     checkAuth() {
+//       if (!this.props.isAuthenticated) {
+//         const redirectAfterLogin = this.props.location.pathname;
+//         this.props.dispatch(
+//           pushState(null, `/login?next=${redirectAfterLogin}`),
+//         );
+//       }
+//     }
 
-AuthProvider.defaultProps = {
-  stateSelector: state => state.get('authProvider').get('user'),
-};
+//     render() {
+//       return (
+//         <div>
+//           {this.props.isAuthenticated === true ? (
+//             <Component {...this.props} />
+//           ) : null}
+//         </div>
+//       );
+//     }
+//   }
 
-const mapStateToProps = createStructuredSelector({
-  authProviderState: makeSelectAuthProvider(),
-  isLogged: isLogged(),
-});
+//   const mapStateToProps = state => ({
+//     token: state.auth.token,
+//     userName: state.auth.userName,
+//     isAuthenticated: state.auth.isAuthenticated,
+//   });
 
-function mapDispatchToProps(dispatch) {
-  return bindAll(actions, dispatch);
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(AuthProvider);
+//   return connect(mapStateToProps)(AuthenticatedComponent);
+// }

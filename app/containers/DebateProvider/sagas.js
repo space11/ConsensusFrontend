@@ -81,19 +81,19 @@ function sendCreatingSession() {
 }
 
 function sendCreatingData(data) {
-  return api.postWithToken('/Debate', data).then(res => res.debateId);
+  return api.postWithToken('/Debates', data).then(res => res.debateId);
 }
 
 function sendDebateRequest({ id }) {
-  return api.get(`/Debate/${id}`).then(res => res);
+  return api.get(`/Debates/${id}`).then(res => res);
 }
 
 function sendDebateLiveRequest() {
-  return api.get('/Debate/live').then(res => res);
+  return api.get('/Debates/live').then(res => res);
 }
 
 function sendDebatePastRequest() {
-  return api.get('/Debate/past').then(res => res);
+  return api.get('/Debates/past').then(res => res);
 }
 
 // All sagas to be loaded

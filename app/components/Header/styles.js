@@ -66,10 +66,10 @@ export const NotificationBellWrapper = styled.button`
 
 export const NotificationTransparentWrapper = styled.div`
   position: absolute;
-  height: 550px;
-  width: 418px;
-  top: -40px;
-  right: 0;
+  height: 1000px;
+  width: 100vw;
+  top: 0;
+  z-index: 999999;
 `;
 
 export const NotificationRedRound = styled.div`
@@ -97,11 +97,9 @@ export const NotificationWrapper = styled.div`
   width: 418px;
   top: 82px;
   right: 158px;
-  max-height: 629px;
-  overflow-y: scroll;
   background: #fff;
   border: 1px solid #dadada;
-  border-radius: 5px 2px 5px 5px;
+  border-radius: 5px 0 5px 5px;
   z-index: 99999;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.16);
   transition: 0.8s;
@@ -118,10 +116,11 @@ export const NotificationWrapper = styled.div`
   }
 
   &::before {
+    position: absolute;
     border: 14px solid transparent;
     border-bottom: 14px solid #dadada;
-    top: -28px;
-    right: -9px;
+    top: -29px;
+    right: -1px;
   }
 `;
 
@@ -172,7 +171,7 @@ export const NotificationInvitationButtonWrapper = styled.div`
 `;
 
 export const Inner = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 0 0 auto;
+  max-height: 629px;
+  overflow-y: overlay;
+  overflow-x: hidden;
 `;

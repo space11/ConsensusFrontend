@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import injectSaga from 'utils/injectSaga';
@@ -23,48 +22,56 @@ import Footer from 'components/Footer';
 
 import GlobalStyle from 'global-styles';
 
-const App = ({ locate = window.location.pathname }) => (
-  <MuiThemeProvider muiTheme={getMuiTheme()}>
-    <div>
-      <Helmet titleTemplate="%s - Консенсус" defaultTitle="Консенсус">
-        <meta
-          name="description"
-          content="Платформа для проведения онлайн-дебатов"
-        />
-      </Helmet>
-      <Header
-        isBlue={
-          !locate.includes('/account') && locate !== '/404' && locate !== '/'
-        }
-        isLogin={locate === '/sign-in' || locate === '/register'}
-        isWhite={locate.includes('/room')}
-        isRed={locate === '/create-debate'}
-      />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/account/:id" component={AccountPage} />
-        <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/room/:id" component={RoomPage} />
-        <Route exact path="/sign-in" component={SignInPage} />
-        <Route exact path="/create-debate" component={CreateDebatePage} />
-        <Route exact path="/forgot" component={ForgotPage} />
-        <Route exact path="/testing" component={Testing} />
-        <Route path="/404" component={NotFoundPage} />
-        <Redirect to="/404" />
-      </Switch>
-      {locate === '/' ? '' : <Footer />}
-      <GlobalStyle />
-    </div>
-  </MuiThemeProvider>
-);
+class App extends Component {
+  removeOldToken() {
+    setTimeout(localStorage.removeItem('id_token'), 5356800);
+  }
+
+  render() {
+    const locate = window.location.pathname;
+    return (
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+        {this.removeOldToken}
+        <div>
+          <Helmet titleTemplate="%s - Консенсус" defaultTitle="Консенсус">
+            <meta
+              name="description"
+              content="Платформа для проведения онлайн-дебатов"
+            />
+          </Helmet>
+          <Header
+            isBlue={
+              !locate.includes('/account') &&
+              locate !== '/404' &&
+              locate !== '/'
+            }
+            isLogin={locate === '/sign-in' || locate === '/register'}
+            isWhite={locate.includes('/room')}
+            isRed={locate === '/create-debate'}
+          />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/account/:id" component={AccountPage} />
+            <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/room/:id" component={RoomPage} />
+            <Route exact path="/sign-in" component={SignInPage} />
+            <Route exact path="/create-debate" component={CreateDebatePage} />
+            <Route exact path="/forgot" component={ForgotPage} />
+            <Route exact path="/testing" component={Testing} />
+            <Route path="/404" component={NotFoundPage} />
+            <Redirect to="/404" />
+          </Switch>
+          {locate === '/' ? '' : <Footer />}
+          <GlobalStyle />
+        </div>
+      </MuiThemeProvider>
+    );
+  }
+}
 
 const withSaga = authProviderSaga.map(saga =>
   injectSaga({ key: saga.name, saga }),
 );
-
-App.propTypes = {
-  locate: PropTypes.string,
-};
 
 export default compose(
   withSaga[0],
