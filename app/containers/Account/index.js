@@ -13,64 +13,22 @@ import Arrow from 'images/account/arrow.svg';
 import Cross from 'images/account/cross.svg';
 import PlayerBlock from './PlayerBlock';
 import Image from './1.jpg';
-import {
-  AccountPageWrapper,
-  BackgroundComponent,
-  FollowLine,
-  FollowComponent,
-  FollowBlock,
-  Span,
-  ProfileImageBlock,
-  ProfileShadow,
-  ProfileImage,
-  CameraComponent,
-  Nickname,
-  ContentBlock,
-  ContentLine,
-  Label,
-  Content,
-  ButtonLine,
-  RocketWrapper,
-  RocketComponent,
-  SendAgain,
-  InputField,
-  Error,
-  EditedContentLine,
-  InputTextField,
-  ChangePasswordButton,
-  ChangePasswordLabel,
-  StoryWrapper,
-  TestLink,
-  TestShadowWrapper,
-  TestWrapper,
-  Test,
-  TestTitle,
-  CrossWrapper,
-  TestContentWrapper,
-  Microphone,
-  LevelNumberWrapper,
-  LevelNumber,
-  LevelLine,
-  LevelLineColored,
-  CameraTitle,
-  ArrowComponent,
-} from './styles';
-
+import * as Styles from './styles';
 const renderField = ({ input, type, meta: { touched, error, warning } }) => (
   <div style={{ width: '100%' }}>
-    <InputField type={type} {...input} />
+    <Styles.InputField type={type} {...input} />
     {touched &&
-      ((error && <Error>{error}</Error>) ||
-        (warning && <Error>{warning}</Error>))}
+      ((error && <Styles.Error>{error}</Styles.Error>) ||
+        (warning && <Styles.Error>{warning}</Styles.Error>))}
   </div>
 );
 
 const renderTextField = ({ input, meta: { touched, error, warning } }) => (
   <div style={{ width: '100%' }}>
-    <textarea {...input} rows="10" cols="40" style={InputTextField} />
+    <textarea {...input} rows="10" cols="40" style={Styles.InputTextField} />
     {touched &&
-      ((error && <Error>{error}</Error>) ||
-        (warning && <Error>{warning}</Error>))}
+      ((error && <Styles.Error>{error}</Styles.Error>) ||
+        (warning && <Styles.Error>{warning}</Styles.Error>))}
   </div>
 );
 
@@ -122,165 +80,165 @@ class AccountPage extends Component {
     const token = localStorage.userId;
     const id = this.props.match.params.id;
     return (
-      <AccountPageWrapper>
-        <BackgroundComponent src={Background} alt="" />
-        <RocketWrapper>
-          <RocketComponent src={Rocket} alt="" />
-        </RocketWrapper>
-        <FollowLine>
-          <FollowComponent>
-            <FollowBlock>
-              <Span style={{ fontSize: '30px' }}>{followCount}</Span>
-            </FollowBlock>
-            <Span>Подписчики</Span>
-          </FollowComponent>
-          <FollowComponent>
-            <FollowBlock>
-              <Span style={{ fontSize: '30px' }}>{followersCount}</Span>
-            </FollowBlock>
-            <Span>Подписки</Span>
-          </FollowComponent>
-        </FollowLine>
+      <Styles.AccountPageWrapper>
+        <Styles.BackgroundComponent src={Background} alt="" />
+        <Styles.RocketWrapper>
+          <Styles.RocketComponent src={Rocket} alt="" />
+        </Styles.RocketWrapper>
+        <Styles.FollowLine>
+          <Styles.FollowComponent>
+            <Styles.FollowBlock>
+              <Styles.Span style={{ fontSize: '30px' }}>{followCount}</Styles.Span>
+            </Styles.FollowBlock>
+            <Styles.Span>Подписчики</Styles.Span>
+          </Styles.FollowComponent>
+          <Styles.FollowComponent>
+            <Styles.FollowBlock>
+              <Styles.Span style={{ fontSize: '30px' }}>{followersCount}</Styles.Span>
+            </Styles.FollowBlock>
+            <Styles.Span>Подписки</Styles.Span>
+          </Styles.FollowComponent>
+        </Styles.FollowLine>
         { token === id ? 
         <Dropzone onDrop={this.onDrop}> 
         {({getRootProps, getInputProps, isDragActive}) => {
         return (
-        <ProfileImageBlock
+        <Styles.ProfileImageBlock
           {...getRootProps()}
           className={classNames('dropzone', {'dropzone--isActive': isDragActive})}
           onMouseEnter={this.onHover}
           onMouseLeave={this.onHoverOut}
           style={{  outline: 'none'}}
         >
-        {hover ? <CameraComponent src={Camera} alt="" /> : '' }
+        {hover ? <Styles.CameraComponent src={Camera} alt="" /> : '' }
 {hover ?
-<ProfileShadow>
+<Styles.ProfileShadow>
 <input {...getInputProps()} />
-</ProfileShadow>
+</Styles.ProfileShadow>
   : ''}
-          <ProfileImage src={Image} alt="" />
-          </ProfileImageBlock>
+          <Styles.ProfileImage src={Image} alt="" />
+          </Styles.ProfileImageBlock>
         )
         }}
       </Dropzone>
         : 
-        <ProfileImageBlock
+        <Styles.ProfileImageBlock
         >
-        <ProfileImage src={Image} alt="" />
-        </ProfileImageBlock>
+        <Styles.ProfileImage src={Image} alt="" />
+        </Styles.ProfileImageBlock>
         }
-        <Nickname>{nickname}</Nickname>
-        <TestLink onClick={() => { testShown ? this.setState({testShown: false}) : this.setState({testShown: true })}}>Тестирование веб-камеры и звука</TestLink>
+        <Styles.Nickname>{nickname}</Styles.Nickname>
+        <Styles.TestLink onClick={() => { testShown ? this.setState({testShown: false}) : this.setState({testShown: true })}}>Тестирование веб-камеры и звука</Styles.TestLink>
         {testShown ? (
-          <Test>
-          <TestShadowWrapper onClick={() => {this.setState({testShown: false})}}/>
-            <TestWrapper>
-              <TestTitle><span>Тестирование веб-камеры и звука</span>
-              <CrossWrapper onClick={() => {this.setState({testShown: false})}}><img src={Cross} alt=""/></CrossWrapper></TestTitle>
-              <TestContentWrapper>
-                  <Microphone>Микрофон</Microphone>
-                  <LevelNumberWrapper>
-                    <LevelNumber>1</LevelNumber>
-                    <LevelNumber>2</LevelNumber>
-                    <LevelNumber>3</LevelNumber>
-                    <LevelNumber>4</LevelNumber>
-                    <LevelNumber>5</LevelNumber>
-                    <LevelNumber>6</LevelNumber>
-                    <LevelNumber>7</LevelNumber>
-                    <LevelNumber>8</LevelNumber>
-                    <LevelNumber>9</LevelNumber>
-                    <LevelNumber>10</LevelNumber>
-                  </LevelNumberWrapper>
+          <Styles.Test>
+          <Styles.TestShadowWrapper onClick={() => {this.setState({testShown: false})}}/>
+            <Styles.TestWrapper>
+              <Styles.TestTitle><span>Тестирование веб-камеры и звука</span>
+              <Styles.CrossWrapper onClick={() => {this.setState({testShown: false})}}><img src={Cross} alt=""/></Styles.CrossWrapper></Styles.TestTitle>
+              <Styles.TestContentWrapper>
+                  <Styles.Microphone>Микрофон</Styles.Microphone>
+                  <Styles.LevelNumberWrapper>
+                    <Styles.LevelNumber>1</Styles.LevelNumber>
+                    <Styles.LevelNumber>2</Styles.LevelNumber>
+                    <Styles.LevelNumber>3</Styles.LevelNumber>
+                    <Styles.LevelNumber>4</Styles.LevelNumber>
+                    <Styles.LevelNumber>5</Styles.LevelNumber>
+                    <Styles.LevelNumber>6</Styles.LevelNumber>
+                    <Styles.LevelNumber>7</Styles.LevelNumber>
+                    <Styles.LevelNumber>8</Styles.LevelNumber>
+                    <Styles.LevelNumber>9</Styles.LevelNumber>
+                    <Styles.LevelNumber>10</Styles.LevelNumber>
+                  </Styles.LevelNumberWrapper>
                   <div style={{position: 'relative'}}>
-                  <LevelLineColored width="100%"/>
-                  <LevelLine />
+                  <Styles.LevelLineColored width="100%"/>
+                  <Styles.LevelLine />
                   </div>
-                  <CameraTitle>Камера</CameraTitle>
+                  <Styles.CameraTitle>Камера</Styles.CameraTitle>
                   <PlayerBlock width="408" height="204" autoplay="autoplay"/>
-              </TestContentWrapper>
-            </TestWrapper>
-          </Test>
+              </Styles.TestContentWrapper>
+            </Styles.TestWrapper>
+          </Styles.Test>
         ) : 
         ''}
         {edited ? (
-          <ContentBlock>
-            <EditedContentLine>
-              <Label>Имя:</Label>
+          <Styles.ContentBlock>
+            <Styles.EditedContentLine>
+              <Styles.Label>Имя:</Styles.Label>
               <Field name="name" type="text" component={renderField} />
-            </EditedContentLine>
-            <EditedContentLine>
-              <Label>О себе:</Label>
+            </Styles.EditedContentLine>
+            <Styles.EditedContentLine>
+              <Styles.Label>О себе:</Styles.Label>
               <Field
                 name="description"
                 type="text"
                 component={renderTextField}
               />
-            </EditedContentLine>
-            <EditedContentLine>
-              <Label>E-mail:</Label>
+            </Styles.EditedContentLine>
+            <Styles.EditedContentLine>
+              <Styles.Label>E-mail:</Styles.Label>
               <Field name="email" type="text" component={renderField} />
-            </EditedContentLine>
-            <ContentLine>
-              <Label />
-              <Content>
+            </Styles.EditedContentLine>
+            <Styles.ContentLine>
+              <Styles.Label />
+              <Styles.Content>
                 E-mail не подтвержден. На указанный адрес было отправлено письмо
                 со ссылкой для подтверждения. Пожалуйста, проверьте Ваш почтовый
                 ящик. <SendAgain>Отправить письмо повторно.</SendAgain>
-              </Content>
-            </ContentLine>
-            <ContentLine>
-              <ChangePasswordButton>
+              </Styles.Content>
+            </Styles.ContentLine>
+            <Styles.ContentLine>
+              <Styles.ChangePasswordButton>
                 Изменить пароль: <img src={Arrow} alt="" />
-              </ChangePasswordButton>
-            </ContentLine>
-            <EditedContentLine>
-              <ChangePasswordLabel>Старый пароль:</ChangePasswordLabel>
+              </Styles.ChangePasswordButton>
+            </Styles.ContentLine>
+            <Styles.EditedContentLine>
+              <Styles.ChangePasswordLabel>Старый пароль:</Styles.ChangePasswordLabel>
               <Field name="oldPass" type="password" component={renderField} />
-            </EditedContentLine>
-            <EditedContentLine>
-              <ChangePasswordLabel>Новый пароль:</ChangePasswordLabel>
+            </Styles.EditedContentLine>
+            <Styles.EditedContentLine>
+              <Styles.ChangePasswordLabel>Новый пароль:</Styles.ChangePasswordLabel>
               <Field name="newPass" type="password" component={renderField} />
-            </EditedContentLine>
-            <EditedContentLine>
-              <ChangePasswordLabel>Потдвердите пароль:</ChangePasswordLabel>
+            </Styles.EditedContentLine>
+            <Styles.EditedContentLine>
+              <Styles.ChangePasswordLabel>Потдвердите пароль:</Styles.ChangePasswordLabel>
               <Field
                 name="confirmPass"
                 type="password"
                 component={renderField}
               />
-            </EditedContentLine>
-          </ContentBlock>
+            </Styles.EditedContentLine>
+          </Styles.ContentBlock>
         ) : (
-          <ContentBlock>
-            <ContentLine>
-              <Label>Репутация:</Label>
-              <Content>
+          <Styles.ContentBlock>
+            <Styles.ContentLine>
+              <Styles.Label>Репутация:</Styles.Label>
+              <Styles.Content>
                 {win} Побед / {lose} Поражений
-              </Content>
-            </ContentLine>
-            <ContentLine>
-              <Label>О себе:</Label>
-              <Content>{desc}</Content>
-            </ContentLine>
-            <ContentLine>
-              <Label style={{ cursor: 'pointer' }} onClick={() => {shownStory ? this.setState({shownStory: false}) : this.setState({shownStory: true})}}>
+              </Styles.Content>
+            </Styles.ContentLine>
+            <Styles.ContentLine>
+              <Styles.Label>О себе:</Styles.Label>
+              <Styles.Content>{desc}</Styles.Content>
+            </Styles.ContentLine>
+            <Styles.ContentLine>
+              <Styles.Label style={{ cursor: 'pointer' }} onClick={() => {shownStory ? this.setState({shownStory: false}) : this.setState({shownStory: true})}}>
                 История:{' '}
-                <ArrowComponent
+                <Styles.ArrowComponent
                   src={Arrow}
                   shownStory={shownStory}
                   alt=""
                 />
-              </Label>
+              </Styles.Label>
               { shownStory ? 
-              <StoryWrapper shownStory={shownStory}>
-                <Content style={{ marginBottom: '10px' }}>03.01.19 18:00 Победа</Content>
-                <Content style={{ marginBottom: '10px' }}>03.01.19 18:00 Победа</Content>
-                <Content style={{ marginBottom: '10px' }}>03.01.19 18:00 Поражение</Content>
-              </StoryWrapper> : ''}
-            </ContentLine>
-          </ContentBlock>
+              <Styles.StoryWrapper shownStory={shownStory}>
+                <Styles.Content style={{ marginBottom: '10px' }}>03.01.19 18:00 Победа</Styles.Content>
+                <Styles.Content style={{ marginBottom: '10px' }}>03.01.19 18:00 Победа</Styles.Content>
+                <Styles.Content style={{ marginBottom: '10px' }}>03.01.19 18:00 Поражение</Styles.Content>
+              </Styles.StoryWrapper> : ''}
+            </Styles.ContentLine>
+          </Styles.ContentBlock>
         )}
-        { token === id ? <ButtonLine>
+        { token === id ? <Styles.ButtonLine>
           <Button
             text={edited ? 'Сохранить' : 'Редактировать'}
             w="217px"
@@ -304,16 +262,16 @@ class AccountPage extends Component {
               onClick={this.onLogout}
             />
           )}
-        </ButtonLine> : <ButtonLine>
+        </Styles.ButtonLine> : <Styles.ButtonLine>
           <Button
             text="Пригласить на дебаты"
             w="268px"
             right="40px"
             onClick={() => ({})}
           />
-        </ButtonLine> 
+        </Styles.ButtonLine> 
         }
-      </AccountPageWrapper>
+      </Styles.AccountPageWrapper>
     );
   }
 }

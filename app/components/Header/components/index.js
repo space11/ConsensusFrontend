@@ -1,72 +1,73 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'components/Button';
-import {
-  NotificationInvitationWrapper,
-  NotificationInvitationDate,
-  NotificationInvitationNickname,
-  NotificationInvitationText,
-  NotificationInvitationDatePlan,
-  NotificationInvitationButtonWrapper,
-} from '../styles';
+import * as Styles from '../styles';
 
 export const InvitationBlock = ({ date, url, nickname, datePlan }) => (
-  <NotificationInvitationWrapper>
-    <NotificationInvitationDate>{date}</NotificationInvitationDate>
-    <NotificationInvitationText>
-      <NotificationInvitationNickname to={url}>
+  <Styles.NotificationInvitationWrapper>
+    <Styles.NotificationInvitationDate>
+      {date}
+    </Styles.NotificationInvitationDate>
+    <Styles.NotificationInvitationText>
+      <Styles.NotificationInvitationNickname to={url}>
         {nickname}
-      </NotificationInvitationNickname>{' '}
+      </Styles.NotificationInvitationNickname>{' '}
       приглашает Вас на дебаты, которые состоятся{' '}
-      <NotificationInvitationDatePlan>
+      <Styles.NotificationInvitationDatePlan>
         {datePlan}
-      </NotificationInvitationDatePlan>
-    </NotificationInvitationText>
-    <NotificationInvitationButtonWrapper>
+      </Styles.NotificationInvitationDatePlan>
+    </Styles.NotificationInvitationText>
+    <Styles.NotificationInvitationButtonWrapper>
       <Button text="Принять" h="27px" w="101px" right="15px" />
       <Button text="Отклонить" isRed isTransparent h="27px" w="101px" />
-    </NotificationInvitationButtonWrapper>
-  </NotificationInvitationWrapper>
+    </Styles.NotificationInvitationButtonWrapper>
+  </Styles.NotificationInvitationWrapper>
 );
 
 export const InvitationBlockFinish = ({ date, nickname, url }) => (
-  <NotificationInvitationWrapper>
-    <NotificationInvitationDate>{date}</NotificationInvitationDate>
-    <NotificationInvitationText>
+  <Styles.NotificationInvitationWrapper>
+    <Styles.NotificationInvitationDate>
+      {date}
+    </Styles.NotificationInvitationDate>
+    <Styles.NotificationInvitationText>
       Вы приняли приглашение от{' '}
-      <NotificationInvitationNickname to={url}>
+      <Styles.NotificationInvitationNickname to={url}>
         {nickname}
-      </NotificationInvitationNickname>{' '}
-    </NotificationInvitationText>
-  </NotificationInvitationWrapper>
+      </Styles.NotificationInvitationNickname>{' '}
+    </Styles.NotificationInvitationText>
+  </Styles.NotificationInvitationWrapper>
 );
 
 export const InvitationBlockSoon = ({ date }) => (
-  <NotificationInvitationWrapper>
-    <NotificationInvitationDate>{date}</NotificationInvitationDate>
-    <NotificationInvitationText>
+  <Styles.NotificationInvitationWrapper>
+    <Styles.NotificationInvitationDate>
+      {date}
+    </Styles.NotificationInvitationDate>
+    <Styles.NotificationInvitationText>
       Дебаты вот-вот начнутся. Подтвердите свою готовность
-    </NotificationInvitationText>
-    <NotificationInvitationButtonWrapper>
+    </Styles.NotificationInvitationText>
+    <Styles.NotificationInvitationButtonWrapper>
       <Button text="Готов" h="27px" w="101px" right="15px" />
-    </NotificationInvitationButtonWrapper>
-  </NotificationInvitationWrapper>
+    </Styles.NotificationInvitationButtonWrapper>
+  </Styles.NotificationInvitationWrapper>
 );
 
 export const InvitationBlockNow = ({ date, url, nickname, datePlan }) => (
-  <NotificationInvitationWrapper>
-    <NotificationInvitationDate>{date}</NotificationInvitationDate>
-    <NotificationInvitationText>
+  <Styles.NotificationInvitationWrapper>
+    <Styles.NotificationInvitationDate>
+      {date}
+    </Styles.NotificationInvitationDate>
+    <Styles.NotificationInvitationText>
       Напоминаем, дебаты с{' '}
-      <NotificationInvitationNickname to={url}>
+      <Styles.NotificationInvitationNickname to={url}>
         {nickname}
-      </NotificationInvitationNickname>{' '}
+      </Styles.NotificationInvitationNickname>{' '}
       начнутся через{' '}
-      <NotificationInvitationDatePlan>
+      <Styles.NotificationInvitationDatePlan>
         {datePlan}
-      </NotificationInvitationDatePlan>
-    </NotificationInvitationText>
-  </NotificationInvitationWrapper>
+      </Styles.NotificationInvitationDatePlan>
+    </Styles.NotificationInvitationText>
+  </Styles.NotificationInvitationWrapper>
 );
 
 InvitationBlock.propTypes = {

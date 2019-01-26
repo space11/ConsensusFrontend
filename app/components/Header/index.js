@@ -4,21 +4,7 @@ import SearchIcon from 'images/header/searchIcon';
 import Button from 'components/Button';
 import ProfileImage from 'containers/Account/1.jpg';
 import { Notification } from 'images/header/notifications';
-import {
-  Wrapper,
-  HeaderWrapper,
-  Logo,
-  NavigatorContainer,
-  SearchButton,
-  ProfileWrapper,
-  LoginSigninButton,
-  NotificationBellWrapper,
-  NotificationRedRound,
-  NotificationWrapper,
-  NotificationContainer,
-  NotificationTransparentWrapper,
-  Inner,
-} from './styles';
+import * as Styles from './styles';
 import {
   InvitationBlock,
   InvitationBlockFinish,
@@ -40,20 +26,22 @@ class Header extends Component {
     const { isBlue, isWhite, isLogin, isRed } = this.props;
     const date = new Date();
     return (
-      <Wrapper>
-        <HeaderWrapper>
-          <Logo to="/" isBlue={isBlue} isWhite={isWhite}>
+      <Styles.Wrapper>
+        <Styles.HeaderWrapper>
+          <Styles.Logo to="/" isBlue={isBlue} isWhite={isWhite}>
             Консенсус
-          </Logo>
-          <NavigatorContainer isLogin={localStorage.id_token !== undefined}>
+          </Styles.Logo>
+          <Styles.NavigatorContainer
+            isLogin={localStorage.id_token !== undefined}
+          >
             {hover ? (
-              <NotificationTransparentWrapper
+              <Styles.NotificationTransparentWrapper
                 onClick={() => this.setState({ hover: false })}
               />
             ) : (
               ''
             )}
-            <NotificationContainer
+            <Styles.NotificationContainer
               onClick={() => this.setState({ hover: true })}
               onMouseEnter={() => {
                 clearInterval(intervalId);
@@ -68,8 +56,8 @@ class Header extends Component {
               }}
             >
               {hover ? (
-                <NotificationWrapper hover={hover}>
-                  <Inner>
+                <Styles.NotificationWrapper hover={hover}>
+                  <Styles.Inner>
                     <InvitationBlock
                       date={date.toUTCString()}
                       url="/account/7db7cfcf-ea98-43f0-a9a5-c67944c17a86"
@@ -105,39 +93,39 @@ class Header extends Component {
                       nickname="Notan Evchiform"
                       datePlan={date.toUTCString()}
                     />
-                  </Inner>
-                </NotificationWrapper>
+                  </Styles.Inner>
+                </Styles.NotificationWrapper>
               ) : (
                 ''
               )}
               {localStorage.id_token !== undefined ? (
-                <NotificationBellWrapper>
-                  <NotificationRedRound isBlue={isBlue} />
+                <Styles.NotificationBellWrapper>
+                  <Styles.NotificationRedRound isBlue={isBlue} />
                   <Notification isBlue={isBlue} />
-                </NotificationBellWrapper>
+                </Styles.NotificationBellWrapper>
               ) : (
                 ''
               )}
-            </NotificationContainer>
-            <SearchButton isBlue={isBlue}>
+            </Styles.NotificationContainer>
+            <Styles.SearchButton isBlue={isBlue}>
               <SearchIcon isBlue={isBlue} />
-            </SearchButton>
+            </Styles.SearchButton>
             {localStorage.id_token === undefined ? (
-              <LoginSigninButton to="/sign-in" isLogin={isLogin}>
+              <Styles.LoginSigninButton to="/sign-in" isLogin={isLogin}>
                 <Button text="Вход и регистрация" isTransparent isRed={isRed} />
-              </LoginSigninButton>
+              </Styles.LoginSigninButton>
             ) : (
-              <LoginSigninButton
+              <Styles.LoginSigninButton
                 to={`/account/${localStorage.userId}`}
                 isRed={isRed}
                 isLogin={isLogin}
               >
-                <ProfileWrapper src={ProfileImage} alt="" />
-              </LoginSigninButton>
+                <Styles.ProfileWrapper src={ProfileImage} alt="" />
+              </Styles.LoginSigninButton>
             )}
-          </NavigatorContainer>
-        </HeaderWrapper>
-      </Wrapper>
+          </Styles.NavigatorContainer>
+        </Styles.HeaderWrapper>
+      </Styles.Wrapper>
     );
   }
 }

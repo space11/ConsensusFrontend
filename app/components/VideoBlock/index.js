@@ -3,22 +3,15 @@ import PropTypes from 'prop-types';
 import Placeholder from 'images/placeholders/1.png';
 import VideoBlockBig from '../VideoBlockBig';
 import VideoBlockSmall from '../VideoBlockSmall';
-import {
-  VideoBlockWrapper,
-  VideoBlockTitle,
-  VideoBlockMoreButton,
-  VideoBlockLine,
-  VideoBlockBigWrapper,
-  VideoBlockSmallWrapper,
-} from './styles';
+import * as Styles from './styles';
 
 const VideoBlock = ({ title, live }) => (
-  <VideoBlockWrapper>
-    <VideoBlockLine>
-      <VideoBlockTitle>{title}</VideoBlockTitle>
-      <VideoBlockMoreButton>Посмотреть еще</VideoBlockMoreButton>
-    </VideoBlockLine>
-    <VideoBlockBigWrapper>
+  <Styles.VideoBlockWrapper>
+    <Styles.VideoBlockLine>
+      <Styles.VideoBlockTitle>{title}</Styles.VideoBlockTitle>
+      <Styles.VideoBlockMoreButton>Посмотреть еще</Styles.VideoBlockMoreButton>
+    </Styles.VideoBlockLine>
+    <Styles.VideoBlockBigWrapper>
       <VideoBlockBig
         url="/"
         title="Выбор политического курса России: как не упустить шанс снова."
@@ -46,8 +39,8 @@ const VideoBlock = ({ title, live }) => (
         viewers="98 зрителей"
         image={Placeholder}
       />
-    </VideoBlockBigWrapper>
-    <VideoBlockSmallWrapper>
+    </Styles.VideoBlockBigWrapper>
+    <Styles.VideoBlockSmallWrapper>
       <VideoBlockSmall
         url="/"
         title="Выбор политического курса России: как не упустить шанс снова."
@@ -84,8 +77,8 @@ const VideoBlock = ({ title, live }) => (
         viewers="98 зрителей"
         image={Placeholder}
       />
-    </VideoBlockSmallWrapper>
-  </VideoBlockWrapper>
+    </Styles.VideoBlockSmallWrapper>
+  </Styles.VideoBlockWrapper>
 );
 
 VideoBlock.propTypes = {

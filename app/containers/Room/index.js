@@ -9,28 +9,7 @@ import ShareIcon from 'images/room/share.svg';
 import VsIcon from 'images/playerblock/vs.svg';
 import FirstProfile from './images/1.png';
 import SecondProfile from './images/2.png';
-import {
-  RoomWrapper,
-  LeftBlock,
-  RightBlock,
-  ContentBlockWrapper,
-  Title,
-  CategoryWrapper,
-  CategoryLabel,
-  CategoryText,
-  CategoryWrap,
-  RoomDescription,
-  ViewersWrapper,
-  Share,
-  Line,
-  ProfileBlock,
-  ProfileBlockWrapper,
-  ProfileBlockImage,
-  ProfileBlockTitle,
-  ProfileBlockContentWrapper,
-  ProfileBlockDescription,
-  VsIconWrapper,
-} from './styles';
+import * as Styles from './styles';
 
 const RoomPage = ({
   title,
@@ -45,56 +24,60 @@ const RoomPage = ({
   opponentNickname,
   opponentDescription,
 }) => (
-  <RoomWrapper>
-    <LeftBlock>
+  <Styles.RoomWrapper>
+    <Styles.LeftBlock>
       <TabBlock />
       <PlayerBlock width="902px" />
-      <ContentBlockWrapper>
-        <Title>{title}</Title>
-        <CategoryWrapper>
-          <CategoryWrap>
-            <CategoryLabel>Категория: </CategoryLabel>
-            <CategoryText>{category}</CategoryText>
-          </CategoryWrap>
-          <CategoryWrap>
-            <ViewersWrapper src={ViewersIcon} alt="" />
+      <Styles.ContentBlockWrapper>
+        <Styles.Title>{title}</Styles.Title>
+        <Styles.CategoryWrapper>
+          <Styles.CategoryWrap>
+            <Styles.CategoryLabel>Категория: </Styles.CategoryLabel>
+            <Styles.CategoryText>{category}</Styles.CategoryText>
+          </Styles.CategoryWrap>
+          <Styles.CategoryWrap>
+            <Styles.ViewersWrapper src={ViewersIcon} alt="" />
             <span style={{ marginRight: '10px' }}>{viewers}</span>
-            <Share>
+            <Styles.Share>
               <img src={ShareIcon} alt="" style={{ marginRight: '5px' }} />
               Поделиться
-            </Share>
-          </CategoryWrap>
-        </CategoryWrapper>
-        <RoomDescription>{description}</RoomDescription>
-        <Line />
-        <ProfileBlock>
-          <ProfileBlockWrapper to={urlHost}>
-            <ProfileBlockImage src={FirstProfile} alt="" />
-            <ProfileBlockContentWrapper>
-              <ProfileBlockTitle>{hostNickName}</ProfileBlockTitle>
-              <ProfileBlockDescription>
+            </Styles.Share>
+          </Styles.CategoryWrap>
+        </Styles.CategoryWrapper>
+        <Styles.RoomDescription>{description}</Styles.RoomDescription>
+        <Styles.Line />
+        <Styles.ProfileBlock>
+          <Styles.ProfileBlockWrapper to={urlHost}>
+            <Styles.ProfileBlockImage src={FirstProfile} alt="" />
+            <Styles.ProfileBlockContentWrapper>
+              <Styles.ProfileBlockTitle>
+                {hostNickName}
+              </Styles.ProfileBlockTitle>
+              <Styles.ProfileBlockDescription>
                 {hostDescription}
-              </ProfileBlockDescription>
-            </ProfileBlockContentWrapper>
-          </ProfileBlockWrapper>
-          <VsIconWrapper src={VsIcon} alt="" />
-          <ProfileBlockWrapper to={urlOpponent}>
-            <ProfileBlockImage src={SecondProfile} alt="" />
-            <ProfileBlockContentWrapper>
-              <ProfileBlockTitle>{opponentNickname}</ProfileBlockTitle>
-              <ProfileBlockDescription>
+              </Styles.ProfileBlockDescription>
+            </Styles.ProfileBlockContentWrapper>
+          </Styles.ProfileBlockWrapper>
+          <Styles.VsIconWrapper src={VsIcon} alt="" />
+          <Styles.ProfileBlockWrapper to={urlOpponent}>
+            <Styles.ProfileBlockImage src={SecondProfile} alt="" />
+            <Styles.ProfileBlockContentWrapper>
+              <Styles.ProfileBlockTitle>
+                {opponentNickname}
+              </Styles.ProfileBlockTitle>
+              <Styles.ProfileBlockDescription>
                 {opponentDescription}
-              </ProfileBlockDescription>
-            </ProfileBlockContentWrapper>
-          </ProfileBlockWrapper>
-        </ProfileBlock>
-      </ContentBlockWrapper>
-    </LeftBlock>
-    <RightBlock>
+              </Styles.ProfileBlockDescription>
+            </Styles.ProfileBlockContentWrapper>
+          </Styles.ProfileBlockWrapper>
+        </Styles.ProfileBlock>
+      </Styles.ContentBlockWrapper>
+    </Styles.LeftBlock>
+    <Styles.RightBlock>
       <ChatBlock debateId={debateId} />
       <VoteBlock />
-    </RightBlock>
-  </RoomWrapper>
+    </Styles.RightBlock>
+  </Styles.RoomWrapper>
 );
 
 RoomPage.propTypes = {

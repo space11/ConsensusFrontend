@@ -9,102 +9,84 @@ import Twitter from 'images/footer/social/twitter.svg';
 import Vk from 'images/footer/social/vk.svg';
 import { FaqLine } from './components/line';
 import Button from '../Button';
-import {
-  FaqBlockWrapper,
-  HumanWrapper,
-  GrayWrapper,
-  AnchorWrapper,
-  BackgroundWrapper,
-  ContentWrapper,
-  Title,
-  Description,
-  Link,
-  LinePairWrapper,
-  LinesWrapper,
-  FooterWrapper,
-  MainContentWrapper,
-  ButtonWrapper,
-  FooterLinkWrapper,
-  FooterLinkSmallWrapper,
-  FooterLink,
-  FooterSocial,
-  Social,
-  SocialLink,
-  FooterLinkSocialWrapper,
-  Copyright,
-  AlienFooterImage,
-} from './styles';
+import * as Styles from './styles';
 
 const FaqBlock = () => (
-  <FaqBlockWrapper>
-    <MainContentWrapper>
-      <AnchorWrapper>
-        <GrayWrapper>
+  <Styles.FaqBlockWrapper>
+    <Styles.MainContentWrapper>
+      <Styles.AnchorWrapper>
+        <Styles.GrayWrapper>
           <img src={AlienGray} alt="" />
-        </GrayWrapper>
-        <ContentWrapper>
+        </Styles.GrayWrapper>
+        <Styles.ContentWrapper>
           <div>
-            <Title>Часто задаваемые вопросы</Title>
-            <Description>
+            <Styles.Title>Часто задаваемые вопросы</Styles.Title>
+            <Styles.Description>
               Мы уверены, что у вас есть вопросы. Ниже приведен список наиболее
               часто задаваемых вопросов. Если вы не видите свой вопрос,
               пожалуйста, не стесняйтесь{' '}
-              <Link to="/contacts">обращаться к нам</Link>
-            </Description>
-            <LinesWrapper>
-              <LinePairWrapper>
+              <Styles.Link to="/contacts">обращаться к нам</Styles.Link>
+            </Styles.Description>
+            <Styles.LinesWrapper>
+              <Styles.LinePairWrapper>
                 <FaqLine title="Как запустить стрим?" />
                 <FaqLine title="Как запустить стрим?" />
-              </LinePairWrapper>
-              <LinePairWrapper>
+              </Styles.LinePairWrapper>
+              <Styles.LinePairWrapper>
                 <FaqLine title="Как запустить стрим?" />
                 <FaqLine title="Как запустить стрим?" />
-              </LinePairWrapper>
-              <LinePairWrapper>
+              </Styles.LinePairWrapper>
+              <Styles.LinePairWrapper>
                 <FaqLine title="Как запустить стрим?" />
                 <FaqLine title="Как запустить стрим?" />
-              </LinePairWrapper>
-            </LinesWrapper>
+              </Styles.LinePairWrapper>
+            </Styles.LinesWrapper>
           </div>
-          <ButtonWrapper to="/create-debate">
+          <Styles.ButtonWrapper to="/create-debate">
             <Button text="Организовать дебаты" />
-          </ButtonWrapper>
-        </ContentWrapper>
-        <HumanWrapper>
+          </Styles.ButtonWrapper>
+        </Styles.ContentWrapper>
+        <Styles.HumanWrapper>
           <img src={AlienHuman} alt="" />
-        </HumanWrapper>
-      </AnchorWrapper>
-      <FooterWrapper>
-        <FooterLinkWrapper>
-          <FooterLinkSmallWrapper>
-            <FooterLink to="/rules">Правила</FooterLink>
-            <FooterLink to="/contacts">Контакты</FooterLink>
-            <FooterLink to="/advertisments">Рекламные возможности</FooterLink>
-            <FooterLink to="/user-agreement">
+        </Styles.HumanWrapper>
+      </Styles.AnchorWrapper>
+      <Styles.FooterWrapper>
+        <Styles.FooterLinkWrapper>
+          <Styles.FooterLinkSmallWrapper>
+            <Styles.FooterLink to="/rules">Правила</Styles.FooterLink>
+            <Styles.FooterLink to="/contacts">Контакты</Styles.FooterLink>
+            <Styles.FooterLink to="/advertisments">
+              Рекламные возможности
+            </Styles.FooterLink>
+            <Styles.FooterLink to="/user-agreement">
               Пользовательское соглашение
-            </FooterLink>
-          </FooterLinkSmallWrapper>
-          <FooterLinkSocialWrapper>
-            <FooterSocial>
-              <Social src={Vk} alt="" />
-              <Social src={Facebook} alt="" />
-              <Social src={Twitter} alt="" />
-              <Social src={Instagram} alt="" />
-            </FooterSocial>
-            <FooterLinkSmallWrapper>
-              <SocialLink href="vk.com">VK</SocialLink>
-              <SocialLink href="facebook.com">FACEBOOK</SocialLink>
-              <SocialLink href="twitter.com">TWITTER</SocialLink>
-              <SocialLink href="instagram.com">INSTAGRAM</SocialLink>
-            </FooterLinkSmallWrapper>
-          </FooterLinkSocialWrapper>
-        </FooterLinkWrapper>
-        <AlienFooterImage src={AlienFooter} alt="" />
-        <Copyright>© League Of Developers 2018</Copyright>
-      </FooterWrapper>
-    </MainContentWrapper>
-    <BackgroundWrapper src={Background} alt="" />
-  </FaqBlockWrapper>
+            </Styles.FooterLink>
+          </Styles.FooterLinkSmallWrapper>
+          <Styles.FooterLinkSocialWrapper>
+            <Styles.FooterSocial>
+              <Styles.Social src={Vk} alt="" />
+              <Styles.Social src={Facebook} alt="" />
+              <Styles.Social src={Twitter} alt="" />
+              <Styles.Social src={Instagram} alt="" />
+            </Styles.FooterSocial>
+            <Styles.FooterLinkSmallWrapper>
+              <Styles.SocialLink href="vk.com">VK</Styles.SocialLink>
+              <Styles.SocialLink href="facebook.com">
+                FACEBOOK
+              </Styles.SocialLink>
+              <Styles.SocialLink href="twitter.com">TWITTER</Styles.SocialLink>
+              <Styles.SocialLink href="instagram.com">
+                INSTAGRAM
+              </Styles.SocialLink>
+            </Styles.FooterLinkSmallWrapper>
+          </Styles.FooterLinkSocialWrapper>
+        </Styles.FooterLinkWrapper>
+        <Styles.AlienFooterImage src={AlienFooter} alt="" />
+        <Styles.Copyright>© League Of Developers 2018</Styles.Copyright>
+      </Styles.FooterWrapper>
+    </Styles.MainContentWrapper>
+    <Styles.BackgroundWrapper src={Background} alt="" />
+  </Styles.FaqBlockWrapper>
 );
 
 export default FaqBlock;

@@ -7,24 +7,7 @@ import SoundIcon from 'images/playerblock/sound.svg';
 import FullScreenIcon from 'images/playerblock/fullscreen.svg';
 import SettingsIcon from 'images/playerblock/settings.svg';
 import Rocket from 'images/playerblock/rocket';
-import {
-  SliderWrapper,
-  TimeLineWrapper,
-  PassedWrapper,
-  LeftControl,
-  LeftBlock,
-  RightControl,
-  PassedTimeLineWrapper,
-  LowControlFieldWrapper,
-  UpperControlWrapper,
-  RoundCenter,
-  ButtonWrapper,
-  RocketWrapper,
-  TimeText,
-  TimeTextWrapper,
-  Image,
-  Text,
-} from './styles';
+import * as Styles from './styles';
 
 const Slider = ({
   talking,
@@ -38,56 +21,59 @@ const Slider = ({
   show,
 }) => (
   <div>
-    <UpperControlWrapper>
-      <LeftBlock>
-        <Text>Говорит: {talking}</Text>
-      </LeftBlock>
-      <RoundCenter>
-        <Text>
+    <Styles.UpperControlWrapper>
+      <Styles.LeftBlock>
+        <Styles.Text>Говорит: {talking}</Styles.Text>
+      </Styles.LeftBlock>
+      <Styles.RoundCenter>
+        <Styles.Text>
           {round} раунд ({time})
-        </Text>
-      </RoundCenter>
-    </UpperControlWrapper>
-    <SliderWrapper width={width} style={{ display: show ? 'flex' : 'none' }}>
-      <PassedWrapper>
-        <PassedTimeLineWrapper />
-        <RocketWrapper>
+        </Styles.Text>
+      </Styles.RoundCenter>
+    </Styles.UpperControlWrapper>
+    <Styles.SliderWrapper
+      width={width}
+      style={{ display: show ? 'flex' : 'none' }}
+    >
+      <Styles.PassedWrapper>
+        <Styles.PassedTimeLineWrapper />
+        <Styles.RocketWrapper>
           <Rocket />
-        </RocketWrapper>
-      </PassedWrapper>
-      <TimeLineWrapper />
-      <LowControlFieldWrapper>
-        <LeftControl>
-          <ButtonWrapper>
+        </Styles.RocketWrapper>
+      </Styles.PassedWrapper>
+      <Styles.TimeLineWrapper />
+      <Styles.LowControlFieldWrapper>
+        <Styles.LeftControl>
+          <Styles.ButtonWrapper>
             {isPlaying ? (
-              <Image src={PlayIcon} alt="" />
+              <Styles.Image src={PlayIcon} alt="" />
             ) : (
-              <Image src={PauseIcon} alt="" />
+              <Styles.Image src={PauseIcon} alt="" />
             )}
-          </ButtonWrapper>
-          <ButtonWrapper>
+          </Styles.ButtonWrapper>
+          <Styles.ButtonWrapper>
             {isMuted ? (
-              <Image src={MuteIcon} alt="" />
+              <Styles.Image src={MuteIcon} alt="" />
             ) : (
-              <Image src={SoundIcon} alt="" />
+              <Styles.Image src={SoundIcon} alt="" />
             )}
-          </ButtonWrapper>
-          <TimeTextWrapper>
-            <TimeText>
+          </Styles.ButtonWrapper>
+          <Styles.TimeTextWrapper>
+            <Styles.TimeText>
               {timeValueMin}:{timeValueSec}
-            </TimeText>
-          </TimeTextWrapper>
-        </LeftControl>
-        <RightControl>
-          <ButtonWrapper>
-            <Image src={SettingsIcon} alt="" />
-          </ButtonWrapper>
-          <ButtonWrapper>
-            <Image src={FullScreenIcon} alt="" />
-          </ButtonWrapper>
-        </RightControl>
-      </LowControlFieldWrapper>
-    </SliderWrapper>
+            </Styles.TimeText>
+          </Styles.TimeTextWrapper>
+        </Styles.LeftControl>
+        <Styles.RightControl>
+          <Styles.ButtonWrapper>
+            <Styles.Image src={SettingsIcon} alt="" />
+          </Styles.ButtonWrapper>
+          <Styles.ButtonWrapper>
+            <Styles.Image src={FullScreenIcon} alt="" />
+          </Styles.ButtonWrapper>
+        </Styles.RightControl>
+      </Styles.LowControlFieldWrapper>
+    </Styles.SliderWrapper>
   </div>
 );
 Slider.propTypes = {

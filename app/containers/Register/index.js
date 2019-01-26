@@ -13,19 +13,7 @@ import {
   minValue5,
 } from 'utils/validation';
 import Bg from 'images/register/background.svg';
-import {
-  LoginWrapper,
-  Background,
-  LoginFormWrapper,
-  InputWrapper,
-  FormBlockWrapper,
-  Description,
-  AdvField,
-  Title,
-  Url,
-  Error,
-  InputField,
-} from './styles';
+import * as Styles from './styles';
 
 const renderField = ({
   input,
@@ -33,7 +21,7 @@ const renderField = ({
   type,
   meta: { touched, error, warning },
 }) => (
-  <InputField>
+  <Styles.InputField>
     <TextField
       {...input}
       label={label}
@@ -44,9 +32,9 @@ const renderField = ({
       inputProps={{ style: { fontSize: 22 } }}
     />
     {touched &&
-      ((error && <Error>{error}</Error>) ||
-        (warning && <Error>{warning}</Error>))}
-  </InputField>
+      ((error && <Styles.Error>{error}</Styles.Error>) ||
+        (warning && <Styles.Error>{warning}</Styles.Error>))}
+  </Styles.InputField>
 );
 
 class RegisterPage extends Component {
@@ -63,7 +51,7 @@ class RegisterPage extends Component {
   render() {
     const { pristine, submitting } = this.props;
     return (
-      <LoginWrapper>
+      <Styles.LoginWrapper>
         <div
           style={{
             position: 'relative',
@@ -71,49 +59,49 @@ class RegisterPage extends Component {
             height: '100%',
           }}
         >
-          <Background src={Bg} alt="" />
+          <Styles.Background src={Bg} alt="" />
         </div>
-        <LoginFormWrapper>
-          <FormBlockWrapper>
-            <Title>Добро пожаловать</Title>
-            <Description>
+        <Styles.LoginFormWrapper>
+          <Styles.FormBlockWrapper>
+            <Styles.Title>Добро пожаловать</Styles.Title>
+            <Styles.Description>
               Если у Вас еще нет профиля на Consensus, создайте его.
-            </Description>
-            <Description>
-              Уже есть профиль? <Url to="/sign-in">Войти</Url>
-            </Description>
-          </FormBlockWrapper>
-          <InputWrapper>
-            <AdvField
+            </Styles.Description>
+            <Styles.Description>
+              Уже есть профиль? <Styles.Url to="/sign-in">Войти</Styles.Url>
+            </Styles.Description>
+          </Styles.FormBlockWrapper>
+          <Styles.InputWrapper>
+            <Styles.AdvField
               name="nickName"
               label="Логин"
               type="text"
               component={renderField}
               validate={[maxLength15, minValue5, required]}
             />
-            <AdvField
+            <Styles.AdvField
               name="email"
               type="text"
               label="Email"
               component={renderField}
               validate={[eMail, required]}
             />
-            <AdvField
+            <Styles.AdvField
               name="password"
               type="password"
               label="Пароль"
               component={renderField}
               validate={[required, minValue8]}
             />
-          </InputWrapper>
+          </Styles.InputWrapper>
           <Button
             type="submit"
             onClick={this.onSubmit}
             text="Зарегистрироваться"
             isValid={pristine || submitting}
           />
-        </LoginFormWrapper>
-      </LoginWrapper>
+        </Styles.LoginFormWrapper>
+      </Styles.LoginWrapper>
     );
   }
 }

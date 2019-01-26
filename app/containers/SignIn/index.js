@@ -8,22 +8,7 @@ import { NavLink } from 'react-router-dom';
 import Bg from 'images/signin/bg.svg';
 import { eMail, required, minValue8 } from 'utils/validation';
 import TextField from '@material-ui/core/TextField';
-import {
-  LoginWrapper,
-  Background,
-  LoginFormWrapper,
-  InputWrapper,
-  FormBlockWrapper,
-  Description,
-  AdvField,
-  Title,
-  Url,
-  Label,
-  ControlLine,
-  InputComponent,
-  Error,
-  InputField,
-} from './styles';
+import * as Styles from './styles';
 
 const renderField = ({
   input,
@@ -31,7 +16,7 @@ const renderField = ({
   type,
   meta: { touched, error, warning },
 }) => (
-  <InputField>
+  <Styles.InputField>
     <TextField
       {...input}
       label={label}
@@ -43,9 +28,9 @@ const renderField = ({
       inputProps={{ style: { fontSize: 22 } }}
     />
     {touched &&
-      ((error && <Error>{error}</Error>) ||
-        (warning && <Error>{warning}</Error>))}
-  </InputField>
+      ((error && <Styles.Error>{error}</Styles.Error>) ||
+        (warning && <Styles.Error>{warning}</Styles.Error>))}
+  </Styles.InputField>
 );
 
 class LoginPage extends Component {
@@ -63,7 +48,7 @@ class LoginPage extends Component {
   render() {
     const { pristine, submitting } = this.props;
     return (
-      <LoginWrapper>
+      <Styles.LoginWrapper>
         <div
           style={{
             position: 'relative',
@@ -71,49 +56,50 @@ class LoginPage extends Component {
             height: '100%',
           }}
         >
-          <Background src={Bg} alt="" />
+          <Styles.Background src={Bg} alt="" />
         </div>
-        <LoginFormWrapper>
-          <FormBlockWrapper>
-            <Title>Здравствуйте</Title>
-            <Description>
+        <Styles.LoginFormWrapper>
+          <Styles.FormBlockWrapper>
+            <Styles.Title>Здравствуйте</Styles.Title>
+            <Styles.Description>
               Если у вас уже есть профиль на Consensus, войдите.
-            </Description>
-            <Description>
-              Еще нет профиля? <Url to="/register">Зарегистрируйтесь</Url>
-            </Description>
-          </FormBlockWrapper>
-          <InputWrapper onSubmit={this.onSubmit}>
-            <AdvField
+            </Styles.Description>
+            <Styles.Description>
+              Еще нет профиля?{' '}
+              <Styles.Url to="/register">Зарегистрируйтесь</Styles.Url>
+            </Styles.Description>
+          </Styles.FormBlockWrapper>
+          <Styles.InputWrapper onSubmit={this.onSubmit}>
+            <Styles.AdvField
               name="email"
               type="text"
               label="Email"
               component={renderField}
               validate={[eMail, required]}
             />
-            <AdvField
+            <Styles.AdvField
               name="password"
               type="password"
               label="Пароль"
               component={renderField}
               validate={[required, minValue8]}
             />
-            <ControlLine>
-              <Label>
-                <InputComponent type="checkbox" />
-                <Label>Запомнить меня</Label>
-              </Label>
+            <Styles.ControlLine>
+              <Styles.Label>
+                <Styles.InputComponent type="checkbox" />
+                <Styles.Label>Запомнить меня</Styles.Label>
+              </Styles.Label>
               <NavLink to="/forgot">Забыли пароль?</NavLink>
-            </ControlLine>
-          </InputWrapper>
+            </Styles.ControlLine>
+          </Styles.InputWrapper>
           <Button
             type="submit"
             isValid={pristine || submitting}
             onClick={this.onSubmit}
             text="Войти"
           />
-        </LoginFormWrapper>
-      </LoginWrapper>
+        </Styles.LoginFormWrapper>
+      </Styles.LoginWrapper>
     );
   }
 }

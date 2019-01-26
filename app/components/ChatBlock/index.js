@@ -8,17 +8,7 @@ import SmileIcon from 'images/chatblock/smile.svg';
 import Message from './components/message';
 import { fetchMessage } from './actions';
 import chatBlockSaga from './sagas';
-import {
-  InputFormWrapper,
-  LowLineWrapper,
-  Input,
-  ButtonWrapper,
-  ChatWrapper,
-  TitleBlock,
-  Title,
-  MessageBlock,
-  Inner,
-} from './styles';
+import * as Styles from './styles';
 
 /* eslint-disable */
 
@@ -105,16 +95,16 @@ class Chat extends Component {
   render() {
     const { message } = this.state;
     return (
-      <ChatWrapper>
-        <TitleBlock>
-          <Title>Чат</Title>
-        </TitleBlock>
-        <MessageBlock>
-          <Inner className="chat">{this.renderChat()}</Inner>
-        </MessageBlock>
-        <InputFormWrapper>
-          <LowLineWrapper>
-            <Input
+      <Styles.ChatWrapper>
+        <Styles.TitleBlock>
+          <Styles.Title>Чат</Styles.Title>
+        </Styles.TitleBlock>
+        <Styles.MessageBlock>
+          <Styles.Inner className="chat">{this.renderChat()}</Styles.Inner>
+        </Styles.MessageBlock>
+        <Styles.InputFormWrapper>
+          <Styles.LowLineWrapper>
+            <Styles.Input
               placeholder="Сообщение..."
               type="text"
               value={message}
@@ -122,12 +112,12 @@ class Chat extends Component {
               onKeyPress={this.handleKeyPress}
               autoFocus
             />
-            <ButtonWrapper onClick={this.sendMessage}>
+            <Styles.ButtonWrapper onClick={this.sendMessage}>
               <img src={SmileIcon} alt="" />
-            </ButtonWrapper>
-          </LowLineWrapper>
-        </InputFormWrapper>
-      </ChatWrapper>
+            </Styles.ButtonWrapper>
+          </Styles.LowLineWrapper>
+        </Styles.InputFormWrapper>
+      </Styles.ChatWrapper>
     );
   }
 }

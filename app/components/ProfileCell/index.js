@@ -1,28 +1,21 @@
 import React from 'react';
 import LiveIcon from 'images/videoblock/liveIconSmall';
 import AvaPlaceholder from 'images/placeholders/avatar';
-import {
-  ProfileCellWrapper,
-  ProfileCellAva,
-  ProfileCellName,
-  ProfileCellColumn,
-  ProfileCellRep,
-  ProfileCellTextWrapper,
-} from './styles';
+import Styles from './styles';
 
 const TopBlock = (isLive, white, name, rep) => (
-  <ProfileCellWrapper to="some" white={white}>
-    <ProfileCellColumn>
-      <ProfileCellAva>
+  <Styles.ProfileCellWrapper to="some" white={white}>
+    <Styles.ProfileCellColumn>
+      <Styles.ProfileCellAva>
         {isLive ? <LiveIcon /> : ''}
         <AvaPlaceholder />
-      </ProfileCellAva>
-      <ProfileCellTextWrapper>
-        <ProfileCellName>{name}</ProfileCellName>
-        <ProfileCellRep>{rep} реп.</ProfileCellRep>
-      </ProfileCellTextWrapper>
-    </ProfileCellColumn>
-  </ProfileCellWrapper>
+      </Styles.ProfileCellAva>
+      <Styles.ProfileCellTextWrapper>
+        <Styles.ProfileCellName>{name}</Styles.ProfileCellName>
+        <Styles.ProfileCellRep>{rep} реп.</Styles.ProfileCellRep>
+      </Styles.ProfileCellTextWrapper>
+    </Styles.ProfileCellColumn>
+  </Styles.ProfileCellWrapper>
 );
 
 export default TopBlock;

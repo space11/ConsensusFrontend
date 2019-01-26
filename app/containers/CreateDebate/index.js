@@ -8,15 +8,7 @@ import debateProviderSaga from 'containers/DebateProvider/sagas';
 import { fetchCreatingDebate } from 'containers/DebateProvider/actions';
 import Button from 'components/Button';
 import Bg from 'images/createRoom/bg.svg';
-import {
-  DebateWrapper,
-  Background,
-  CreateDebateFormWrapper,
-  InputWrapper,
-  Input,
-  Label,
-  ButtonWrapper,
-} from './styles';
+import * as Styles from './styles';
 
 class CreatingDebatePage extends Component {
   constructor(props) {
@@ -25,6 +17,7 @@ class CreatingDebatePage extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  /* eslint-disable */
   onSubmit() {
     const { title, debateCategory } = this.props;
     const startDateTime = new Date().toISOString();
@@ -40,7 +33,7 @@ class CreatingDebatePage extends Component {
 
   render() {
     return (
-      <DebateWrapper>
+      <Styles.DebateWrapper>
         <div
           style={{
             position: 'relative',
@@ -48,50 +41,54 @@ class CreatingDebatePage extends Component {
             height: '100%',
           }}
         >
-          <Background src={Bg} alt="" />
+          <Styles.Background src={Bg} alt="" />
         </div>
-        <CreateDebateFormWrapper>
-          <InputWrapper>
-            <Label htmlFor="title">Тема дебатов</Label>
+        <Styles.CreateDebateFormWrapper>
+          <Styles.InputWrapper>
+            <Styles.Label htmlFor="title">Тема дебатов</Styles.Label>
             <Field
               id="title"
               name="title"
               type="text"
               component="input"
-              style={Input}
+              style={Styles.Input}
               placeholder="Укажите тему дебатов"
             />
-            <Label htmlFor="debateCategory">Тематика дебатов</Label>
+            <Styles.Label htmlFor="debateCategory">
+              Тематика дебатов
+            </Styles.Label>
             <Field
               id="debateCategory"
               name="debateCategory"
               type="text"
               component="select"
-              style={Input}
+              style={Styles.Input}
             >
               <option />
               <option value="Politics">Политика</option>
               <option value="Science">Наука</option>
             </Field>
-            <Label htmlFor="invitedOpponent">Добавьте оппонента</Label>
+            <Styles.Label htmlFor="invitedOpponent">
+              Добавьте оппонента
+            </Styles.Label>
             <Field
               id="invitedOpponent"
               name="invitedOpponent"
               type="text"
               component="input"
-              style={Input}
+              style={Styles.Input}
             />
-          </InputWrapper>
-          <ButtonWrapper>
+          </Styles.InputWrapper>
+          <Styles.ButtonWrapper>
             <Button
               type="submit"
               onClick={this.onSubmit}
               text="Создать"
               w="217px"
             />
-          </ButtonWrapper>
-        </CreateDebateFormWrapper>
-      </DebateWrapper>
+          </Styles.ButtonWrapper>
+        </Styles.CreateDebateFormWrapper>
+      </Styles.DebateWrapper>
     );
   }
 }

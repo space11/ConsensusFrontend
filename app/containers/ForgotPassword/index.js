@@ -5,18 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { reduxForm, formValueSelector } from 'redux-form';
 import Button from 'components/Button';
-import {
-  Background,
-  InputWrapper,
-  FormBlockWrapper,
-  Description,
-  ForgotPageWrapper,
-  AdvField,
-  Title,
-  Error,
-  ForgotFormWrapper,
-  InputField,
-} from './styles';
+import * as Styles from './styles';
 
 const renderField = ({
   input,
@@ -24,7 +13,7 @@ const renderField = ({
   type,
   meta: { touched, error, warning },
 }) => (
-  <InputField>
+  <Styles.InputField>
     <TextField
       {...input}
       label={label}
@@ -38,16 +27,16 @@ const renderField = ({
       }}
     />
     {touched &&
-      ((error && <Error>{error}</Error>) ||
-        (warning && <Error>{warning}</Error>))}
-  </InputField>
+      ((error && <Styles.Error>{error}</Styles.Error>) ||
+        (warning && <Styles.Error>{warning}</Styles.Error>))}
+  </Styles.InputField>
 );
 
 class ForgotPage extends Component {
   render() {
     const { pristine, submitting } = this.props;
     return (
-      <ForgotPageWrapper>
+      <Styles.ForgotPageWrapper>
         <div
           style={{
             position: 'relative',
@@ -55,29 +44,31 @@ class ForgotPage extends Component {
             height: '100%',
           }}
         >
-          <Background src={Bg} alt="" />
+          <Styles.Background src={Bg} alt="" />
         </div>
-        <ForgotFormWrapper>
-          <FormBlockWrapper>
-            <Title>Забыли пароль?</Title>
-            <Description>Введите E-mail Вашей учетной записи</Description>
-          </FormBlockWrapper>
-          <InputWrapper onSubmit={this.onSubmit}>
-            <AdvField
+        <Styles.ForgotFormWrapper>
+          <Styles.FormBlockWrapper>
+            <Styles.Title>Забыли пароль?</Styles.Title>
+            <Styles.Description>
+              Введите E-mail Вашей учетной записи
+            </Styles.Description>
+          </Styles.FormBlockWrapper>
+          <Styles.InputWrapper onSubmit={this.onSubmit}>
+            <Styles.AdvField
               name="email"
               type="text"
               label="Email"
               component={renderField}
             />
-          </InputWrapper>
+          </Styles.InputWrapper>
           <Button
             type="submit"
             isValid={pristine || submitting}
             onClick={this.onSubmit}
             text="Получить пароль"
           />
-        </ForgotFormWrapper>
-      </ForgotPageWrapper>
+        </Styles.ForgotFormWrapper>
+      </Styles.ForgotPageWrapper>
     );
   }
 }

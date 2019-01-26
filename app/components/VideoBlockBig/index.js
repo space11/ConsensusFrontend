@@ -1,30 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LiveIcon from 'images/videoblock/liveIcon.svg';
-import {
-  VideoBlockWrapper,
-  VideoBlockTitle,
-  VideoBlockNames,
-  VideoBlockLowWrapper,
-  VideoBlockLowText,
-  VideoBlockImage,
-  VideoBlockLiveMark,
-  VideoBlockContent,
-} from './styles';
+import * as Styles from './styles';
 
 const VideoBlockBig = ({ url, title, image, live, names, theme, viewers }) => (
-  <VideoBlockWrapper to={url}>
-    <VideoBlockImage src={image} alt="" />
-    {live ? <VideoBlockLiveMark src={LiveIcon} alt="" /> : ''}
-    <VideoBlockContent>
-      <VideoBlockTitle>{title}</VideoBlockTitle>
-      <VideoBlockNames>{names}</VideoBlockNames>
-      <VideoBlockLowWrapper>
-        <VideoBlockLowText>{theme}</VideoBlockLowText>
-        <VideoBlockLowText>{viewers}</VideoBlockLowText>
-      </VideoBlockLowWrapper>
-    </VideoBlockContent>
-  </VideoBlockWrapper>
+  <Styles.VideoBlockWrapper to={url}>
+    <Styles.VideoBlockImage src={image} alt="" />
+    {live ? <Styles.VideoBlockLiveMark src={LiveIcon} alt="" /> : ''}
+    <Styles.VideoBlockContent>
+      <Styles.VideoBlockTitle>{title}</Styles.VideoBlockTitle>
+      <Styles.VideoBlockNames>{names}</Styles.VideoBlockNames>
+      <Styles.VideoBlockLowWrapper>
+        <Styles.VideoBlockLowText>{theme}</Styles.VideoBlockLowText>
+        <Styles.VideoBlockLowText>{viewers}</Styles.VideoBlockLowText>
+      </Styles.VideoBlockLowWrapper>
+    </Styles.VideoBlockContent>
+  </Styles.VideoBlockWrapper>
 );
 
 VideoBlockBig.propTypes = {

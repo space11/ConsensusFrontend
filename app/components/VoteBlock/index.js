@@ -1,19 +1,5 @@
 import React, { Component } from 'react';
-import {
-  VoteBlockWrapper,
-  UpperLine,
-  Title,
-  VoteCount,
-  DownLine,
-  VoteLine,
-  VoteLineText,
-  VoteGroup,
-  Count,
-  Nickname,
-  Percentage,
-  Line,
-  LineFuel,
-} from './styles';
+import * as Styles from './styles';
 
 /* eslint-disable */
 class VoteBlock extends Component {
@@ -36,52 +22,52 @@ class VoteBlock extends Component {
   render() {
     const { count, host, opponent, hostCount, opponentCount, hostPercentage, opponentPercentage } = this.props;
     return (
-      <VoteBlockWrapper>
-      <UpperLine>
-        <Title>Кто прав?</Title>
-        <VoteCount>Проголосовали {count} человек</VoteCount>
-        </UpperLine>
-        <DownLine>
-          <VoteLine>
-            <VoteLineText>
-            <VoteGroup>
-              <Nickname leading={this.state.leadsHost}>
+      <Styles.VoteBlockWrapper>
+      <Styles.UpperLine>
+        <Styles.Title>Кто прав?</Styles.Title>
+        <Styles.VoteCount>Проголосовали {count} человек</Styles.VoteCount>
+        </Styles.UpperLine>
+        <Styles.DownLine>
+          <Styles.VoteLine>
+            <Styles.VoteLineText>
+            <Styles.VoteGroup>
+              <Styles.Nickname leading={this.state.leadsHost}>
                 {host}
-              </Nickname>
-              <Count>
+              </Styles.Nickname>
+              <Styles.Count>
                 {hostCount}
-              </Count>
-              </VoteGroup>
-              <Percentage leading={this.state.leadsHost}>
+              </Styles.Count>
+              </Styles.VoteGroup>
+              <Styles.Percentage leading={this.state.leadsHost}>
                 {hostPercentage}
-              </Percentage>
-            </VoteLineText>
+              </Styles.Percentage>
+            </Styles.VoteLineText>
             <div style={{position: 'relative'}}>
-            <Line />
-            <LineFuel width={hostPercentage}/>
+            <Styles.Line />
+            <Styles.LineFuel width={hostPercentage}/>
             </div>
-          </VoteLine>
-          <VoteLine style={{margin: '0'}}>
-            <VoteLineText>
-            <VoteGroup>
-              <Nickname leading={this.state.leadsOpponent}>
+          </Styles.VoteLine>
+          <Styles.VoteLine style={{margin: '0'}}>
+            <Styles.VoteLineText>
+            <Styles.VoteGroup>
+              <Styles.Nickname leading={this.state.leadsOpponent}>
                 {opponent}
-              </Nickname>
-              <Count>
+              </Styles.Nickname>
+              <Styles.Count>
                 {opponentCount}
-              </Count>
-              </VoteGroup>
-              <Percentage leading={this.state.leadsOpponent}>
+              </Styles.Count>
+              </Styles.VoteGroup>
+              <Styles.Percentage leading={this.state.leadsOpponent}>
                 {opponentPercentage}
-              </Percentage>
-            </VoteLineText>
+              </Styles.Percentage>
+            </Styles.VoteLineText>
             <div style={{position: 'relative'}}>
-            <Line />
-            <LineFuel width={opponentPercentage}/>
+            <Styles.Line />
+            <Styles.LineFuel width={opponentPercentage}/>
             </div>
-          </VoteLine>
-        </DownLine>
-      </VoteBlockWrapper>
+          </Styles.VoteLine>
+        </Styles.DownLine>
+      </Styles.VoteBlockWrapper>
     );
   }
 }

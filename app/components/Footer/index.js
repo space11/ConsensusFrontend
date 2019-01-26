@@ -3,42 +3,36 @@ import facebook from 'images/footer/social/facebook.svg';
 import instagram from 'images/footer/social/instagram.svg';
 import twitter from 'images/footer/social/twitter.svg';
 import vk from 'images/footer/social/vk.svg';
-import {
-  FooterWrapper,
-  ContentWrapper,
-  MenuWrapper,
-  MenuButton,
-  Copyright,
-  SocialWrapper,
-  SocialButton,
-} from './styles';
+import * as Styles from './styles';
 
 const Footer = () => (
-  <FooterWrapper>
-    <ContentWrapper>
-      <MenuWrapper>
-        <MenuButton to="/">Главная</MenuButton>
-        <MenuButton to="/rules">Правила</MenuButton>
-        <MenuButton to="/contacts">Контакты</MenuButton>
-        <MenuButton to="/advertisement">Рекламные возможности</MenuButton>
-      </MenuWrapper>
-      <Copyright>© League Of Developers 2018</Copyright>
-    </ContentWrapper>
-    <SocialWrapper>
-      <SocialButton>
+  <Styles.FooterWrapper>
+    <Styles.ContentWrapper>
+      <Styles.MenuWrapper>
+        <Styles.MenuButton to="/">Главная</Styles.MenuButton>
+        <Styles.MenuButton to="/rules">Правила</Styles.MenuButton>
+        <Styles.MenuButton to="/contacts">Контакты</Styles.MenuButton>
+        <Styles.MenuButton to="/advertisement">
+          Рекламные возможности
+        </Styles.MenuButton>
+      </Styles.MenuWrapper>
+      <Styles.Copyright>© League Of Developers 2018</Styles.Copyright>
+    </Styles.ContentWrapper>
+    <Styles.SocialWrapper>
+      <Styles.SocialButton>
         <img src={facebook} alt="" />
-      </SocialButton>
-      <SocialButton>
+      </Styles.SocialButton>
+      <Styles.SocialButton>
         <img src={vk} alt="" />
-      </SocialButton>
-      <SocialButton>
+      </Styles.SocialButton>
+      <Styles.SocialButton>
         <img src={instagram} alt="" />
-      </SocialButton>
-      <SocialButton>
+      </Styles.SocialButton>
+      <Styles.SocialButton>
         <img src={twitter} alt="" />
-      </SocialButton>
-    </SocialWrapper>
-  </FooterWrapper>
+      </Styles.SocialButton>
+    </Styles.SocialWrapper>
+  </Styles.FooterWrapper>
 );
 
 export default Footer;

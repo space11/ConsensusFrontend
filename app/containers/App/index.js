@@ -9,7 +9,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import authProviderSaga from 'containers/AuthProvider/sagas';
 
 import HomePage from 'containers/Home';
-import Testing from 'containers/Testing';
 import SignInPage from 'containers/SignIn';
 import CreateDebatePage from 'containers/CreateDebate';
 import AccountPage from 'containers/Account';
@@ -57,7 +56,6 @@ class App extends Component {
             <Route exact path="/sign-in" component={SignInPage} />
             <Route exact path="/create-debate" component={CreateDebatePage} />
             <Route exact path="/forgot" component={ForgotPage} />
-            <Route exact path="/testing" component={Testing} />
             <Route path="/404" component={NotFoundPage} />
             <Redirect to="/404" />
           </Switch>

@@ -2,23 +2,23 @@ import React from 'react';
 import Placeholder from 'images/placeholders/avatar';
 import VsIcon from 'images/playerblock/vs.svg';
 import Nickname from './components';
-import { TabBlockWrapper, NicknameWrapper, VsWrapper } from './styles';
+import * as Styles from './styles';
 
 const TabBlock = () => (
-  <TabBlockWrapper>
-    <NicknameWrapper>
+  <Styles.TabBlockWrapper>
+    <Styles.NicknameWrapper>
       <Nickname url="oneperson" nickname="Pynya" avatar={<Placeholder />} />
-    </NicknameWrapper>
-    <VsWrapper src={VsIcon} alt="" />
-    <NicknameWrapper>
+    </Styles.NicknameWrapper>
+    <Styles.VsWrapper src={VsIcon} alt="" />
+    <Styles.NicknameWrapper>
       <Nickname
         isRight
         url="twoperson"
         nickname="Sisyan"
         avatar={<Placeholder />}
       />
-    </NicknameWrapper>
-  </TabBlockWrapper>
+    </Styles.NicknameWrapper>
+  </Styles.TabBlockWrapper>
 );
 
 export default TabBlock;
