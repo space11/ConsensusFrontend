@@ -9,7 +9,7 @@ export function* createDebate() {
       const debate = yield take(actions.fetchCreatingDebate.types.start);
       const id = yield call(sendCreatingData, debate.payload);
       yield put(actions.fetchCreatingDebate.success(id));
-      yield* createSession();
+      yield call(actions.fetchCreatingSession.start());
       yield put(push(`/room/${id}`));
     } catch (e) {
       yield put(actions.fetchCreatingDebate.failed(e));

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import OpvSession from 'openvidu-react';
+// import OpvSession from 'openvidu-react';
 import Slider from './components/slider';
 import { PlayerBlockWrapper } from './styles';
 
@@ -25,7 +25,7 @@ class PlayerBlock extends Component {
           id="opv-session"
           sessionName={localStorage.id_session}
           user="deviantkun"
-          openviduServerUrl="wss://openvidu.lod-misis.ru?sessionId=fwvg2zvunrz1ljt0&token=qssdzftam8s42yiu&role=PUBLISHER"
+          openviduServerUrl={localStorage.session_url}
           joinSession={() => ({})}
           leaveSession={() => ({})}
           error={() => ({})}
