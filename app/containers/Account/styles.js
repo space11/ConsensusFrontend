@@ -80,7 +80,6 @@ export const ProfileShadow = styled.div`
   height: 250px;
   background: #000000;
   mix-blend-mode: normal;
-  opacity: 0.6;
   border-radius: 500px;
   cursor: pointer;
 `;

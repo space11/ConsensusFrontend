@@ -111,11 +111,9 @@ class AccountPage extends Component {
           style={{  outline: 'none'}}
         >
         {hover ? <Styles.CameraComponent src={Camera} alt="" /> : '' }
-{hover ?
-<Styles.ProfileShadow>
+<Styles.ProfileShadow style={{opacity: hover ? '0.6': '0', transition: '0.3s'}}>
 <input {...getInputProps()} />
 </Styles.ProfileShadow>
-  : ''}
           <Styles.ProfileImage src={Image} alt="" />
           </Styles.ProfileImageBlock>
         )

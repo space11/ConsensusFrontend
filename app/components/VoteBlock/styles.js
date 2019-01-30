@@ -35,6 +35,7 @@ export const VoteCount = styled.div`
 export const DownLine = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 `;
 
 export const VoteLine = styled.div`
@@ -97,4 +98,10 @@ export const LineFuel = styled.div`
   background: #f7567c;
   border-radius: 5px;
   width: ${props => props.width};
+`;
+
+export const VoteButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 `;

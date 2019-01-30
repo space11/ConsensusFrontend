@@ -10,6 +10,7 @@ import globalReducer from 'containers/App/reducer';
 import { reducer as formReducer } from 'redux-form';
 import authProviderReducer from 'containers/AuthProvider/reducer';
 import debateProviderReducer from 'containers/DebateProvider/reducers';
+import voteReducer from 'components/VoteBlock/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
@@ -20,6 +21,7 @@ export default function createReducer(injectedReducers = {}) {
     global: globalReducer,
     form: formReducer,
     auth: authProviderReducer,
+    vote: voteReducer,
     createDebate: debateProviderReducer,
     ...injectedReducers,
   });

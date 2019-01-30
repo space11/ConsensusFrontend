@@ -33,7 +33,10 @@ const Slider = ({
     </Styles.UpperControlWrapper>
     <Styles.SliderWrapper
       width={width}
-      style={{ display: show ? 'flex' : 'none' }}
+      style={{
+        opacity: show ? '1' : '0',
+        transition: '0.3s',
+      }}
     >
       <Styles.PassedWrapper>
         <Styles.PassedTimeLineWrapper />

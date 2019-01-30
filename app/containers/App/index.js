@@ -18,7 +18,6 @@ import ForgotPage from 'containers/ForgotPassword';
 import NotFoundPage from 'containers/NotFound';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-
 import GlobalStyle from 'global-styles';
 
 class App extends Component {

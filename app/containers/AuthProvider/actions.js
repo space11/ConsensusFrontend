@@ -1,5 +1,5 @@
 import { createAction } from 'redux-act';
-import { FetchAction } from '../../utils/api';
+import { FetchAction } from 'utils/api';
 
 export const fetchRegistration = new FetchAction('FETCH_USER_REGISTRATION');
 

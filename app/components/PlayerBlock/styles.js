@@ -6,4 +6,5 @@ export const PlayerBlockWrapper = styled.div`
   height: 617px;
   width: 902px;
   margin-bottom: 30px;
+  background: #000;
 `;

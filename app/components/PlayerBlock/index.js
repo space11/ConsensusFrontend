@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import OpvSession from 'openvidu-react';
+
 import Slider from './components/slider';
 import { PlayerBlockWrapper } from './styles';
 

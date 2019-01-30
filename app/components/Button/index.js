@@ -14,6 +14,7 @@ const Button = ({
   right,
   isValid,
   style,
+  fontSize,
 }) => (
   <ButtonWrapper
     isTransparent={isTransparent}
@@ -26,7 +27,7 @@ const Button = ({
     style={({ width: w }, style)}
     isValid={isValid}
   >
-    <span style={{ display: 'inline-block' }}>{text}</span>
+    <span style={{ display: 'inline-block', fontSize }}>{text}</span>
   </ButtonWrapper>
 );
 
@@ -41,6 +42,7 @@ Button.propTypes = {
   type: PropTypes.string,
   text: PropTypes.string,
   onClick: PropTypes.func,
+  fontSize: PropTypes.string,
 };
 
 export default withRouter(Button);

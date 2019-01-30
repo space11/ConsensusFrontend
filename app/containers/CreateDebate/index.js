@@ -64,9 +64,7 @@ class CreatingDebatePage extends Component {
               component="select"
               style={Styles.Input}
             >
-              <option />
               <option value="Politics">Политика</option>
-              <option value="Science">Наука</option>
             </Field>
             <Styles.Label htmlFor="invitedOpponent">
               Добавьте оппонента
