@@ -181,7 +181,7 @@ class AccountPage extends Component {
               <Styles.Content>
                 E-mail не подтвержден. На указанный адрес было отправлено письмо
                 со ссылкой для подтверждения. Пожалуйста, проверьте Ваш почтовый
-                ящик. <SendAgain>Отправить письмо повторно.</SendAgain>
+                ящик. <Styles.SendAgain>Отправить письмо повторно.</Styles.SendAgain>
               </Styles.Content>
             </Styles.ContentLine>
             <Styles.ContentLine>
