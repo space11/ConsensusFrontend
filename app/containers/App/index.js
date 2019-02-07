@@ -15,6 +15,7 @@ import AccountPage from 'containers/Account';
 import RegisterPage from 'containers/Register';
 import RoomPage from 'containers/Room';
 import ForgotPage from 'containers/ForgotPassword';
+import SearchPage from 'containers/Search';
 import NotFoundPage from 'containers/NotFound';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -55,6 +56,7 @@ class App extends Component {
             <Route exact path="/sign-in" component={SignInPage} />
             <Route exact path="/create-debate" component={CreateDebatePage} />
             <Route exact path="/forgot" component={ForgotPage} />
+            <Route exact path="/search/:id" component={SearchPage} />
             <Route path="/404" component={NotFoundPage} />
             <Redirect to="/404" />
           </Switch>

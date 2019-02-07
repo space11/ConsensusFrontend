@@ -29,12 +29,15 @@ class VoteBlock extends Component {
     const { hostCount, opponentCount } = this.props;
 
     const sumCount = hostCount + opponentCount;
+
     this.setState({
       hostPercentage: `${((hostCount / sumCount) * 100).toString()}%`,
     });
+
     this.setState({
-      opponentPercentage: `${(100 - this.state.hostPercentage).toString()}%`,
+      opponentPercentage: `${(100 - (hostCount / sumCount) * 100).toString()}%`,
     });
+
     if (hostCount > opponentCount) {
       this.setState({ leadsHost: true });
     } else {
