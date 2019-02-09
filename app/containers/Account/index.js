@@ -85,20 +85,6 @@ class AccountPage extends Component {
         <Styles.RocketWrapper>
           <Styles.RocketComponent src={Rocket} alt="" />
         </Styles.RocketWrapper>
-        <Styles.FollowLine>
-          <Styles.FollowComponent>
-            <Styles.FollowBlock>
-              <Styles.Span style={{ fontSize: '30px' }}>{followCount}</Styles.Span>
-            </Styles.FollowBlock>
-            <Styles.Span>Подписчики</Styles.Span>
-          </Styles.FollowComponent>
-          <Styles.FollowComponent>
-            <Styles.FollowBlock>
-              <Styles.Span style={{ fontSize: '30px' }}>{followersCount}</Styles.Span>
-            </Styles.FollowBlock>
-            <Styles.Span>Подписки</Styles.Span>
-          </Styles.FollowComponent>
-        </Styles.FollowLine>
         { token === id ? 
         <Dropzone onDrop={this.onDrop}> 
         {({getRootProps, getInputProps, isDragActive}) => {
