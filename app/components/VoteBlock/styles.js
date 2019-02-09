@@ -52,9 +52,10 @@ export const VoteLineText = styled.div`
   margin-bottom: 5px;
 `;
 
-export const VoteGroup = styled.div`
+export const VoteGroup = styled.button`
   display: flex;
   align-items: flex-end;
+  cursor: pointer;
 `;
 
 export const Count = styled.div`

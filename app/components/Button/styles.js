@@ -14,7 +14,7 @@ export const ButtonWrapper = styled.button`
   padding: ${props => (props.h === '27px' ? '5px 25px' : '10px 20px')};
   background: ${props =>
     props.isValid
-      ? '#ffc5d4'
+      ? '#e87891'
       : props.isTransparent
         ? 'transparent'
         : '#f7567c'};

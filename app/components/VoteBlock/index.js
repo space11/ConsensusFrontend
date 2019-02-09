@@ -29,12 +29,15 @@ class VoteBlock extends Component {
     const { hostCount, opponentCount } = this.props;
 
     const sumCount = hostCount + opponentCount;
+
     this.setState({
       hostPercentage: `${((hostCount / sumCount) * 100).toString()}%`,
     });
+
     this.setState({
-      opponentPercentage: `${(100 - this.state.hostPercentage).toString()}%`,
+      opponentPercentage: `${(100 - (hostCount / sumCount) * 100).toString()}%`,
     });
+
     if (hostCount > opponentCount) {
       this.setState({ leadsHost: true });
     } else {
@@ -51,6 +54,15 @@ class VoteBlock extends Component {
     }
   }
 
+  unVote() {
+    const { voted, hostId, opponentId, forHost } = this.state;
+    if (voted) {
+      forHost
+        ? this.props.fetchVote.start({ toUser: hostId, debateId: '1234' })
+        : this.props.fetchVote.start({ toUser: opponentId, debateId: '1234' });
+    }
+  }
+
   render() {
     const { count, host, opponent, hostCount, opponentCount } = this.props;
     const {
@@ -58,6 +70,8 @@ class VoteBlock extends Component {
       leadsOpponent,
       hostPercentage,
       opponentPercentage,
+      voted,
+      forHost,
     } = this.state;
     return (
       <Styles.VoteBlockWrapper>
@@ -68,7 +82,7 @@ class VoteBlock extends Component {
         <Styles.DownLine>
           <Styles.VoteLine>
             <Styles.VoteLineText>
-              <Styles.VoteGroup>
+              <Styles.VoteGroup onClick={() => this.setState({voted: true, forHost: true})}>
                 <Styles.Nickname leading={leadsHost}>{host}</Styles.Nickname>
                 <Styles.Count>{hostCount}</Styles.Count>
               </Styles.VoteGroup>
@@ -77,13 +91,13 @@ class VoteBlock extends Component {
               </Styles.Percentage>
             </Styles.VoteLineText>
             <div style={{ position: 'relative' }}>
-              <Styles.Line />
+              <Styles.Line style={{ boxShadow: voted & forHost ? '0px 4px 6px rgba(255, 255, 255, 0.16)' : ''}}/>
               <Styles.LineFuel width={hostPercentage} />
             </div>
           </Styles.VoteLine>
           <Styles.VoteLine style={{ margin: '0' }}>
             <Styles.VoteLineText>
-              <Styles.VoteGroup>
+              <Styles.VoteGroup onClick={() => this.setState({voted: true, forHost: false})}>
                 <Styles.Nickname leading={leadsOpponent}>
                   {opponent}
                 </Styles.Nickname>
@@ -94,7 +108,7 @@ class VoteBlock extends Component {
               </Styles.Percentage>
             </Styles.VoteLineText>
             <div style={{ position: 'relative' }}>
-              <Styles.Line />
+              <Styles.Line style={{ boxShadow: voted & !forHost ? '0px 4px 6px rgba(255, 255, 255, 0.16)' : ''}}/>
               <Styles.LineFuel width={opponentPercentage} />
             </div>
           </Styles.VoteLine>
@@ -107,6 +121,7 @@ class VoteBlock extends Component {
             h="36px"
             fontSize="13px"
             onClick={this.vote}
+            isValid={!voted}
           />
         </Styles.VoteButtonWrapper>
       </Styles.VoteBlockWrapper>

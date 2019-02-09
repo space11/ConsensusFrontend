@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import PlayerPlaceholder from 'images/placeholders/playerPlaceholder.svg';
 // import OpvSession from 'openvidu-react';
 
 import Slider from './components/slider';
-import { PlayerBlockWrapper } from './styles';
+import { PlayerBlockWrapper, Placeholder } from './styles';
 
 class PlayerBlock extends Component {
   constructor(props) {
@@ -22,6 +23,9 @@ class PlayerBlock extends Component {
         onMouseEnter={() => this.setState({ show: true })}
         onMouseLeave={() => this.setState({ show: false })}
       >
+        <Placeholder>
+          <img src={PlayerPlaceholder} alt="" />
+        </Placeholder>
         {/* <OpvSession
           id="opv-session"
           sessionName={localStorage.id_session}
