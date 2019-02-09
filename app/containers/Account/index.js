@@ -164,7 +164,7 @@ class AccountPage extends Component {
             </Styles.EditedContentLine>
             <Styles.ContentLine>
               <Styles.Label />
-              <Styles.Content>
+              <Styles.Content style={{ marginTop: '10px' }}>
                 E-mail не подтвержден. На указанный адрес было отправлено письмо
                 со ссылкой для подтверждения. Пожалуйста, проверьте Ваш почтовый
                 ящик. <Styles.SendAgain>Отправить письмо повторно.</Styles.SendAgain>
@@ -226,7 +226,7 @@ class AccountPage extends Component {
           <Button
             text={edited ? 'Сохранить' : 'Редактировать'}
             w="217px"
-            right="40px"
+            right={edited ? '0px' : '40px'}
             onClick={() => {
               window.scrollTo(0, document.body.scrollHeight);
               edited
