@@ -8,6 +8,7 @@ export const VideoBlockWrapper = styled(NavLink)`
   text-decoration: none;
   color: #000;
   width: 300px;
+  height: 300px;
   background: #fff;
   transition: 0.3s;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
