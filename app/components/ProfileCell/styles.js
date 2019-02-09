@@ -3,30 +3,26 @@ import { NavLink } from 'react-router-dom';
 
 export const ProfileCellWrapper = styled(NavLink)`
   display: flex;
-  position: relative;
   text-decoration: none;
-  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
-  margin: 0.5rem;
-  color: ${props => (props.white ? '#fff' : '#000')};
-  background: #fafafa;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.16);
-  border-radius: 7px;
-  padding: 10px;
-  min-width: 220px;
-  text-align: center;
+  padding: 15px;
+  width: 300px;
+  height: 96px;
+  background: #ffffff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
 `;
 
 export const ProfileCellAva = styled.div`
   position: relative;
   border-radius: 100px;
-  margin: 1rem;
+  width: 66px;
 `;
 
 export const ProfileCellName = styled.div`
-  font-size: 1.5em;
-  font-weight: 400;
+  font-size: 20px;
+  color: #000000;
 `;
 
 export const ProfileCellColumn = styled.div`
@@ -34,15 +30,17 @@ export const ProfileCellColumn = styled.div`
   flex-direction: column;
 `;
 
-export const ProfileCellRep = styled.div`
-  font-weight: 300;
-  color: #9b9b9b;
-  font-size: 0.9em;
+export const Image = styled.img`
+  height: 66px;
+  width: 66px;
+  border-radius: 100px;
+  object-fit: cover;
 `;
 
-export const ProfileCellTextWrapper = styled.div`
-  display: flex;
-  margin-left: 0.7rem;
-  flex-direction: column;
-  justify-content: space-between;
+export const ProfileCellRep = styled.div`
+  font-weight: 300;
+  font-size: 14px;
+  color: #4a4a4a;
 `;
+
+export const ProfileCellTextWrapper = styled.div``;
