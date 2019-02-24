@@ -6,6 +6,7 @@ import {
   fetchDebateId,
   fetchDebateLive,
   fetchDebatePast,
+  fetchSearchUser,
 } from './actions';
 
 export default combineReducers({
@@ -13,6 +14,7 @@ export default combineReducers({
   creatingSession: fetchReducerFactory(fetchCreatingSession),
   getDebate: fetchReducerFactory(fetchDebateId),
   getDebateLive: fetchReducerFactory(fetchDebateLive),
+  searchUser: fetchReducerFactory(fetchSearchUser),
   getDebatePast: fetchReducerFactory(fetchDebatePast),
 });
 

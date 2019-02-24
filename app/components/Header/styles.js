@@ -40,7 +40,7 @@ export const NavigatorContainer = styled.div`
   margin: 0 0 0 30px;
 `;
 
-export const SearchButton = styled.button`
+export const SearchButton = styled(NavLink)`
   color: ${props => (props.isBlue ? '#474D90' : '#fff')};
   cursor: pointer;
 `;

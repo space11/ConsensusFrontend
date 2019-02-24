@@ -40,15 +40,18 @@ class App extends Component {
           </Helmet>
           <Header
             isBlue={
-              (!locate.includes('/account') &&
-                locate !== '/404' &&
-                locate !== '/') ||
-              !locate.includes('/search')
+              (locate.includes('/account') &&
+                locate === '/404' &&
+                locate === '/') ||
+              locate.includes('/search') ||
+              locate === '/create-debate'
             }
             isLogin={locate === '/sign-in' || locate === '/register'}
             isWhite={
-              (locate.includes('/room') && locate.includes('/account')) ||
-              locate.includes('/search')
+              !locate.includes('/room') &&
+              !locate.includes('/account') &&
+              locate.includes('/search') &&
+              locate !== '/'
             }
             isRed={locate === '/create-debate' || locate === '/forgot'}
           />

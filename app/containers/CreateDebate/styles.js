@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const DebateWrapper = styled.div`
   display: flex;
@@ -31,12 +32,12 @@ export const InputWrapper = styled.form`
 
 export const Input = {
   border: '1px solid #474D90',
-  background: 'transparent',
+  background: '#fff',
   height: '56px',
   marginBottom: '40px',
   width: '474px',
   zIndex: '3',
-  borderRadius: '7px',
+  borderRadius: '7px 7px 0 0',
   padding: '5px 15px',
 };
 
@@ -50,4 +51,37 @@ export const Label = styled.label`
 export const ButtonWrapper = styled.div`
   display: flex;
   width: 100%;
+`;
+
+export const InviteOpponentWrapper = styled.div`
+  position: relative;
+`;
+
+export const FieldSuggestionsWrapper = styled.div`
+  margin-top: -41px;
+  width: 100%;
+  background: #fff;
+  border-radius: 0 0 7px 7px;
+  border: 1px solid #474d90;
+`;
+
+export const OpponentFieldWrapper = styled(NavLink)`
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+`;
+
+export const ProfileImage = styled.img`
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+`;
+
+export const Nickname = styled.div`
+  font-size: 18px;
+  color: #000;
 `;

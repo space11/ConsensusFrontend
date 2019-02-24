@@ -107,7 +107,7 @@ class Header extends Component {
                 ''
               )}
             </Styles.NotificationContainer>
-            <Styles.SearchButton isBlue={isBlue}>
+            <Styles.SearchButton to="/search/1" isBlue={isBlue}>
               <SearchIcon isBlue={isBlue} />
             </Styles.SearchButton>
             {localStorage.id_token === undefined ? (
