@@ -85,20 +85,6 @@ class AccountPage extends Component {
         <Styles.RocketWrapper>
           <Styles.RocketComponent src={Rocket} alt="" />
         </Styles.RocketWrapper>
-        <Styles.FollowLine>
-          <Styles.FollowComponent>
-            <Styles.FollowBlock>
-              <Styles.Span style={{ fontSize: '30px' }}>{followCount}</Styles.Span>
-            </Styles.FollowBlock>
-            <Styles.Span>Подписчики</Styles.Span>
-          </Styles.FollowComponent>
-          <Styles.FollowComponent>
-            <Styles.FollowBlock>
-              <Styles.Span style={{ fontSize: '30px' }}>{followersCount}</Styles.Span>
-            </Styles.FollowBlock>
-            <Styles.Span>Подписки</Styles.Span>
-          </Styles.FollowComponent>
-        </Styles.FollowLine>
         { token === id ? 
         <Dropzone onDrop={this.onDrop}> 
         {({getRootProps, getInputProps, isDragActive}) => {
@@ -178,7 +164,7 @@ class AccountPage extends Component {
             </Styles.EditedContentLine>
             <Styles.ContentLine>
               <Styles.Label />
-              <Styles.Content>
+              <Styles.Content style={{ marginTop: '10px' }}>
                 E-mail не подтвержден. На указанный адрес было отправлено письмо
                 со ссылкой для подтверждения. Пожалуйста, проверьте Ваш почтовый
                 ящик. <Styles.SendAgain>Отправить письмо повторно.</Styles.SendAgain>
@@ -240,7 +226,7 @@ class AccountPage extends Component {
           <Button
             text={edited ? 'Сохранить' : 'Редактировать'}
             w="217px"
-            right="40px"
+            right={edited ? '0px' : '40px'}
             onClick={() => {
               window.scrollTo(0, document.body.scrollHeight);
               edited

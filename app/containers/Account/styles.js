@@ -69,6 +69,7 @@ export const ProfileImageBlock = styled.div`
   margin-top: -200px;
   margin-bottom: 20px;
   z-index: 200;
+  margin-top: 400px;
 `;
 
 export const ProfileShadow = styled.div`
