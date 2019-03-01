@@ -1,5 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
+import axios from 'axios';
 import api from '../../utils/api';
 import * as actions from './actions';
 
@@ -68,6 +69,28 @@ export function* getPastDebate() {
   }
 }
 
+export function* search() {
+  while (true) {
+    try {
+      const action = yield take(actions.fetchSearchUser.types.start);
+      const answer = yield call(sendRequestWithToken, action.payload);
+      yield put(actions.fetchSearchUser.success(answer));
+    } catch (e) {
+      yield put(actions.fetchSearchUser.failed(e));
+    }
+  }
+}
+
+function sendRequestWithToken(name) {
+  return axios
+    .get(`/Users/search?sectionName=${name}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.id_token}`,
+      },
+    })
+    .then(res => res);
+}
+
 function setUrl(url) {
   localStorage.setItem('session_url', url);
 }
@@ -103,4 +126,5 @@ export default [
   getLiveDebate,
   getPastDebate,
   createSession,
+  search,
 ];

@@ -28,7 +28,7 @@ class SearchPage extends Component {
       <Styles.SearchPageWrapper>
         <Styles.ControlWrapper>
         <Styles.InputWrapper>
-          <Styles.Label htmlFor="search">Поиск названию или пользователю</Styles.Label>
+          <Styles.Label htmlFor="search">Поиск по названию или пользователю</Styles.Label>
           <Styles.SearchIconWrapper>
             <img src={search} alt="" />
           </Styles.SearchIconWrapper>
@@ -36,7 +36,7 @@ class SearchPage extends Component {
           </Styles.InputWrapper>
           <Styles.InputWrapper>
           <Styles.Label htmlFor="category">Категория</Styles.Label>
-          <Field component={renderSelect} name="searchInput" id="category">
+          <Field component={renderSelect} name="category" id="category">
             <option value="Politics">Политика</option>
           </Field>
           <Styles.SearchIconWrapper right={true}>
@@ -45,7 +45,7 @@ class SearchPage extends Component {
           </Styles.InputWrapper>
           <Styles.InputWrapper>
           <Styles.Label htmlFor="stream">Трансляция</Styles.Label>
-          <Field component={renderSelect} name="searchInput" id="stream">
+          <Field component={renderSelect} name="time" id="stream">
             <option value="live">Live</option>
             <option value="past">Past</option>
           </Field>
@@ -152,6 +152,7 @@ const mapStateToProps = state => {
   const selector = formValueSelector('search', states => states.get('form'));
   const searchInput = selector(state, 'searchInput');
   const category = selector(state, 'category');
+  const time = selector(state, "time");
   return { searchInput, category };
 };
 

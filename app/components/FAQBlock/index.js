@@ -1,8 +1,5 @@
 import React from 'react';
 import Background from 'images/faqbanner/background.svg';
-import AlienHuman from 'images/faqbanner/alienHuman.svg';
-import AlienGray from 'images/faqbanner/alienGray.svg';
-import AlienFooter from 'images/faqbanner/alienFooter.svg';
 import Facebook from 'images/footer/social/facebook.svg';
 import Instagram from 'images/footer/social/instagram.svg';
 import Twitter from 'images/footer/social/twitter.svg';
@@ -15,11 +12,8 @@ const FaqBlock = () => (
   <Styles.FaqBlockWrapper>
     <Styles.MainContentWrapper>
       <Styles.AnchorWrapper>
-        <Styles.GrayWrapper>
-          <img src={AlienGray} alt="" />
-        </Styles.GrayWrapper>
         <Styles.ContentWrapper>
-          <div>
+          <Styles.Content>
             <Styles.Title>Часто задаваемые вопросы</Styles.Title>
             <Styles.Description>
               Мы уверены, что у вас есть вопросы. Ниже приведен список наиболее
@@ -41,14 +35,11 @@ const FaqBlock = () => (
                 <FaqLine title="Как запустить стрим?" />
               </Styles.LinePairWrapper>
             </Styles.LinesWrapper>
-          </div>
+          </Styles.Content>
           <Styles.ButtonWrapper to="/create-debate">
             <Button text="Организовать дебаты" />
           </Styles.ButtonWrapper>
         </Styles.ContentWrapper>
-        <Styles.HumanWrapper>
-          <img src={AlienHuman} alt="" />
-        </Styles.HumanWrapper>
       </Styles.AnchorWrapper>
       <Styles.FooterWrapper>
         <Styles.FooterLinkWrapper>
@@ -81,7 +72,6 @@ const FaqBlock = () => (
             </Styles.FooterLinkSmallWrapper>
           </Styles.FooterLinkSocialWrapper>
         </Styles.FooterLinkWrapper>
-        <Styles.AlienFooterImage src={AlienFooter} alt="" />
         <Styles.Copyright>© League Of Developers 2018</Styles.Copyright>
       </Styles.FooterWrapper>
     </Styles.MainContentWrapper>

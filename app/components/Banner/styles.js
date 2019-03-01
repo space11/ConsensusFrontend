@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const BannerWrapper = styled.div``;
+export const BannerWrapper = styled.div`
+  display: flex;
+  height: 64vw;
+`;
 
 export const BannerDescriptionWrapper = styled.div`
   display: flex;
@@ -12,28 +15,13 @@ export const BannerDescriptionWrapper = styled.div`
 
 export const BannerDescriptionLine = styled.div`
   color: #fff;
-  font-size: 45px;
+  font-size: 3vw;
   text-align: center;
-  letter-spacing: 1.25px;
+  letter-spacing: 0.1vw;
   -webkit-user-select: none;
-`;
-
-export const RocketWrapper = styled.div``;
-
-export const AliensWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: -152px;
-`;
-
-export const RedAlienWrapper = styled.div`
-  margin-bottom: 45px;
-`;
-
-export const YellowAlienWrapper = styled.div`
-  display: flex;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
 `;
 
 export const ActionWrapper = styled.div`
@@ -43,13 +31,12 @@ export const ActionWrapper = styled.div`
 
 export const BannerImage = styled.img`
   width: 100%;
+  position: absolute;
 `;
 
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 730px;
-  height: 123px;
   justify-content: space-between;
   margin-bottom: 60px;
 `;
@@ -59,9 +46,9 @@ export const BannerContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  position: absolute;
   top: 0;
-  padding: 174px 68px;
+  padding: 15vw 68px;
+  z-index: 100;
 `;
 
 export const ButtonWrapper = styled(NavLink)`
@@ -69,4 +56,7 @@ export const ButtonWrapper = styled(NavLink)`
   align-self: center;
   justify-self: center;
   z-index: 99999;
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;

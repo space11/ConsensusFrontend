@@ -10,6 +10,8 @@ export default {
   post: (url, body, params) => request(url, { method: 'POST', body, params }),
   postWithToken: (url, body, params) =>
     requestWithToken(url, { method: 'POST', body, params }),
+  getWithToken: (url, params) =>
+    requestWithToken(url, { method: 'GET', params }),
   put: (url, body, params) => request(url, { method: 'PUT', body, params }),
   delete: (url, params) => request(url, { method: 'DELETE', params }),
   request: ({ url, ...options }) => request(url, options),

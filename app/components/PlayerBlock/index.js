@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PlayerPlaceholder from 'images/placeholders/playerPlaceholder.svg';
-// import OpvSession from 'openvidu-react';
+import OpvSession from 'openvidu-react';
 
 import Slider from './components/slider';
 import { PlayerBlockWrapper, Placeholder } from './styles';
@@ -26,15 +26,15 @@ class PlayerBlock extends Component {
         <Placeholder>
           <img src={PlayerPlaceholder} alt="" />
         </Placeholder>
-        {/* <OpvSession
+        <OpvSession
           id="opv-session"
           sessionName={localStorage.id_session}
           user="deviantkun"
-          openviduServerUrl={localStorage.session_url}
+          openviduServerUrl="wss://openvidu.lod-misis.ru?sessionId=3ekrahqvbk1yg5c9&token=lukgkl08bczbtjae&role=PUBLISHER"
           joinSession={() => ({})}
           leaveSession={() => ({})}
           error={() => ({})}
-        /> */}
+        />
         <Slider
           width={width}
           isPlaying

@@ -5,9 +5,13 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import debateProviderSaga from 'containers/DebateProvider/sagas';
-import { fetchCreatingDebate } from 'containers/DebateProvider/actions';
+import {
+  fetchCreatingDebate,
+  fetchSearchUser,
+} from 'containers/DebateProvider/actions';
 import Button from 'components/Button';
 import Bg from 'images/createRoom/bg.svg';
+import placeholder from 'images/placeholders/1.png';
 import * as Styles from './styles';
 
 class CreatingDebatePage extends Component {
@@ -15,6 +19,15 @@ class CreatingDebatePage extends Component {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidUpdate() {
+    const { invitedOpponent } = this.props;
+    if (invitedOpponent.length > 3) {
+      this.props.fetchSearchUser.start(invitedOpponent, localStorage.id_token); //eslint-disable-line
+      return true;
+    }
+    return false;
   }
 
   /* eslint-disable */
@@ -32,6 +45,7 @@ class CreatingDebatePage extends Component {
   }
 
   render() {
+    const {invitedOpponent} = this.props;
     return (
       <Styles.DebateWrapper>
         <div
@@ -69,6 +83,7 @@ class CreatingDebatePage extends Component {
             <Styles.Label htmlFor="invitedOpponent">
               Добавьте оппонента
             </Styles.Label>
+            <Styles.InviteOpponentWrapper>
             <Field
               id="invitedOpponent"
               name="invitedOpponent"
@@ -76,6 +91,19 @@ class CreatingDebatePage extends Component {
               component="input"
               style={Styles.Input}
             />
+           {invitedOpponent.length > 3 ? 
+           <Styles.FieldSuggestionsWrapper>
+           <Styles.OpponentFieldWrapper to="some">
+             <Styles.ProfileImage src={placeholder} alt=""/>
+             <Styles.Nickname>Face</Styles.Nickname>
+             </Styles.OpponentFieldWrapper>
+             <Styles.OpponentFieldWrapper to="some">
+             <Styles.ProfileImage src={placeholder} alt=""/>
+             <Styles.Nickname>Face</Styles.Nickname>
+             </Styles.OpponentFieldWrapper>
+           </Styles.FieldSuggestionsWrapper>
+           : ""}
+            </Styles.InviteOpponentWrapper>
           </Styles.InputWrapper>
           <Styles.ButtonWrapper>
             <Button
@@ -95,6 +123,8 @@ CreatingDebatePage.propTypes = {
   fetchCreatingDebate: PropTypes.any,
   title: PropTypes.string,
   debateCategory: PropTypes.string,
+  invitedOpponent: PropTypes.string,
+  fetchSearchUser: PropTypes.any,
 };
 
 const mapStateToProps = state => {
@@ -123,7 +153,7 @@ const withSaga = debateProviderSaga.map(saga =>
 
 const withConnect = connect(
   mapStateToProps,
-  dispatch => ({ fetchCreatingDebate: fetchCreatingDebate.bindTo(dispatch) }),
+  dispatch => ({ fetchCreatingDebate: fetchCreatingDebate.bindTo(dispatch), fetchSearchUser: fetchSearchUser.bindTo(dispatch) }),
 );
 
 export default compose(
@@ -133,5 +163,6 @@ export default compose(
   withSaga[2],
   withSaga[3],
   withSaga[4],
+  withSaga[5],
   withConnect,
 )(CreatingDebatePage);

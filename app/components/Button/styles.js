@@ -8,10 +8,9 @@ export const ButtonWrapper = styled.button`
   font-weight: 500;
   color: ${props => (props.isRed ? '#f7567c' : '#fff')};
   border-radius: 25px;
-  height: ${props => (props.isTransparent ? '45px' : '54px')};
   max-width: ${props => (props.isTransparent ? '245px' : '268px')};
-  height: ${props => props.h};
-  padding: ${props => (props.h === '27px' ? '5px 25px' : '10px 20px')};
+  padding: ${props => (props.h === '27px' ? '0 25px' : '0 20px')};
+  height: ${props => (props.isTransparent ? '45px' : '54px')};
   background: ${props =>
     props.isValid
       ? '#e87891'
@@ -29,3 +28,4 @@ export const ButtonWrapper = styled.button`
   cursor: pointer;
   width: ${props => props.w};
 `;
+
