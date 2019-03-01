@@ -7,12 +7,17 @@ export const VideoBlockWrapper = styled(NavLink)`
   flex-direction: column;
   text-decoration: none;
   color: #000;
-  width: 300px;
-  height: 300px;
+  min-width: 230px;
+  width: 19vw;
   background: #fff;
   transition: 0.3s;
+  margin: 0.6rem;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
   border-radius: 5px;
+
+  @media screen and (max-width: 900px) {
+    max-width: 420px;
+  }
 `;
 
 export const VideoBlockTitle = styled.div`
@@ -23,7 +28,7 @@ export const VideoBlockTitle = styled.div`
   text-overflow: ellipsis;
   white-space: normal;
   -webkit-line-clamp: 2;
-  font-size: 22px;
+  font-size: 1.1em;
   line-height: 1.3;
   letter-spacing: 0.361309px;
   margin-bottom: 10px;
@@ -37,8 +42,7 @@ export const VideoBlockContent = styled.div`
 
 export const VideoBlockNames = styled.div`
   font-weight: 300;
-  font-size: 18px;
-  letter-spacing: 0.6624px;
+  font-size: 0.9em;
   margin-bottom: 18px;
   height: 22px;
 `;
@@ -52,7 +56,7 @@ export const VideoBlockLowWrapper = styled.div`
 
 export const VideoBlockLowText = styled.div`
   font-weight: 300;
-  font-size: 14px;
+  font-size: 0.7em;
   letter-spacing: 0.270982px;
   height: 17px;
 `;
@@ -66,7 +70,6 @@ export const VideoBlockViewers = styled.div`
 export const VideoBlockImage = styled.img`
   position: relative;
   width: 100%;
-  height: 151px;
   border-radius: 5px 5px 2px 2px;
 `;
 

@@ -11,24 +11,22 @@ const VideoBlockSmall = ({
   names,
   theme,
   viewers,
-  white,
 }) => (
-  <Styles.VideoBlockWrapper to={url} white={white}>
-    {live ? <Styles.VideoBlockLiveMark src={LiveIcon} alt="" /> : ''}
+  <Styles.VideoBlockWrapper to={url}>
     <Styles.VideoBlockImage src={image} alt="" />
-    <Styles.ViedoBlockContent>
+    {live ? <Styles.VideoBlockLiveMark src={LiveIcon} alt="" /> : ''}
+    <Styles.VideoBlockContent>
       <Styles.VideoBlockTitle>{title}</Styles.VideoBlockTitle>
-      <vVideoBlockNames>{names}</vVideoBlockNames>
+      <Styles.VideoBlockNames>{names}</Styles.VideoBlockNames>
       <Styles.VideoBlockLowWrapper>
-        <Styles.VideoBlockText>{theme}</Styles.VideoBlockText>
-        <Styles.VideoBlockText>{viewers}</Styles.VideoBlockText>
+        <Styles.VideoBlockLowText>{theme}</Styles.VideoBlockLowText>
+        <Styles.VideoBlockLowText>{viewers}</Styles.VideoBlockLowText>
       </Styles.VideoBlockLowWrapper>
-    </Styles.ViedoBlockContent>
+    </Styles.VideoBlockContent>
   </Styles.VideoBlockWrapper>
 );
 VideoBlockSmall.propTypes = {
   image: PropTypes.any,
-  white: PropTypes.bool,
   title: PropTypes.string,
   url: PropTypes.string,
   live: PropTypes.bool,

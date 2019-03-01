@@ -13,7 +13,7 @@ const FaqBlock = () => (
     <Styles.MainContentWrapper>
       <Styles.AnchorWrapper>
         <Styles.ContentWrapper>
-          <div>
+          <Styles.Content>
             <Styles.Title>Часто задаваемые вопросы</Styles.Title>
             <Styles.Description>
               Мы уверены, что у вас есть вопросы. Ниже приведен список наиболее
@@ -35,7 +35,7 @@ const FaqBlock = () => (
                 <FaqLine title="Как запустить стрим?" />
               </Styles.LinePairWrapper>
             </Styles.LinesWrapper>
-          </div>
+          </Styles.Content>
           <Styles.ButtonWrapper to="/create-debate">
             <Button text="Организовать дебаты" />
           </Styles.ButtonWrapper>

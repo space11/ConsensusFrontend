@@ -9,7 +9,7 @@ const VideoBlock = ({ title, live }) => (
   <Styles.VideoBlockWrapper>
     <Styles.VideoBlockLine>
       <Styles.VideoBlockTitle>{title}</Styles.VideoBlockTitle>
-      <Styles.VideoBlockMoreButton>Посмотреть еще</Styles.VideoBlockMoreButton>
+      <Styles.VideoBlockMoreButton>Посмотреть все</Styles.VideoBlockMoreButton>
     </Styles.VideoBlockLine>
     <Styles.VideoBlockBigWrapper>
       <VideoBlockBig

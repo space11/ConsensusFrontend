@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SearchIcon from 'images/header/searchIcon';
 import Button from 'components/Button';
+import Menu from 'images/header/menu.svg';
 import ProfileImage from 'containers/Account/1.jpg';
 import { Notification } from 'images/header/notifications';
 import * as Styles from './styles';
@@ -31,6 +32,9 @@ class Header extends Component {
           <Styles.Logo to="/" isBlue={isBlue} isWhite={isWhite}>
             Консенсус
           </Styles.Logo>
+          <Styles.Menu>
+            <Styles.MenuIcon src={Menu} alt="" />
+          </Styles.Menu>
           <Styles.NavigatorContainer
             isLogin={localStorage.id_token !== undefined}
           >

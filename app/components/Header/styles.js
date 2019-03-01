@@ -14,7 +14,7 @@ export const HeaderWrapper = styled.div`
   z-index: 9999;
   position: absolute;
   width: 100%;
-  padding: 30px 45px;
+  padding: 3vw 4.5vw;
   align-items: center;
   background: transparent;
   flex-wrap: wrap;
@@ -23,7 +23,7 @@ export const HeaderWrapper = styled.div`
 
 export const Logo = styled(NavLink)`
   display: flex;
-  font-size: 36px;
+  font-size: 2.3vw;
   letter-spacing: 0.25px;
   font-weight: 500;
   color: ${props => (props.isWhite ? '#474D90' : '#fff')};
@@ -38,6 +38,10 @@ export const NavigatorContainer = styled.div`
   width: ${props => (props.isLogin ? '135px' : '295px')};
   justify-content: space-between;
   margin: 0 0 0 30px;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const SearchButton = styled(NavLink)`
@@ -79,11 +83,13 @@ export const NotificationRedRound = styled.div`
   align-items: center;
   background: #f7567c;
   border-radius: 100px;
-  height: 17px;
-  width: 17px;
+  height: 2.5vw;
+  width: 2.5vw;
+  max-height: 20px;
+  max-width: 20px;
   position: absolute;
-  top: -3px;
-  right: -6px;
+  top: -0.5vw;
+  right: -0.4vw;
   z-index: 10;
   border: 2px solid ${props => (props.isBlue ? '#fff' : '#232754')};
   text-align: center;
@@ -175,4 +181,15 @@ export const Inner = styled.div`
   max-height: 629px;
   overflow-y: overlay;
   overflow-x: hidden;
+`;
+
+export const Menu = styled.div`
+  display: none;
+  @media screen and (max-width: 900px) {
+    display: flex;
+  }
+`;
+
+export const MenuIcon = styled.img`
+  width: 2.5vw;
 `;
