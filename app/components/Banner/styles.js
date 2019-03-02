@@ -19,6 +19,7 @@ export const BannerDescriptionLine = styled.div`
   text-align: center;
   letter-spacing: 0.1vw;
   -webkit-user-select: none;
+  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
@@ -38,16 +39,14 @@ export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 60px;
+  margin-bottom: 3.55vw;
 `;
 
 export const BannerContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
-  top: 0;
-  padding: 15vw 68px;
+  padding: 14vw 0;
   z-index: 100;
 `;
 
@@ -56,7 +55,4 @@ export const ButtonWrapper = styled(NavLink)`
   align-self: center;
   justify-self: center;
   z-index: 99999;
-  @media screen and (max-width: 900px) {
-    display: none;
-  }
 `;

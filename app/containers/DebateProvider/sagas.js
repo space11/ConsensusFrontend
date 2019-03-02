@@ -9,28 +9,18 @@ export function* createDebate() {
     try {
       const debate = yield take(actions.fetchCreatingDebate.types.start);
       const id = yield call(sendCreatingData, debate.payload);
-      yield put(actions.fetchCreatingDebate.success(id));
-      yield call(actions.fetchCreatingSession.start());
+      const sessionId = yield call(sendCreatingSession);
+      const data = {
+        session: sessionId.id,
+        role: 'PUBLISHER',
+      };
+      const token = yield call(getUrl, data);
+      // yield call(setUrl, token);
+      yield put(actions.fetchCreatingDebate.success(token));
       yield put(push(`/room/${id}`));
     } catch (e) {
       yield put(actions.fetchCreatingDebate.failed(e));
     }
-  }
-}
-
-export function* createSession() {
-  try {
-    yield take(actions.fetchCreatingSession.types.start);
-    const { id } = yield call(sendCreatingSession);
-    const data = {
-      session: id,
-      role: 'PUBLISHER',
-    };
-    const { token } = yield call(getUrl, data);
-    yield call(setUrl, token);
-    yield put(actions.fetchCreatingSession.success({ token }));
-  } catch (e) {
-    yield put(actions.fetchCreatingSession.failed(e));
   }
 }
 
@@ -83,7 +73,7 @@ export function* search() {
 
 function sendRequestWithToken(name) {
   return axios
-    .get(`/Users/search?sectionName=${name}`, {
+    .get(`/search/users?sectionName=${name}`, {
       headers: {
         Authorization: `Bearer ${localStorage.id_token}`,
       },
@@ -91,9 +81,10 @@ function sendRequestWithToken(name) {
     .then(res => res);
 }
 
-function setUrl(url) {
-  localStorage.setItem('session_url', url);
-}
+// function setUrl(token) {
+//   console.log(token);
+//   localStorage.setItem('session_url', token);
+// }
 
 function getUrl(data) {
   return api.post('/Publish', data).then(res => res);
@@ -120,11 +111,4 @@ function sendDebatePastRequest() {
 }
 
 // All sagas to be loaded
-export default [
-  createDebate,
-  getDebate,
-  getLiveDebate,
-  getPastDebate,
-  createSession,
-  search,
-];
+export default [createDebate, getDebate, getLiveDebate, getPastDebate, search];

@@ -11,7 +11,7 @@ class Banner extends PureComponent {
         <Styles.BannerContentWrapper>
           <Styles.BannerDescriptionWrapper>
             <Styles.TextWrapper>
-              <Styles.BannerDescriptionLine>
+              <Styles.BannerDescriptionLine style={{ marginBottom: '0.3vw' }}>
                 Первая в мире платформа
               </Styles.BannerDescriptionLine>
               <Styles.BannerDescriptionLine>

@@ -42,9 +42,7 @@ export const VideoBlockContent = styled.div`
 export const VideoBlockNames = styled.div`
   font-weight: 300;
   font-size: 0.7em;
-  letter-spacing: 0.6624px;
   margin-bottom: 0.5rem;
-  height: 22px;
 `;
 
 export const VideoBlockLowWrapper = styled.div`
@@ -57,8 +55,6 @@ export const VideoBlockLowWrapper = styled.div`
 export const VideoBlockLowText = styled.div`
   font-weight: 300;
   font-size: 0.7em;
-  letter-spacing: 0.270982px;
-  height: 17px;
 `;
 
 export const VideoBlockViewers = styled.div`

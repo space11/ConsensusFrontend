@@ -13,6 +13,9 @@ export const Background = styled.img`
   position: relative;
   top: 0;
   overflow: hidden;
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const CreateDebateFormWrapper = styled.div`
@@ -20,30 +23,36 @@ export const CreateDebateFormWrapper = styled.div`
   flex-direction: column;
   z-index: 999;
   height: 100%;
-  margin-left: 90px;
-  margin-top: 182px;
+  margin: 10vw 6vw;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 10vw;
+  }
 `;
 
 export const InputWrapper = styled.form`
   display: flex;
   flex-direction: column;
   margin-bottom: 90px;
+  width: 30vw;
+
+  @media screen and (max-width: 900px) {
+    width: 60vw;
+  }
 `;
 
 export const Input = {
-  border: '1px solid #474D90',
-  background: '#fff',
-  height: '56px',
-  marginBottom: '40px',
-  width: '474px',
-  zIndex: '3',
-  borderRadius: '7px 7px 0 0',
-  padding: '5px 15px',
+  width: '100%',
+  marginBottom: '1.5vw',
 };
 
 export const Label = styled.label`
   -webkit-user-select: none;
-  font-size: 30px;
+  font-size: 1.7vw;
   letter-spacing: 0.211704px;
   margin-bottom: 10px;
 `;
@@ -51,6 +60,11 @@ export const Label = styled.label`
 export const ButtonWrapper = styled.div`
   display: flex;
   width: 100%;
+
+  @media screen and (max-width: 900px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const InviteOpponentWrapper = styled.div`
@@ -58,11 +72,11 @@ export const InviteOpponentWrapper = styled.div`
 `;
 
 export const FieldSuggestionsWrapper = styled.div`
-  margin-top: -41px;
+  margin-top: -1.6vw;
   width: 100%;
   background: #fff;
   border-radius: 0 0 7px 7px;
-  border: 1px solid #474d90;
+  border: 2px solid #474d90;
 `;
 
 export const OpponentFieldWrapper = styled(NavLink)`

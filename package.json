@@ -56,7 +56,7 @@
   "dependencies": {
     "@aspnet/signalr": "^1.0.4",
     "@babel/polyfill": "7.0.0",
-    "@material-ui/core": "^3.9.0",
+    "@material-ui/core": "^3.9.2",
     "axios": "^0.18.0",
     "chalk": "^2.4.1",
     "compression": "1.7.3",

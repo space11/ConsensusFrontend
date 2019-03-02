@@ -4,13 +4,14 @@ import styled from 'styled-components';
 
 export const ButtonWrapper = styled.button`
   display: flex;
-  font-size: ${props => (props.h === '27px' ? '10px' : '20px')};
+  font-size: ${props => (props.h === '27px' ? '0.7vw' : '1.25vw')};
   font-weight: 500;
   color: ${props => (props.isRed ? '#f7567c' : '#fff')};
   border-radius: 25px;
+  width: 20vw;
   max-width: ${props => (props.isTransparent ? '245px' : '268px')};
-  padding: ${props => (props.h === '27px' ? '0 25px' : '0 20px')};
-  height: ${props => (props.isTransparent ? '45px' : '54px')};
+  padding: ${props => (props.h === '27px' ? '0.6vw 1vw' : '0.7vw')};
+  height: ${props => props.h};
   background: ${props =>
     props.isValid
       ? '#e87891'

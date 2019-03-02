@@ -3,16 +3,39 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { compose } from 'redux';
+import Select from '@material-ui/core/Select';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 import injectSaga from 'utils/injectSaga';
 import debateProviderSaga from 'containers/DebateProvider/sagas';
 import {
   fetchCreatingDebate,
   fetchSearchUser,
 } from 'containers/DebateProvider/actions';
+// import { makeUsersSelector } from 'containers/DebateProvider/selectors';
 import Button from 'components/Button';
 import Bg from 'images/createRoom/bg.svg';
-import placeholder from 'images/placeholders/1.png';
+import Placeh from 'images/placeholders/1.png';
 import * as Styles from './styles';
+
+const renderTextField = ({ input, placeholder, ...custom }) => (
+  <TextField
+    variant="outlined"
+    onChange={(event, index, value) => input.onChange(value)}
+    {...custom}
+    {...input}
+  />
+);
+
+const renderSelectField = ({ input, width, ...custom }) => (
+  <Select
+    input={<OutlinedInput />}
+    onChange={(event, index, value) => input.onChange(value)}
+    {...custom}
+    {...input}
+  />
+);
 
 class CreatingDebatePage extends Component {
   constructor(props) {
@@ -23,7 +46,7 @@ class CreatingDebatePage extends Component {
 
   componentDidUpdate() {
     const { invitedOpponent } = this.props;
-    if (invitedOpponent.length > 3) {
+    if (invitedOpponent.length !== 0) {
       this.props.fetchSearchUser.start(invitedOpponent, localStorage.id_token); //eslint-disable-line
       return true;
     }
@@ -32,8 +55,7 @@ class CreatingDebatePage extends Component {
 
   /* eslint-disable */
   onSubmit() {
-    const { title, debateCategory } = this.props;
-    const startDateTime = new Date().toISOString();
+    const { title, debateCategory, startDateTime } = this.props;
     const invitedOpponent = localStorage.userId;
 
     this.props.fetchCreatingDebate.start({
@@ -45,7 +67,8 @@ class CreatingDebatePage extends Component {
   }
 
   render() {
-    const {invitedOpponent} = this.props;
+    const { invitedOpponent } = this.props;
+
     return (
       <Styles.DebateWrapper>
         <div
@@ -64,9 +87,8 @@ class CreatingDebatePage extends Component {
               id="title"
               name="title"
               type="text"
-              component="input"
               style={Styles.Input}
-              placeholder="Укажите тему дебатов"
+              component={renderTextField}
             />
             <Styles.Label htmlFor="debateCategory">
               Тематика дебатов
@@ -75,11 +97,20 @@ class CreatingDebatePage extends Component {
               id="debateCategory"
               name="debateCategory"
               type="text"
-              component="select"
               style={Styles.Input}
+              component={renderSelectField}
             >
-              <option value="Politics">Политика</option>
+               <MenuItem value="" disabled></MenuItem>
+              <MenuItem value="Politics">Политика</MenuItem>
             </Field>
+            <Styles.Label htmlFor="startDateTime">Укажите дату и время дебатов</Styles.Label>
+            <Field
+              id="startDateTime"
+              name="startDateTime"
+              type="datetime-local"
+              style={Styles.Input}
+              component={renderTextField}
+            />
             <Styles.Label htmlFor="invitedOpponent">
               Добавьте оппонента
             </Styles.Label>
@@ -88,17 +119,17 @@ class CreatingDebatePage extends Component {
               id="invitedOpponent"
               name="invitedOpponent"
               type="text"
-              component="input"
+              component={renderTextField}
               style={Styles.Input}
             />
            {invitedOpponent.length > 3 ? 
            <Styles.FieldSuggestionsWrapper>
            <Styles.OpponentFieldWrapper to="some">
-             <Styles.ProfileImage src={placeholder} alt=""/>
+             <Styles.ProfileImage src={Placeh} alt=""/>
              <Styles.Nickname>Face</Styles.Nickname>
              </Styles.OpponentFieldWrapper>
              <Styles.OpponentFieldWrapper to="some">
-             <Styles.ProfileImage src={placeholder} alt=""/>
+             <Styles.ProfileImage src={Placeh} alt=""/>
              <Styles.Nickname>Face</Styles.Nickname>
              </Styles.OpponentFieldWrapper>
            </Styles.FieldSuggestionsWrapper>
@@ -133,8 +164,10 @@ const mapStateToProps = state => {
   );
   const title = selector(state, 'title');
   const debateCategory = selector(state, 'debateCategory');
+  const startDateTime = selector(state, 'startDateTime');
   const invitedOpponent = selector(state, 'invitedOpponent');
-  return { title, debateCategory, invitedOpponent };
+
+  return { title, debateCategory, startDateTime, invitedOpponent };
 };
 
 const CreatingDebate = reduxForm({
@@ -163,6 +196,5 @@ export default compose(
   withSaga[2],
   withSaga[3],
   withSaga[4],
-  withSaga[5],
   withConnect,
 )(CreatingDebatePage);

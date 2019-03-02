@@ -32,6 +32,10 @@ export const VideoBlockTitle = styled.div`
   line-height: 1.3;
   letter-spacing: 0.361309px;
   margin-bottom: 10px;
+
+  @media screen and (max-width: 900px) {
+    font-size: 0.8em;
+  }
 `;
 
 export const VideoBlockContent = styled.div`
@@ -43,8 +47,11 @@ export const VideoBlockContent = styled.div`
 export const VideoBlockNames = styled.div`
   font-weight: 300;
   font-size: 0.9em;
-  margin-bottom: 18px;
-  height: 22px;
+  margin-bottom: 1rem;
+
+  @media screen and (max-width: 900px) {
+    font-size: 0.7em;
+  }
 `;
 
 export const VideoBlockLowWrapper = styled.div`
@@ -57,8 +64,10 @@ export const VideoBlockLowWrapper = styled.div`
 export const VideoBlockLowText = styled.div`
   font-weight: 300;
   font-size: 0.7em;
-  letter-spacing: 0.270982px;
-  height: 17px;
+
+  @media screen and (max-width: 900px) {
+    font-size: 0.7em;
+  }
 `;
 
 export const VideoBlockViewers = styled.div`

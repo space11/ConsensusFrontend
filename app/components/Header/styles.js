@@ -102,8 +102,8 @@ export const NotificationWrapper = styled.div`
   position: absolute;
   flex-direction: column;
   width: 418px;
-  top: 82px;
-  right: 158px;
+  top: 6.3vw;
+  right: 11.2vw;
   background: #fff;
   border: 1px solid #dadada;
   border-radius: 5px 0 5px 5px;

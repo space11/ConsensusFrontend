@@ -92,9 +92,6 @@ export const MainContentWrapper = styled.div`
 
 export const ButtonWrapper = styled(NavLink)`
   align-self: center;
-  @media screen and (max-width: 900px) {
-    display: none;
-  }
 `;
 
 export const FooterLinkWrapper = styled.div`

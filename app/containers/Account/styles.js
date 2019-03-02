@@ -15,7 +15,7 @@ export const AccountPageWrapper = styled.div`
 export const BackgroundComponent = styled.img`
   position: absolute;
   z-index: 1;
-  height: 570px;
+  height: 20vw;
   width: 100%;
   border-radius: 0 0 100% 100%;
   background: linear-gradient(360deg, #2b3780 0%, #2d3270 50%, #20244c 100%);
@@ -26,7 +26,7 @@ export const FollowLine = styled.div`
   justify-content: space-between;
   width: 50%;
   z-index: 3;
-  top: 480px;
+  top: 20vw;
   margin-top: 470px;
 `;
 
@@ -69,7 +69,7 @@ export const ProfileImageBlock = styled.div`
   margin-top: -200px;
   margin-bottom: 20px;
   z-index: 200;
-  margin-top: 400px;
+  margin-top: 10vw;
 `;
 
 export const ProfileShadow = styled.div`
@@ -145,9 +145,9 @@ export const ButtonLine = styled.div`
 
 export const RocketWrapper = styled.div`
   position: absolute;
-  top: 15vh;
+  top: 10vh;
   width: 300px;
-  height: 400px;
+  height: 300px;
   z-index: 120;
   animation: spin 7s linear infinite;
 
