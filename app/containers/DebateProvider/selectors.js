@@ -8,8 +8,8 @@ const selectDebatePast = () => state =>
 
 export const makeUsersSelector = () =>
   createSelector(searchUsers(), substate => {
-    const users = substate;
-    return users;
+    const users = substate.toJS().data;
+    return users || [{}];
   });
 
 export const makeDebateLiveSelector = () =>

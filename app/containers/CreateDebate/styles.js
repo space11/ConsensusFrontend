@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 
 export const DebateWrapper = styled.div`
   display: flex;
@@ -72,14 +71,14 @@ export const InviteOpponentWrapper = styled.div`
 `;
 
 export const FieldSuggestionsWrapper = styled.div`
+  position: absolute;
   margin-top: -1.6vw;
   width: 100%;
-  background: #fff;
   border-radius: 0 0 7px 7px;
   border: 2px solid #474d90;
 `;
 
-export const OpponentFieldWrapper = styled(NavLink)`
+export const OpponentFieldWrapper = styled.button`
   width: 100%;
   height: 50px;
   padding: 10px;

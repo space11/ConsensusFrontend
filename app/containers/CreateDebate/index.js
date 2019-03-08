@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import TextField from '@material-ui/core/TextField';
@@ -13,10 +14,9 @@ import {
   fetchCreatingDebate,
   fetchSearchUser,
 } from 'containers/DebateProvider/actions';
-// import { makeUsersSelector } from 'containers/DebateProvider/selectors';
+import { makeUsersSelector } from 'containers/DebateProvider/selectors';
 import Button from 'components/Button';
 import Bg from 'images/createRoom/bg.svg';
-import Placeh from 'images/placeholders/1.png';
 import * as Styles from './styles';
 
 const renderTextField = ({ input, placeholder, ...custom }) => (
@@ -44,19 +44,9 @@ class CreatingDebatePage extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidUpdate() {
-    const { invitedOpponent } = this.props;
-    if (invitedOpponent.length !== 0) {
-      this.props.fetchSearchUser.start(invitedOpponent, localStorage.id_token); //eslint-disable-line
-      return true;
-    }
-    return false;
-  }
-
   /* eslint-disable */
   onSubmit() {
-    const { title, debateCategory, startDateTime } = this.props;
-    const invitedOpponent = localStorage.userId;
+    const { title, debateCategory, startDateTime, invitedOpponent } = this.props;
 
     this.props.fetchCreatingDebate.start({
       startDateTime,
@@ -67,8 +57,8 @@ class CreatingDebatePage extends Component {
   }
 
   render() {
-    const { invitedOpponent } = this.props;
-
+    const { invitedOpponent, users } = this.props;
+    // console.log(users.data.users);
     return (
       <Styles.DebateWrapper>
         <div
@@ -119,23 +109,12 @@ class CreatingDebatePage extends Component {
               id="invitedOpponent"
               name="invitedOpponent"
               type="text"
+              onChange={() => this.props.fetchSearchUser.start(invitedOpponent, localStorage.id_token)}
               component={renderTextField}
               style={Styles.Input}
             />
-           {invitedOpponent.length > 3 ? 
-           <Styles.FieldSuggestionsWrapper>
-           <Styles.OpponentFieldWrapper to="some">
-             <Styles.ProfileImage src={Placeh} alt=""/>
-             <Styles.Nickname>Face</Styles.Nickname>
-             </Styles.OpponentFieldWrapper>
-             <Styles.OpponentFieldWrapper to="some">
-             <Styles.ProfileImage src={Placeh} alt=""/>
-             <Styles.Nickname>Face</Styles.Nickname>
-             </Styles.OpponentFieldWrapper>
-           </Styles.FieldSuggestionsWrapper>
-           : ""}
             </Styles.InviteOpponentWrapper>
-          </Styles.InputWrapper>
+            </Styles.InputWrapper>
           <Styles.ButtonWrapper>
             <Button
               type="submit"
@@ -153,12 +132,17 @@ class CreatingDebatePage extends Component {
 CreatingDebatePage.propTypes = {
   fetchCreatingDebate: PropTypes.any,
   title: PropTypes.string,
+  users: PropTypes.Array,
   debateCategory: PropTypes.string,
   invitedOpponent: PropTypes.string,
   fetchSearchUser: PropTypes.any,
 };
 
-const mapStateToProps = state => {
+const mapStateProps = createStructuredSelector({
+  users: makeUsersSelector(),
+});
+
+const mapStateToProps = (state) => {
   const selector = formValueSelector('createDebate', states =>
     states.get('form'),
   );
@@ -168,7 +152,7 @@ const mapStateToProps = state => {
   const invitedOpponent = selector(state, 'invitedOpponent');
 
   return { title, debateCategory, startDateTime, invitedOpponent };
-};
+}
 
 const CreatingDebate = reduxForm({
   form: 'createDebate',
@@ -189,6 +173,8 @@ const withConnect = connect(
   dispatch => ({ fetchCreatingDebate: fetchCreatingDebate.bindTo(dispatch), fetchSearchUser: fetchSearchUser.bindTo(dispatch) }),
 );
 
+const witConnect = connect(mapStateProps);
+
 export default compose(
   CreatingDebate,
   withSaga[0],
@@ -197,4 +183,5 @@ export default compose(
   withSaga[3],
   withSaga[4],
   withConnect,
+  witConnect
 )(CreatingDebatePage);

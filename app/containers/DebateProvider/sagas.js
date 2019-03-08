@@ -14,9 +14,9 @@ export function* createDebate() {
         session: sessionId.id,
         role: 'PUBLISHER',
       };
-      const token = yield call(getUrl, data);
-      // yield call(setUrl, token);
-      yield put(actions.fetchCreatingDebate.success(token));
+      const sessionData = yield call(getUrl, data);
+      yield call(setUrl, sessionData);
+      yield put(actions.fetchCreatingDebate.success(sessionData));
       yield put(push(`/room/${id}`));
     } catch (e) {
       yield put(actions.fetchCreatingDebate.failed(e));
@@ -81,10 +81,13 @@ function sendRequestWithToken(name) {
     .then(res => res);
 }
 
-// function setUrl(token) {
-//   console.log(token);
-//   localStorage.setItem('session_url', token);
-// }
+function setUrl(sessionData) {
+  localStorage.setItem('data', sessionData.data);
+  localStorage.setItem('id', sessionData.id);
+  localStorage.setItem('role', sessionData.role);
+  localStorage.setItem('session', sessionData.session);
+  localStorage.setItem('session_token', sessionData.token);
+}
 
 function getUrl(data) {
   return api.post('/Publish', data).then(res => res);
